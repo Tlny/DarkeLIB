@@ -60,7 +60,7 @@ void make_me_boots() {
 	boots->set("id",({"gnome boots","boots"}));;
 	boots->set("short","A pair of gnome boots");
 	boots->set("long","This is a pair of gnome boots with pointy toes.");
-	boots->set_type("boots");
+	boots->set_type("cloth foots");
 	boots->set_ac(4);
 	boots->set_limbs(({"right foot","left foot"}));
 	boots->set_weight(93);

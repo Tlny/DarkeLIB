@@ -2,13 +2,14 @@
 //    terrains as well as things like mineral mining and dropping areas and
 //    stuff on the filed.
 
-#define HIGH_COLUMN 98
-#define HIGH_ROW 98
+#define HIGH_COLUMN 99
+#define HIGH_ROW 99
 #define EXITS ({ "north", "south", "east", "west" })
 #define TERRAIN_FILE "/d/damned/data/world_terrain.db"
 
 #include <daemons.h>
 #include <std.h>
+
 
 inherit ROOM;
 inherit "/std/virtual/compile";
@@ -25,6 +26,7 @@ void clone_monster(string type);
 string query_terrain();
 string get_xtra_long(int *x, int *y);
 string terrain_name(string letter);
+string observe(string str);
 
 void virtual_setup(string room) {
   int item_x, item_y, i, x, y, *exits_y, *exits_x;
@@ -66,39 +68,52 @@ add_exit("/d/damned/arena/booths_room", "arena");
   switch(capitalize(type)) {
   case "S":
     set("short", "A murky swamp");
-    set_smell("default", "The air is heavy with the stench of decay.");
-    set_smell("gas", (: call_other, this_object(), "gas_func" :));
+    set_smell("default", (: call_other, this_object(), "observe_func" :));
+    //set_smell("gas", (: call_other, this_object(), "gas_func" :));
+    break;
+ case "O":
+    set("short", "A city");
+	    set_smell("default", (: call_other, this_object(), "observe_func" :));
+    break;
+ case "A":
+    set("short", "A area");
+	    set_smell("default", (: call_other, this_object(), "observe_func" :));
     break;
   case "T":
     set("short", "A freezing tundra");
+	    set_smell("default", (: call_other, this_object(), "observe_func" :));
     break;
   case "P":
     set("short", "Beautiful plains");
+	    set_smell("default", (: call_other, this_object(), "observe_func" :));
     break;
   case "M":
     set("short", "Tall, stately mountains");
+	    set_smell("default", (: call_other, this_object(), "observe_func" :));
     break;
   case "H":
     set("short", "Rolling hills");
+	    set_smell("default", (: call_other, this_object(), "observe_func" :));
     break;
   case "W":
     set("short", "The high seas");
+	    set_smell("default", (: call_other, this_object(), "observe_func" :));
     break;
   case "F":
     set("short", "A darke and eerie forest");
-    if(!random(2)) {
-      set_smell("default", "The smell of evergreens pervades your nostrils.");
-      set_smell("evergreen", "The evergreens smell very pleasant.");
-    }
+	    set_smell("default", (: call_other, this_object(), "observe_func" :));
     break;
   case "J":
     set("short", "A humid jungle");
+		    set_smell("default", (: call_other, this_object(), "observe_func" :));
     break;
   case "D":
     set("short", "An arid desert");
+		    set_smell("default", (: call_other, this_object(), "observe_func" :));
     break;
   case "C":
     set("short", "The beautiful coast");
+		    set_smell("default", (: call_other, this_object(), "observe_func" :));
     set_listen("default", "You hear the gentle crashing of waves against the coast.");
     break;
   }
@@ -142,20 +157,27 @@ add_exit("/d/damned/arena/booths_room", "arena");
       }
     }
   }
+
+/* Removed and placed in proper location to reference /d/damned/data/world_items.db
+//City of VO Tiny
 if(x == 11 && y == 9) {
 set("night long", (string)query("night long") + "%^BOLD%^"
-"The Town of Vo'sangar.%^RESET%^");
+"The City of Vo'sangar.%^RESET%^");
 set("day long", (string)query("day long") + "%^BOLD%^"
-"The Town of Vo'sangar.%^RESET%^");
-add_exit("/d/khojem/port/room/wgate", "town");
+"The City of Vo'sangar.%^RESET%^");
+add_exit("/d/khojem/port/room/wgate", "city");
 }
+
+//CITY OF AKKAD Tiny
 if(x == 5 && y == 9) {
 set("night long", (string)query("night long") + "%^BOLD%^"
 "The City of Akkad.%^RESET%^");
 set("day long", (string)query("day long") + "%^BOLD%^"
-"The Town of Akkad.%^RESET%^");
+"The City of Akkad.%^RESET%^");
 add_exit("/d/damned/akkad/ak_out4", "city");
 }
+*/
+
   items_file = get_dir("/d/damned/data/");
   i = sizeof(items_file);
   minerals = ([]);
@@ -203,6 +225,10 @@ string get_xtra_long(int *x, int *y) {
 string terrain_name(string letter) {
   letter = capitalize(letter);
   switch(letter) {
+  case "A":
+    return "a area";
+  case "O":
+    return "a city";
   case "F":
     return "a stately forest";
   case "J":
@@ -245,6 +271,7 @@ int query_water() {
     return 1;
   else return 0;
 }
+
 
 void init() {
   ::init();
@@ -299,6 +326,7 @@ void damage_all() {
   return;
 }
 
+
 void create() {
   ::create();
     set_property("light", 2);
@@ -306,11 +334,138 @@ void create() {
     return;
 }
 
+
 void reset() {
     if(random(28) == 4 && stringp(terrain_type) && memory_info() < 5000000)
       clone_monster(terrain_type);
   return;
 }
+
+
+
+//TLNY 2020
+string observe_func(){
+ int z,landtype,xline,yline,Bx,By,ypos,*exits,skill_level,loop;
+ object room,*targets,*inv;
+ string path,*desc;
+ mixed grid;
+
+
+  room = environment(this_player());
+  path = file_name(room);
+  grid = allocate(100);
+  if(sscanf(path,"/d/damned/virtual/room_%d_%d.world",Bx,By)){                 
+    yline = (By-4);
+    if(yline < 0)
+       yline = 100 + yline;
+    targets = ({});    
+     loop = 0;
+     while(loop <= 9){
+         if(yline == 100)
+            yline = 0;
+         ypos = 0;
+         xline = (Bx-4);
+         grid[yline] = allocate(30);
+         skill_level = (this_player()->query_skill("perception"));
+         while(ypos <= 9){ 
+           if(xline < 0)
+            xline = 100 + xline;
+           if(xline == 100)
+            xline = 0;
+              if( (xline >=0 && xline <=100 )&&(yline >= 0 && yline <= 100)){
+                room = find_object_or_load("/d/damned/virtual/room_"+
+                       xline+"_"+yline+".world");
+                inv = all_inventory(room);
+                targets = filter_array(inv,"query_boat");
+                landtype = (room->query_water());
+                exits = room->query_exits();
+                if(landtype == 1){
+                   //Water Room
+                    grid[yline][ypos] ="%^B_BLUE%^ # %^RESET%^";
+                }
+                if(landtype == 0){
+                   //Land Room
+                    desc = explode(room->query_short()," ");
+                    while(grid[yline][ypos] == 0){
+                     if(member_array("forest",desc) != -1)                       
+                       grid[yline][ypos] =" %^GREEN%^F%^RESET%^ ";     
+                     if(member_array("coast",desc) != -1)                       
+                       grid[yline][ypos] =" %^BOLD%^%^BLUE%^C%^RESET%^ ";
+                     if(member_array("tundra",desc) != -1)                       
+                       grid[yline][ypos] =" %^WHITE%^T%^RESET%^ ";
+                     if(member_array("plains",desc) != -1)                       
+                       grid[yline][ypos] =" %^WHITE%^P%^RESET%^ ";
+                     if(member_array("hills",desc) != -1)                       
+                       grid[yline][ypos] =" %^RED%^H%^RESET%^ ";
+                     if(member_array("mountains",desc) != -1)                       
+                       grid[yline][ypos] =" %^BOLD%^%^RED%^M%^RESET%^ ";
+                     if(member_array("desert",desc) != -1)                       
+                       grid[yline][ypos] =" %^YELLOW%^D%^RESET%^ ";
+                     if(member_array("jungle",desc) != -1)                       
+                      grid[yline][ypos] =" %^GREEN%^J%^RESET%^ ";
+                     if(member_array("swamp",desc) != -1)                       
+                      grid[yline][ypos] =" %^B_GREEN%^S%^RESET%^ ";
+                     if(member_array("city",desc) != -1)                       
+                      grid[yline][ypos] =" %^B_GREEN%^O%^RESET%^ ";
+                     if(member_array("area",desc) != -1)                       
+                      grid[yline][ypos] =" %^B_MAGENTA%^A%^RESET%^ ";
+                     if(grid[yline][ypos] == 0)
+                        grid[yline][ypos] = "?";
+                    }
+                }
+                //Check to see if Player room
+                if(yline == By && ypos == 4 )
+                    grid[yline][ypos] =" %^ORANGE%^@%^RESET%^ ";                  
+              }
+              ypos = ypos + 1;
+              xline = xline + 1;
+         }               
+         yline = yline + 1;
+         loop = loop + 1;
+    }
+    z = By - 4;
+    write("\n");
+    loop = 0;
+
+   z = By - 4;
+   if(skill_level > 2 ){ 
+       while(loop < 9 ){
+      if(z < 0)
+        z = 100 + z;
+      if(z >= 100)
+        z = z - 100;
+      write(""+grid[z][0]+grid[z][1]+grid[z][2]+grid[z][3]+grid[z][4]+grid[z][5]+grid[z][6]+grid[z][7]+grid[z][8]);								
+      z = z + 1;
+      if(z == 100)
+         z = 0;
+      loop = loop + 1;
+    }
+   }
+
+   z = By - 4;
+   if(skill_level < 1 ){ 
+       while(loop < 9 ){
+      if(z < 0)
+        z = 100 + z;
+      if(z >= 100)
+        z = z - 100;
+      write(""+grid[z][0]+grid[z][1]+grid[z][2]+grid[z][3]+grid[z][4]+grid[z][5]+grid[z][6]+grid[z][7]+grid[z][8]);								
+      z = z + 1;
+      if(z == 100)
+         z = 0;
+      loop = loop + 1;
+    }
+   }
+
+  }
+
+
+ }
+
+
+
+
+//END FOR REFERENCE
 
 string get_day_long(string terrain, int z) {
   string *descs;
@@ -324,6 +479,19 @@ string get_day_long(string terrain, int z) {
 	"beneath the murky waters.\n";
     descs[2] = "You push some vines aside as you wade through the swamp.  You proceed at a cautious pace "+
       "since the gas is so thick, you can hardly see your hand in front of your face.\n";
+    break;
+case "O":
+    descs[0] = "You here the busy streets of a city here.  "+
+      "Your excitment rises as you smell fresh bread cooking.  In the distance, you see the city walls in the distance.\n";
+    descs[1] = "You walk carefully along the walls of the city.\n";
+    descs[2] = "You walk carefully along the walls of the city.\n";
+    break;
+case "A":
+    descs[0] = "You come close to a dungeon and here the grunts of monsters neaby  "+
+      "Your excitment rises as you smell the flesh of rotted corpses."+  
+"In the distance, you see blood stained banners.\n";
+    descs[1] = "You walk carefully along the enetrance of the area.\n";
+    descs[2] = "You walk carefully along the enetrance of the area.\n";
     break;
   case "T":
     descs[0] = "You feel you should have packed an extra jacket as you trudge through the deep snow here.  "+
@@ -404,6 +572,7 @@ string get_day_long(string terrain, int z) {
       "in all directions.\n";
     break;
   }
+  
   return descs[z%3];
 }
 
@@ -418,6 +587,14 @@ string get_night_long(string terrain, int z) {
     return "The swamp is not the best place to be at night.  The swamp gas floats over the murky waters almost "+
       "as if it were alive.  Your only companion in this dark morass is the sound of the water as it is "+
 	"parted by your stride.\n";
+case "O":
+    return "If you thought this place was cold during the day, you had another thing coming.  As far as you "+
+      "can see, which isn't very, the city is cold, flat, and unrelenting.  Your shivers of cold are surpassed "+
+	"only by the loneliness you feel.\n";
+case "A":
+    return "If you thought this place was cold during the day, you had another thing coming.  As far as you "+
+      "can see, which isn't very, the area is cold, flat, and unrelenting.  Your shivers of cold are surpassed "+
+	"only by the loneliness you feel.\n";
   case "T":
     return "If you thought this place was cold during the day, you had another thing coming.  As far as you "+
       "can see, which isn't very, the snow is cold, flat, and unrelenting.  Your shivers of cold are surpassed "+
@@ -505,16 +682,4 @@ void clone_monster(string terrain) {
     mon->move(this_object());
   return;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 

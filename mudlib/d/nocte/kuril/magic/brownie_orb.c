@@ -24,7 +24,7 @@ void create() {
 		"stasis.  You can see a brownie inside this orb."
 	);
 	set_weight(30);
-	set_value(15000);
+	set_value(2000);
 }
 
 int shatter_orb(string str) {

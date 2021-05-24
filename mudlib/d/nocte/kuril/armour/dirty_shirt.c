@@ -9,7 +9,7 @@ void create() {
 		"Smelly and foul from days, and perhaps weeks of wear, "
 		"this shirt smells just like its owner--yuck!"
 	);
-	set_type("body armour");
+	set_type("cloth torso");
 	set_ac(2);
 	set_weight(50);
 	set_value(20);

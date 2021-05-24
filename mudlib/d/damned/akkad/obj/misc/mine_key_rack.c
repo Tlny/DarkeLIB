@@ -14,7 +14,7 @@ void create() {
   set_short("A key rack");
   set_long(
 "Here you can get a mine key for 2 gold.  It will, of course, "
-"only open YOUR mine if you have one.  Type 'take key'.");
+"only open %^COLOR255%^YOUR%^RESET%^ mine if you have one.  Type 'take key'.");
   return;
 }
 
@@ -34,7 +34,9 @@ int take_key(string str) {
     return 1;
   }
   this_player()->add_money("gold", -2);
-  ob = new("/std/Object");
+  //ob = new("/std/Object");
+//TLNY2020 ADD
+    ob = new("/d/damned/akkad/obj/misc/key.c");
   ob->set_property("no save", 1);
   ob->set_name("key");
   ob->set_short(capitalize((string)this_player()->query_name()) +
@@ -46,3 +48,4 @@ int take_key(string str) {
   write("You take your key from the rack.");
   return 1;
 }
+

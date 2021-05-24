@@ -16,7 +16,7 @@ void create() {
       "There are no signs of a trail or path to guide you through "+
       "this maze of dense wooded growth.  Even if there were a "+
       "trail it would prove hard to follow in this darkness.  "+
-      "Hanging from a tree closeby you notice a rope."
+      "Hanging from a tree closeby you notice a rope.\n   0\n   u \n0--@--0\n   | \n   0\n"
     );
     add_exit("wood3","north");
     add_exit("wood1","east");

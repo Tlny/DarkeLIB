@@ -31,6 +31,7 @@ void create() {
   set_gender("male");
   set("race", "high-elf");
   set_body_type("human");
+  set_class("elementalist");
   set_overall_ac(60);
   set_skill("elementalism", 90);
   set_id(({ "solus", "guildmaster", "elementalist", "elementalist guildmaster" }));
@@ -65,6 +66,7 @@ void create() {
 //LIKE THEY NEED A STAFF TOO? parnell 020199
 ob = new("/d/damned/guilds/elementalist/gm_staff");
 ob->move(this_object());
+force_me("equip");
 force_me("wield staff in right hand and left hand");
 //  ob->move(this_object());
 // force_me("wield staff in right hand and left hand");

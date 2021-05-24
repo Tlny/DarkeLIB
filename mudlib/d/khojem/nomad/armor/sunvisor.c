@@ -15,7 +15,7 @@ void create() {
       "protection during battle.");
     set_weight(1);
     set_value(20);
-    set_type("visor");
+    set_type("metal face");
     set_ac(12);
         set_ac(0, "aether");
         set_ac(0, "depression");

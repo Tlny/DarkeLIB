@@ -14,7 +14,7 @@ create() {
     set_name("king sand spider");
     set_id( ({ "king sand spider","sand spider", "spider" }) );
     set_level(11);
-    set_short("king sand spider");
+    set_short("[11]king sand spider");
     set_long("The king sand spider is a huge spider.  Its body is a darke black "+
       "and has a hard, smooth surface.  The shell is smooth yet reflects no "+
       "light.  It has "+
@@ -50,7 +50,7 @@ create() {
     money=new("std/obj/coins");
     money->set_money("silver",((random(20))+30));
     money->move(this_object());
-	new("/wizards/khojem/nomad/armor/white-green_sash")->move(this_object());
+	new("/d/khojem/nomad/armor/white-green_sash")->move(this_object());
 	force_me("wear sash");
 }
 

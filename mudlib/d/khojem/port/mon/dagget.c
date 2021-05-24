@@ -21,7 +21,7 @@ void init() {
     if(living(inv[i]) && (!inv[i]->query_kho_mon())) {
       lvl = (int)inv[i]->query_level();
       if(inv[i] != this_object())
-      write_file("/wizards/khojem/log/dagget.log",
+      write_file("/d/khojem/log/dagget.log",
         "=== Init:  "+inv[i]->query_cap_name()+" "+lvl+"\t\t\t"+
         ctime(time())+"\n");
     }
@@ -35,7 +35,7 @@ create() {
     set_name("dagget");
     set_id( ({ "master", "harbor master", "dagget", "Dagget" }) );
     set_level(14);
-    set_short("Dagget");
+    set_short("[14]Dagget");
     set_long("Dagget serves as the harbor master in the port town of "+
       "Vo'Sangor.  Which means he does some customs work and takes bribes "+
       "from merchant vessel captains so they can unload their goods." 
@@ -64,7 +64,7 @@ create() {
     set_skill("body alteration",40);
     set_skill("concentrate",60);
     set_fingers(5);
-    money = new("/wizards/khojem/port/obj/sangor_key");
+    money = new("/d/khojem/port/obj/sangor_key");
     money -> move(this_object());
     command("use concentrate");
 }
@@ -74,20 +74,20 @@ void catch_tell(string str) {
   
   if(sscanf(str, "%s drops dead before %s", who, b) == 2 ) {
     force_me("grin");
-    write_file("/wizards/khojem/log/dagget.log",
+    write_file("/d/khojem/log/dagget.log",
       "*** Player Kill:  "+who+"\t\t"+ctime(time())+"\n");
     return;
   }
   if(sscanf(str, "%s dies a horrible %s", who, b) == 2 ) {
     force_me("grin");
-    write_file("/wizards/khojem/log/dagget.log",
+    write_file("/d/khojem/log/dagget.log",
       "*** Player Kill:  "+who+"\t\t\t"+ctime(time())+"\n");
   }
   return;
 }
 
 void die() {
-  write_file("/wizards/khojem/log/dagget.log",
+  write_file("/d/khojem/log/dagget.log",
     ">>> Dagget died \t\t\t"+ctime(time())+"\n");
    ::die();
 }

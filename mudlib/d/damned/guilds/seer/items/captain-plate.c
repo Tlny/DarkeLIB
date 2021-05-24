@@ -26,7 +26,7 @@ TEXT
 
    set_material("/metal/laen");
 
-   set_type("body armour");
+   set_type("metal torso");
 
    set_ac( 40, ({ "crushing",
 

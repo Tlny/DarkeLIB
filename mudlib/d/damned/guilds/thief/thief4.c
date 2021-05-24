@@ -51,7 +51,7 @@ string clas;
       write("You pull the small lever..");
       clas = (this_player()->query_class());
       if(x == 0){
-        if(clas == "thief" || clas == "child" || wizardp(this_player()) ){
+        if(clas == "thief" || clas == "child" || wizardp(this_player()) || (this_player()) ){
           tell_room(this_object(),"A secret door slides opens in the wall!");
           add_exit(STDTHIEF+"thief_join","doorway");
           delayed_call("close_door",10);
@@ -75,7 +75,7 @@ string clas;
         }
       }
       else {
-       if(clas == "thief" || clas == "child" || wizardp(this_player()) ){
+       if(clas == "thief" || clas == "child" || wizardp(this_player()) || (this_player()) ){
          write("You pull the lever and the secret door slides shut!");
          remove_exit("doorway");
          remove_delayed_call("close_door");

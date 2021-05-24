@@ -14,7 +14,7 @@ create() {
     set_name("wood-elf child");
     set_id( ({ "child","elf", "wood-elf child"}) );
     set_level(1);
-    set_short("wood-elf child");
+    set_short("[1]wood-elf child");
     set_long("The wood-elf child is playing ball and doing childlike things." 
       );
     set("race", "wood-elf");
@@ -32,7 +32,7 @@ create() {
     set_max_hp(10);
     set_hp(10);
     set_alignment(50);
-    new("/wizards/khojem/new/obj/ball")->move(this_object());
+    new("/d/khojem/new/obj/ball")->move(this_object());
     set_languages(({ "elvish" }));
     set_lang_prof("elvish",10);
     set_emotes(5, ({

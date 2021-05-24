@@ -1,5 +1,5 @@
 //    Mine shop.
-//    -Diewarzau 1/29/96
+//    Eos 7/06/2020
 //    DarkeLIB 1.0
 #define MINE_D "/daemon/mine_d"
 #define MAX_SOUTH 98
@@ -34,6 +34,11 @@ void reset() {
 
 void create() {
   ::create();
+    set_property( "light", 1);
+    set_property( "night light", 1);
+    set_property("indoors", 1);
+  
+  
   add_exit("/d/daybreak/room/dbcc1", "west");
   set_short("The Mine Shop");
   set_long(
@@ -56,25 +61,36 @@ int read_sign() {
 "Here, you may buy a mine on the world map as well as hire \n"
 "mine workers.  As time passes, depending on where the mine is\n"
 "built, certain minerals will be stocked in the mineral chest, and\n"
-"may be removed by you.  If you fail to pay your staff for the\n"
-"coming month before the current month is up, your mine WILL BE\n"
-"LOST.  You may only own one mine at a time.\n"
+"may be removed by you. If you fail to pay your staff for the\n"
+"coming month before the current month is up, your mine %^YELLOW%^WILL BE\n"
+"%^YELLOW%^LOST%^RESET%^.\n\n"  
+
+"You may only own one mine at a time.\n"
 "\n"
+
+"%^COLOR255%^(Use of a Sextant is needed to locate a plot on the world map.)%^RESET%^\n\n"
+
+
 "Item     Description                         Cost\n"
-"-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n"+
-sprintf("mine     mine built on a plot + 1 month      %d gold\n", to_int(98000.0*currency_rate("gold")))+
+"-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n"+
+sprintf("mine     Mine built on a plot + 1 month      %d gold\n", to_int(36030.0*currency_rate("gold")))+
 "         (real time) worker fees.\n"
 "\n"+
-sprintf("workers  A month (real time) of worker fees  %d gold\n", to_int(42000.0*currency_rate("gold")))+
+sprintf("workers  A month (real time) of worker fees  %d gold\n", to_int(9908.0*currency_rate("gold")))+
 "         (last week of month only)\n"
-"\n\nYou may type 'buy <item>' to buy one of the above, \n"
-"or type 'remove mine' to have your current mine destroyed.\n"
+"\n\nYou may type:
+-=-=-=-=-=-=-=-=-
+
+'buy <item>' to buy one of the above. \n\n"
+"'remove mine' to have your current mine destroyed.\n\n"
+
 "'time left' tells you how many days and hours of time you\n"
 "have left on your workers' salaries.\n";
 
   this_player()->more(explode(tmp, "\n"));
   return 1;
 }
+
 
 void init() {
   ::init();
@@ -102,7 +118,7 @@ int buy_item(string str) {
           "to pay the workers.");
       return 1;
     }
-    if(!pay(this_player(), 42000)) return 1;
+    if(!pay(this_player(), 9928)) return 1;
     MINE_D->register_mine(file);
     write("Your workers have been paid for an additional month.");
     return 1;
@@ -163,7 +179,7 @@ void pick_plot(string coords, object tp) {
     input_to("pick_plot", 0, tp);
     return;
   }
-  if(!pay(tp, 98000)) return;
+  if(!pay(tp, 36100)) return;
   seteuid(UID_DAMNED_DATA);
   write_file("/d/damned/data/world_items.db",
       sprintf("%d_%d:/d/damned/virtual/%s_mine1_%d_%d.mine:mine:The entrance to %s's Mine\n",
@@ -258,3 +274,4 @@ int read_it(string str) {
    }
    return 0;
 }
+

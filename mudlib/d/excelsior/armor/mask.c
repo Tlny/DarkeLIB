@@ -11,7 +11,7 @@ void create() {
 	set("long","This is a mask similiar to that worn by a mentally insane "+
 		"psychopath who doesn't care about people laughing at him. If you "+
 		"don't mind being made fun of, this is the mask for you!");
-	set_type("helmet");
+	set_type("cloth face");
 	set_ac(5);
 	set_limbs( ({"head"}) );
 	set_weight(121);

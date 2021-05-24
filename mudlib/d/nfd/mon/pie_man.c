@@ -13,7 +13,7 @@ void make_me_apron() {
 	ob->set("id",({"apron","baker's apron","bakers apron"}));
 	ob->set("short","baker's apron");
 	ob->set("long","This looks like an apron worn by a pie man.");
-	ob->set_type("cloak");
+	ob->set_type("belt");
 	ob->set_ac(3);
 	ob->set_limbs("torso");
 	ob->set_weight(40);

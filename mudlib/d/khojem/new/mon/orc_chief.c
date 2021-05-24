@@ -12,7 +12,7 @@ create() {
     set_name("half-orc chief");
     set_id( ({ "chief", "orc", "half-orc chief", "half-orc" }) );
     set_level(5);
-    set_short("half-orc chief");
+    set_short("[5]half-orc chief");
     set_long("The half-orc chief rules this unruly tribe of half-orcs." 
       );
     set("race", "half-orc");
@@ -37,7 +37,7 @@ create() {
     new("/d/damned/virtual/war-hammer_6.weapon")->
       move(this_object());
     force_me("wield hammer in right hand");
-    new("/wizards/khojem/new/obj/chieftain_key")->
+    new("/d/khojem/new/obj/chieftain_key")->
       move(this_object());
     set_emotes(1, ({
 	  "The orc smiles a toothless smile.",

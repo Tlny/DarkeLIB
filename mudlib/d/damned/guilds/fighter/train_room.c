@@ -76,6 +76,9 @@ void create() {
   add_skill("kick", 4);
   add_skill("reverse punch", 6);
   add_skill("martial arts", 1);
+  add_skill("balance weapon", 5);
+  add_skill("fast attack", 3);
+  add_skill("head butt", 6);
   return;
 }
 

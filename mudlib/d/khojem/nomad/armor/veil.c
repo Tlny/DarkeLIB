@@ -12,7 +12,7 @@ void create() {
     set("long", "A silky, sheer veil that is worn to mask the lower face.");
     set_weight(4);
     set_value(40);
-    set_type("visor");
+    set_type("cloth face");
     set_material("misc/silk");
     set_ac(1);
     set_limbs( ({ "head" }) );

@@ -9,7 +9,7 @@ inherit ROOM;
 void reset() {
 	::reset();
     if (!present("half-orc shaman" , this_object()) ) {
-      new("/wizards/khojem/new/mon/orc_shaman")->move(this_object());
+      new("/d/khojem/new/mon/orc_shaman")->move(this_object());
     }
 }
 
@@ -21,7 +21,7 @@ void create() {
     set("short", "Shaman's Chamber");
     set("long", "This room is the home of the Shaman.  The priest's home "+
       "is sparely furnished.  The dirt floor is tampered hard due long "+
-      "use and the walls are bare."
+      "use and the walls are bare.\n   0\n   | \n   @   \n     \n    \n"
     );
     add_exit("orc3","north");
     set_items(([

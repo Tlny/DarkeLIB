@@ -51,8 +51,25 @@ void create() {
   add_spell("essence blade");
   add_spell("soultaker blade");
   add_spell("demonic rebirth");
+//ADD per question TLNY2020 - Changed to demon haste - HONSPRON2020
+  //add_spell("fury of marghuul", 11);
+  add_spell("demon haste", 11);
+  add_spell("chaos power");
+  add_spell("summon demon prince");
+  add_spell("demon prince sword");
+  add_spell("demonic awareness");
+//add New TLNY2020
+add_spell("unholy will");
     return;
 }
+
+int train(string str) {
+    if(str == "demon prince sword" && this_player()->query_class() != "chaotic lord") {
+	message("info", "You must be a Chaotic Lord to train this spell.", this_player());
+	return 1;
+    }
+}
+
 
 
 

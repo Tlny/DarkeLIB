@@ -3,12 +3,12 @@
 #include <security.h>
 #include <rooms.h>
 #define CASTLE_D "/daemon/castle_d"
-#define MAX_SOUTH 79
-#define MAX_EAST 39
+#define MAX_SOUTH 100
+#define MAX_EAST 100
 #define DOORS ([ "wood door" : 20000, "iron door" : 81000, "steel door" : 540000, \
         "reinforced door" : 1160000, "vault door" : 2750000 ])
 #define FEATURES ([ "no scry" : 470000, "no teleport" : 280000, \
-        "no summon" : 370000, "healing room" : 90000, \
+        "no summon" : 370000, /*"healing room" : 90000,*/ \
         "special exits" : 50000 ])
 
 inherit "/std/room";
@@ -77,10 +77,10 @@ sprintf("no teleport                %d mithril\n", to_int(280000.0*currency_rate
 "  ^ No one can teleport to that room.\n"+
 sprintf("no summon                  %d mithril\n", to_int(370000.0*currency_rate("mithril")))+
 "  ^ No one can be summoned from that room.\n"+
-sprintf("healing room               %d mithril\n", to_int(90000.0*currency_rate("mithril")))+
-"  ^ Any PLAYER in the room heals mp and hp at double rate.\n"+
+/*sprintf("healing room               %d mithril\n", to_int(90000.0*currency_rate("mithril")))+
+"  ^ Any PLAYER in the room heals mp and hp at double rate.\n"+*/
 sprintf("special exits              %d mithril\n", to_int(50000.0*currency_rate("mithril")))+
-"  ^ Teleport exits to various useful places (church, shop, etc.)\n"
+"  ^ Teleport exits to various useful places (DB Square, portal, etc.)\n"
 "\n"
 "Buy any item with 'buy <item>'\n"
 "\nNEW and IMPORTANT\n"
@@ -146,8 +146,10 @@ int upkeep_action(string str) {
       return 1;
     }
     utime = (int)CASTLE_D->time_left((string)this_player()->query_name());
-    if(utime >= 7776000) {
-      write("You may only pay a maximum of three months in advance");
+    //TLNY2021 Update to pay 1 year    
+    //if(utime >= 7776000) {
+    if(utime >= 31104000) {
+      write("You may only pay a maximum of 12 months in advance");
       return 1;
     }
     cost = (int)CASTLE_D->upkeep_cost((string)this_player()->query_name());

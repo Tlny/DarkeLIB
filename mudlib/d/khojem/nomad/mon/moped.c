@@ -13,7 +13,7 @@ create() {
     set_name("moped");
     set_id( ({ "chief", "moped", "chief moped" }) );
     set_level(18);
-    set_short("chief moped");
+    set_short("[18]chief moped");
     set_long("Chief Moped is aged and worn from years of service for the tribe.  "+
       "He has lived a good life and life in his position and level have rewarded "+
       "him well.  He is obese and large folds of fat create multiple chins and "+
@@ -42,9 +42,9 @@ create() {
 	  "Moped puts two fingers down his throat and pukes up some food."
 	}),0);
 	set_class("arch-mage");
-	new("/wizards/khojem/nomad/weapon/scepter2")->move(this_object());
+	new("/d/khojem/nomad/weapon/scepter2")->move(this_object());
 	force_me("wield scepter in right hand");
-	new("/wizards/khojem/nomad/armor/moped_key")->move(this_object());
+	new("/d/khojem/nomad/armor/moped_key")->move(this_object());
 	force_me("wear key");
 }
 

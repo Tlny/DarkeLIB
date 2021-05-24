@@ -33,6 +33,7 @@ void create() {
   set_gender("male");
   set("race", "gnome");
   set_body_type("human");
+set_class("enchanter");
   //  NOTE:  It is important that, if you set_id, you include
   //  "guildmaster" as one of them.  If you do not set_id, he
   //  will still work.

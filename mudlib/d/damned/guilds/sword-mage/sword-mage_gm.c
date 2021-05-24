@@ -30,6 +30,7 @@ void create() {
   set_gender("female");
   set("race", "half-elf");
   set_body_type("human");
+set_class("sword-mage");
   set_skill("conjuration", 150);
   set_skill("magery", 150);
   set_skill("sorcery", 150);
@@ -74,7 +75,7 @@ void create() {
   ob->set_property("enhance criticals", 1);
   ob->set_property("hit bonus", 10);
   ob->move(this_object());
-  force_me("wield sword in right hand and left hand");
+  force_me("equip");
   return;
 }
 

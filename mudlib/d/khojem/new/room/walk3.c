@@ -15,7 +15,7 @@ void create() {
       "rope bridge.  The bridge serves as a walkway between "+
       "trees.  Each tree has its own platform and the walkways "+
       "link the platforms together to form a small village above "+
-      "the forest floor."  
+      "the forest floor.\n   0\n   | \n0--@--0\n   | \n   0\n"  
     );
     add_exit("vat2","east");
     add_exit("walk4","west");

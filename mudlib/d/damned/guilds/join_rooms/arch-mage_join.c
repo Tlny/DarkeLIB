@@ -23,7 +23,9 @@ void create() {
 "room to the south.\n");
   //  The "\n" is important at the end of the long desc.
 
-      set_related_guilds(( {"necromancer","elementalist","enchanter"}));
+      set_related_guilds(({ "sword-mage", "elemental-mage", "elementalist" }));
+    //set_hated_guilds(({ "" }));
+    set_odd_guilds(({ "fighter", "thief", "tinker",  "cleric", "war-priest", "paladin", "assassin", "nightblade", "dark-paladin", "chaotic-lord" }));
 
   set_exits( ([ 
               "north" : "/d/daybreak/room/dblw5",
@@ -39,13 +41,15 @@ void create() {
 
   //  The following lines set the properties for the guild.
 
-  set_property("base hp regen", 2);
-  set_property("base mp regen", 14);
+  set_property("base hp regen", 3);
+  set_property("base mp regen", 15);
   //  Base heling per tick.  Note that the default is 3 for both.
   //  Keep in mind that this increases with level.
 
-  set_property("hp advance", 7);
-  set_property("mp advance", 47);
+  //set_property("hp advance", 7);
+  //set_property("mp advance", 47);
+  set_property("hp advance", 15);
+  set_property("mp advance", 50);
   //  Base advance per level im max mp/hp.  Default is 10.
 
   set_property("guild mods",

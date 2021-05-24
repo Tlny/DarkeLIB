@@ -117,7 +117,9 @@ void directed_message(object who, string str) {
     who->add_money((time_str=="day")?"silver":"gold", -bucka);
     add_money((time_str=="day")?"silver":"gold", bucka);
     seteuid(getuid());
-    ob = new("/std/Object");
+  //ob = new("/std/Object");
+//TLNY2020 ADD
+    ob = new("/d/damned/akkad/obj/misc/key.c");
     ob->set("id", ({ "key", sprintf("key %d", room_num) }) );
     ob->set_name("key");
     ob->set_short("A key to room #"+sprintf("%d",room_num));
@@ -161,7 +163,9 @@ void directed_message(object who, string str) {
     }
     room_num = (int)environment()->query_room_num((string)who->query_name());
     seteuid(getuid());
-    ob = new("/std/Object");
+  //ob = new("/std/Object");
+//TLNY2020 ADD
+    ob = new("/d/damned/akkad/obj/misc/key.c");
     ob->set("id", ({ "key", sprintf("key %d", room_num) }) );
     ob->set_name("key");
     ob->set_short("A key to room #"+sprintf("%d",room_num));

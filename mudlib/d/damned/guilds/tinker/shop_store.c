@@ -60,10 +60,15 @@ if(i < 11) {
       }
 if(i <= 9) {
 	ob = new("/wizards/excelsior/tinker/board");
+      ob->set_material("metal/pine");
+      	ob->move(this_object());
+	ob = new("/wizards/excelsior/tinker/board");
       	ob->move(this_object());
 		ob = new("/wizards/excelsior/tinker/scale");
 		ob->move(this_object());
       }
+
+
   }
   return;
 }

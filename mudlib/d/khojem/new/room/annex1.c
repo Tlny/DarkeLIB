@@ -14,10 +14,10 @@ void create() {
     set("long", "The path wanders off to the north.  A large tree is here and high up in "+
       "its branches you see a platform.  A ladder rest against the edge of "+
       "platform.  The trees grow "+
-      "close around and cut off some of the light from above. "
+      "close around and cut off some of the light from above.\n   0\n   | \n   @   \n   l \n   \n "
     );
-    add_exit("/wizards/khojem/new/room/annex2","north");
-    add_exit("/wizards/khojem/new/room/walk5","ladder");
+    add_exit("/d/khojem/new/room/annex2","north");
+    add_exit("/d/khojem/new/room/walk5","ladder");
     set_items(([
      ({ "tree","trees", "woods", "branches" }) :
         "The trees are large, healthy trees filled with foliage.",

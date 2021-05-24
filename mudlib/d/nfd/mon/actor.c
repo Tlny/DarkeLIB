@@ -58,7 +58,7 @@ void create() {
 	armor->set("long","This is an entire renaissance outfit. It looks "+
 		"like "+
 		"it will provide a small amount of protection.");
-	armor->set_type("body armor");
+	armor->set_type("cloth torso");
 	armor->set_ac(2);
 	armor->set_limbs(({ "head","left arm","right arm","torso","right leg",
 		"left leg"}) );

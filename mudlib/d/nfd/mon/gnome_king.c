@@ -69,7 +69,7 @@ void make_me_boots() {
 	boots->set("id",({"gnome boots","boots"}));;
 	boots->set("short","A pair of gnome boots");
 	boots->set("long","This is a pair of gnome boots with pointy toes.");
-	boots->set_type("boots");
+	boots->set_type("cloth foots");
 	boots->set_ac(4);
 	boots->set_limbs(({"right foot","left foot"}));
 	boots->set_weight(93);
@@ -86,9 +86,9 @@ void make_me_medallion() {
 	boots->set("short","A gnome king's medallion");
 	boots->set("long","This is the traditional medallion gnome kings in this "+
 		"region have worn for centuries.");
-	boots->set_type("necklace");
+	boots->set_type("neck");
 	boots->set_ac(6);
-	boots->set_limbs(({"neck"}));
+	boots->set_limbs(({"head"}));
 	boots->set_weight(150);
 	boots->set_value(899);
 	boots->move(this_object());

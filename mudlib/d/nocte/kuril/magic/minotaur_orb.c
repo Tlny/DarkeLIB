@@ -23,7 +23,7 @@ void create() {
 		"stasis.  You can see a minotaur inside this orb."
 	);
 	set_weight(30);
-	set_value(800000);
+	set_value(12000);
 }
 
 int shatter_orb(string str) {

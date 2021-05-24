@@ -9,8 +9,8 @@ inherit ROOM;
 void reset(){
   ::reset();
   if(!present("warrior")) {
-    new("/wizards/khojem/new/mon/elf_warrior1")->move(this_object());
-    new("/wizards/khojem/new/mon/elf_warrior1")->move(this_object());
+    new("/d/khojem/new/mon/elf_warrior1")->move(this_object());
+    new("/d/khojem/new/mon/elf_warrior1")->move(this_object());
   }
 }  
 
@@ -22,7 +22,7 @@ void create() {
     set("long", "The path ends here.  A large tree is here and high up in "+
       "its branches you see a platform.  A ladder rest against the edge of "+
       "platform.  The trees grow "+
-      "close around and cut off some of the light from above. "
+      "close around and cut off some of the light from above.\n   \n   l \n   @--0\n     \n    \n"
     );
     add_exit("trail4","east");
     add_exit("plat1","ladder");

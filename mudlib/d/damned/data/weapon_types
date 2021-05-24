@@ -23,6 +23,25 @@
 # The args need not be on the same line; they may even take up more than one
 # line themselves as long as each arg is separated by a semicolon
 
+(brass-knuckles):
+wc:::
+10;"crushing"
+type:::
+"melee"
+id:::
+({ "brass", "knuckles", "brass-knuckles", "knuckle" })
+short:::
+"brass knuckles"
+weight:::
+25
+value:::
+95
+ac:::
+5
+verb:::
+"punch"
+long:::
+"brass knuckles are fist-load weapons used in hand-to-hand combat."
 
 (footman's-mace):
 wc:::
@@ -391,30 +410,6 @@ ac:::
 verb:::
 "chop"
 
-
-(quarter-staff):
-id:::
-({ "staff", "quarter staff" })
-short:::
-"quarter staff"
-long:::
-"This long staff is difficult to wield but can be used to bash opponents!"
-type:::
-"two handed staff"
-wc:::
-8;"crushing"
-weight:::
-20
-value:::
-65
-parry_bonus:::
-10
-ac:::
-6
-verb:::
-"bash"
-
-
 (morning-star):
 id:::
 ({ "star", "morning star" })
@@ -668,3 +663,251 @@ verb:::
 "stab"
 float_value:::
 0.23
+
+##WOOD weapons
+
+(quarter-staff):
+id:::
+({ "staff", "quarter staff" })
+short:::
+"quarter staff"
+long:::
+"This long staff is difficult to wield but can be used to bash opponents!"
+type:::
+"two handed staff"
+wc:::
+8;"crushing"
+weight:::
+20
+value:::
+65
+parry_bonus:::
+10
+ac:::
+6
+verb:::
+"bash"
+
+(bokken):
+id:::
+({ "bokken sword", "bokken", "sword" })
+type:::
+"blade"
+short:::
+"bokken"
+long:::
+"A Bokken is a wooden sword used for training. It is usually the size and shape of a katana,"
+wc:::
+10;"cutting"
+wc:::
+6;"impaling"
+weight:::
+90
+value:::
+100
+parry_bonus:::
+5
+ac:::
+4
+verb:::
+"bonk"
+
+(wooden-axe):
+wc:::
+10;"cutting"
+type:::
+"axe"
+id:::
+({"axe","wooden axe"})
+short:::
+"wooden axe"
+long:::
+"This is a rather large and impressive weapon that is made of wood."
+weight:::
+210
+value:::
+50
+ac:::
+4
+parry_bonus:::
+-20
+verb:::
+"whop"
+
+(stick):
+id:::
+({ "stick", "wooden stick" })
+type:::
+"knife"
+short:::
+"A wooden stick"
+long:::
+"The stick kind of looks like any other stick you would find. However, it is polished very well it seems."
+weight:::
+20
+value:::
+18
+wc:::
+10
+wc:::
+15;"impaling"
+wc:::
+4;"cutting"
+verb:::
+"poke"
+parry_bonus:::
+4
+
+(club):
+wc:::
+10;"crushing"
+type:::
+"blunt"
+id:::
+({ "club", "wooden club" })
+short:::
+"wooden club"
+weight:::
+150
+value:::
+80
+ac:::
+5
+parry_bonus:::
+-15
+verb:::
+"bash"
+long:::
+"A club is among the simplest of all weapons"
+
+(wooden-spear):
+id:::
+({"spear", "wooden spear"})
+type:::
+"two handed polearm"
+short:::
+"wooden spear"
+long:::
+"A spear is a pole weapon consisting of a shaft, usually of wood, with a pointed head."
+wc:::
+16;"impaling"
+weight:::
+100
+value:::
+80
+ac:::
+4
+parry_bonus:::
+-15
+verb:::
+"stab"
+
+(wooden-two-handed-sword):
+id:::
+({ "two handed sword", "two-handed sword", "sword", "wooden two handed sword" })
+short:::
+"wooden two handed sword"
+long:::
+"This sword is made like a true sword but in wood"
+wc:::
+18;"cutting"
+wc:::
+9;"impaling"
+value:::
+300
+weight:::
+425
+parry_bonus:::
+-5
+ac:::
+4
+type:::
+"two handed blade"
+verb:::
+"slice"
+
+(nunchucks):
+id:::
+({ "nunchucks", "wooden nunchucks" })
+short:::
+"wooden nunchucks"
+long:::
+"A traditional Okinawan martial arts weapon consisting of two sticks connected at one end by a short chain or rope."
+type:::
+"flail"
+wc:::
+13;"crushing"
+weight:::
+185
+value:::
+60
+verb:::
+"whup"
+ac:::
+3
+
+(three-section-staff):
+wc:::
+20;"crushing"
+type:::
+"two handed flail"
+id:::
+({"staff","three section", "three section staff"})
+short:::
+"three section staff"
+long:::
+"flail weapon that consists of three wooden or metal staffs connected by metal rings or rope."
+weight:::
+225
+ac:::
+5
+parry_bonus:::
+-20
+verb:::
+"smash"
+value:::
+75
+
+(kanabou):
+id:::
+({"kanabou", "wooden kanabou" })
+short:::
+"kanabou"
+long:::
+"is a percussive weapon designed to counter armor."
+type:::
+"two handed blunt"
+wc:::
+30;"crushing"
+wc:::
+10;"impact"
+weight:::
+310
+value:::
+120
+ac:::
+4
+parry_bonus:::
+-25
+verb:::
+"clobber"
+
+(tonfa):
+wc:::
+10;"crushing"
+type:::
+"melee"
+id:::
+({ "tonfa", "wooden tonfa" })
+short:::
+"tonfa
+weight:::
+25
+value:::
+95
+ac:::
+5
+verb:::
+"jab"
+long:::
+"The tonfa measures about three centimeters past the elbow when gripped"

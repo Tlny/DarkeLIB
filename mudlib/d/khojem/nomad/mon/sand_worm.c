@@ -21,7 +21,7 @@ void create() {
   set("race", "serpent");
   set_property("melee damage", ([ "crushing" : 15 ]));
   set_level(13);
-  set_body_type("serpent");
+  set_body_type("[13]serpent");
   set_skill("dodge", 0);
   set_skill("parry", 10);
   set_gender("male");
@@ -42,7 +42,7 @@ void create() {
     money=new("std/obj/coins");
     money->set_money("gold",((random(10))+35));
     money->move(this_object());
-    new("/wizards/khojem/nomad/obj/quest_sash")->move(this_object());
+    new("/d/khojem/nomad/obj/quest_sash")->move(this_object());
     force_me("wear sash");
 }
 

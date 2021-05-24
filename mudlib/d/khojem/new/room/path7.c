@@ -10,11 +10,14 @@ void reset(){
   int coin_flip;
   ::reset();
   coin_flip=random(2);
-  if(!present("scout"))
-    if(coin_flip) 
-      new("/wizards/khojem/new/mon/elf_scout")->move(this_object());
-    else
-      new("/wizards/khojem/new/mon/orc_scout")->move(this_object());
+  if(!present("scout")) {
+    if(coin_flip) {
+      new("/d/khojem/new/mon/elf_scout")->move(this_object());
+    }
+}
+    else {
+      new("/d/khojem/new/mon/orc_scout")->move(this_object());
+    }
 }  
 
 
@@ -26,7 +29,7 @@ void create() {
     set("short", "A dark path intersection");
     set("long", "You follow the path to a bend.  "+
       "The trees grow close all around and shroud most of the light "+
-      "from above."
+      "from above.\n   0\n   | \n0--@   \n     \n    \n"
     );
     add_exit("path6","north");
     add_exit("path3","west");

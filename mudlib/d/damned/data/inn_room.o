@@ -9,5 +9,5 @@ pre_exit_func ([])
 post_exit_func ([])
 tracks ({})
 __Items (["blue moon":,"sky":,"ankh":,"sign":"Prices for rooms:(Real time, not Mud time)-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-Daily Rate:        1300 silverWeekly Rate:       410 goldMonthly Rate:      1500 gold","moon":,"red moon":,"sun":,"warzau":,"green moon":,"moons":,"luna":,])
-reset_number 4
-owners (["/d/damned/virtual/inn_100.inn":(["time":1531973982,"owner":"parnell",]),])
+reset_number 427
+owners (["/d/damned/virtual/inn_103.inn":(["time":1653427834,"owner":"rihcter",]),"/d/damned/virtual/inn_101.inn":(["time":1645922889,"owner":"tursnik",]),"/d/damned/virtual/inn_100.inn":(["time":1624748553,"owner":"eosphorus",]),"/d/damned/virtual/inn_113.inn":(["time":1625215345,"owner":"zurr",]),"/d/damned/virtual/inn_108.inn":(["time":1622171050,"owner":"ruck",]),"/d/damned/virtual/inn_112.inn":(["owner":"hssr","time":1651732034,]),"/d/damned/virtual/inn_111.inn":(["time":1622429183,"owner":"upstart",]),"/d/damned/virtual/inn_106.inn":(["owner":"julian","time":1628102190,]),"/d/damned/virtual/inn_105.inn":(["time":1665668750,"owner":"thromax",]),])

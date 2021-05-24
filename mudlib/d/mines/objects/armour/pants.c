@@ -12,7 +12,7 @@ void create() {
         "like reliable protection for the legs.\n");
     set_weight(115);
     set_value(120);
-    set_type("pants");
+    set_type("cloth legs");
     set_limbs( ({ "left leg","right leg" }) );
     set_ac(10);
     set_wear("You slide your legs into the comfortable corduroy pants.");

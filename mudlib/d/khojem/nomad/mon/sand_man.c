@@ -12,7 +12,7 @@ create() {
     set_name("sandman");
     set_id( ({ "sandman" }) );
     set_level(12);
-    set_short("A sandman");
+    set_short("[12]sandman");
     set_long("The man is constructed entirely of sand.  He appears "+
       "strong and fearless in battle.  Whatever life or magic that "+
       "spawned this abomination of nature is beyond your "+
@@ -35,6 +35,6 @@ create() {
     money=new("std/obj/coins");
     money->set_money("gold",((random(20))+35));
     money->move(this_object());
-    new("/wizards/khojem/nomad/weapon/darkeblade")->move(this_object());
+    new("/d/khojem/nomad/weapon/darkeblade")->move(this_object());
     force_me("wield blade in right hand");
 }

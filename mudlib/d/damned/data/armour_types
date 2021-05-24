@@ -1,11 +1,29 @@
 # Look at weapon_types for dirs.
 #On with the show!
 
+(power-armour):
+id:::
+({"power", "power armour", "armour"})
+type:::
+"metal torso"
+limbs:::
+({"torso", "right arm", "left arm", "right hand", "left hand", "right leg", "left leg", "right foot", "left foot" })
+short:::
+"A power armour"
+long:::
+"The enclosing suits of armour worn by Space Marines are made from thick ceramite plates and would be cumbersome but for electrically motivated fibre bundles that replicate the movements of the wearer and supplement his strength. The last gene-seed organ to be implanted in a Space Marine. It covers the entire body except for your head"
+weight:::
+1500
+value:::
+150
+ac:::
+30
+
 (breast-plate):
 id:::
 ({ "plate", "breast plate" })
 type:::
-"body armour"
+"metal torso"
 limbs:::
 ({ "torso" })
 short:::
@@ -49,7 +67,7 @@ ac:::
 id:::
 ({"corslet", "plate" })
 type:::
-"body armour"
+"metal torso"
 limbs:::
 ({"torso"})
 short:::
@@ -91,7 +109,7 @@ ac:::
 id:::
 ({ "coif", "chain coif" })
 type:::
-"helmet"
+"metal head"
 limbs:::
 ({ "head" })
 short:::
@@ -137,7 +155,7 @@ ac:::
 id:::
 ({ "greaves", "scale greaves" })
 type:::
-"pants"
+"metal legs"
 limbs:::
 ({ "right leg", "left leg" })
 short:::
@@ -182,7 +200,7 @@ ac:::
 id:::
 ({ "greaves", "plate greaves" })
 type:::
-"pants"
+"metal legs"
 limbs:::
 ({ "right leg", "left leg" })
 short:::
@@ -224,7 +242,7 @@ ac:::
 id:::
 ({"mail", "scale mail"})
 type:::
-"body armour"
+"metal torso"
 limbs:::
 ({"torso"})
 short:::
@@ -266,7 +284,7 @@ ac:::
 id:::
 ({ "greaves", "chain greaves" })
 type:::
-"pants"
+"metal legs"
 limbs:::
 ({ "right leg", "left leg" })
 short:::
@@ -313,13 +331,13 @@ ac:::
 id:::
 ({"mail", "chain mail"})
 type:::
-"body armour"
+"chain torso"
 limbs:::
-({"torso"})
+({"torso", "right arm", "left arm"})
 short:::
 "A chain mail"
 long:::
-"This armour is made of many small chain links covering the torso."
+"This armour is made of many small chain links covering the torso and arms."
 weight:::
 180
 value:::
@@ -359,7 +377,7 @@ ac:::
 id:::
 ({"vest", "chain vest"})
 type:::
-"body armour"
+"chain torso"
 limbs:::
 ({"torso"})
 short:::
@@ -405,7 +423,7 @@ ac:::
 id:::
 ({ "jacket", "leather jacket", "studded jacket", "studded leather jacket" })
 type:::
-"armour"
+"leather torso"
 limbs:::
 ({ "torso", "right arm", "left arm" })
 short:::
@@ -449,7 +467,7 @@ ac:::
 id:::
 ({ "vest", "studded vest", "studded leather vest", "leather vest" })
 type:::
-"body armour"
+"leather torso"
 limbs:::
 ({ "torso" })
 short:::
@@ -493,7 +511,7 @@ ac:::
 id:::
 ({ "pants", "studded pants", "leather pants", "studded leather pants" })
 type:::
-"pants"
+"leather legs"
 limbs:::
 ({ "right leg", "left leg" })
 short:::
@@ -533,11 +551,57 @@ ac:::
 ac:::
 1;"aether"
 
+(leather-helmet):
+id:::
+({ "helmet", "leather helmet" })
+type:::
+"leather head"
+limbs:::
+({ "head" })
+short:::
+"A leather helmet"
+long:::
+"This helmet is crafted of boiled leather and covers the head"
+weight:::
+60
+value:::
+45
+ac:::
+14
+ac:::
+3;"fire"
+ac:::
+3;"cold"
+ac:::
+1;"plasma"
+ac:::
+2;"strike"
+ac:::
+2;"impact"
+ac:::
+5;"crushing"
+ac:::
+1;"vacuum"
+ac:::
+1;"electricity"
+ac:::
+1;"depression"
+ac:::
+1;"disruption"
+ac:::
+1;"stress"
+ac:::
+1;"holy"
+ac:::
+1;"time"
+ac:::
+1;"aether"
+
 (leather-jacket):
 id:::
 ({ "jacket", "leather jacket" })
 type:::
-"armour"
+"leather torso"
 limbs:::
 ({ "torso", "right arm", "left arm" })
 short:::
@@ -583,7 +647,7 @@ ac:::
 id:::
 ({ "pants", "leather pants" })
 type:::
-"pants"
+"leather legs"
 limbs:::
 ({ "right leg", "left leg" })
 short:::
@@ -629,7 +693,7 @@ ac:::
 id:::
 ({"vest"})
 type:::
-"body armour"
+"leather torso"
 limbs:::
 ({"torso"})
 short:::
@@ -675,7 +739,7 @@ ac:::
 id:::
 ({"boots"})
 type:::
-"boots"
+"metal foots"
 limbs:::
 ({"left foot","right foot"})
 short:::
@@ -721,7 +785,7 @@ ac:::
 id:::
 ({"boots"})
 type:::
-"boots"
+"leather foots"
 limbs:::
 ({"left foot","right foot"})
 short:::
@@ -767,7 +831,7 @@ ac:::
 id:::
 ({"helmet","helm", "great helm"})
 type:::
-"helmet"
+"metal head"
 limbs:::
 ({"head"})
 short:::
@@ -809,7 +873,7 @@ ac:::
 id:::
 ({"cloak"})
 type:::
-"cloak"
+"cloth back"
 limbs:::
 ({"torso"})
 short:::
@@ -823,11 +887,47 @@ value:::
 ac:::
 2
 
+(hooded-cloak):
+id:::
+({"cloak", "hooded cloak"})
+type:::
+"cloth back"
+limbs:::
+({"torso", "head"})
+short:::
+"A cloak"
+long:::
+"This is a cloth cloak which may be worn alone or over other armour."
+weight:::
+50
+value:::
+10
+ac:::
+2
+
+(robe):
+id:::
+({"robe"})
+type:::
+"robe"
+limbs:::
+({"torso", "left arm", "right arm", "left leg", "right leg"})
+short:::
+"A Robe"
+long:::
+"This is a robe that covers most of your body it may be worn alone or over other armour."
+weight:::
+100
+value:::
+10
+ac:::
+5
+
 (cloth-pants):
 id:::
 ({ "pants", "cloth pants" })
 type:::
-"pants"
+"cloth legs"
 limbs:::
 ({ "right leg", "left leg" })
 short:::
@@ -1058,7 +1158,7 @@ ac:::
 id:::
 ({"gauntlet", "glove"})
 type:::
-"glove"
+"metal hand"
 limbs:::
 ({ ({"right hand", "left hand"}) })
 short:::
@@ -1101,7 +1201,7 @@ ac:::
 id:::
 ({"glove", "chain glove"})
 type:::
-"glove"
+"chain hand"
 limbs:::
 ({ ({"right hand", "left hand"}) })
 short:::
@@ -1145,7 +1245,7 @@ ac:::
 id:::
 ({ "bracer", "plate bracer" })
 type:::
-"bracer"
+"metal arm"
 limbs:::
 ({ ({ "right arm", "left arm" }) })
 short:::
@@ -1232,7 +1332,7 @@ ac:::
 id:::
 ({"studded glove", "studded leather glove", "leather glove", "glove"})
 type:::
-"glove"
+"leather hand"
 limbs:::
 ({ ({"right hand", "left hand"}) })
 short:::
@@ -1278,7 +1378,7 @@ ac:::
 id:::
 ({"leather glove", "boiled leather glove", "glove"})
 type:::
-"glove"
+"leather hand"
 limbs:::
 ({ ({ "left hand", "right hand" }) })
 short:::
@@ -1324,7 +1424,7 @@ ac:::
 id:::
 ({"glove", "leather glove"})
 type:::
-"glove"
+"leather hand"
 limbs:::
 ({ ({"right hand", "left hand"}) })
 short:::
@@ -1366,7 +1466,7 @@ ac:::
 id:::
 ({"glove", "padded glove"})
 type:::
-"glove"
+"cloth hand"
 limbs:::
 ({ ({"right hand", "left hand"}) })
 short:::
@@ -1452,7 +1552,7 @@ ac:::
 id:::
 ({ "banded mail", "mail" })
 type:::
-"body armour"
+"metal torso"
 limbs:::
 ({ "torso" })
 short:::
@@ -1496,7 +1596,7 @@ ac:::
 id:::
 ({ "quilted vest", "vest" })
 type:::
-"quilted-vest"
+"cloth torso"
 limbs:::
 ({ "torso" })
 short:::
@@ -1576,7 +1676,7 @@ ac:::
 id:::
 ({ "visor" })
 type:::
-"visor"
+"metal face"
 limbs:::
 ({ "head" })
 short:::
@@ -1602,30 +1702,391 @@ ac:::
 id:::
 ({ "greaves", "iron greaves" })
 type:::
-"pants"
+"metal legs"
 limbs:::
 ({ "right leg", "left leg" })
 short:::
 "A pair of iron greaves"
 long:::
-"these are bugged, you shouldn't have them."
+"These greaves are fashioned of dense iron and are worn on the legs."
 weight:::
 250
 value:::
-210
+230
+ac:::
+40
+ac:::
+5;"fire"
+ac:::
+5;"cold"
+ac:::
+1;"plasma"
+ac:::
+40;"strike"
+ac:::
+1;"vacuum"
+ac:::
+1;"electricity"
+ac:::
+1;"depression"
+ac:::
+1;"disruption"
+ac:::
+1;"stress"
+ac:::
+1;"holy"
+ac:::
+1;"time"
+ac:::
+1;"aether"
 
 (iron-bracer):
 id:::
 ({ "bracer", "iron bracer" })
 type:::
-"pants"
+"metal arm"
 limbs:::
-({ "right arm", "left arm" })
+({ ({ "right arm", "left arm" }) })
 short:::
-"An iron bracer"
+"A iron bracer"
 long:::
-"these are bugged, you shouldn't have them."
+"This bracer is crafted of metal and worn on the arm."
 weight:::
-150
+35
 value:::
+50
+ac:::
+40
+ac:::
+5;"fire"
+ac:::
+5;"cold"
+ac:::
+3;"plasma"
+ac:::
+35;"strike"
+ac:::
+45;"impact"
+ac:::
+1;"vacuum"
+ac:::
+1;"electricity"
+ac:::
+1;"depression"
+ac:::
+1;"disruption"
+ac:::
+1;"stress"
+ac:::
+1;"holy"
+ac:::
+1;"time"
+ac:::
+1;"aether"
+
+##WOOD armour
+(wood-helm):
+id:::
+({"helmet","helm", "wood helm"})
+type:::
+"metal head"
+limbs:::
+({"head"})
+short:::
+"A wood helm"
+long:::
+"This helm is crafted from wood and covers most of the head."
+weight:::
 100
+value:::
+45
+ac:::
+55
+ac:::
+5;"fire"
+ac:::
+5;"cold"
+ac:::
+5;"plasma"
+ac:::
+45;"strike"
+ac:::
+1;"vacuum"
+ac:::
+1;"electricity"
+ac:::
+1;"depression"
+ac:::
+1;"disruption"
+ac:::
+1;"stress"
+ac:::
+1;"holy"
+ac:::
+1;"time"
+ac:::
+1;"aether"
+
+(wood-plate):
+id:::
+({ "plate", "wood plate" })
+type:::
+"metal torso"
+limbs:::
+({ "torso" })
+short:::
+"Wood armour"
+long:::
+"This armour covers your chest, back and sides of your torso."
+weight:::
+500
+value:::
+350
+set_limbs:::
+({ "torso" })
+ac:::
+55
+ac:::
+15;"fire"
+ac:::
+15;"cold"
+ac:::
+8;"plasma"
+ac:::
+35;"strike"
+ac:::
+1;"vacuum"
+ac:::
+1;"electricity"
+ac:::
+1;"depression"
+ac:::
+1;"disruption"
+ac:::
+1;"stress"
+ac:::
+1;"holy"
+ac:::
+1;"time"
+ac:::
+1;"aether"
+
+(wooden-armour):
+id:::
+({"armour", "wooden armour"})
+type:::
+"chain torso"
+limbs:::
+({"torso", "right arm", "left arm"})
+short:::
+"wooden armour"
+long:::
+"This armour is made of many pieces of wood linked together covering the torso and arms."
+weight:::
+180
+value:::
+150
+ac:::
+30
+ac:::
+3;"fire"
+ac:::
+3;"cold"
+ac:::
+3;"impaling"
+ac:::
+1;"plasma"
+ac:::
+8;"strike"
+ac:::
+1;"vacuum"
+ac:::
+1;"electricity"
+ac:::
+1;"depression"
+ac:::
+1;"disruption"
+ac:::
+1;"stress"
+ac:::
+1;"holy"
+ac:::
+1;"time"
+ac:::
+1;"aether"
+ac:::
+12;"crushing"
+
+(wood-hand-guard):
+id:::
+({"hand guard", "wood hand guard"})
+type:::
+"metal hand"
+limbs:::
+({ ({"right hand", "left hand"}) })
+short:::
+"wood hand guard"
+long:::
+"This is a piece of wood that protects that back of your hand strapped on with rope."
+weight:::
+6
+value:::
+10
+ac:::
+55
+ac:::
+5;"fire"
+ac:::
+5;"cold"
+ac:::
+3;"plasma"
+ac:::
+25;"strike"
+ac:::
+1;"vacuum"
+ac:::
+1;"electricity"
+ac:::
+1;"depression"
+ac:::
+1;"disruption"
+ac:::
+1;"stress"
+ac:::
+1;"holy"
+ac:::
+1;"time"
+ac:::
+1;"aether"
+
+(wood-bracer):
+id:::
+({ "bracer", "wood bracer" })
+type:::
+"metal arm"
+limbs:::
+({ ({ "right arm", "left arm" }) })
+short:::
+"wood bracer"
+long:::
+"This bracer is crafted of wood and worn on the arm."
+weight:::
+45
+value:::
+60
+ac:::
+55
+ac:::
+5;"fire"
+ac:::
+5;"cold"
+ac:::
+3;"plasma"
+ac:::
+35;"strike"
+ac:::
+45;"impact"
+ac:::
+1;"vacuum"
+ac:::
+1;"electricity"
+ac:::
+1;"depression"
+ac:::
+1;"disruption"
+ac:::
+1;"stress"
+ac:::
+1;"holy"
+ac:::
+1;"time"
+ac:::
+1;"aether"
+
+(wood-leg-guards):
+id:::
+({ "guards", "wood leg guards" })
+type:::
+"metal legs"
+limbs:::
+({ "right leg", "left leg" })
+short:::
+"A pair of wood leg guards"
+long:::
+"These wooden leg gaurds are fashioned of wood and are worn on the legs."
+weight:::
+450
+value:::
+430
+ac:::
+55
+ac:::
+5;"fire"
+ac:::
+5;"cold"
+ac:::
+1;"plasma"
+ac:::
+40;"strike"
+ac:::
+1;"vacuum"
+ac:::
+1;"electricity"
+ac:::
+1;"depression"
+ac:::
+1;"disruption"
+ac:::
+1;"stress"
+ac:::
+1;"holy"
+ac:::
+1;"time"
+ac:::
+1;"aether"
+
+(stumps):
+id:::
+({"boots"})
+type:::
+"metal foots"
+limbs:::
+({"left foot","right foot"})
+short:::
+"A pair of stumps"
+long:::
+"These are wooden stumps hollowed out and you can put to feet in them"
+weight:::
+70
+value:::
+90
+ac:::
+55
+ac:::
+18;"fire"
+ac:::
+18;"cold"
+ac:::
+5;"plasma"
+ac:::
+45;"strike"
+ac:::
+45;"impact"
+ac:::
+45;"crushing"
+ac:::
+1;"vacuum"
+ac:::
+1;"electricity"
+ac:::
+1;"depression"
+ac:::
+1;"disruption"
+ac:::
+1;"stress"
+ac:::
+1;"holy"
+ac:::
+1;"time"
+ac:::
+1;"aether"

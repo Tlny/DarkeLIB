@@ -16,7 +16,7 @@ TEXT
 );
   set_weight(75);
   set_value(38000);
-  set_type("glove");
+  set_type("metal hand");
   set_limbs( ({ "right hand", "left hand" }) );
   set_ac(29);
   set_wear( (: call_other, this_object(), "extra_worn" :) );

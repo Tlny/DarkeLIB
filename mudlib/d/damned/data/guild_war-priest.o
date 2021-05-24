@@ -1,0 +1,14 @@
+#/d/damned/guilds/join_rooms/war-priest_join.c
+props (["base mp regen":6,"guild mods":(["wisdom":5,"constitution":5,]),"base hp regen":5,"light":2,"mp advance":32,"hp advance":18,"indoors":1,])
+__Smells ([])
+__Listens ([])
+__Searches ([])
+destinations (["north":"/d/damned/guilds/war-priest/hh5","south":"/d/daybreak/room/dbbw3",])
+invis_exits ([])
+pre_exit_func ([])
+post_exit_func ([])
+tracks ({})
+__Items (["blue moon":,"sky":,"ankh":,"moon":,"red moon":,"green moon":,"warzau":,"sun":,"luna":,"moons":,])
+guild_list (["paramoor":(["status":"member",]),])
+banish ([])
+master "paramoor"

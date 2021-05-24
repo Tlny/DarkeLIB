@@ -34,7 +34,10 @@ int take_key(string str) {
     return 1;
   }
   this_player()->add_money("gold", -2);
-  ob = new("/std/Object");
+  //ob = new("/std/Object");
+//TLNY2020 ADD
+    ob = new("/d/damned/akkad/obj/misc/key.c");
+write("You take a key from the key rack.");
   ob->set_property("no save", 1);
   ob->set_name("key");
   ob->set_short(capitalize((string)this_player()->query_name()) +

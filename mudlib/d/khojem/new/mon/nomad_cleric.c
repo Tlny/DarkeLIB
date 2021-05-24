@@ -13,7 +13,7 @@ create() {
     set_id( ({ "nomad war cleric","war cleric","cleric","Rom'mir",
       "rom'mir", "rommir", "Rommir" }) );
     set_level(16);
-    set_short("Rom'mir");
+    set_short("[16]Rom'mir");
     set_long("The dark, robed half-orc shaman stands before you.  "+
       "A hood is drawn up over his head and shadows his face from view.  "+
       "He is a short, stocky half-orc but you are wary of his powers." 
@@ -51,7 +51,7 @@ create() {
 	set_skill("prayer",100);
 	set_skill("body alteration",95);
 	set_fingers(5);
-	new("/wizards/khojem/nomad/weapon/nomad_staff")->
+	new("/d/khojem/nomad/weapon/nomad_staff")->
 	  move(this_object());
 	force_me("wield staff in right hand and left hand");
 }

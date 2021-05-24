@@ -11,7 +11,7 @@ void create() {
 	);
 	set_weight(100);
 	set_value(45);
-	set_type("boots");
+	set_type("leather foots");
 	set_limbs( ({"left foot", "right foot"}) );
 	set_ac(2);
 	set_material("leather");

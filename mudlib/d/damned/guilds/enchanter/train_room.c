@@ -59,7 +59,7 @@ ob->set_edit_ok( ({"/d/damned/guilds/join_rooms/enchanter_join"->query_master() 
   add_skill("perception", 1, 1);
   add_skill("swimming", 1);
   add_skill("prospecting", 1);
-  add_skill("dodge", 4);
+  add_skill("dodge", 1);
   add_skill("blade", 3, 1);
   add_skill("focus casting", 5, 1);
   add_skill("fast casting", 12, 1);

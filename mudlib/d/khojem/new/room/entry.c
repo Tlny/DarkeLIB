@@ -9,10 +9,12 @@ inherit ROOM;
 void reset(){
   object mon;
   ::reset();
-  if(!present("merchant")) 
-    new("/wizards/khojem/new/mon/elf_merchant")->move(this_object());
-  if(!present("rock"))
-    new("/wizards/khojem/new/obj/rock")->move(this_object());
+  if(!present("merchant")) {
+    new("/d/khojem/new/mon/elf_merchant")->move(this_object());
+    }
+  if(!present("rock")) {
+    new("/d/khojem/new/obj/rock")->move(this_object());
+    }
 }  
 
 void create() {
@@ -24,16 +26,18 @@ void create() {
       "all around, but allow a great deal of sunlight through the "+
       "leaves and branches.  It is really pleasant here.  Off to the "+
       "side you see a few squirrels scampering about.  The trail "+
-      "extents north from here.  A large rock is to the trail's side."
+      "extents north from here.  A large rock is to the trail's side.\n   0\n   | \n0--@--0\n   out \n   \n"
     );
     set("night long", "You are on a north/south path.  The trees grow "+
       "all around, but allow much of the night's light through the "+
       "leaves and branches.  It is really pleasant here.  Off to the "+
       "side you see a few squirrels scampering about.  The trail "+
-      "extents north from here.  A large rock is to the trail's side."
+      "extents north from here.  A large rock is to the trail's side.\n   0\n   | \n0--@--0\n   out \n   \n"
     ); 
-    add_exit("/wizards/khojem/new/room/path2","north");
-    add_exit("/d/damned/virtual/room_13_16.world","out");
+    add_exit("/d/khojem/new/room/path2","north");
+    add_exit("/d/khojem/new/room/entry_west","west");
+    add_exit("/d/khojem/new/room/entry_east","east");
+    add_exit("/d/damned/virtual/room_6_7.world","out");
     set_items(([
      ({ "squirrel","squirrels" }) :
         "Two gray squirrels appear to be playing tag.  They chase each "+

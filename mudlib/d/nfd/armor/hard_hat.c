@@ -22,7 +22,7 @@ void create() {
 
 	"such a nice looking hat lying around.");
 
-	set_type("helmet");
+	set_type("metal head");
 
 	set_ac( 10 );
 

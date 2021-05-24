@@ -13,7 +13,7 @@ void create() {
       "this crop of 2-3 foot long feathers will make you look absurb!");
     set_weight(35);
     set_value(65);
-    set_type("helmet");
+    set_type("metal head");
     set_limbs( ({ "head" }) );
     set_ac(18);
         set_ac(1, "aether");

@@ -9,7 +9,7 @@ inherit ROOM;
 void reset() {
    ::reset();
    if (!present("child")) {
-      new("/wizards/khojem/new/mon/child")->move(this_object());
+      new("/d/khojem/new/mon/child")->move(this_object());
    }
 }
 
@@ -21,7 +21,7 @@ void create() {
     set("long", "This is a small, one-room hut with a thatched roof.  "+
       "The small, stone hearth with its fire makes this a "+
       "warm, comfortable place.  The window provides fresh air "+
-      "and light.  A short table is surrounded by equally short chairs."   
+      "and light.  A short table is surrounded by equally short chairs.\n   \n    \n   @--0\n    \n   \n"   
     );
     add_exit("plat2","east");
     set_items(([

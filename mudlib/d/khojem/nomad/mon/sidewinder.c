@@ -12,7 +12,7 @@ void create() {
   ::create();
   set_name("sidewinder");
   set_id( ({ "sidewinder", "snake" }) );
-  set_short("A slithering sidewinder");
+  set_short("[5]slithering sidewinder");
   set_long("The sidewinder moves quickly across the desert sand.");
   set("race", "serpent");
   set_property("melee damage", ([ "impaling" : 15 ]));
@@ -29,7 +29,7 @@ void create() {
       "A sidewinder coils for a strike and displays its fangs.",
       "The sidewinder briefly retreats."
     }),1);    
-// new("/wizards/khojem/nomad/weapon/snake_fang")->move(this_object());
+// new("/d/khojem/nomad/weapon/snake_fang")->move(this_object());
 // force_me("wield fang in tail");
 }
 

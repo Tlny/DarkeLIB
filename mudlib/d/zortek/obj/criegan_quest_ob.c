@@ -12,7 +12,7 @@ void create() {
      set("long", "A old, rusted spindle top helm with a rotted lining.");
     set_weight(250);
     set_value(10);
-    set_type("helmet");
+    set_type("metal head");
     set_ac(1);
     set_limbs( ({ "head" }) );
 }

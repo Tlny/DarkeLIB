@@ -26,7 +26,7 @@ void create() {
 
 		"it appears to be at first glance.");
 
-	set_type("cloak");
+	set_type("cloth back");
 
 	set_ac(5);
 

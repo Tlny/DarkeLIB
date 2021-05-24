@@ -13,7 +13,7 @@ void create() {
 "is coiled rattlesnake, prepared to strike!");
     set_weight(100);
     set_value(250);
-    set_type("armour");
+    set_type("metal torso");
     set_limbs( ({ "torso" }) );
     set_ac(35);
 

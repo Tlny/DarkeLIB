@@ -9,7 +9,7 @@ void create() {
 		"Light blue, just the ocean upon which the sailors that "
 		"where them sail upon."
 	);
-	set_type("body armour");
+	set_type("cloth torso");
 	set_ac(2);
 	set_weight(50);
 	set_value(20);

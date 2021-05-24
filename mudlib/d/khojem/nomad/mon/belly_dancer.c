@@ -23,7 +23,7 @@ create() {
     set_name("belly dancer");
     set_id( ({ "belly dancer", "dancer" }) );
     set_level(5);
-    set_short("a belly dancer");
+    set_short("[5]belly dancer");
     set_long("The raven-haired dancer is stunningly beautiful.  Her face is "+
       "veiled, but her dark, doe-like eyes entrance you.  She is a "+
       "full-figured, olive-skinned young woman with rounded breasts.  Her "+
@@ -44,11 +44,11 @@ create() {
 	  "The dancer arches her back and drops to the floor at your feet.  "+
 	    "She sways her stomach in beat to the music. "
 	}),0);
-	new("/wizards/khojem/nomad/armor/veil")->move(this_object());
+	new("/d/khojem/nomad/armor/veil")->move(this_object());
 	force_me("wear veil");
-	new("/wizards/khojem/nomad/armor/sl_pantaloons")->move(this_object());
+	new("/d/khojem/nomad/armor/sl_pantaloons")->move(this_object());
 	force_me("wear pantaloons");
-	new("/wizards/khojem/nomad/armor/ruby_jewel")->move(this_object());
+	new("/d/khojem/nomad/armor/ruby_jewel")->move(this_object());
 	force_me("wear ruby");
 }
 

@@ -9,7 +9,7 @@ void create() {
         "This is a beautiful set of field-plate armour.  It gleams "+
         "and sparkles as it is well kept and polished.  Someone "+
         "took great care of this armor.");
-   set_type("body armour");
+   set_type("metal torso");
    set_ac( 40, ({ "crushing", "cutting", "impaling",
                          "impact", "strike" }) );
    set_limbs( ({ "torso", "right arm", "left arm",

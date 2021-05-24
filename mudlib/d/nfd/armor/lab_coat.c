@@ -20,7 +20,7 @@ void create() {
 
 	set("long","A clean coat for doctors to wear.");
 
-	set_type("body amour");
+	set_type("cloth arm");
 
 	set_ac(1);
 

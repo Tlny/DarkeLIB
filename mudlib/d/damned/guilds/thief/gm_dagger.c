@@ -36,6 +36,16 @@ int query_poisoning() { return 35; }
 int make_me_gm() {
   object ob;
 
+   if(this_player()->is_player() && (int)this_player()->query_level() < 16) {
+     write("%^BOLD%^Only thiefs of level 16 or higher may use this item.");
+    return 0;
+}
+
+   if((string)this_player()->query_class() != "thief") {
+      write("%^BOLD%^Only thiefs may use this item.");
+    return 0;
+  }
+
   //  the function below will handle all necessary checking, etc.
   seteuid(getuid());
   ob = new("/d/damned/guilds/thief/thief_obj");

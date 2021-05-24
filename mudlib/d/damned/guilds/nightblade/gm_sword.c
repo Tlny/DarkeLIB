@@ -46,6 +46,16 @@ int remove_bonus() {
 int make_me_gm() {
   object ob;
 
+if(this_player()->is_player() && (int)this_player()->query_level() < 16) {
+     write("%^BOLD%^Only nightblades level 16 or higher may use this item.");
+    return 0;
+}
+
+   if((string)this_player()->query_class() != "nightblade") {
+      write("%^BOLD%^Only nightblades may use this item.");
+    return 0;
+  }
+
   this_player()->add_skill_bonus("back stab", 30);
   this_player()->add_skill_bonus("assassination", 20);
   write("You feel as though your back stab and assassination skills are increased.");

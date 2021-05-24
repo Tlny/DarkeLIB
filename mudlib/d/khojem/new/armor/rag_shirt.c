@@ -14,7 +14,7 @@ void create() {
     );
     set_weight(100);
     set_value(1);
-    set_type("armour");
+    set_type("cloth torso");
     set_limbs( ({ "torso", "right arm", "left arm" }) );
     set_ac(4);
         set_ac(0, "aether");

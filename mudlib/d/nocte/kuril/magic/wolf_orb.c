@@ -23,7 +23,7 @@ void create() {
 		"stasis.  You can see a wolf inside this orb."
 	);
 	set_weight(30);
-	set_value(5000);
+	set_value(2500);
 }
 
 int shatter_orb(string str) {

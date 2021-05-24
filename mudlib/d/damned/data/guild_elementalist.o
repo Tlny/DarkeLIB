@@ -1,5 +1,5 @@
 #/d/damned/guilds/join_rooms/elementalist_join.c
-props (["base mp regen":12,"base hp regen":2,"mp advance":45,"indoors":1,"light":2,"hp advance":5,"guild mods":(["intelligence":10,]),])
+props (["base mp regen":15,"light":2,"base hp regen":3,"guild mods":(["intelligence":10,]),"mp advance":50,"indoors":1,"hp advance":15,])
 __Smells ([])
 __Listens ([])
 __Searches ([])
@@ -8,6 +8,7 @@ invis_exits ([])
 pre_exit_func ([])
 post_exit_func ([])
 tracks ({})
-__Items (["moons":,"ankh":,"items":"They are very valuable, but well protected.","magi":"Several of them wear ornate robes and jewelry.","sky":,"warzau":,"red moon":,"sun":,"green moon":,"moon":,"luna":,"blue moon":,])
-guild_list (["rindur":(["status":"member",]),"nekuran":(["status":"member",]),"bludgeon":(["status":"member",]),"elric":(["status":"member",]),])
+__Items (["items":"They are very valuable, but well protected.","magi":"Several of them wear ornate robes and jewelry.","blue moon":,"sky":,"ankh":,"moon":,"red moon":,"sun":,"warzau":,"green moon":,"moons":,"luna":,])
+guild_list (["elena":(["status":"member",]),"argon":(["status":"member",]),"vindak":(["status":"member",]),"liralindrielle":(["status":"member",]),])
 banish ([])
+master "vindak"

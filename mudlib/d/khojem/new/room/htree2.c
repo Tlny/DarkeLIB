@@ -16,7 +16,7 @@ void create() {
       "You are very high above the forest floor below you.  The light "+
       "here is greatly improved as you work your way through the "+
       "foliage.  The taunt rope extends above "+
-      "and below you.  A large branch reaches out to the north."
+      "and below you.  A large branch reaches out to the north.\n   0\n   u \n   @   \n   d \n   \n"
     );
     add_exit("htree1","down");
     add_exit("branch3","north");

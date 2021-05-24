@@ -13,7 +13,7 @@ void create() {
         "owner accidently smashed his fingers on something.\n");
     set_weight(20);
     set_value(50);
-    set_type("glove");
+    set_type("leather hand");
     set_limbs( ({ "right hand","left hand" }) );
     set_ac(15);
     set_wear("You push your hands into the finely oiled gloves.");

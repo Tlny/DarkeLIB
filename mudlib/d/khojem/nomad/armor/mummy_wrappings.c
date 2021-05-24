@@ -13,7 +13,7 @@ void create() {
       "embalming fluid and decaying flesh.");
     set_weight(30);
     set_value(10);
-    set_type("armour");
+    set_type("cloth torso");
     set_material("misc/cotton");
     set_ac(1);
     set_limbs( ({ "torso" }) );

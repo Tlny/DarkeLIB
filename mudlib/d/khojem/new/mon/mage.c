@@ -15,7 +15,7 @@ create() {
     set_name("wood-elf mage");
     set_id( ({ "wood-elf mage","mage", "elf" }) );
     set_level(5);
-    set_short("wood-elf mage");
+    set_short("[5]wood-elf mage");
     set_long("The wood-elf mage has a dour look.  "+
       "It appears she does not like the company of strangers.  She "+
       "constantly paces the floor of her hut and trys to ignore "+
@@ -59,7 +59,7 @@ create() {
 	new("/d/damned/virtual/cloak.armour")->
 	  move(this_object());
 	force_me("wear cloak");
-	new("/wizards/khojem/new/armor/slippers")->
+	new("/d/khojem/new/armor/slippers")->
       move(this_object());
     force_me("wear slippers");
 }

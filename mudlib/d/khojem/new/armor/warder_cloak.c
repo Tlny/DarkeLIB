@@ -16,7 +16,7 @@ void create() {
       "blend with the background.");
     set_weight(60);
     set("value", 1500);
-    set_type("cloak");
+    set_type("cloth back");
     set_limbs( ({ "torso" }) );
     set_ac(7);
     set_wear( (: call_other, this_object(), "extra_worn" :) );
@@ -25,7 +25,7 @@ void create() {
 }
 
 int extra_worn(){
-  shadow=clone_object("/wizards/khojem/new/shadow/hide_shadow.c");
+  shadow=clone_object("/d/khojem/new/shadow/hide_shadow.c");
   shadow->start_shadow(this_player());
   return 1;
 }

@@ -13,7 +13,7 @@ void create() {
       "provides protection against attack.");
     set_weight(25);
     set("value", 35);
-    set_type("helmet");
+    set_type("chain head");
     set_limbs( ({ "head" }) );
     set_ac(8);
 }

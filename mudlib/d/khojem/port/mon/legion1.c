@@ -13,7 +13,7 @@ create() {
     set_id( ({ "legionnaire", "guard", "legion" }) );
     set_level(17);
     set_exp(200000);
-    set_short("legionnaire");
+    set_short("[17]legionnaire");
     set_long("A massive, stone faced legionnaire guards the mansion "+
       "from intruders."
       );
@@ -23,13 +23,13 @@ create() {
     set_wimpy(0);
     add_money("silver", (800+random(99)));
 	set_class("fighter");
-	new("/wizards/khojem/port/weapon/falchion")->move(this_object());
+	new("/d/khojem/port/weapon/falchion")->move(this_object());
 	force_me("wield sword in right hand");
     new("/d/damned/virtual/corslet.armour")->move(this_object());
     force_me("wear corslet");
-    new("/wizards/khojem/port/armor/legion_helm")->move(this_object());
+    new("/d/khojem/port/armor/legion_helm")->move(this_object());
     force_me("wear helmet");
-    new("/wizards/khojem/port/armor/beaver")->move(this_object());
+    new("/d/khojem/port/armor/beaver")->move(this_object());
     force_me("wear beaver");    
 }
 

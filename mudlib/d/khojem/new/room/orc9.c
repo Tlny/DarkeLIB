@@ -13,10 +13,10 @@ void create() {
     set("short", "An underground passage");
     set("long", "You are in an underground passage.  Dirt walls "+ 
       "surround the small passage and the dirt floor is hard and "+
-      "smooth from repeated use."
+      "smooth from repeated use.\n   0\n   | \n0--@--0\n   | \n   0\n"
     );
     add_exit("orc8","west");
-    add_exit("chief","east");
+    add_exit("/d/1tlny/complete/fir_boss_room/s2/chief.c","east");
     add_exit("orc10","south");
     add_exit("orc11","north");
     set_items(([

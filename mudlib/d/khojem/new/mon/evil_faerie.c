@@ -14,7 +14,7 @@ void create() {
     set_name("evil faerie");
     set_id( ({ "evil faerie","faerie" }) );
     set_level(7);
-    set_short("evil faerie");
+    set_short("[7]evil faerie");
     set_long("The ghostly-looking winged, sprint moves very quickly.  "+
       "It is constantly fluttering about and whirls circles around you." 
       );
@@ -52,7 +52,7 @@ void create() {
 	set("aggressive", (: call_other, this_object(), "no_other_monsters" :) );
 	set_moving(1);
 	set_speed(40);              
-    new("/wizards/khojem/new/obj/dead_rose")->move(this_object());
+    new("/d/khojem/new/obj/dead_rose")->move(this_object());
 }
 
 int chk_my_mon() { return 1;}

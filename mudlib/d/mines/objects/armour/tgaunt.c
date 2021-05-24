@@ -13,7 +13,7 @@ void create() {
         "of gems.\n");
     set_weight(30);
     set("value", 1);
-    set_type("glove");
+    set_type("metal hand");
    set_limbs( ({ "right hand","left hand" }) );
     set_ac(15);
     set_ac(15,"impaling");      

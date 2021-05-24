@@ -8,8 +8,9 @@ inherit ROOM;
 
 void reset(){
   ::reset();
-  if(!present("warrior") && random(2)) 
-    new("/wizards/khojem/new/mon/elf_warrior1")->move(this_object());
+  if(!present("warrior") && random(2)) {
+    new("/d/khojem/new/mon/elf_warrior1")->move(this_object());
+    }
 }  
 
 void create() {
@@ -18,7 +19,7 @@ void create() {
     set_property("indoors", 0);
     set("short", "A wooded path");
     set("long", "You are on a east/west path.  The trees grow "+
-      "close around and cut off some of the light from above. "
+      "close around and cut off some of the light from above.\n   \n    \n0--@--0\n    \n   \n"
     );
     add_exit("trail4","west");
     add_exit("clearing","east");

@@ -12,7 +12,7 @@ void create() {
     set("long", "A luxurious, silk bodice that is worn about the torso.");
     set_weight(15);
     set_value(200);
-    set_type("body armor");
+    set_type("cloth torso");
     set_ac(2);
         set_ac(1, "aether");
         set_ac(1, "depression");

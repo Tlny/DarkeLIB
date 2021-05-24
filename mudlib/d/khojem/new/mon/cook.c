@@ -12,7 +12,7 @@ create() {
     set_name("half-orc cook");
     set_id( ({ "cook","orc", "half-orc cook"}) );
     set_level(4);
-    set_short("half-orc cook");
+    set_short("[4]half-orc cook");
     set_long("The half-orc cook is covered in grease from his work." 
       );
     set("race", "half-orc");
@@ -27,9 +27,9 @@ create() {
     set_stats("intelligence", 50);
     set_stats("strength",100);
     set_wimpy(0);
-    new("/wizards/khojem/new/weapon/skillet")->move(this_object());
+    new("/d/khojem/new/weapon/skillet")->move(this_object());
     force_me("wield skillet in right hand");
-    new("/wizards/khojem/new/armor/apron")->move(this_object());
+    new("/d/khojem/new/armor/apron")->move(this_object());
     force_me("wear apron");
     set_alignment(-100);
     set("aggressive", (: call_other, this_object(), "no_other_monsters" :) );

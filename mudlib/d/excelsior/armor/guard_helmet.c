@@ -13,7 +13,7 @@ void create() {
 		"to sell it as an authentic antique if it weren't for the large "+
 		"insignia on the helmet's side saying: 'This is not an authentic "+
 		"Spartan helmet");
-	set_type("helmet");
+	set_type("metal head");
 	set_ac(6);
 	set_limbs( ({"head"}) );
 	set_weight( 250 );

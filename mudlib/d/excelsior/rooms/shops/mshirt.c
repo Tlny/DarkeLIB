@@ -3,7 +3,7 @@ inherit "std/armour";
 void create() {
    ::create();
    set_name("shirt");
-   set_type("shirt");
+   set_type("cloth torso");
    set_limbs( ({ "torso" }) );
    set("id",({"shirt","striped shirt"}) );
    set("short","A magical striped shirt");

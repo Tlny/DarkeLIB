@@ -12,7 +12,7 @@ void create() {
     set("long", "This looks like Khojem's favorite helm.");
     set_weight(375);
     set("value", 50000);
-    set_type("helmet");
+    set_type("metal head");
     set_limbs( ({ "head" }) );
     set_ac(5);
     set_wear( (: call_other, this_object(), "extra_worn" :) );

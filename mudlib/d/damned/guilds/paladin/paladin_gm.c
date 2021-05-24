@@ -38,6 +38,7 @@ void create() {
   //  "guildmaster" as one of them.  If you do not set_id, he
   //  will still work.
   set_name("guildmaster");
+set_class("paladin");
   set_property("melee damage", ([ "crushing" : 20 ]));
   set_skill("melee", 80);
   set_skill("perception", 150);

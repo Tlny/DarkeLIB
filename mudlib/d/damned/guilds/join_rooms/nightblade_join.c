@@ -34,7 +34,9 @@ void create() {
   set_property("light", -1);
   set_property("indoors", 1);
   new("d/damned/guilds/join_rooms/tcan")->move(this_object());
-  set_related_guilds(({ "thief", "arch-mage" }));
+  set_related_guilds(({ "assassin", "thief", "dark-paladin", }));
+    set_hated_guilds(({ "cleric", "war-priest", "paladin",  }));
+    set_odd_guilds(({ "arch-mage", "elementalist", "enchanter", }));
   set("short", "The Nightblade's Guild Joining Room");
   set("long", 
   "This is the anteroom of the dreaded Nightblade Guild.  The shadows "
@@ -58,13 +60,13 @@ void create() {
 
   //  The following lines set the properties for the guild.
 
-  set_property("base hp regen", 4);
-  set_property("base mp regen", 4);
+  set_property("base hp regen", 5);
+  set_property("base mp regen", 5);
   //  Base heling per tick.  Note that the default is 3 for both.
   //  Keep in mind that this increases with level.
 
-  set_property("hp advance", 21);
-  set_property("mp advance", 23);
+  set_property("hp advance", 28);
+  set_property("mp advance", 25);
   //  Base advance per level im max mp/hp.  Default is 10.
 
   set_property("guild mods",

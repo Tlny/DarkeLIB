@@ -9,7 +9,7 @@ void create() {
 	set("short","A guards chainmail");
 	set("long","This is a government employed guard's fine chainmail. It makes "+
 		"its weary look very dignified and important.");
-	set_type("body armour");
+	set_type("chain torso");
 	set_ac(6);
         set_limbs( ({"torso"}) );
 	set_weight( 201 );

@@ -40,6 +40,10 @@ void create() {
   add_spell("animate lich");
   add_spell("animate demilich");
   add_spell("animate dracolich");
+  add_spell("animate abomination");
+  add_spell("animate nethergeist");
+  add_spell("create everlasting body");
+  add_spell("animate everlasting");
   return;
 }
 

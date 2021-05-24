@@ -13,7 +13,7 @@ void create() {
     set_long("A large metal key that can be worn around the neck.\n");
     set_weight(5);
     set_value(0);
-    set_type("visor");
+    set_type("neck");
     set_ac(1);
     set_limbs( ({ "head" }) );
 }

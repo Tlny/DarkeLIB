@@ -23,6 +23,7 @@ void create() {
       "of the demon to his skin.  You almost tremble when you look at " +
       " his face and see the horrors of his deeds.\n");
   set_level(21);
+  set_class("chaotic-lord");
   set_max_hp(3500);
   set_hp(3500);
   set_max_mp(5000);
@@ -46,6 +47,7 @@ void create() {
   set_skill("parry", 150);
   set_skill("chaos magic", 140);
   set_skill("blade", 200);
+  set_skill("axe", 200);
   set_stats("strength", 150);
   set_skill("attack", 150);
   set_spell_level("chaos ball",6);
@@ -57,8 +59,10 @@ void create() {
   set_property("ambidextry",1);
   ob = new("/d/damned/guilds/chaotic-lord/chaotic-lord_sword");
   ob->move(this_object());
-  ob3 = new("/d/damned/virtual/long-sword_6.weapon");
+  force_me("wield sword in left hand");
+  ob3 = new("/d/damned/guilds/chaotic-lord/chaotic-lord_axe");
   ob3->move(this_object());
+  force_me("wield axe in right hand");
   ob2 = new("/d/damned/guilds/chaotic-lord/chaotic-lord_helm");
   ob2->move(this_object());
   force_me("equip");

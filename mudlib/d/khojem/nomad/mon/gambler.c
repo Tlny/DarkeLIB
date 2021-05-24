@@ -14,7 +14,7 @@ create() {
     set_name("gambler");
     set_id( ({ "nomad gambler", "gambler", "nomad" }) );
     set_level(13);
-    set_short("nomad gambler");
+    set_short("[13]nomad gambler");
     set_long("The gambler appears interested in playing the game.  He is a short "+
       "fat nomad with a bald, sunburnt head.  He is alert to the game and "+
       "constantly mutters to himself."
@@ -45,9 +45,9 @@ create() {
 	  "The thought of facing my wife later chills me to the bone!"
 	}),0);
 	set_class("tinker");
-	new("/wizards/khojem/nomad/weapon/flail")->move(this_object());
+	new("/d/khojem/nomad/weapon/flail")->move(this_object());
 	force_me("wield flail in right hand");
-	obj=new("/wizards/khojem/nomad/obj/purse");
+	obj=new("/d/khojem/nomad/obj/purse");
     money=new("std/obj/coins");
     money->set_money("gold",(random(10)+20));
     money->move(obj);

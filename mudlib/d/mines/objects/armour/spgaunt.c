@@ -13,7 +13,7 @@ void create() {
         "for punching through an ememy's armour plating.");
     set_weight(50);
     set_value(140);
-    set_type("glove");
+    set_type("metal hand");
     set_limbs( ({ "right hand","left hand" }) );
     set_ac(30);
 

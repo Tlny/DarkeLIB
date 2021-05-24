@@ -28,9 +28,9 @@ TEXT
   set_property("base mp regen", 140);
   set_property("base hp regen", 20);
   set_gender("male");
-  set("race", "ent");
-  set_body_type("ent");
-  
+  set("race", "human");
+  set_body_type("human");
+  set_class("cleric");  
   set_skill("perception", 150);
   set_skill("melee", 200);
   set_skill("dodge", 150);
@@ -66,13 +66,15 @@ TEXT
   set_languages(({ "common", "serra", "yin", "treefolk", "catfolk",
                    "elvish", "dwarvish", "undead-tongue", "rachk",
                    "gnollish", "stormspeak", }));
-  
+   ob = new("/d/damned/guilds/cleric/gm_mace"); 
+    ob->move(this_object());
   ob = new("/d/damned/guilds/cleric/gm_cross");
     ob->set_property("enchantment", 15);
     ob->set_property("enhance criticals", 1);
     ob->set_property("hit bonus", 10);
     ob->move(this_object());
   force_me("wear cross");
+  force_me("equip");
   return;
 }
 

@@ -12,7 +12,7 @@ void create() {
         "legs while they brace the rocks and loosen the gems.\n");
     set_weight(150);
     set("value", 120);
-    set_type("pants");
+    set_type("leather legs");
     set_limbs( ({ "left leg","right leg" }) );
     set_ac(7);
     set_wear("You strap on the leather leg guards." );

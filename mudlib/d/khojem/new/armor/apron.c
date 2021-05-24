@@ -12,7 +12,7 @@ void create() {
     set("long", "A tanned leather apron soiled with grease and animal entails.");
     set_weight(200);
     set_value(3);
-    set_type("armour");
+    set_type("cloth torso");
     set_limbs( ({ "torso" }) );
     set_ac(4);
         set_ac(0, "aether");

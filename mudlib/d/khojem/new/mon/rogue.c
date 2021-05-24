@@ -12,7 +12,7 @@ create() {
     set_name("half-orc rogue");
     set_id( ({ "half-orc rogue", "rogue" }) );
     set_level(4);
-    set_short("rogue");
+    set_short("[4]rogue");
     set_long("The shadowy rogue looks frightful in this dim light." 
       );
     set("race", "half-orc");
@@ -35,10 +35,10 @@ create() {
     money=new("std/obj/coins");
     money->set_money("silver",((random(10)*100)+random(10)));
     money->move(this_object());
-    new("/wizards/khojem/new/weapon/envenom_dagger")->move(this_object());
+    new("/d/khojem/new/weapon/envenom_dagger")->move(this_object());
     force_me("wield dagger in right hand");
     new("/d/damned/virtual/cloak.armour")->move(this_object());
     force_me("wear cloak");
-    new("/wizards/khojem/new/armor/muddy_boots")->move(this_object());
+    new("/d/khojem/new/armor/muddy_boots")->move(this_object());
     force_me("wear boots");
 }

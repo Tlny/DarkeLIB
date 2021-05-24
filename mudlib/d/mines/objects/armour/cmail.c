@@ -12,7 +12,7 @@ void create() {
 "clasps to hold them together.");
     set_weight(230);
     set_value(175);
-    set_type("armour");
+    set_type("chain torso");
     set_limbs( ({ "torso", "right arm", "left arm" }) );
     set_ac(23);
     set_wear("You pull the chainmail over your torso and arms." );

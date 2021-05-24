@@ -12,7 +12,7 @@ void create() {
        "chin and a nose-guard.\n");
     set_weight(15);
     set_value(70);
-    set_type("helmet");
+    set_type("metal head");
     set_limbs( ({ "head" }) );
     set_ac(15);
     set_wear("You pull helmet down over your head." );

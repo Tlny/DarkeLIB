@@ -12,7 +12,7 @@ void create() {
 "looks very comfortable.");
     set_weight(75);
     set_value(100);
-    set_type("armour");
+    set_type("leather torso");
     set_limbs( ({ "torso" }) );
     set_ac(13);
     set_wear("You pull the vest over your torso and snap the buttons.");

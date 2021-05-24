@@ -18,7 +18,7 @@ void create() {
   set_material("/metal/unknown");
   set_weight(195);
   set("value", 5000);
-  set_type("helmet");
+  set_type("metal head");
   set_limbs( ({ "head" }) );
   set_ac(15);
   set_wear( (: call_other, this_object(), "extra_worn" :) );

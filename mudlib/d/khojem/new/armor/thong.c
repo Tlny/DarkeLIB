@@ -14,7 +14,7 @@ void create() {
       "like...  you live on another planet...");
     set_weight(5);
     set("value", 10);
-    set_type("pants");
+    set_type("leather legs");
     set_limbs( ({ "left leg", "right leg" }) );
     set_ac(0);
     set_material("misc/soft leather");

@@ -11,7 +11,7 @@ void create() {
          "fabric. It has reinforced seams and a thick drawstring.");
     set_weight(50);
     set_value(75);
-    set_type("armour");
+    set_type("cloth back");
     set_limbs( ({ "torso" }) );
     set_ac(7);
     set_wear("You wrap yourself in the cloak.");

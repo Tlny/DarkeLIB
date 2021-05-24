@@ -21,7 +21,7 @@ TEXT
     set_material("/metal/unknown");
     set_weight(225);
     set_value(35000);
-    set_type("boots");
+    set_type("leath foots");
     set_limbs(({"left foot", "right foot"}));
     set_ac(25);
     set_ac(100, "plasma");

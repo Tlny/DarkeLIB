@@ -22,7 +22,7 @@ void create() {
     set("short", "An underground passage");
     set("long", "You are in an underground passage.  Dirt walls "+ 
       "surround the small passage and the dirt floor is hard and "+
-      "smooth from repeated use."
+      "smooth from repeated use.\n   \n    \n0--@--0\n   | \n   0\n"
     );
     add_exit("orc1","west");
     add_exit("orc5","east");

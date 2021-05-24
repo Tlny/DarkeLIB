@@ -10,7 +10,7 @@ void create() {
 		"things.  You just cringe at the though of putting them on."
 	);
 	set_weight(70);
-	set_type("pants");
+	set_type("cloth legs");
 	set_value(5);
 	set_limbs( ({"right leg", "left leg" }) );
 	set_ac(2);

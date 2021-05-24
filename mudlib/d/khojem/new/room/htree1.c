@@ -15,7 +15,7 @@ void create() {
       "holding your weight!  The rope has served you well so far.  "+
       "You are high above the forest floor below you.  The light "+
       "here has somewhat improved.  The taunt rope extends above "+
-      "and below you.  A large branch reaches out to the south."
+      "and below you.  A large branch reaches out to the south.\n   \n   u \n   @   \n   d \n   0\n"
     );
     add_exit("wood4","down");
     add_exit("branch1","south");

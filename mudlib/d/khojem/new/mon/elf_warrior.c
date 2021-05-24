@@ -12,10 +12,19 @@ create() {
   ::create();
     set_name("wood-elf warrior");
     set_id( ({ "warrior","elf", "wood-elf warrior"}) );
-    zlevel=random(2)+2;
+    zlevel=random(4)+2;
     zskill=zlevel*8;
-    set_level(zlevel);
-    set_short("wood-elf warrior");
+if (zlevel == 1) set_short("[1]wood-elf warrior");
+else 
+if (zlevel == 2) set_short("[2]wood-elf warrior");
+else
+if (zlevel == 3) set_short("[3]wood-elf warrior");
+else
+if (zlevel == 4) set_short("[4]wood-elf warrior");
+else
+if (zlevel == 5) set_short("[5]wood-elf warrior");
+else set_short("[6]wood-elf warrior");
+	set_level(zlevel);
     set_long("The wood-elf warrior is tracking half-orcs." 
       );
     set("race", "wood-elf");
@@ -37,7 +46,7 @@ create() {
     set_alignment(10);
     zlevel = random(4);
     switch(zlevel){
-      case 0:new("/wizards/khojem/new/weapon/wooden_spear")->
+      case 0:new("/d/khojem/new/weapon/wooden_spear")->
                  move(this_object());
              force_me("wield spear in right hand and left hand");
              break;
@@ -72,7 +81,7 @@ create() {
                  move(this_object());
              force_me("wear pants");
              break;
-      case 3:new("/wizards/khojem/new/armor/wooden_shield")->
+      case 3:new("/d/khojem/new/armor/wooden_shield")->
                  move(this_object());
              force_me("wear shield on left hand");
              break;

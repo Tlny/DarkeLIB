@@ -10,7 +10,7 @@ void create() {
 	set("long","This is some kind of a hat that you surmise once belonged to a "+
 	"city municipal employee. It looks as though it is good for protecting your head from low over hangs. You wonder why he (or she) would leave "+
 	"such a nice looking hat lying around.");
-	set_type("helmet");
+	set_type("metal head");
 	set_ac( 10 );
 	set_limbs( ({"head"}) );
 	set_weight(125);

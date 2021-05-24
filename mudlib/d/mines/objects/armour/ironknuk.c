@@ -14,7 +14,7 @@ void create() {
         "right handed fighter.");
     set_weight(15);
     set("value", 30);
-    set_type("glove");
+    set_type("metal hand");
    set_limbs( ({ "right hand" }) );
     set_ac(5);
 }

@@ -12,7 +12,7 @@ void create() {
 "There are several stains and darkened areas on it from frequent use.\n");
     set_weight(75);
     set_value(100);
-    set_type("armour");
+    set_type("cloth torso");
     set_limbs( ({ "torso", "right arm", "left arm" }) );
     set_ac(10);
     set_wear("You pull the shirt over your torso and arms." );

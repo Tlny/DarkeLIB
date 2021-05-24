@@ -13,7 +13,7 @@ void create() {
       "that held together by leather covering the torso.");
     set_weight(250);
     set("value", 180);
-    set_type("body armour");
+    set_type("metal torso");
     set_limbs( ({ "torso" }) );
     set_ac(9);
 }

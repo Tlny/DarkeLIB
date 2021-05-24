@@ -9,7 +9,7 @@ inherit OBJECT;
 void create() {
   ::create();
     set_name("an iron key");
-    set_id( ({ "pirate_captain_key", "key", "iron key" }) );
+    set_id( ({ "captain key", "key", "iron key" }) );
     set_short("iron key");
     set_long("A heavy, iron key.\n");
     set_weight(10);

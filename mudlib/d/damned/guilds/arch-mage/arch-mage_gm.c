@@ -35,6 +35,7 @@ void create() {
   set_skill("magery", 90);
   set_skill("sorcery", 90);
   set_skill("illusionism", 90);
+   set_class("arch-mage");
   set_id(({ "tim", "guildmaster", "arch-mage", "arch-mage guildmaster" }));
   //  NOTE:  It is important that, if you set_id, you include
   //  "guildmaster" as one of them.  If you do not set_id, he
@@ -70,7 +71,8 @@ void create() {
   ob = new("/d/damned/guilds/arch-mage/gm_amulet");
   ob->move(this_object());
   force_me("wear amulet");
-  ob = new("/d/damned/virtual/quarter-staff_6.weapon");
+  ob = new("/d/damned/guilds/arch-mage/gm_staff");
+  //ob = new("/d/damned/virtual/quarter-staff_6.weapon");
   ob->set_property("enchantment", 15);
   ob->set_property("enhance criticals", 1);
   ob->set_property("hit bonus", 10);

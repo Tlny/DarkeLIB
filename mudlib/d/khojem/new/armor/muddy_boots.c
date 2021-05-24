@@ -12,7 +12,7 @@ void create() {
     set("long", "A fine, sturdy pair of leather boots.  They are caked in mud.");
     set_weight(40);
     set_value(60);
-    set_type("boots");
+    set_type("leather foots");
     set_limbs( ({ "right foot", "left foot" }) );
     set_ac(10);
         set_ac(0, "aether");

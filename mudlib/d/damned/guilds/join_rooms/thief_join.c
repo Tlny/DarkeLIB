@@ -31,14 +31,16 @@ void create() {
   set("guildmaster", "/d/damned/guilds/thief/thief_gm");  
   set_guild_obj("/d/damned/guilds/thief/thief_obj");
 //Guild Properties
-  set_property("base hp regen", 4);
-  set_property("base mp regen", 4);
-  set_property("hp advance", 28);
-  set_property("mp advance", 8);
+  set_property("base hp regen", 8);
+  set_property("base mp regen", 5);
+  set_property("hp advance", 38);
+  set_property("mp advance", 18);
   set_property("guild mods", ([ "dexterity" :  10, "charisma" : 10 ]) );
 //Misc Code
   new("d/damned/guilds/join_rooms/tcan")->move(this_object());
-  set_related_guilds(({ "nightblade", "fighter" }));
+    set_related_guilds(({ "tinker",  "assassin", "nightblade", }));
+    set_hated_guilds(({ "cleric", "war-priest", "paladin" }));
+    set_odd_guilds(({ "arch-mage", "elementalist", "enchanter", "necromancer", "nethermancer", "elemental-mage", "chaotic-lord", "sword-mage", "dark-paladin", }));
   this_object()->reset();
   return;
 }

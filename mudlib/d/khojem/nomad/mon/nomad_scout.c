@@ -14,7 +14,7 @@ create() {
     set_name("nomad scout");
     set_id( ({ "nomad scout", "nomad", "scout" }) );
     set_level(10);
-    set_short("nomad scout");
+    set_short("[10]nomad scout");
     set_long("The nomad scout is looking for invaders of his land."
       );
     set("race", "high-man");
@@ -36,7 +36,7 @@ create() {
     money->move(this_object());
 	new("/d/damned/virtual/scimitar_4.weapon")->move(this_object());
 	force_me("wield scimitar in right hand");
-	new("/wizards/khojem/nomad/armor/green_sash")->move(this_object());
+	new("/d/khojem/nomad/armor/green_sash")->move(this_object());
 	force_me("wear sash");
 }
 

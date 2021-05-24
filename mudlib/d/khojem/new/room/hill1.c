@@ -14,7 +14,7 @@ void create() {
     set("long", "The trees grow less closely to the trail here and "+
       "allow in much light.  The trail is steep here and winds up a "+
       "steeply-sloped hill.  The trail is bordered to the south "+
-      "by an escarpment."
+      "by an escarpment.\n   \n    \n0--@--0\n    \n   \n"
     );
     add_exit("hill2","east");
     add_exit("trail2","west");

@@ -39,9 +39,9 @@ void create() {
       "a struggle as you wade through the cold sand.  Sand dunes are "+
       "all around you."
     );
-    add_exit("/d/damned/virtual/room_21_12.world","north");
-    add_exit("/wizards/khojem/nomad/room/rv1","southwest");
-    add_exit("/wizards/khojem/nomad/room/d3","south");
+    add_exit("/d/damned/virtual/room_50_25.world","out");
+    //add_exit("/d/khojem/nomad/room/rv1","southwest");
+    add_exit("/d/khojem/nomad/room/d3","south");
     set_items(([
      ({ "track","tracks" }) :
         "The tracks are footprints in the sand that have not been swept away.",
@@ -63,7 +63,7 @@ void do_search() {
   if((random(100)<skill) && (random(10))) {
     write("Your search is successful.\nYou discover a sand devil!");
     zplayer=(this_player()->query_cap_name());
-    ob=new("/wizards/khojem/nomad/mon/sand_devil");
+    ob=new("/d/khojem/nomad/mon/sand_devil");
     ob->move(this_object());
     ob->kill_ob(this_player(),0);
   }

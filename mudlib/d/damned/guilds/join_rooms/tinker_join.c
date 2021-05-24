@@ -15,7 +15,9 @@ void create() {
   ::create();
   set_property("light", 2);
   set_property("indoors", 1);
-  set_related_guilds(({ "fighter", "enchanter" }));
+  set_related_guilds(({ "fighter", "thief", "enchanter" }));
+    //set_hated_guilds(({ "" }));
+    set_odd_guilds(({ "arch-mage", "elementalist", "necromancer", "nethermancer", "elemental-mage", "sword-mage", }));
   set("short", "Guild of Tinkers, Hall of Craftsmen");
   set("long", @TEXT
   
@@ -129,11 +131,10 @@ TEXT
   set("guildmaster", "/d/damned/guilds/tinker/tinker_gm");
   set_guild_obj("/d/damned/guilds/tinker/tinker_obj");
 
-  set_property("base hp regen", 7);
-  set_property("base mp regen", 2);
-
+  set_property("base hp regen", 10);
+  set_property("base mp regen", 4);
   set_property("hp advance", 40);
-  set_property("mp advance", 8);
+  set_property("mp advance", 18);  
 
   set_property("guild mods", ([ "strength" :  15, "constitution" : 5 ]) );
   //  Stat mods received upon joining.

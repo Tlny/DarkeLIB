@@ -23,7 +23,7 @@ void create() {
 		"stasis.  You can see a fire mephit inside this orb."
 	);
 	set_weight(30);
-	set_value(200000);
+	set_value(20000);
 }
 
 int shatter_orb(string str) {

@@ -12,7 +12,7 @@ create() {
     set_name("desert thief");
     set_id( ({ "desert thief", "thief" }) );
     set_level(11);
-    set_short("A desert thief");
+    set_short("[11]desert thief");
     set_long("The tall, full-bearded man with a mischevious glint "+
       "in his eyes.  He makes his trade by stealing from desert "+
       "wanderers as they rest by the oasis." 
@@ -31,6 +31,6 @@ create() {
     money=new("std/obj/coins");
     money->set_money("silver",((random(10))+30));
     money->move(this_object());
-    new("/wizards/khojem/nomad/weapon/ob_dirk")->move(this_object());
+    new("/d/khojem/nomad/weapon/ob_dirk")->move(this_object());
     force_me("wield dirk in right hand");
 }

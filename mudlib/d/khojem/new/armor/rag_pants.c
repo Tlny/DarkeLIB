@@ -13,7 +13,7 @@ void create() {
       "have holes in the knees.");
     set_weight(140);
     set_value(1);
-    set_type("pants");
+    set_type("cloth legs");
     set_limbs( ({ "right leg", "left leg" }) );
     set_ac(4);
         set_ac(0, "aether");

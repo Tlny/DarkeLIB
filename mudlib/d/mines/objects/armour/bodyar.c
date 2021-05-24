@@ -12,7 +12,7 @@ void create() {
     "bright sheen. A large dragon is painted on the front of the armour.");
     set_weight(200);
     set_value(200);
-    set_type("armour");
+    set_type("metal torso");
     set_limbs( ({ "torso" }) );
     set_ac(25);
     set_wear("You strap on the body-armour and tighten the locks.");

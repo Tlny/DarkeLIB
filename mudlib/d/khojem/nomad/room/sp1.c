@@ -22,8 +22,9 @@ void create() {
       "in the distance that you cannot see.  Some of the sand "+
       "from above continues to sift down onto you."
    );
-    add_exit("/wizards/khojem/nomad/room/sp2","north");
-    add_invis_exit("north");
+    add_exit("/d/khojem/nomad/room/sp2","north");
+	add_exit("/d/khojem/nomad/room/d9","south");
+    //add_invis_exit("north");
     set_items(([
      ({ "cave","cavern", "chamber", "pit" }) :
         "All you can see is the floor you are standing on and a few feet "+
@@ -47,7 +48,7 @@ void create() {
 void do_search() {
   int skill;
   object ob;
-  string zplayer;
+  //string zplayer;
   say(this_player()->query_cap_name()+" appears to be searching "+
     "around in the sand.\n");
   skill=((int)this_player()->query_skill("perception"))-60;
@@ -55,7 +56,7 @@ void do_search() {
     search_count=1;
     write("Your search is successful.\n"+
       "You discovered a key.\n");
-    ob=new("/wizards/khojem/nomad/obj/sand_key");
+    ob=new("/d/khojem/nomad/obj/sand_key");
     ob->move(this_object());
   }
   else

@@ -36,6 +36,7 @@ void create() {
   //  "guildmaster" as one of them.  If you do not set_id, he
   //  will still work.
   set_name("guildmaster");
+set_class("tinker");
   //  The name MUST be set to guildmaster if you want tell's to work.
   set_property("melee damage", ([ "crushing" : 50 ]));
   set_skill("perception", 150);

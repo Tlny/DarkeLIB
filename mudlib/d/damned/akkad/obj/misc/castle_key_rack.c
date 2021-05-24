@@ -78,7 +78,10 @@ int take_key(string str) {
       return 1;
     }
   }
-  ob = new("/std/Object");
+  //ob = new("/std/Object");
+//TLNY2020 add
+    ob = new("/d/damned/akkad/obj/misc/key.c");
+write("You take your castle key from the key rack.");
   ob->set_property("no save", 1);
   ob->set_weight(4);
   ob->set_value(0);

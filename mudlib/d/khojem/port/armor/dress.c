@@ -13,7 +13,7 @@ void create() {
       "stains and has a few cigar burns.  It hangs low across the bosom.");
     set_weight(10);
     set_value(1);
-    set_type("armour");
+    set_type("cloth torso");
     set_limbs( ({ "torso" }) );
     set_material("misc/leather");
     set_ac(1);

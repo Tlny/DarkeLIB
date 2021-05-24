@@ -12,7 +12,7 @@ void create() {
        "the attacker.\n");
     set_weight(20);
     set_value(75);
-    set_type("helmet");
+    set_type("metal head");
     set_limbs( ({ "head" }) );
     set_ac(15);
     set_wear("You pull spiked helmet down over your head." );

@@ -1,0 +1,11 @@
+light:::-1
+indoors:::1
+short:::The Dungeon
+long:::This place is very musty and dark... doesn't look safe                      
+no scry:::1
+no summon:::1
+no teleport:::1
+special exits:::0
+healing room:::0
+exit:::up:/d/damned/virtual/rihcter_room_1.castle:door:11:reinforced door
+exit:::north:/d/damned/virtual/rihcter_room_2.castle:door:8:steel door

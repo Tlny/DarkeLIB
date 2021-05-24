@@ -12,7 +12,7 @@ void create() {
 "deflect hits to the armour and spread the shockwave of the blow.\n");
     set_weight(175);
     set_value(150);
-    set_type("pants");
+    set_type("metal legs");
     set_limbs( ({ "left leg","right leg" }) );
     set_ac(20);
 

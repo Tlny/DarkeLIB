@@ -18,7 +18,7 @@ void init() {
     if(living(inv[i]) && (!inv[i]->query_kho_mon())) {
       lvl = (int)inv[i]->query_level();
       if(inv[i] != this_object())
-      write_file("/wizards/khojem/log/captain.log",
+      write_file("/d/khojem/log/captain.log",
         "=== Init:  "+inv[i]->query_cap_name()+" "+lvl+"\t\t\t"+
         ctime(time())+"\n");
     }
@@ -33,7 +33,7 @@ create() {
     set_id( ({ "captain", "sailor" }) );
     set_level(22);
     set_exp(350000);
-    set_short("captain");
+    set_short("[22]captain");
     set_long("The captain is youthful and appears to be a good fighting man.  "+
       "He is well liked by his men and runs a taut ship."
       );
@@ -57,6 +57,8 @@ create() {
     add_spell("blur", "$ME");
     set_combat_chance(85);
     set_skill("whirlwind attack",100);
+    obj = new("/d/khojem/port/obj/pirate_key");
+    obj->move(this_object());
     obj = new("//d/damned/virtual/long-sword_6.weapon");
     obj->set_name("jeweled sabre");
     obj->set_id(({ "sabre", "sword", "blade", "foil", "jeweled sabre" }));
@@ -84,12 +86,12 @@ void catch_tell(string str) {
   object obj;
   if(sscanf(str, "%s drops dead before %s", who, b) == 2 ) {
     force_me("grin");
-    write_file("/wizards/khojem/log/captain.log",
+    write_file("/d/khojem/log/captain.log",
       "*** Player Kill:  "+who+"\t\t"+ctime(time())+"\n");
   }
   if(sscanf(str, "%s dies a horrible %s", who, b) == 2 ) {
     force_me("grin");
-    write_file("/wizards/khojem/log/captain.log",
+    write_file("/d/khojem/log/captain.log",
       "*** Player Kill:  "+who+"\t\t"+ctime(time())+"\n");
   }
   if(sscanf(str,"%s attacks %s",a,b) == 2) {
@@ -106,7 +108,7 @@ void catch_tell(string str) {
 }
 
 void die() {
-  write_file("/wizards/khojem/log/captain.log",
+  write_file("/d/khojem/log/captain.log",
     ">>> Captain died \t\t\t"+ctime(time())+"\n");
    ::die();
 }

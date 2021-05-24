@@ -12,7 +12,7 @@ void create() {
         "This one is quite dirty from use.");
     set_weight(10);
     set_value(25);
-    set_type("helmet");
+    set_type("cloth head");
     set_limbs( ({ "head" }) );
     set_ac(8);
     set_wear("You tie the colorful bandanna around your head." );

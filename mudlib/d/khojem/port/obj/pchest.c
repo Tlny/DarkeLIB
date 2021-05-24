@@ -19,7 +19,9 @@ void create() {
     set_weight(99999);
     set_max_internal_encumbrance(600);
     set_possible_to_close(1);
-    set_key("pirate_captain_key");
+    set_key("captain key");
+    obj=new("/d/khojem/port/obj/wind_key.c");
+    obj->move(this_object());
     obj=new("std/obj/coins");
     obj->set_money("mithril",(random(99)+100));
     obj->move(this_object());
@@ -27,7 +29,7 @@ void create() {
     set_lock("locked");
     set_lock_level(45);
     set_trap_func("/wizards/diewarzau/obj/misc/trap_func","fire_trap");
-    set_trap_level(20);    
+    set_trap_level(30);    
     return;
 }
 

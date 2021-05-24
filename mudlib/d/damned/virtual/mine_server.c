@@ -49,7 +49,7 @@ void virtual_setup(string file) {
             "down", plyr+" mine key");
     set_open("hatch", 0);
     set_locked("hatch", 1);
-    set_lock_level("hatch", 35);
+    set_lock_level("hatch", 55);
     return;
   } else if(num == 2) {
     lower_room = 1;
@@ -60,11 +60,12 @@ void virtual_setup(string file) {
     "be elsewhere, but you see an interesting-looking chest against a wall.");
     add_exit(sprintf("/d/damned/virtual/%s_mine1_%d_%d.mine", plyr, east, south),
             "up");
+	add_exit("/d/daybreak/room/db_square", "square");
     set_door("hatch", sprintf("/d/damned/virtual/%s_mine1_%d_%d.mine", plyr, east, south),
             "up", plyr+" mine key");
     set_open("hatch", 0);
     set_locked("hatch", 1);
-    set_lock_level("hatch", 35);
+    set_lock_level("hatch", 55);
     seteuid(UID_DAMNED_DATA);
     if(file_exists("/d/damned/data/mines/"+plyr+"_mine.o"))
       restore_object("/d/damned/data/mines/"+plyr+"_mine");
@@ -77,6 +78,7 @@ void virtual_setup(string file) {
   set_short("This mine has a BUG...");
   set_long("This mine has a BUG...");
   return;
+  
 }
 
 void init() {
@@ -280,4 +282,5 @@ void add_mineral(string type, int amt) {
   save_this();
   return;
 }
+
 

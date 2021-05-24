@@ -8,7 +8,7 @@ void create() {
 	set("long",
 		"An expensive set of clothes to wear." 
 	);
-	set_type("armor");
+	set_type("cloth torso");
 	set_ac(5);
 	set_limbs( ({ "torso", "left arm", "right arm", "left leg",
 		"right leg" }) );

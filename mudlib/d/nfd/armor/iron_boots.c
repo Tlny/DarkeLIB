@@ -24,7 +24,7 @@ void create() {
 
 	set_value(5000);
 
-	set_type("boots");
+	set_type("metal foots");
 
 	set_ac(15);
 

@@ -9,8 +9,8 @@ inherit ROOM;
 void reset() {
 	::reset();
     if (!present("half-orc guard" , this_object()) ) {
-        new("/wizards/khojem/new/mon/orc_guard1")->move(this_object());
-        new("/wizards/khojem/new/mon/orc_guard1")->move(this_object());	  
+        new("/d/khojem/new/mon/orc_guard1")->move(this_object());
+        new("/d/khojem/new/mon/orc_guard1")->move(this_object());	  
     }
 }
 
@@ -22,7 +22,7 @@ void create() {
     set("short", "A Half-Orc Barracks");
     set("long", "The room serves as a barracks for the Orcs." +
       "No beds can be found in the room, but small piles of " +
-      "straw from the nearby clearing is used as bedding."
+      "straw from the nearby clearing is used as bedding.\n   0\n   | \n   @   \n     \n    \n"
     );
     add_exit("orc9","north");
     set_items(([

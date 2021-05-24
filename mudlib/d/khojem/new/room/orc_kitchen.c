@@ -9,7 +9,7 @@ inherit ROOM;
 void reset() {
 	::reset();
 	if (!present("cook")) {
-	  new("/wizards/khojem/new/mon/cook")->move(this_object());
+	  new("/d/khojem/new/mon/cook")->move(this_object());
 	}
 }
 
@@ -22,7 +22,7 @@ void create() {
     set("long", "You are in a small room that is used as the kitchen "+
       "for these underground dwellers.  A small cooking fire is "+
       "burning in the center of the kitchen and the smoke drifts "+
-      "up to a hole high up in the ceiling."
+      "up to a hole high up in the ceiling.\n   0\n   | \n   @   \n     \n    \n"
     );
     add_exit("orc8","north");
     set_items(([

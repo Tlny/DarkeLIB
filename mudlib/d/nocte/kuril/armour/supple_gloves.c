@@ -9,7 +9,7 @@ void create() {
 	set("long", "Soft and warm for those cold nights.");
 	set_weight(30);
 	set_value(50);
-	set_type("glove");
+	set_type("leather hand");
 	set_limbs( ({ "right hand", "left hand", "first hand", "second hand",
 		"third hand", "fourth hand" }) );
 	set_ac(3);

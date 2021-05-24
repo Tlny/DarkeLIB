@@ -10,7 +10,7 @@ create() {
 	::create();
 	set_name("scaled leather boots");
 	set("id", ({ "boots", "scaled boots", "scaled leather boots" }) );
-	set_type("boots");
+	set_type("metal foots");
 	set_limbs( ({ "left foot", "right foot" }) );
 	set("short", "scaled leather boots");
 	set("long", 

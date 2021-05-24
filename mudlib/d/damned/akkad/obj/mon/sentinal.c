@@ -5,9 +5,10 @@ inherit MONSTER;
 
 create() {
   ::create();
+    set_money("gold", 1+random(18));
     set_name("sentinal");
     set_id( ({ "sentinal" }) );
-	set_short("A Sentinal");
+	set_short("[18]Sentinal");
      set("race", "high-man");
     set_long(
 "The guard stands in front of the west exit.");

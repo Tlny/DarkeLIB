@@ -14,7 +14,7 @@ void create() {
      "with metal studs.");
     set_weight(130);
     set("value", 120);
-    set_type("pants");
+    set_type("leather legs");
     set_limbs( ({ "right leg", "left leg" }) );
     set_ac(7);
 }

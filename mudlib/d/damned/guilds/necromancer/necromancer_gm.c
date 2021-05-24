@@ -30,6 +30,7 @@ void create() {
   set_property("base hp regen", 50);
   set_property("base mp regen", 100);
   set_gender("male");
+set_class("necromancer");
   set("race", "human");
   set_body_type("human");
   set_id(({ "guildmaster", "necromancer", "necromancer guildmaster" }));

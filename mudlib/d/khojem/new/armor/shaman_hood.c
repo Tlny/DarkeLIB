@@ -13,7 +13,7 @@ void create() {
       "Its thick, coarse material chafes your skin.");
     set_weight(20);
     set_value(50);
-    set_type("helmet");
+    set_type("cloth head");
     set_limbs( ({ "head" }) );
     set_ac(10);
         set_ac(11, "aether");

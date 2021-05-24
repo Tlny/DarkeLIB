@@ -8,7 +8,7 @@ void create() {
     set("long", "The helm of a knight of justice.");
     set_weight(375);
     set("value", 95);
-    set_type("helmet");
+    set_type("metal head");
     set_limbs( ({ "head" }) );
     set_ac(3);
     set_wear( (: this_object(), "extra_worn" :) );

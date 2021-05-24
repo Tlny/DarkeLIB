@@ -12,7 +12,7 @@ void create() {
     set("long", "A pair of tanned, leather gloves.");
     set_weight(2);
     set("value", 10);
-    set_type("glove");
+    set_type("leather hand");
     set_limbs( ({ "right hand", "left hand" }) );
     set_ac(4);
 }

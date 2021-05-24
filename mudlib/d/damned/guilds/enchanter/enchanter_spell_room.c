@@ -1,84 +1,89 @@
-//	An example skill training room for the enchanter's guild.
-//
-//	DarkeLIB 0.1
-//	-Diewarzau 8/8/95
+//	Enchanter's Enchantment spell room  - Xavier Jul2020
+
 
 inherit "/std/guilds/spell_room";
 
 void create() {
   ::create();
-  set("short", "The Enchanters' Spell Training Room");
+  set("short", "The Enchanters' Enchantment Training Room");
   set("long", 
-"This is where enchanters study the spells that enable them to make "+
+"This is where enchanters study the enchantment spells that enable them to make "+
 "wonderous machines and imbue objects with magical energy.\n");
-  //  "\n" important here, too.
-
   set_property("light", 2);
   set_property("indoors", 1);
-  
-  //  The following line is VERY, VERY important.
   set_join_room("/d/damned/guilds/join_rooms/enchanter_join");
-
-  set_exits( ([ "east" : "/d/damned/guilds/enchanter/train_room" ]) );
-  //  All the rest is adding the spells.  The add_skill lines are of the
-  //  following form:
-  //  	add_spell(string spell, int level, int flag)
-  //	spell 		The name of the spell which is being added
-  // 	level		(optional) The level at which the player may begin
-  //			developing the spell.  If not supplied,
-  //			the default level is used.
-  //	flag		(optional)  If a non-zero number is supplied,
-  //			the skill will be considered "secondary" to
-  //			the guild and cost double to develop.
-
-  add_spell("garguth's open palm");
-  add_spell("garguth's grasping hand");
-  add_spell("garguth's pounding fist");
-  add_spell("prepare spell");
-  add_spell("transmutation");
-  add_spell("claimed weapon");
-  add_spell("lock enchantment");
-  add_spell("scribe scroll");
-  add_spell("dispel rune");
-  add_spell("activate powerstone");
-  add_spell("icy weapon");
-  add_spell("flame blade");
-  add_spell("sense aura");
-  add_spell("minor puissance");
-  add_spell("major puissance");
-  add_spell("minor accuracy");
-  add_spell("major accuracy");
-  add_spell("minor fortification");
-  add_spell("major fortification");
-  add_spell("true armour");
-  add_spell("true weapon");
-  add_spell("poison rune");
-  add_spell("exploding rune");
-  add_spell("healing rune");
-  add_spell("gate rune");
-  add_spell("summon rune");
-  add_spell("transport rune");
-  add_spell("delay rune");
-  add_spell("preserve rune");
-  add_spell("enchanter mark");
-  add_spell("transport beacon");
-  add_spell("fashion dragon engine");
-  add_spell("fashion golem");
-  add_spell("fashion statue");
-  add_spell("improve dragon engine");
-  add_spell("improve statue");
-  add_spell("improve golem");
-  add_spell("self power");
-  add_spell("implosion");
-  add_spell("energy shield");
-  add_spell("shield of ithian");
-  add_spell("armour of oblivion");
-  add_spell("force shield");
+  add_exit("/d/damned/guilds/enchanter/train_room", "east");
+  add_exit("/d/damned/guilds/enchanter/enchanter_spell_room2", "down");
+  add_spell("claimed weapon", 5);
+  add_spell("lock enchantment", 20);
+  add_spell("scribe scroll", 21);
+  add_spell("activate powerstone", 15);
+  add_spell("icy weapon", 4);
+  add_spell("vacid weapon", 24);
+  add_spell("vacuum weapon", 12);
+  add_spell("cyclone weapon", 36);
+  add_spell("flame blade", 1);
+  add_spell("firestorm blade", 17);
+  add_spell("electric blade", 7);
+  add_spell("lightning blade", 29);
+  add_spell("sense aura", 2);
+  add_spell("minor puissance", 1);
+  add_spell("major puissance", 13);
+  add_spell("minor accuracy", 6);
+  add_spell("major accuracy", 19);
+  add_spell("minor fortification", 3);
+  add_spell("major fortification", 16);
+  add_spell("true armour", 26);
+  add_spell("true weapon", 25);
+  add_spell("enchanter mark", 4);
+  add_spell("fashion dragon engine", 31);
+  add_spell("fashion gargoyle", 22);
+  add_spell("fashion golem", 10);
+  add_spell("fashion statue", 2);
+  add_spell("fashion tarrasque", 40);
+  add_spell("improve dragon engine", 32);
+  add_spell("improve statue", 3);
+  add_spell("improve gargoyle", 23);
+  add_spell("improve golem", 11);
+  add_spell("improve tarrasque", 42);
+  add_spell("imbue skill", 45);
+  add_spell("imbue spell", 50);
+  add_spell("mastered weapon", 28);
+  add_spell("master accuracy", 34);
+  add_spell("master fortification", 30);
+  add_spell("master puissance", 27);
+  add_spell("extreme weapon", 48);
+  add_spell("extreme accuracy", 43);
+  add_spell("extreme fortification", 47);
+  add_spell("extreme puissance", 39);
   return;
 }
 
+void init() {
+    ::init();
+    add_action("train", "train");
+}
 
-
-
-
+int train(string str) {
+    if(str == "fashion tarrasque" && this_player()->query_base_skill("enchantment") < 150 ) {
+	message("info", "You must have at least 150% base skill in enchantment to train this spell.", this_player());
+	return 1;
+    }
+    if(str == "improve tarrasque" && this_player()->query_base_skill("enchantment") < 160 ) {
+	message("info", "You must have at least 160% base skill in enchantment to train this spell.", this_player());
+	return 1;
+    }
+    if(str == "imbue skill" && this_player()->query_base_skill("enchantment") < 175) {
+	message("info", "You must have at least 175% base skill in enchantment to train this spell.", this_player());
+	return 1;
+    }
+    if(str == "extreme weapon" && this_player()->query_base_skill("enchantment") < 190) {
+	message("info", "You must have at least 200% base skill in enchantment to train this spell.", this_player());
+	return 1;
+    }
+    if(str == "imbue spell" && this_player()->query_base_skill("enchantment") < 200) {
+	message("info", "You must have at least 200% base skill in enchantment to train this spell.", this_player());
+	return 1;
+    }
+}
 

@@ -14,7 +14,7 @@ void create() {
       "covers the torso and arms.");
     set_weight(90);
     set("value", 75);
-    set_type("armour");
+    set_type("leather torso");
     set_limbs( ({ "torso", "right arm", "left arm" }) );
     set_ac(7);
 }

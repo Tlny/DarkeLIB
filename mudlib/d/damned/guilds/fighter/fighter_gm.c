@@ -20,7 +20,7 @@ void create() {
   set("short", "The Fighter Guildmaster");
   set("long", "The Guildmaster is very impressive.  He looks like he "+
       "could beat up just about anyone or anything on the mud.");
-  set_level(16);
+  set_level(20);
    set_max_hp(6000);
    set_hp(6000);
    set_overall_ac(75);
@@ -33,6 +33,7 @@ void create() {
   //  "guildmaster" as one of them.  If you do not set_id, he
   //  will still work.
   set_name("guildmaster");
+    set_class("fighter");
   set_property("melee damage", ([ "crushing" : 20 ]));
   set_skill("melee", 80);
    set_skill("perception", 200);

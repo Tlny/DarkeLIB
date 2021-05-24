@@ -15,7 +15,7 @@ void create() {
       "close around and start to cut off the light above. "+
       "Off to the side you see a few squirrels scampering about.  "+
       "The trail extends southward and starts to wind about the "+
-      "trees to this point."
+      "trees to this point.\n   0\n   | \n   @   \n   | \n   0\n"
     );
     set("night long", "You are on a north/south path.  The trees grow "+
       "close around and start to cut off the night's light above. "+

@@ -58,7 +58,7 @@ set("short","The city entrance");
             "in a city this huge.", "sign": "It is very dirty. You wonder what it " +
             "'read's.." ]) );
 	set_exits((["southwest":"/d/nfd/rooms/square",
-	"leave":"/d/damned/virtual/room_16_20.world"]));
+	"leave":"/d/damned/virtual/room_13_6.world"]));
 	seteuid(UID_DAMNED_DATA);
 	restore_object("/d/nfd/rooms/news");
 	seteuid(getuid());

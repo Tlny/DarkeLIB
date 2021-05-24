@@ -10,7 +10,7 @@
     "west" : "east", "up" : "down", "down" : "up" ])
 #define FEATURES ({ "no scry", "no teleport", "no summon", "healing room", \
     "special exits" })
-#define EXITS ([ "church" : "/d/standard/square", "shop" : "/d/daybreak/room/shop/general_store" ])
+#define EXITS ([ "square" : "/d/daybreak/room/db_square", "portal" : "/d/daybreak/room/N1" ])
 
 inherit "/std/vault_locker_room";
 inherit "/std/virtual/compile";
@@ -144,6 +144,7 @@ string query_long(string str) {
   return ret;
 }
 
+
 void start_heal() {
   if(hb_on || !query_property("healing room")) return;
   set_heart_beat(1);
@@ -156,20 +157,30 @@ int player_filter(object who) { return who->is_player(); }
 void heart_beat() {
   object *inv;
   int i;
-
-  inv = filter_array(all_inventory(this_object()), "player_filter",
-      this_object());
+ int heal_status;
+ 
+  heal_status--;
+  if(heal_status > 0)
+    return;
+    heal_status = 6;
+    
+  inv = filter_array(all_inventory(this_object()), 
+			  "living_filter", this_object());
   if(!inv || !sizeof(inv)) {
-    set_heart_beat(0);
     hb_on = 0;
+      set_heart_beat(1);
     return;
   }
-  if(!heal_counter || heal_counter <= 0) {
-    heal_counter = 6;
-    i = sizeof(inv);
-    while(i--) inv[i]->do_healing((int)inv[i]->calculate_healing());
+  i = sizeof(inv);
+  while(i--) {
+  if (inv[i]->query_max_hp() > inv[i]->query_hp() || inv[i]->query_max_mp() > inv[i]->query_mp())
+    message("info", "%^CYAN%^%^BOLD%^You are magically healed.", inv[i]);
+    inv[i]->start_heal();
+    	if (inv[i]->query_max_hp() > inv[i]->query_hp());
+    		inv[i]->add_hp(300);
+    	if (inv[i]->query_max_mp() > inv[i]->query_mp());
+    		inv[i]->add_mp(300);
   }
-  else heal_counter--;
   return;
 }
     
@@ -324,7 +335,9 @@ void init() {
   if((string)this_player()->query_name() == query("owner") &&
     !present(query("owner")+" castle key", this_player())) {
     seteuid(getuid());
-    ob = new("/std/Object");
+  //ob = new("/std/Object");
+//TLNY2020 add
+    ob = new("/d/damned/akkad/obj/misc/key.c");
     ob->set_weight(2);
     ob->set_name("key");
     ob->set_id(({ "key", "castle key", query("owner")+" castle key" }));
@@ -339,7 +352,9 @@ void init() {
 
 void notify_me(object who) {
   if(who)
-    message("info", "You receive your castle key.", who);
+message("info","You take your castle key from the wall hanging on the key ring.", who);
+//TLNY2020 update
+    //message("info", "You receive your castle key.", who);
   return;
 }
 

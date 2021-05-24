@@ -12,7 +12,7 @@ create() {
     set_name("giant");
     set_id( ({ "giant", "hill-giant" }) );
     set_level(9);
-    set_short("giant");
+    set_short("[9]giant");
     set_long("The huge, massive hill-giant does not like the fact that you "+
       "have disturbed his solitude."
       );
@@ -35,7 +35,7 @@ create() {
 	}),1);
 	new("/d/damned/virtual/wall-shield.armour")->move(this_object());
 	force_me("wear shield on right hand");
-	new("/wizards/khojem/port/weapon/flail")->move(this_object());
+	new("/d/khojem/port/weapon/flail")->move(this_object());
 	force_me("wield flail in left hand");
 }
 

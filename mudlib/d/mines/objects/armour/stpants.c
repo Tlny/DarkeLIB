@@ -12,7 +12,7 @@ void create() {
         "have script engraved into them and other designs.\n");
     set_weight(200);
     set_value(175);
-    set_type("pants");
+    set_type("metal legs");
     set_limbs( ({ "left leg","right leg" }) );
     set_ac(20);
     set_wear("You pull the steel mesh plated pants on your legs.");

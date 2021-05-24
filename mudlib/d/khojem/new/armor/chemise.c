@@ -13,7 +13,7 @@ void create() {
       "hang freely over the bosom.");
     set_weight(20);
     set("value", 40);
-    set_type("cloak");
+    set_type("leather cloak");
     set_limbs( ({ "torso" }) );
     set_ac(1);
     set_material("misc/soft leather");

@@ -9,7 +9,7 @@ void create() {
 		"Such fashionable clothes!  These clothes must be very "
 		"expensive, for they are very soft and comfortable to wear."
 	);
-	set_type("armor");
+	set_type("cloth torso");
 	set_ac(8);
 	set_limbs( ({ "torso", "left arm", "right arm", "left leg",
 		"right leg" }) );

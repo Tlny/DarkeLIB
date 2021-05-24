@@ -7,7 +7,8 @@
 //	NOTE:  Before coding any guild, Diewarzau must know the filename
 //	of the join_room so he can set the file privs accordingly.
 
-inherit "/std/guilds/vault_join_room";
+//inherit "/std/guilds/vault_join_room";
+inherit "/std/guilds/join_room";
 
 void create() {
   //  IMPORTANT:  The following MUST appear before ::create();
@@ -17,23 +18,26 @@ void create() {
   set_property("light", 2);
   set_property("indoors", 1);
 new("d/damned/guilds/join_rooms/tcan")->move(this_object());
-     set_related_guilds(({ "tinker", "sword-mage" }));
+  set_related_guilds(({ "tinker", "dark-paladin", "paladin" }));
+  //set_hated_guilds(({ "" }));
+  set_odd_guilds(({ "arch-mage", "elementalist", "enchanter", "necromancer", "nethermancer", "elemental-mage", "chaotic-lord", "nightblade", "sword-mage", "assassin" }));
   set("short", "The Fighter's Guild Joining Room");
   set("long", "The walls here are lined with decorative weapons in the "+
       "tradition of the age-old Fighter's Guild.  You see a shop to the "+
     "west and a busy room to the north.  The Fighter Trainer is Ruck.\n");
   //  The "\n" is important at the end of the long desc.
 
+
   set_exits( ([ "east" : "/d/daybreak/room/dbvl2",
-		"west" : "/d/damned/guilds/fighter/fighter_shop",
+		//"west" : "/d/damned/guilds/fighter/fighter_shop",
 	      "north" : "/d/damned/guilds/fighter/train_room" ]) );
 
-  set_door("door", "/d/damned/guilds/fighter/fighter_shop", "west",
-	   "fighter shop key");
-  set_open("door", 1);
-  set_locked("door", 0);
-  set_close_function("close_door", "16:00:00");
-  set_open_function("open_door", "7:00:00");
+ // set_door("door", "/d/damned/guilds/fighter/fighter_shop", "west",
+	   //"fighter shop key");
+  //set_open("door", 1);
+ // set_locked("door", 0);
+  //set_close_function("close_door", "16:00:00");
+  //set_open_function("open_door", "7:00:00");
   set("guildmaster", "/d/damned/guilds/fighter/fighter_gm");
   //  The guildmaster is automatically cloned if no pc guildmaster is
   //  found.
@@ -43,13 +47,18 @@ new("d/damned/guilds/join_rooms/tcan")->move(this_object());
 
   //  The following lines set the properties for the guild.
 
-  set_property("base hp regen", 10);
-  set_property("base mp regen", 2);
+  //set_property("base hp regen", 10);
+ // set_property("base mp regen", 2);
+  set_property("base hp regen", 15);
+  set_property("base mp regen", 3);
+
   //  Base heling per tick.  Note that the default is 3 for both.
   //  Keep in mind that this increases with level.
 
-  set_property("hp advance", 45);
-  set_property("mp advance", 4);
+  //set_property("hp advance", 45);
+  //set_property("mp advance", 4);
+  set_property("hp advance", 50);
+  set_property("mp advance", 15);
   //  Base advance per level im max mp/hp.  Default is 10.
 
   set_property("guild mods",
@@ -70,3 +79,5 @@ void close_door() {
   call_other("/d/damned/guilds/fighter/fighter_shop", "close_door");
   return;
 }
+
+int query_num_rounds() { return 2; }

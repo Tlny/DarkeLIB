@@ -13,15 +13,16 @@ void init() {
 }
 
 create() {
-  int mod;
+ // int mod;
   ::create();
     set_name("hareem girl");
     set_id( ({ "hareem girl", "girl" }) );
-    mod=random(10);
-    if(mod==0) { set_level(5); }
-    if(mod>0)  { set_level(6); }
-    if(mod>7)  { set_level(7); }
-    set_short("hareem girl");
+   // mod=random(10);
+    //if(mod==0) { set_level(5); }
+    //if(mod>0)  { set_level(6); }
+   // if(mod>7)  { set_level(7); }
+set_level(7)
+    set_short("[7]hareem girl");
     set_long("A dark-haired attractive woman.  Her face is "+
       "veiled, but you notice a mischievous glint in her eye."
       );
@@ -36,11 +37,11 @@ create() {
 	  "A hareem girl beams you a smile.",
 	  "A hareem girl winks suggestively at you."
 	}),0);
-	new("/wizards/khojem/nomad/armor/veil")->move(this_object());
+	new("/d/khojem/nomad/armor/veil")->move(this_object());
 	force_me("wear veil");
-	new("/wizards/khojem/nomad/armor/pantaloons")->move(this_object());
+	new("/d/khojem/nomad/armor/pantaloons")->move(this_object());
 	force_me("wear pantaloons");
-	new("/wizards/khojem/nomad/armor/bodice")->move(this_object());
+	new("/d/khojem/nomad/armor/bodice")->move(this_object());
 	force_me("wear bodice");
 }
 

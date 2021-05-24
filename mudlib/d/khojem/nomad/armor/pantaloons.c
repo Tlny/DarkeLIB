@@ -14,7 +14,7 @@ void create() {
       "at the ankles.");
     set_weight(80);
     set_value(400);
-    set_type("pants");
+    set_type("cloth legs");
     set_limbs(({ "right leg", "left leg" }));
     set_ac(2);
         set_ac(1, "aether");

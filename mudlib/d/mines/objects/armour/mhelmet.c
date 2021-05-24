@@ -26,7 +26,7 @@ void create() {
       "light.");
     set_weight(100);
     set_value(150);
-    set_type("helmet");
+    set_type("metal head");
     set_limbs( ({ "head" }) );
     set_ac(15);
     set_wear("You strap the Miner's Helmet on your head." );

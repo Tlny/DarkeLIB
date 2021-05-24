@@ -13,7 +13,7 @@ void create() {
       "other armor and will protect you from the cold desert nights.");
     set_weight(95);
     set_value(700);
-    set_type("cloak");
+    set_type("cloth back");
     set_limbs( ({ "torso" }) );
     set_ac(15);
         set_ac(1, "aether");

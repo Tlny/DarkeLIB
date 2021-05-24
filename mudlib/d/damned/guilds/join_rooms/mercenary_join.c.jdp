@@ -39,14 +39,15 @@ void create() {
 
   //  The following lines set the properties for the guild.
 
-  set_property("base hp regen", 10);
-  set_property("base mp regen", 1);
-  //  Base healing per tick.  Note that the default is 3 for both.
+  set_property("base hp regen", 15);
+  set_property("base mp regen", 2);
+
+  //  Base heling per tick.  Note that the default is 3 for both.
   //  Keep in mind that this increases with level.
 
-  set_property("hp advance", 50);
-  set_property("mp advance", 5);
-  //  Base advance per level im max mp/hp.  Default is 10.
+  set_property("hp advance", 45);
+  set_property("mp advance", 15);
+  //  Base advance per level im max mp/hp.  Default is 10.  
 
   set_property("guild mods",
 	([ "strength" :  10, "dexterity" : 10 ]) );

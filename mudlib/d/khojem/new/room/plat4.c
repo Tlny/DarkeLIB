@@ -8,8 +8,9 @@ inherit ROOM;
 
 void reset(){
   ::reset();
-  if(!present("guard") && random(2))
-    new("/wizards/khojem/new/mon/elf_guard")->move(this_object());
+  if(!present("guard") && random(2)) {
+    new("/d/khojem/new/mon/elf_guard")->move(this_object());
+    }
 }  
 
 
@@ -20,7 +21,7 @@ void create() {
     set("short", "A wooded platform");
     set("long", "High-up in a tree a wooden platform is lashed together.  "+
       "Small huts are east and west from here.  A large, dome-shaped hut "+
-      "is to the south.  The forest floor is far below."
+      "is to the south.  The forest floor is far below.\n   0\n   | \n0--@--0\n   | \n   0\n"
     );
     add_exit("hut6","north");
     add_exit("mage_hut","south");

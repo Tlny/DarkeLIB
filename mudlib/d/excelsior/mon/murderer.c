@@ -40,7 +40,7 @@ void make_me_clothes() {
 	sp->set("short","Jailhouse clothes");
 	sp->set("long","This is a complete convict uniform. It even has those "+
 		"horizontal black and white stripes.");
-	sp->set_type("outfit");
+	sp->set_type("cloth torso");
 	sp->set_ac(1);
 	sp->set_limbs(({"torso","right leg","left leg","right arm","left arm"}));
 	sp->set_weight(50);

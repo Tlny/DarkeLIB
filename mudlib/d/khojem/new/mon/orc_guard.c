@@ -16,8 +16,18 @@ create() {
     set_id( ({ "guard","orc", "half-orc guard"}) );
     zlevel=random(2)+3;
     zskill=zlevel*8;
-    set_level(zlevel);
-    set_short("half-orc guard");
+	if (zlevel == 3) set_short("[3]half-orc guard");
+else 
+if (zlevel == 4) set_short("[4]half-orc guard");
+else
+if (zlevel == 5) set_short("[5]half-orc guard");
+else
+if (zlevel == 6) set_short("[6]half-orc guard");
+else
+if (zlevel == 7) set_short("[7]half-orc guard");
+else set_short("[8]half-orc guard");
+	set_level(zlevel);
+
     set_long("The half-orc guard is a killing machine." 
       );
     set("race", "half-orc");
@@ -44,7 +54,7 @@ create() {
       case 0:new("/d/damned/virtual/hammer_3.weapon")->
                  move(this_object());
              force_me("wield hammer in right hand");
-             new("/wizards/khojem/new/armor/rag_shirt")->
+             new("/d/khojem/new/armor/rag_shirt")->
                  move(this_object());
              force_me("wear shirt");
              break;
@@ -58,7 +68,7 @@ create() {
       case 2:new("/d/damned/virtual/long-sword_3.weapon")->
                  move(this_object());
              force_me("wield longsword in right hand");
-             new("/wizards/khojem/new/armor/leather_mittens")->
+             new("/d/khojem/new/armor/leather_mittens")->
                  move(this_object());
              force_me("wear mitten on right hand");
              break;

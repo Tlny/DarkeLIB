@@ -1,0 +1,11 @@
+light:::-1
+indoors:::1
+short:::Julian's Castle Room #21
+long:::It is dark.                                                                 
+no scry:::1
+no summon:::1
+no teleport:::1
+special exits:::0
+healing room:::0
+exit:::up:/d/damned/virtual/julian_room_20.castle:door:16:vault door
+exit:::down:/d/damned/virtual/julian_room_26.castle:door:16:vault door 2

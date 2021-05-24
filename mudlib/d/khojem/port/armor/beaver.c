@@ -13,7 +13,7 @@ void create() {
       "portion of your face.");
     set_weight(20);
     set_value(40);
-    set_type("visor");
+    set_type("metal face");
     set_ac(15);
     set_limbs( ({ "head" }) );
         set_ac(1, "aether");

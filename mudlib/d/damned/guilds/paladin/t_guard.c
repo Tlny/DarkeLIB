@@ -19,6 +19,7 @@ create() {
     set_skill("block", 125);
     set_stats("strength", 300);
     set_property("handedness", "right hand");
+    set_languages(({ "common" }));
     new("/d/damned/virtual/long-sword_5.weapon")->
       move(this_object());
     new("/d/damned/virtual/large-shield.armour")->
@@ -50,17 +51,30 @@ int block_exit() {
   string p_name;
   object join_room, *inv;
 
+	 if(wizardp(this_player())) return 0;
+    if(TP->is_pet()){
+	p_name = TP->query_owner();
+	if(find_player(p_name) && find_player(p_name)->query_class() == "paladin") return 0;
+	     force_me("speak common");
+     force_me("say I will not allow a pet named "+TP->query_name()+" from entering as you are not a Paladin");		
+		return 1;
+    }
+
   if(wizardp(this_player())) return 0;
    if((string)this_player()->query_class() != "paladin") {
-     write("The Guard says in Common: Only paladins may pass.");
+	     force_me("speak common");
+     force_me("say Only paladins may pass.");
     return 1;
   }
-  inv = filter_array(all_inventory(this_player()), "locker_filter",
+//TLNY2020 removed code
+/*  
+inv = filter_array(all_inventory(this_player()), "locker_filter",
         this_object());
   if(sizeof(inv)) {
     write("The Guard says in Common: We do not allow storage devices in here.");
     return 1;
   }
+*/
  join_room = find_object_or_load("/d/damned/guilds/join_rooms/paladin_join");
   p_name = (string)this_player()->query_name();
   if(member_array("treasury restrict", (string *)join_room->

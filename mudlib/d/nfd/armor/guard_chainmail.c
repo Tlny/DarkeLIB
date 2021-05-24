@@ -20,7 +20,7 @@ void create() {
 
 		"its weary look very dignified and important.");
 
-	set_type("body armour");
+	set_type("chain torso");
 
         set_ac(25);
 

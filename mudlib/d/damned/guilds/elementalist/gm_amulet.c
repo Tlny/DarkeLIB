@@ -30,6 +30,16 @@ int query_always_keep() { return 1; }
 int make_me_gm() {
 object ob;
 
+ if(this_player()->is_player() && (int)this_player()->query_level() < 16) {
+     write("%^BOLD%^Only elementalists of level 16 or higher may use this item.");
+    return 0;
+}
+
+   if((string)this_player()->query_class() != "elementalist") {
+      write("%^BOLD%^Only elementalists may use this item.");
+    return 0;
+  }
+
   seteuid(getuid());
   ob= new("d/damned/guilds/elementalist/elementalist_obj");
   ob->make_me_master(this_player());

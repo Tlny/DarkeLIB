@@ -9,7 +9,7 @@ void create() {
 	set("id",({"coat","lab coat"}) );
 	set("short","A lab coat");
 	set("long","A clean coat for doctors to wear.");
-	set_type("body amour");
+	set_type("cloth arm");
 	set_ac(1);
 	set_limbs( ({"right arm","left arm"}) );
 	set_weight(36);

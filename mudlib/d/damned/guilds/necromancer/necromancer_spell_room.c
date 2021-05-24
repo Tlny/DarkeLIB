@@ -38,7 +38,7 @@ In the middle of this rooms sits a large tome titled, The Grim Grimoire.  The to
     add_spell("wind of death");
   add_spell("chilling touch",1);
   add_spell("curse");
-  add_spell("darkness",1);
+  add_spell("ball of darkness",1);
   add_spell("nether sight", 1);
   add_spell("drain life",3);
    add_spell("lich form");
@@ -50,12 +50,20 @@ In the middle of this rooms sits a large tome titled, The Grim Grimoire.  The to
   add_spell("transport undead");
   add_spell("undead dimension");
   add_spell("freeze skin");
-  add_spell("shadow form");
+  //TLNY2020 removed broken add_spell("shadow form");
   add_spell("hex", 2);
   add_spell("embalm corpse", 2);
+  add_spell("soul blade");
+  add_spell("syphon soul");
   return;
 }
 
+int train(string str) {
+    if(str == "syphon soul" && this_player()->query_class() != "necromancer") {
+	message("info", "You must be a Necromancer to train this spell.", this_player());
+	return 1;
+    }
+}
 
 
 

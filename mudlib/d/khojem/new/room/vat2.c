@@ -18,7 +18,7 @@ void create() {
     set("short", "A firefighter's station");
     set("long", "This small, roofless platform serves one purpose in "+
       "this small, wood-elf village.  It is a central place from "+
-      "which fires may be fought.  The forest floor is far below."
+      "which fires may be fought.  The forest floor is far below.\n   \n    \n0--@   \n    \n   \n"
     );
     add_exit("walk3","west");
     set_items(([
@@ -35,7 +35,7 @@ void create() {
      ]));
     set_smell("default", "The smell of growth and decaying wood is everywhere.");
     set_listen("default", "You hear the occasional sound of birds singing.");
-    new("/wizards/khojem/new/obj/vat")->move(this_object());
+    new("/d/khojem/new/obj/vat")->move(this_object());
 }
 
 int do_drink(string str) {

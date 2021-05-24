@@ -12,7 +12,7 @@ void create() {
   ::create();
   set_name("pit viper");
   set_id( ({ "pit viper", "viper", "snake" }) );
-  set_short("a pit viper");
+  set_short("[8]pit viper");
   set_long("It is a huge, hooded pit viper.  Its truck is a thick as a "+
     "storm-giant's upper arm!");
   set("race", "serpent");
@@ -31,7 +31,7 @@ void create() {
       "The pit viper briefly retreats."
     }),1);    
 
-  new("/wizards/khojem/nomad/weapon/snake_fang")->move(this_object());
+  new("/d/khojem/nomad/weapon/snake_fang")->move(this_object());
   force_me("wield fang in tail");
 }
 

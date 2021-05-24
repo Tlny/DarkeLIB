@@ -38,7 +38,7 @@ void create(){
 	set_property("light", 2);
 	set_property("light night", -5);
 	set_property("no castle", 1);
-	set("short", "Temple Plaza");
+	set("short", "   \n    \n0--@--0\n     \n    \nTemple Plaza");
 	set("long",
 		"A foul sense of evil and unholy corruption swirls around you. "
 		" You are almost brought to your knees by a feeling of "
@@ -52,7 +52,7 @@ void create(){
 		"their flesh.  You notice that nobody can be seen walking "
 		"the streets around the temple.  Perhaps you had better hurry "
 		"along before you end up like one of the ornaments hanging "
-		"from the temple walls."
+		"from the temple walls.\n   \n    \n0--@--0\n     \n    \n"
 	);
 	set_items( ([
 		"temple": "Glowing runes cover the temple like a web of power.",
@@ -68,8 +68,9 @@ void create(){
 	]) );
 	set_exits( ([
 		"east": "temple_plaza2",
-		"south": "temple/temple1",
-		"west": "merchant_road6"
+		//"south": "temple/temple1",
+		"west": "merchant_road6",
+		"down": "/d/damned/guilds/nethermancer/down1"
 	]) );
 	set_listen("default", "The cries of the tortured and damned "
 		"reverberate off the walls of the surrounding buildings.");
@@ -124,7 +125,7 @@ int open_door(string str) {
 		".\n");
 	return 1;
 }
-
+/*
 int go_south() {
 	write("%^BOLD%^%^RED%^A bolt of energy blasts into you throwing you "
 		"backwards.%^RESET%^");
@@ -139,6 +140,7 @@ int go_south() {
 		"the temple door at "+ctime(time())+".\n");
 	return 1;
 }
+*/
 
 int no_exit() {
 	return 1;

@@ -2,7 +2,7 @@
 #include <std.h>
 
 inherit "/std/armour";
-inherit AUTOLOAD;
+//inherit AUTOLOAD;
   
 void create() {
     ::create();
@@ -16,14 +16,16 @@ void create() {
     set_ac(1);
     set_ac(70, "cold");
     set_ac(70, "fire");
-    set_wear((: call_other,this_object(), "make_me_gm" :));
+    //set_wear((: call_other,this_object(), "make_me_gm" :));
+    set_wear((: call_other,this_object(), "gm_item" :));
     set_enh_critical(-1);
     set_value(50000);
    return;
 }
 
-int query_always_keep() { return 1; }
+//int query_always_keep() { return 1; }
 
+/*
 int make_me_gm() {
 object ob;
 
@@ -33,8 +35,23 @@ object ob;
   return 1;
 }
 
+*/
+int gm_item() {
+object ob;
 
 
+   if(this_player()->is_player() && (int)this_player()->query_level() < 16) {
+     write("%^BOLD%^Only arch-mages of level 16 or higher may use this item.");
+    return 0;
+}
+
+   if((string)this_player()->query_class() != "arch-mage") {
+      write("%^BOLD%^Only arch-mages may use this item.");
+    return 0;
+  }
+return 1;
+
+}
 
 
 

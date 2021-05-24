@@ -21,7 +21,9 @@ void create() {
   set_property("light", 2);
   set_property("indoors", 1);
 new("d/damned/guilds/join_rooms/tcan")->move(this_object());
-  set_related_guilds(({ "cleric", "paladin" }));
+  set_related_guilds(({ "fighter", "paladin", "cleric", }));
+    set_hated_guilds(({ "necromancer", "nethermancer", "dark-paladin", "chaotic-lord",  }));
+    set_odd_guilds(({ "nightblade", "assassin" }));
   set("short", "Hall of the Honoured");
   set("long", 
 	"Upon entering the Hall of the Honoured, you swear that the building "
@@ -44,14 +46,14 @@ new("d/damned/guilds/join_rooms/tcan")->move(this_object());
 
   //  The following lines set the properties for the guild.
 
-  set_property("base hp regen", 4);
-  set_property("base mp regen", 5);
+    set_property("base hp regen", 5);
+  set_property("base mp regen", 6);
   //  Base heling per tick.  Note that the default is 3 for both.
   //  Keep in mind that this increases with level.
 
   set_property("hp advance", 18);
    set_property("mp advance", 32);
-  //  Base advance per level im max mp/hp.  Default is 10.
+  //  Base advance per level im max mp/hp.  Default is 10.0.
 
   set_property("guild mods",
 	([ "wisdom" :  5, "constitution" : 5 ]) );

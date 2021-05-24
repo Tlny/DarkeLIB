@@ -30,14 +30,15 @@ void create() {
   set_property("base mp regen", 140);
   set_property("base hp regen", 80);
   set_gender("male");
-  set("race", "ent");
-  set_body_type("ent");
+  set("race", "human");
+  set_body_type("human");
   set_skill("prayer", 90);
   set_id(({ "jun khal", "guildmaster", "war-priest", "jun", "war-priest guildmaster" }));
   //  NOTE:  It is important that, if you set_id, you include
   //  "guildmaster" as one of them.  If you do not set_id, he
   //  will still work.
   set_name("guildmaster");
+set_class("war-priest");
   //  The name MUST be set to guildmaster if you want tell's to work.
   set_property("melee damage", ([ "crushing" : 50 ]));
   set_overall_ac(45);
@@ -73,12 +74,15 @@ void create() {
   ob = new("/d/damned/guilds/war-priest/gm_ankh");
   ob->move(this_object());
   force_me("wear ankh");
-  ob = new("/d/damned/virtual/war-hammer_6.weapon");
-  ob->set_property("enchantment", 15);
-  ob->set_property("enhance criticals", 1);
-  ob->set_property("hit bonus", 10);
+  ob = new("/d/damned/guilds/war-priest/gm_sword");
   ob->move(this_object());
-  force_me("wield hammer in first branch and second branch");
+  force_me("equip");
+  //ob = new("/d/damned/virtual/war-hammer_6.weapon");
+  //ob->set_property("enchantment", 15);
+  //ob->set_property("enhance criticals", 1);
+  //ob->set_property("hit bonus", 10);
+  //ob->move(this_object());
+  //force_me("wield hammer in first branch and second branch");
   return;
 }
 

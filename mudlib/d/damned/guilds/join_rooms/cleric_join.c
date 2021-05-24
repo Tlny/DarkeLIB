@@ -17,7 +17,9 @@ void create() {
   set_property("light", 2);
   set_property("indoors", 1);
 new("d/damned/guilds/join_rooms/tcan")->move(this_object());
-  set_related_guilds(({ "paladin", "war-priest" }));
+  set_related_guilds(({ "war-priest", "paladin", }));
+    set_hated_guilds(({ "necromancer", "nethermancer", "dark-paladin", "chaotic-lord",  }));
+    set_odd_guilds(({ "sword-mage", "fighter", "thief", "tinker", "nightblade", "assassin", }));
   set("short", "The Cleric's Guild Joining Room");
   set("long", 
 "Several robed individuals mull about in the background.  You have entered "
@@ -39,11 +41,13 @@ new("d/damned/guilds/join_rooms/tcan")->move(this_object());
   //  The following lines set the properties for the guild.
 
   set_property("base hp regen", 3);
-  set_property("base mp regen", 6);
+  set_property("base mp regen", 10);
   //  Base heling per tick.  Note that the default is 3 for both.
   //  Keep in mind that this increases with level.
 
-  set_property("hp advance", 17);
+  //set_property("hp advance", 17);
+  //set_property("mp advance", 40);
+  set_property("hp advance", 18);
   set_property("mp advance", 40);
   //  Base advance per level im max mp/hp.  Default is 10.
 

@@ -22,12 +22,12 @@ void create() {
 
 
 int extra_worn(){
-  if((string)this_player()->query_class() != "fighter") {
-    message("info", "You can't seem to figure out how to wear it!",
-      this_player());
-    return 0;
-  }
-  shadow=clone_object("/wizards/khojem/new/shadow/con5");
+  //if((string)this_player()->query_class() != "fighter") {
+    //message("info", "You can't seem to figure out how to wear it!",
+      //this_player());
+    //return 0;
+  //}
+  shadow=clone_object("/d/khojem/new/shadow/con5");
   shadow->start_shadow(this_player());
   message("info", "You feel the power of the belt fill your mortal body.",
     this_player());

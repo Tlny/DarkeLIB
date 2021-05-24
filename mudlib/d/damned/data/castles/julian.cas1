@@ -1,0 +1,16 @@
+light:::-1
+indoors:::1
+short:::It is dark.
+long:::It is dark.                                                                 
+no scry:::1
+no summon:::1
+no teleport:::1
+special exits:::0
+healing room:::0
+exit:::up:/d/damned/virtual/julian_room_7.castle:door:16:vault door 5
+exit:::west:/d/damned/virtual/julian_room_6.castle:door:16:vault door 4
+exit:::out:/d/damned/virtual/room_1_76.world
+exit:::down:/d/damned/virtual/julian_room_10.castle:door:16:vault door 6
+exit:::east:/d/damned/virtual/julian_room_5.castle:door:16:vault door 3
+exit:::north:/d/damned/virtual/julian_room_2.castle:door:16:vault door
+exit:::south:/d/damned/virtual/julian_room_3.castle:door:16:vault door 2

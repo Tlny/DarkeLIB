@@ -44,7 +44,7 @@ void create() {
 add_spell("retribution of k'thach", 14);
   add_spell("vengeance of k'thach", 26);
   add_spell("protection from chaos", 5);
-  add_spell("shields of war");
+  add_spell("shields of war"); // Currently Broken and disabled
   add_spell("divine might");
   add_spell("remove poison",6);
   add_spell("instill poison",6);
@@ -53,9 +53,9 @@ add_spell("retribution of k'thach", 14);
   add_spell("holy armour", 7);
   add_spell("armour of faith", 13, 1);
   add_spell("call divine plate");
-  add_spell("call hammer of faith");
-  add_spell("call spirit sword");
-  add_spell("call blade of k'thach");
+  add_spell("call weapon of faith", 10);
+  add_spell("call spirit weapon", 5);
+  add_spell("call weapon of k'thach", 19);
   add_spell("war-hewn weapon");
   add_spell("battle fury");
   add_spell("satisfy thirst",2);
@@ -68,3 +68,4 @@ add_spell("retribution of k'thach", 14);
   add_spell("indomitable spirit");
   return;
 }
+

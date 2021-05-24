@@ -23,7 +23,7 @@ void create() {
 		"stasis.  You can see a drider inside this orb."
 	);
 	set_weight(30);
-	set_value(600000);
+	set_value(60000);
 }
 
 int shatter_orb(string str) {

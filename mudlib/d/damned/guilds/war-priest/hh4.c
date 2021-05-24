@@ -20,7 +20,8 @@ void create(){
 	);
 	set_exits( ([
 		"east": "/d/damned/guilds/war-priest/hh5",
-		"south": "/d/damned/guilds/war-priest/hh7"
+		"south": "/d/damned/guilds/war-priest/wp_treas.c"
+
 	]) );
 	set_door("treasury door", "/d/damned/guilds/war-priest/hh7", "south",
 		0);

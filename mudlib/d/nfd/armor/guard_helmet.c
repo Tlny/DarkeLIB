@@ -28,7 +28,7 @@ void create() {
 
 		"Spartan helmet");
 
-	set_type("helmet");
+	set_type("metal head");
 
 	set_ac(6);
 

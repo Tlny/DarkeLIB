@@ -50,7 +50,7 @@ void create() {
   add_skill("detect magic", 6);
   add_skill("spell sense", 15);
   add_skill("necromancy", 1);
-  add_skill("illusionism", 1);
+  add_skill("black magic", 1);
   add_skill("perception", 1);
   add_skill("attack", 1);
   add_skill("melee", 1);

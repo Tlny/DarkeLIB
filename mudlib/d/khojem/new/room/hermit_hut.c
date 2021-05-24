@@ -9,7 +9,7 @@ inherit ROOM;
 void reset() {
 	::reset();
 	if (!present("hermit")) {
-	  new("/wizards/khojem/new/mon/hermit")->move(this_object());
+	  new("/d/khojem/new/mon/hermit")->move(this_object());
 	}
 }
 
@@ -23,7 +23,7 @@ void create() {
       "off into the darkness below. The hut is well lit and cheerful.  "+
       "The surroundings are clean and well maintained.  The hut "+
       "is sparsely furnished.  It contains only a chair, table, "+
-      "hutch, and bed."
+      "hutch, and bed.\n    \n     \n   @   \n   d \n   \n"
      );
     add_exit("htree2","down");
     set_items(([

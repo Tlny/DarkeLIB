@@ -13,7 +13,7 @@ void create() {
       "have holes in the soles.");
     set_weight(35);
     set_value(1);
-    set_type("boot");
+    set_type("cloth foots");
     set_limbs( ({ "right foot", "left foot" }) );
     set_ac(4);
         set_ac(0, "aether");

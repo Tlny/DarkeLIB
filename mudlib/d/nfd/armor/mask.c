@@ -24,7 +24,7 @@ void create() {
 
 		"don't mind being made fun of, this is the mask for you!");
 
-	set_type("helmet");
+	set_type("cloth face");
 
 	set_ac(5);
 

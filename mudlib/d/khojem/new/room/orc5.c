@@ -9,9 +9,9 @@ inherit ROOM;
 void reset() {
 	::reset();
     if (!present("half-orc guard" , this_object()) ) {
-        new("/wizards/khojem/new/mon/orc_guard")->move(this_object());
-        new("/wizards/khojem/new/mon/orc_guard")->move(this_object());
-        new("/wizards/khojem/new/mon/orc_guard")->move(this_object());
+        new("/d/khojem/new/mon/orc_guard")->move(this_object());
+        new("/d/khojem/new/mon/orc_guard")->move(this_object());
+        new("/d/khojem/new/mon/orc_guard")->move(this_object());
 	}
 }
 
@@ -22,7 +22,7 @@ void create() {
     set("short", "An underground room");
     set("long", "This room appears to be a place for soldiers.  Weapons "+
       "line the walls.  Several benches are here to allow the soldiers "+
-      "to rest after standing their long watches."
+      "to rest after standing their long watches.\n   \n    \n0--@   \n    \n   \n"
     );
     add_exit("orc2","west");
     set_items(([

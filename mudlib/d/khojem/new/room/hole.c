@@ -14,10 +14,10 @@ void create() {
     set("long", "You are in an underground cave.  An opening through "+
       "the ceiling above allows in light, but is far too high for you "+
       "to climb up through it.  Dirt walls surround the small cavern "+
-      "and the dirt floor is hard and smooth from repeated use."
+      "and the dirt floor is hard and smooth from repeated use.\n   0\n   | \n   @   \n   h \n   \n"
     );
-    add_exit("/wizards/khojem/new/room/orc1","north");
-    add_exit("/wizards/khojem/new/room/hill2","hole");
+    add_exit("/d/khojem/new/room/orc1","north");
+    add_exit("/d/khojem/new/room/hill2","hole");
     add_pre_exit_function("hole","go_hole");
     set_items(([
      ({ "hole","ceiling", "light" }) :
@@ -42,7 +42,7 @@ void create() {
 int go_hole() {
   if(this_player()->query_flying()){
     write("Your fly up to the hole.\n");
-    tell_room("/wizards/khojem/new/room/hill2",
+    tell_room("/d/khojem/new/room/hill2",
       this_player()->query_cap_name()+" skillfully flys up from through "+
       "the hole.\n");
     return 1;

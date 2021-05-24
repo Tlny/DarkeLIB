@@ -9,8 +9,8 @@ inherit ROOM;
 void reset() {
     ::reset();
     if(!present("spider")) {
-      new("/wizards/khojem/nomad/mon/sand_spider")->move(this_object());
-      new("/wizards/khojem/nomad/mon/sand_spider")->move(this_object());
+      new("/d/khojem/nomad/mon/sand_spider")->move(this_object());
+      new("/d/khojem/nomad/mon/sand_spider")->move(this_object());
     }
 }
 
@@ -25,10 +25,10 @@ void create() {
       "your head.  The sand floor muffles your footsteps but any noise you make "+
       "echos off distant walls."
    );
-    add_exit("/wizards/khojem/nomad/room/sp3","north");
-    add_exit("/wizards/khojem/nomad/room/sp1","south");
-    add_invis_exit("north");
-    add_invis_exit("south");
+    add_exit("/d/khojem/nomad/room/sp3","north");
+    add_exit("/d/khojem/nomad/room/sp1","south");
+    //add_invis_exit("north");
+    //add_invis_exit("south");
     set_items(([
      ({ "cave","cavern", "chamber" }) :
         "All you can see is the floor you are standing on and a few feet "+

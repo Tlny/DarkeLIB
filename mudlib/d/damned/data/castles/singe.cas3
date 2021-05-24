@@ -1,0 +1,15 @@
+light:::2
+indoors:::1
+short:::You round the corner to see a ghastly sc
+long:::You feel the presence of death in this room.                                
+
+
+no scry:::1
+no summon:::1
+no teleport:::1
+special exits:::1
+healing room:::0
+exit:::square:/d/daybreak/room/db_square
+exit:::down:/d/damned/virtual/singe_room_2.castle:door:16:vault door 2
+exit:::portal:/d/daybreak/room/N1
+exit:::north:/d/damned/virtual/singe_room_4.castle:door:16:vault door

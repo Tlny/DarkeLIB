@@ -9,7 +9,7 @@ inherit ROOM;
 void reset() {
    ::reset();
    if (!present("commoner")) {
-      new("/wizards/khojem/new/mon/commoner")->move(this_object());
+      new("/d/khojem/new/mon/commoner")->move(this_object());
    }
 }
 
@@ -34,7 +34,7 @@ void create() {
         "window" : "The large window lets in much light and fresh air.",
      ({ "table", "chair", "chairs" }) : 
         "A small, wooden table is surrounded "+
-        "by a few small, wooden chairs."
+        "by a few small, wooden chairs.\n    \n     \n   @   \n   | \n   0\n"
      ]));
     set_smell("default", "The air is fresh and vibrant.");
     set_listen("default", "You hear the occasional sound of birds singing.");

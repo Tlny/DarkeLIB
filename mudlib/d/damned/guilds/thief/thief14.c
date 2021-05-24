@@ -42,7 +42,7 @@ int turn_ring(string str){
 string limb;
 int lmd,lcd,dam;
     if(str == "ring"){
-      if(this_player()->query_class() == "thief"){
+      if(this_player()->query_class() == "thief" || wizardp(this_player())) {
         write("You grasp the ring and turn it! It makes a solid "
               "click and the wall in front of you slides open! You "
               "quickly step into the opening and the wall slides "

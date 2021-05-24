@@ -12,7 +12,7 @@ void create() {
 		"type. It is made out of very fine fabric, and though it doesn't "+
 		"look magical, you can feel that it is much better armour then "+
 		"it appears to be at first glance.");
-	set_type("cloak");
+	set_type("cloth back");
 	set_ac(5);
 	set_limbs( ({"torso","right arm","left arm","right leg","left leg",
 		}) );

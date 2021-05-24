@@ -72,6 +72,10 @@ add_skill("offhand training", 9);
 
    add_skill("reverse stroke",17,1);
   add_skill("dual attack", 12);
+  
+  //Honspron2020 - added fast casting
+  add_skill("fast casting", 15);
+  add_skill("demonic preparation", 10);
 
   
   return;
