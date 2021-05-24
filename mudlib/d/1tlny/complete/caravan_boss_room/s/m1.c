@@ -19,7 +19,7 @@ set_id( ({ "guard", "powerful guard", "goblin", "powerful monk guard" }) );
     set_level(13);
 
    set_property("enhance criticals",-1);
-set_property("magic resistance", zlevel*3);
+set_property("magic resistance", zlevel/2);
    set_overall_ac(zlevel*3);
    set_body_type("human");
    set("race", "human");

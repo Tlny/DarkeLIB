@@ -124,7 +124,7 @@ switch(random(14)){
 
 add_money("gold", zlevel + random(100)*zlevel);
    set_property("enhance criticals",-4);
-   set_property("magic resistance", zlevel*5);
+   set_property("magic resistance", zlevel/2);
    set_overall_ac(zlevel*5);
 
    set_stats("strength", zlevel*10 + random(20));
@@ -319,9 +319,9 @@ if (loot == 13) {
 }
 else
 if (loot == 14) {   
-    ob = new("/d/damned/virtual/greate-axe_6.weapon");
+    ob = new("/d/damned/virtual/great-axe_6.weapon");
     ob->move(this_object());
-    ob -> set("short", mtlname+" greate-axe of "+damage1+" and "+damage2);      
+    ob -> set("short", mtlname+" great-axe of "+damage1+" and "+damage2);      
     ob->set_wc(zlevel);
     ob -> set_wc(zlevel, damage1);
     ob -> set_wc(zlevel, damage2);

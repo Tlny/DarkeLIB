@@ -1,4 +1,4 @@
-light:::-1
+light:::2
 indoors:::1
 short:::Julian's Castle Room #25
 long:::It is dark.                                                                 
@@ -8,3 +8,5 @@ no teleport:::1
 special exits:::0
 healing room:::0
 exit:::west:/d/damned/virtual/julian_room_24.castle:door:16:vault door
+exit:::down:/d/damned/virtual/julian_room_17.castle:door:16:vault door 3
+exit:::east:/d/damned/virtual/julian_room_28.castle:door:16:vault door 2

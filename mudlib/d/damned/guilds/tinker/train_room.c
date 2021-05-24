@@ -40,7 +40,8 @@ set_property("no teleport", 1);
   set_join_room("/d/damned/guilds/join_rooms/tinker_join");
 
   set_exits( ([ "down" : "/d/damned/guilds/join_rooms/tinker_join",
-	     "west" : "/d/damned/guilds/tinker/forge_room" ]));
+	     "west" : "/d/damned/guilds/tinker/forge_room",
+	     "east" : "/d/damned/guilds/tinker/train_room2", ]));
   
   //  All the rest is adding the skills.  The add_skill lines are of the
   //  following form:
@@ -74,8 +75,9 @@ set_property("no teleport", 1);
     add_skill("trade lore", 1);
     add_skill("combat awareness",16,1);
 
-    add_skill("lumberjack", 2);
-    add_skill("axe",2);
+    add_skill("minning", 1);
+    add_skill("lumberjack", 1);
+    add_skill("axe",1);
 
     add_skill("skin corpse", 3);
     add_skill("dodge", 3);
@@ -111,7 +113,8 @@ set_property("no teleport", 1);
 
     add_skill("rune lore", 14);
 
-//NEW TLNY2020
+//NEW TLNY2020 See train_room2
+/* 
    add_skill("inscribe crusher", 17);
    add_skill("inscribe crusha", 17);
    add_skill("inscribe strika", 17);
@@ -160,7 +163,7 @@ set_property("no teleport", 1);
    add_skill("inscribe holya", 40);
    add_skill("inscribe unholya", 40);
    add_skill("inscribe inferna", 40);
-
+*/
 
   return;
 }

@@ -44,7 +44,7 @@ void create() {
 add_spell("retribution of k'thach", 14);
   add_spell("vengeance of k'thach", 26);
   add_spell("protection from chaos", 5);
-  add_spell("shields of war"); // Currently Broken and disabled
+  add_spell("shields of war"); // Currently Broken //Exash maybe fixed? 5/14/2021
   add_spell("divine might");
   add_spell("remove poison",6);
   add_spell("instill poison",6);

@@ -5,27 +5,32 @@ inherit "std/room";
 object tyranid;
 int i;
 
-/*
+
 void reset() {
     ::reset();
-    if(!present("tyranid"))
+    if(!present("shadowflame"))
     {
-	i = random(2)+1;
+	i = random(3)+1;
 	while(i--)
 	{
-	    new(MON+"ripper")->move(this_object());
+	    new(MON+"shadowflamet.c")->move(this_object());
 	}
   }
 }
-*/
+
 void create(){
     ::create();
     set_property("light", 1);
     set_property("night light", 1);
     set_property("indoors", 1);
-    set("short", "The Smoldering Cells");
+
+    set_property("no scry", 1);
+    set_property("no summon", 1);
+	set_property("no teleport",1);
+
+    set("short", "The Halls of Doom");
     set("long",
-      "You slowly move onwards, deeper into the dungeon's depths. You pass various passages, most of which are far too ominous looking to try out. \n"
+      "You slowly move onwards, deeper into the dungeon's secrets. You pass various passages, some of them have collapsed, others seem to go on forever. \n"
 
 "\n"
 #ifdef NORTHWEST

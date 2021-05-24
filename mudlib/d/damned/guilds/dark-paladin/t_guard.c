@@ -13,7 +13,7 @@ create() {
 "The guard stands in front of the west exit.");
     set_body_type("human");
     set_level(GUARD_LEVEL);
-    set_overall_ac(GUARD_AC);
+    set_overall_ac(120);
     set_property("magic resistance", GUARD_RESIST);
     set_property("enhance criticals", GUARD_ENHCRIT);
     set_skill("block", 125);

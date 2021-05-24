@@ -30,15 +30,23 @@ void create() {
     set_property("night light",2);
     set_property("indoors", 0);
 //Basic mapping added by Tiny 1/19/2020
-    set("short", "   \n    \n0--@   \n   d \n   \nDock Street");
+    set("short", "   \n    \n0--@   \n     \n   \nDock Street");
     set("long","Dock Street extends east and west.  "+
       "The harbor is just to the south.  "+
       "A schooner is berthed closeby to the south.  "+
-      "The wooden boards beneath your feet creak with every footstep.\n   \n    \n0--@   \n   d \n   \n"
+      "The wooden boards beneath your feet creak with every footstep.\n   \n    \n0--@   \n     \n   \n"
     );
     add_exit("/d/khojem/port/room/s24","west");
-    add_exit("/d/khojem/port/room/h23","down");
-    set_pre_exit_functions(({"down"}),({"go_down"}));
+    //add_exit("/d/khojem/port/room/h23","down");
+    //set_pre_exit_functions(({"down"}),({"go_down"}));
+    add_exit("/d/khojem/port/room/ship3","east");
+    add_invis_exit("east");
+    set_door("hatch2","/d/khojem/port/room/ship3","east",0);
+    set_open("hatch2",0);
+    set_locked("hatch2",0);
+    set_func("hatch2","open","do_open2");
+    set_func("hatch2","close","do_close2");
+
     add_exit("/d/khojem/port/room/ship2","south");
     add_invis_exit("south");
     set_door("hatch","/d/khojem/port/room/ship2","south",0);
@@ -58,6 +66,8 @@ void create() {
         "maintained during its many years of use.",
      ({ "hatch" }) : 
         (: call_other, this_object(), "look_at_door" :),
+     ({ "hatch2" }) : 
+        (: call_other, this_object(), "look_at_door2" :),
      ({ "boards","wooden boards" }) :
         "The wooden boards of the dock are supported above the water my timbers.  "+
         "The boards are bleached from exposure to sun and salt air.",
@@ -76,11 +86,28 @@ void look_at_door() {
   say(this_player()->query_cap_name()+" examines a hatch to the south.\n");
 }
 
+void look_at_door2() {
+  if(query_open("hatch2")) 
+    write("The hatch2 is wide open.\n");
+  else 
+    write("The hatch2 is closed.\n");
+  say(this_player()->query_cap_name()+" examines a hatch2 to the east.\n");
+}
+
+
 int do_open() {
   remove_invis_exit("south");
   "/d/khojem/port/room/ship2"->remove_invis_exit("north");
   write("The hatch easily swings open.\n");
   say(this_player()->query_cap_name()+" opens a hatch to the south.\n");
+  return 1;
+}
+
+int do_open2() {
+  remove_invis_exit("east");
+  "/d/khojem/port/room/ship3"->remove_invis_exit("west");
+  write("The hatch easily swings open.\n");
+  say(this_player()->query_cap_name()+" opens a hatch to the east.\n");
   return 1;
 }
  
@@ -92,9 +119,19 @@ int do_close() {
   return 1;
 }
 
+int do_close2() {
+  add_invis_exit("east");
+  "/d/khojem/port/room/ship2"->add_invis_exit("west");
+  write("A hatch is slammed shut.\n");
+  say(this_player()->query_cap_name()+" slams a hatch shut.\n");
+  return 1;
+}
+
+/*
 int go_down() {
     write("Khojem suddenly materializes from the air and says,\n"+
       "     'I haven't implemented the water code yet.  Hang on!'\n");
     return 0;
 }
+*/
 

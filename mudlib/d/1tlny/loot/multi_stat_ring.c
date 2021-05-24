@@ -7,7 +7,7 @@ inherit "/std/armour";
 string zstat;
 string mtlname;
 int CLR;
-//string skill1;
+string skill1;
 //string skill2;
 
 int last_used;

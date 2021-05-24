@@ -64,25 +64,29 @@ void create() {
       case 10:damage2="plasma";break;
     }
 
-    zlevel = (30+random(5));
+    zlevel = (50+random(10));
 
     set_level(zlevel);
 
-   set_overall_ac(zlevel*5);
+   set_overall_ac(zlevel*1000);
+
    set_property("magic resistance", zlevel*7);
    set_skill("resist stun", zlevel*7);
-   set_property("enhance criticals",-1);
+   set_property("enhance criticals",5);
+  
+set_skill("concentrate", 500);
+    force_me("use concentrate");
 
    set_melee_damage(([ "crushing" : zlevel,"plasma" : zlevel, "impact" : zlevel ]));
 
    set_money("gold", random(100)+5*zlevel); 
 
    set_name("Space Marine Scout");
-   set("id", ({"marine", "space marine scout", "space marine", "scout"}) );
+   set("id", ({"guard", "marine", "space marine scout", "space marine", "scout"}) );
    set("long"," Space Marines, also known as the Adeptus Astartes, are superhuman warrior-monks who fight for the Imperium of Man. They wear mechanized suits of armor and have modified genomes that grant them superhuman abilities.");
    set_short("["+zlevel+"]Space Marine Scout");    
-   set("race", "human");
-   set_body_type("human");
+   set("race", "high-man");
+   set_body_type("humanoid");
    set_gender("male");
    set_alignment(100);
 
@@ -116,9 +120,9 @@ void create() {
     set_skill("flail", 11*zlevel);
     set_skill("melee", 11*zlevel);
 
-    set_skill("parry", 11*zlevel);
-    set_skill("dodge", 11*zlevel);
-    set_skill("block", 11*zlevel);
+    //set_skill("parry", 11*zlevel);
+    //set_skill("dodge", 11*zlevel);
+    //set_skill("block", 11*zlevel);
 
     set_skill("combo", 11*zlevel);
     set_skill("reverse stroke", 11*zlevel);
@@ -160,6 +164,13 @@ void create() {
     add_spell("greater elemental storm", "$A"); 
 */
     set_property("handedness", "right hand");
+   
+    ob = new("/std/spells/shadows/ele_pres_shad");
+    ob->set_power(1);
+    ob->set_damage(({ damage1 , damage2 }));
+    ob->set_shadow_name("Space Marine Presence2");
+    ob->start_shadow(this_object(), 2000000000, "");
+
 
 switch(random(4)){
 case 0:ob = new("/d/damned/virtual/battle-axe_6.weapon");
@@ -481,9 +492,9 @@ message("info","%^B_YELLOW%^Somthing drops on the corpse you should probably LOO
 	break;
 	case 13:
 message("info","%^B_YELLOW%^Somthing drops on the corpse you should probably LOOK at corpse%^RESET%^", environment(this_object()), this_object());
-    ob = new("/d/damned/virtual/greate-axe_6.weapon");
+    ob = new("/d/damned/virtual/great-axe_6.weapon");
     ob->move(this_object());
-    ob -> set("short", mtlname+" greate-axe of "+damage1+" and "+damage2);      
+    ob -> set("short", mtlname+" great-axe of "+damage1+" and "+damage2);      
     ob->set_wc(zlevel);
     ob -> set_wc(zlevel, damage1);
     ob -> set_wc(zlevel, damage2);

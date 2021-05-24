@@ -73,7 +73,7 @@ switch(random(7)){
     set_level(zlevel);
 
    set_overall_ac(zlevel*2);
-   set_property("magic resistance", zlevel*3);
+   set_property("magic resistance", zlevel/2);
    set_skill("resist stun", zlevel*3);
    set_property("enhance criticals",-1);
 
@@ -314,9 +314,9 @@ message("info","%^B_YELLOW%^Somthing drops on the corpse you should probably LOO
 	break;
 	case 13:
 message("info","%^B_YELLOW%^Somthing drops on the corpse you should probably LOOK at corpse%^RESET%^", environment(this_object()), this_object());
-    ob = new("/d/damned/virtual/greate-axe_"+quality+".weapon");
+    ob = new("/d/damned/virtual/great-axe_"+quality+".weapon");
     ob->move(this_object());
-    ob -> set("short", mtlname+" greate-axe of "+damage1+" and "+damage2);      
+    ob -> set("short", mtlname+" great-axe of "+damage1+" and "+damage2);      
     ob->set_wc(zlevel);
     ob -> set_wc(zlevel, damage1);
     ob -> set_wc(zlevel, damage2);

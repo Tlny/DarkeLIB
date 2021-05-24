@@ -15,7 +15,7 @@ void create() {
       "what is further down the ladder.\n"
       "Above you is a large steel plate, covering the entrance to the "
       "ladder.\n");
-  set_exits( ({ UNTHIEF+"thief1","/d/damned/akkad/ak_slum2" }),
+  set_exits( ({ UNTHIEF+"thief1","/d/daybreak/room/db_slum" }),
              ({ "down","up" }) );
   set_items( ([
     "walls" : "The cold stone walls are wet with running water.",

@@ -9,6 +9,6 @@ pre_exit_func ([])
 post_exit_func ([])
 tracks ({})
 __Items (["blue moon":0,"sky":0,"ankh":0,"moon":0,"red moon":0,"green moon":0,"warzau":0,"sun":0,"luna":0,"moons":0,])
-guild_list (["daker":(["status":"member",]),"taril":(["status":"member",]),"menako":(["status":"member",]),"lu":(["status":"member",]),])
+guild_list (["daker":(["status":"member",]),"exash":(["status":"member",]),"inome":(["status":"member",]),"taril":(["status":"member",]),"menako":(["status":"member",]),"lu":(["status":"member",]),])
 banish ([])
 master "lu"

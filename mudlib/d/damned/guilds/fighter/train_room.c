@@ -79,6 +79,7 @@ void create() {
   add_skill("balance weapon", 5);
   add_skill("fast attack", 3);
   add_skill("head butt", 6);
+  add_skill("sweep", 12);
   return;
 }
 

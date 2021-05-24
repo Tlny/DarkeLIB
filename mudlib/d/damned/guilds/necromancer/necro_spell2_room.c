@@ -44,6 +44,8 @@ void create() {
   add_spell("animate nethergeist");
   add_spell("create everlasting body");
   add_spell("animate everlasting");
+  add_spell("combine everlastings");
+  add_spell("animate dragon");
   return;
 }
 

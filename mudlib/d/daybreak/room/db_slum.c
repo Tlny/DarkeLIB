@@ -11,7 +11,7 @@ void create() {
     set_property("night light", 2);
     add_exit(ROOMS+"dbns8","east");
     //HONSPRON 2020 Thief Guild is in Akkad Slums
-    //add_exit("/d/damned/guilds/thief/thief1","down");
+    add_exit("/d/damned/guilds/thief/thief1","down");
     add_exit("/d/damned/guilds/join_rooms/dark-paladin_join.c","west");
         //add_exit("/d/daybreak/room/ntf/ntfkitchen", "south");
     set("short","Daybreak Ridge Slums");

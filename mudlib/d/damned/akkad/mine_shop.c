@@ -113,7 +113,7 @@ int buy_item(string str) {
       write("You must buy a mine first.");
       return 1;
     }
-    if(((int)MINE_D->time_left(file) / 86400) >= 7) {
+    if(((int)MINE_D->time_left(file) / 86400) >= 365) {
       write("You must wait until the last week of the salary period "+
           "to pay the workers.");
       return 1;

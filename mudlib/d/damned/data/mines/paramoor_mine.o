@@ -1,0 +1,14 @@
+#/d/damned/virtual/paramoor_mine2_4_12.mine.c
+props (["light":-1,"indoors":1,])
+__Smells ([])
+__Listens ([])
+__Searches ([])
+destinations (["up":"/d/damned/virtual/paramoor_mine1_4_12.mine","square":"/d/daybreak/room/db_square",])
+invis_exits ([])
+pre_exit_func (["up":"GoThroughDoor",])
+post_exit_func ([])
+tracks ({})
+__Items (["blue moon":,"chest":,"sky":,"ankh":,"moon":,"red moon":,"sun":,"warzau":,"green moon":,"hatch":"It looks surprisingly strong.","moons":,"luna":,])
+reset_number 16
+doors (["hatch":(["direction":"up","key":"paramoor mine key","lock level":55,"destination":"/d/damned/virtual/paramoor_mine1_4_12.mine","open":0,"locked":1,]),])
+minerals (["mabril":2,"mcgrail":1,"catoetine":8,"iysaughton":1,"elrodnite":1,"raysorite":7,"javednite":7,])

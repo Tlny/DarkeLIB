@@ -27,7 +27,7 @@ void create() {
       case 12:mtlname="iysaughton";break;
       case 13:mtlname="laen";break;
     }
-    switch(random(11)){
+    switch(random(13)){
       case 0:damage1="crushing";break;
       case 1:damage1="cutting";break;
       case 2:damage1="impaling";break;
@@ -39,8 +39,10 @@ void create() {
       case 8:damage1="electricity";break;
       case 9:damage1="disruption";break;
       case 10:damage1="plasma";break;
+      case 11:damage1="holy";break;
+      case 12:damage1="infernal";break;
     }
-    switch(random(11)){
+    switch(random(13)){
       case 0:damage2="crushing";break;
       case 1:damage2="cutting";break;
       case 2:damage2="impaling";break;
@@ -52,10 +54,14 @@ void create() {
       case 8:damage2="electricity";break;
       case 9:damage2="disruption";break;
       case 10:damage2="plasma";break;
+      case 11:damage2="unholy";break;
+      case 12:damage2="aether";break;
     }
 
     zlevel = (60+random(5));
+//Controls Loot level and other fucntions do to raise to high multpies loot
     lvl = 1;
+//Controls critical hit reduction and other such
     llvl = 2;
     zskill = 8;
     zskillx = 6;
@@ -65,9 +71,10 @@ void create() {
     set_level(zlevel);
 
    set_overall_ac(zlevel*zskillac);
-   set_property("magic resistance", zlevel*zskillx);
+   set_property("magic resistance", zlevel/2);
    set_skill("resist stun", zlevel*zskillx);
    set_property("enhance criticals",-llvl);
+
 
    set_melee_damage(([ "crushing" : zlevel, damage1 : zlevel, damage2 : zlevel ]));
 
@@ -80,7 +87,7 @@ ext);
    set_short("["+zlevel+"]Loot Monster");    
   
    set("race", "human");
-   set_body_type("human");
+   set_body_type("humanoid");
    set_gender("male");
    set_alignment(100);
 
@@ -89,8 +96,8 @@ ext);
 /*
    set_hp(zlevel*250 + zlevel*2);
    set_max_hp(zlevel*250 + zlevel*2);
- //set_hp(100);
- //set_max_hp(100);
+//set_hp(100);
+//set_max_hp(100);
     //set_max_mp(7000);
     //set_mp(7000);
 
@@ -204,51 +211,84 @@ string elelore;
     set_property("handedness", "right hand");
  
     ob = new("/d/damned/virtual/brass-knuckles_6.weapon");
-    ob->move(this_object());   
-    ob->set_wc(100 ,"infernal");
-    ob->set_wc(200 ,"holy");
-    ob->set_wc(300 ,"unholy");
-    ob->set_wc(400 ,"aether");
-    ob->set_wc(500 ,"plasma");
-    ob->set_wc(600 ,"disruption");
-    ob->set_wc(600 ,"crushing");
+    //ob = new("/d/damned/virtual/bokken_6.weapon");
+    //ob = new("/d/damned/virtual/military-pick_6.weapon");
+    //ob = new("/d/damned/virtual/wooden-axe_6.weapon");
+    ob->move(this_object());
+/*
+    ob->set_ac(200);
+    ob->set_name("sasa stick");
+    ob->set("id", ({ "stick", "sasa stick"}));
+    ob->set_short("%^BLUE%^Sasa Stick%^RESET%^");
+    ob->set_long("This is a large stick that Sasa uses to beat you with.");
+    ob->set_quality(6);
+    ob->set_type("blunt");
+    ob->set_weight(10);
+    ob->set_material("metal/eog");
+    ob->set_value(10000);
+*/
+    ob->set_wc(555 ,"aether");
+    ob->set_wc(555 ,"infernal");
+    ob->set_wc(555 ,"unholy");
+    ob->set_wc(555 ,"holy");
+    ob->set_wc(555 ,"plasma");
+    ob->set_wc(555 ,"disruption");
+    ob->set_wc(555 ,"electricity");
+/*
+    ob->set_wc(555 ,"vacuum");
+    ob->set_wc(555 ,"cold");
+    ob->set_wc(555 ,"fire");
+    ob->set_wc(555 ,"stress");
+    ob->set_wc(555 ,"impact");
+    ob->set_wc(555 ,"strike");
+    ob->set_wc(555 ,"impaling");
+    ob->set_wc(555 ,"cutting");
+    ob->set_wc(555 ,"crushing");
+*/
+    ob->set_enh_critical(1000);
+    ob->set_property("hit bonus", 300);
+    ob->set_property("auto critical", ([ "a1 E" : 1000,"a1 D" : 1000,"a1 C" : 1000, ]));
+/*
 	ob->set_auto_critical("a1 A");
 	ob->set_auto_critical("a1 B");
-	ob->set_auto_critical("a1 C");
-	ob->set_auto_critical("a1 D");
-	ob->set_auto_critical("a1 E");
+*/
 	ob->set_property("no decay",1);
+    //ob->set_decay_rate(100000);
+    //ob->set_property("brittle", 600);
+    //ob->set_verb("beat");
+
+
     ob = new("/d/1tlny/loot/hooded_robe");
     ob->move(this_object());    
-    ob->set_ac(500);
+    ob->set_ac(59500);
     ob = new("/d/damned/virtual/large-shield.armour");
     ob -> set_property("extra long","level["+zlevel+"] "+mtlname+" shield of "+damage1+" and "+damage2+" protection");
     ob->move(this_object());    
-    ob->set_ac(500);
+    ob->set_ac(59500);
     ob = new("/d/damned/virtual/chain-mail.armour");
     ob->move(this_object());    
-    ob->set_ac(500);
+    ob->set_ac(59500);
     ob = new("/d/damned/virtual/plate-greaves.armour");
     ob->move(this_object());    
-    ob->set_ac(500);
+    ob->set_ac(59500);
     ob = new("/d/damned/virtual/plate-bracer.armour");
     ob->move(this_object());    
-    ob->set_ac(500);
+    ob->set_ac(59500);
     ob = new("/d/damned/virtual/plate-bracer.armour");
     ob->move(this_object());    
-    ob->set_ac(500);
+    ob->set_ac(59500);
     ob = new("/d/damned/virtual/great-helm.armour");
     ob->move(this_object());    
-    ob->set_ac(500);
+    ob->set_ac(59500);
     ob = new("/d/damned/virtual/metal-boots.armour");
     ob->move(this_object());    
-    ob->set_ac(500);
+    ob->set_ac(59500);
     ob = new("/d/damned/virtual/gauntlet.armour");
     ob->move(this_object());    
-    ob->set_ac(500);
+    ob->set_ac(59500);
     ob = new("/d/damned/virtual/gauntlet.armour");
     ob->move(this_object());    
-    ob->set_ac(500);
+    ob->set_ac(59500);
     force_me("equip");
 }
 
@@ -414,7 +454,7 @@ message("info","%^BLACK%^%^B_YELLOW%^Somthing drops on the corpse you should pro
 	break;
 	case 13:
 message("info","%^BLACK%^%^B_YELLOW%^Somthing drops on the corpse you should probably LOOK at corpse%^RESET%^", environment(this_object()), this_object());
-    ob = new("/d/damned/virtual/greate-axe_6.weapon");
+    ob = new("/d/damned/virtual/great-axe_6.weapon");
     ob -> set_property("new desc", "level["+zlevel+"] "+mtlname+" great-axe of "+damage1+" and "+damage2);
     ob -> set_short((string)ob->query_property("new desc"));
     ob -> set_property("extra long","level["+zlevel+"] "+mtlname+" great-axe of "+damage1+" and "+damage2);
@@ -463,5 +503,21 @@ message("info","%^COLOR200%^Very Rare loot drops on the corpse you should probab
     ob -> set_ac(zlevel*(llvl+lvl)+random(zlevel*lvl), damage2);  
     ob->move(this_object());  
 }
+/*
+switch(random(1000)){
+    case 998:
+message("info","%^COLOR200%^Very Rare loot drops on the corpse you should probably LOOK at corpse and get it%^RESET%^", environment(this_object()), this_object());
+    ob = new("/d/1tlny/loot/multi_stat_ring");
+    ob -> set_property("new desc", "level["+zlevel+"] Rare Ring of "+damage1+" and "+damage2+" protection");
+    ob -> set_property("extra long", "level["+zlevel+"] Rare Ring of "+damage1+" and "+damage2+" protection");
+    ob -> set_property("znum", lvl*2);
+    ob -> set_short((string)ob->query_property("new desc"));
+    ob->set_ac(zlevel*lvl+random(zlevel*lvl));      
+    ob -> set_ac(zlevel*(llvl+lvl)+random(zlevel*lvl), damage1);
+    ob -> set_ac(zlevel*(llvl+lvl)+random(zlevel*lvl), damage2);  
+    ob->move(this_object());  
+}
+*/
+
    ::die();
 }

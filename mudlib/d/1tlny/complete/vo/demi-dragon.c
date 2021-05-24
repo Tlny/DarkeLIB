@@ -334,9 +334,9 @@ if (loot == 13) {
 }
 else
 if (loot == 14) {   
-    ob = new("/d/damned/virtual/greate-axe_6.weapon");
+    ob = new("/d/damned/virtual/greate-ax_6.weapon");
     ob->move(this_object());
-    ob -> set("short", mtlname+" greate-axe of "+damage1+" and "+damage2);      
+    ob -> set("short", mtlname+" great-axe of "+damage1+" and "+damage2);      
     ob->set_wc(zlevel);
     ob -> set_wc(zlevel, damage1);
     ob -> set_wc(zlevel, damage2);

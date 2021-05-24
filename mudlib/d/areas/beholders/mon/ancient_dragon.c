@@ -59,9 +59,9 @@ void create() {
       case 12:damage2="aether";break;
     }
 
-    zlevel = (60+random(5));
-    lvl = 1;
-    llvl = 2;
+    zlevel = (200+random(20));
+    lvl = 2;
+    llvl = 20;
     zskill = 8;
     zskillx = 6;
     zskillac = 5;
@@ -70,7 +70,7 @@ void create() {
     set_level(zlevel);
 
    set_overall_ac(zlevel*zskillac+random(zlevel));
-   set_property("magic resistance", zlevel*zskillx+random(zlevel));
+   set_property("magic resistance", zlevel/2);
    set_skill("resist stun", zlevel*zskillx+random(zlevel));
    set_property("enhance criticals",-llvl);
 
@@ -88,8 +88,8 @@ set_name("dragon");
 	"only serve to add to this creatures powerful arsenal.");
    set_short("["+zlevel+"]Ancient %^RESET%^%^COLOR231%^%^B_RED%^Mithril%^RESET%^ Dragon");
   
-   set("race", "dragon");
-   set_body_type("dragon");
+   set("race", "beholder");
+   set_body_type("humanoid");
     switch(random(2)){
     case 0:
     set_gender("male");
@@ -185,8 +185,8 @@ set_name("dragon");
     set_spell_level("greater elemental storm", 6);
     add_spell("greater elemental storm", "$A");
 
-    set_spell_level("whelp summon", 6);
-    add_spell("whelp summon", "$A");
+    //set_spell_level("whelp summon", 6);
+    //add_spell("whelp summon", "$A");
 
     set_property("handedness", "right hand");
  

@@ -1,0 +1,14 @@
+#/d/damned/virtual/zarkt_mine2_7_11.mine.c
+props (["light":-1,"indoors":1,])
+__Smells ([])
+__Listens ([])
+__Searches ([])
+destinations (["square":"/d/daybreak/room/db_square","up":"/d/damned/virtual/zarkt_mine1_7_11.mine",])
+invis_exits ([])
+pre_exit_func (["up":"GoThroughDoor",])
+post_exit_func ([])
+tracks ({})
+__Items (["blue moon":,"chest":,"sky":,"ankh":,"moon":,"red moon":,"sun":,"warzau":,"green moon":,"hatch":"It looks surprisingly strong.","moons":,"luna":,])
+reset_number 24
+doors (["hatch":(["lock level":55,"key":"zarkt mine key","direction":"up","locked":1,"open":0,"destination":"/d/damned/virtual/zarkt_mine1_7_11.mine",]),])
+minerals (["davistone":1,"iysaughton":1,"inniculmoid":1,"mithril":1,"mabril":1,"catoetine":14,"iron":2,])

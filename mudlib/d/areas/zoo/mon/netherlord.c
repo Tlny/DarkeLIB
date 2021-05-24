@@ -57,8 +57,8 @@ void create() {
     set_spell_level("age", 6);*/
     set_property("melee damage", ([ "crushing" : 63 + (17 * 6), "infernal" : 63 + (17 * 6), "time" : 63 + (17 * 6), "sonic" : 63 + (17 * 6) ]));
     set_property("gang bang", 1);
-    set_money("gold", 25000);
-    set_money("mithril", 25000);
+    set_money("gold", 5000);
+    set_money("mithril", 500);
     set("aggressive",1);
 return;
 }

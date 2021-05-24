@@ -35,10 +35,10 @@ void init() {
 
 int add_bonus() {
 
- if(this_player()->is_player() && (int)this_player()->query_level() > 10) {
-     write("%^BOLD%^Only low level players of 10 or less may use this item.");
-    return 0;
-}
+// if(this_player()->is_player() && (int)this_player()->query_level() > 10) {
+     //write("%^BOLD%^Only low level players of 10 or less may use this item.");
+    //return 0;
+//}
 
    write("You feel the energy of the robe surge through your body. Ribbons of every %^BOLD%^%^CYAN%^c%^RED%^o%^BLUE%^l%^GREEN%^o%^MAGENTA%^r%^RESET%^ wrap around your body as you wear the robe you feel more skillful in every way but also you look and feel like a idiot. ALL known your combat skills have been increased");
 

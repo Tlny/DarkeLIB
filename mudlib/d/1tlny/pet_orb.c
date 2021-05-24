@@ -42,7 +42,8 @@ int shatter_orb(string str) {
 			({ this_player() }) );
 		seteuid(getuid());
 		//ob = new(MON+"brownie");
-        ob = new("/d/1tlny/loot/summon/dracolich");
+        //ob = new("/d/1tlny/loot/summon/dracolich");
+        ob = new("/d/1tlny/loot/summon/test");
         //ob = new("/d/damned/guilds/nethermancer/pets/dark_knight");
 		//ob = new("/d/damned/guilds/nethermancer/pets/eternal_darkness");
 		//ob = new("/d/damned/guilds/nethermancer/pets/death_dragon");
@@ -52,6 +53,9 @@ int shatter_orb(string str) {
 		//ob = new("/daemon/db/crit/mon/a11");
 		ob->set_up();
 		ob->set_owner((string)this_player()->query_name());
+//add
+//ob->set_level((int)this_player()->query_level());
+//end
 		ob->move(environment(this_player()));
 		//write_file("/d/nocte/kuril/logs/orb.log", TPQCN+" shattered "
 			//"a brownie orb at "+ctime(time())+".\n");

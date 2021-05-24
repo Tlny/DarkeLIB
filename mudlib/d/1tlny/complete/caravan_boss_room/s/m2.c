@@ -74,7 +74,7 @@ switch(random(7)){
   // set_exp(6432454);
 
    set_property("enhance criticals",-2);
-    set_property("magic resistance", zlevel*4);
+    set_property("magic resistance", zlevel/2);
    set_overall_ac(zlevel*4);
    set_body_type("human");
    set_alignment(-100);
@@ -239,9 +239,9 @@ if (loot == 13) {
 }
 else
 if (loot == 14) {   
-    ob = new("/d/damned/virtual/greate-axe_"+quality+".weapon");
+    ob = new("/d/damned/virtual/great-axe_"+quality+".weapon");
     ob->move(this_object());
-    ob -> set("short", mtlname+" greate-axe");      
+    ob -> set("short", mtlname+" great-axe");      
     ob->set_wc(zlevel);
     ob->set_material("metal/"+mtlname);
 }

@@ -64,14 +64,14 @@ void create() {
       case 10:damage2="plasma";break;
     }
 
-    zlevel = (36+random(5));
+    zlevel = (100+random(10));
 
     set_level(zlevel);
 
-   set_overall_ac(zlevel*5);
+   set_overall_ac(zlevel*1000);
    set_property("magic resistance", zlevel*7);
    set_skill("resist stun", zlevel*7);
-   set_property("enhance criticals",-1);
+   set_property("enhance criticals",-5);
 
    set_melee_damage(([ "crushing" : zlevel,"plasma" : zlevel, "impact" : zlevel ]));
 
@@ -157,16 +157,32 @@ void create() {
     force_me("use electricity lore");
     set_spell_level("greater elemental bolt", 5);
     add_spell("greater elemental bolt", "$A");
-    set_spell_level("greater elemental storm", 5);
-    add_spell("greater elemental storm", "$A"); 
+    //set_spell_level("greater elemental storm", 5);
+    //add_spell("greater elemental storm", "$A"); 
 
     set_property("handedness", "right hand");
 
+    ob = new("/std/spells/shadows/ele_pres_shad");
+    ob->set_power(3);
+    ob->set_damage(({ "unholy", "fire" }));
+    ob->set_shadow_name("Space Marine Presence");
+    ob->start_shadow(this_object(), 2000000000, "");
+
+    ob = new("/std/spells/shadows/ele_pres_shad");
+    ob->set_power(5);
+    ob->set_damage(({ damage1 , damage2 }));
+    ob->set_shadow_name("Space Marine Presence2");
+    ob->start_shadow(this_object(), 2000000000, "");
+
 switch(random(4)){
 case 0:ob = new("/d/damned/virtual/battle-axe_6.weapon");
-    ob -> set("short", "%^BOLD%^Power%^RESET%^ Axe");
     ob -> set("long", @EndText
 A Power Axe is a Power Weapon taking the form of a single or double-edged battle axe. Power Axes vary in length and design, and have been known to be crafted from one of any number of different materials, though usually Adamantium. As with all Power Weapons, when its power field is activated, usually by operating a control located on the hilt, the blade is sheathed in a lethal corona of disruptive energy. This energy field allows the blade to carve through flesh, bone and most forms of armour plate alike, making a Power Axe a highly effective close combat weapon.
+EndText);
+    ob -> set_property("new desc", "%^BOLD%^Power%^RESET%^ Axe");
+    ob -> set_short((string)ob->query_property("new desc"));
+    ob -> set_property("extra long", @EndText
+%^BOLD%^Power%^RESET%^ Axe
 EndText);
     ob->set_wc(zlevel+zlevel ,"plasma");
     ob->set_wc(zlevel , damage1);
@@ -175,9 +191,13 @@ EndText);
     ob -> set_material("metal/"+mtlname);
     ob->move(this_object());
 ob = new("/d/damned/virtual/large-shield.armour");
-    ob -> set("short", "%^BOLD%^Storm%^RESET%^ shield");
     ob -> set("long", @EndText
 A Storm Shield is a Power Shield that is used by the Space Marines and sometimes by Inquisitors of the Ordo Malleus to provide an extreme form of protection from ranged weapons fire and potent melee strikes.
+EndText);
+    ob -> set_property("new desc", "%^BOLD%^Storm%^RESET%^ shield");
+    ob -> set_short((string)ob->query_property("new desc"));
+    ob -> set_property("extra long", @EndText
+%^BOLD%^Storm%^RESET%^ shield
 EndText);
     ob -> set_material("metal/laen");    
     ob->set_ac(zlevel+zlevel);
@@ -185,9 +205,13 @@ EndText);
     force_me("wear shield on left hand");
 	break;
 	case 1:ob = new("/d/damned/virtual/broad-sword_6.weapon");
-    ob -> set("short", "%^BOLD%^Power%^RESET%^ Sword");
     ob -> set("long", @EndText
 Power Swords are used by all members of the Imperial armed forces, including the troops of the Astra Militarum and the Space Marines of the Adeptus Astartes, as well as their Chaos counterparts among the Lost and the Damned and the Chaos Space Marines. Xenos species such as the Aeldari, their evil kin the Drukhari and the Necrons are also known to make use of such weapons.
+EndText);
+    ob -> set_property("new desc", "%^BOLD%^Power%^RESET%^ Sword");
+    ob -> set_short((string)ob->query_property("new desc"));
+    ob -> set_property("extra long", @EndText
+%^BOLD%^Power%^RESET%^ Sword
 EndText);
     ob->set_wc(zlevel+zlevel ,"plasma");
     ob->set_wc(zlevel , damage1);
@@ -196,9 +220,13 @@ EndText);
     ob -> set_material("metal/"+mtlname);
     ob->move(this_object());
 ob = new("/d/damned/virtual/large-shield.armour");
-    ob -> set("short", "%^BOLD%^Storm%^RESET%^ shield");
     ob -> set("long", @EndText
 A Storm Shield is a Power Shield that is used by the Space Marines and sometimes by Inquisitors of the Ordo Malleus to provide an extreme form of protection from ranged weapons fire and potent melee strikes.
+EndText);
+    ob -> set_property("new desc", "%^BOLD%^Storm%^RESET%^ shield");
+    ob -> set_short((string)ob->query_property("new desc"));
+    ob -> set_property("extra long", @EndText
+%^BOLD%^Storm%^RESET%^ shield
 EndText);
     ob -> set_material("metal/laen");    
     ob->set_ac(zlevel+zlevel);
@@ -206,9 +234,13 @@ EndText);
     force_me("wear shield on left hand");
 	break;
 	case 2:ob = new("/d/damned/virtual/knife_6.weapon");
-    ob -> set("short", "%^BOLD%^Combat%^RESET%^ Knife");
     ob -> set("long", @EndText
 A Combat Knife is the ubiquitous back-up melee weapon for warriors all across the Imperium of Man, be they lowly hive city scum or the elite soldiers of a Planetary Governor. 
+EndText);
+    ob -> set_property("new desc", "%^BOLD%^Combat%^RESET%^ Knife");
+    ob -> set_short((string)ob->query_property("new desc"));
+    ob -> set_property("extra long", @EndText
+%^BOLD%^Combat%^RESET%^ Knife
 EndText);
     ob->set_wc(zlevel+zlevel ,"plasma");
     ob->set_wc(zlevel , damage1);
@@ -217,9 +249,13 @@ EndText);
     ob -> set_material("metal/"+mtlname);
     ob->move(this_object());
 ob = new("/d/damned/virtual/large-shield.armour");
-    ob -> set("short", "%^BOLD%^Storm%^RESET%^ shield");
     ob -> set("long", @EndText
 A Storm Shield is a Power Shield that is used by the Space Marines and sometimes by Inquisitors of the Ordo Malleus to provide an extreme form of protection from ranged weapons fire and potent melee strikes.
+EndText);
+    ob -> set_property("new desc", "%^BOLD%^Storm%^RESET%^ shield");
+    ob -> set_short((string)ob->query_property("new desc"));
+    ob -> set_property("extra long", @EndText
+%^BOLD%^Storm%^RESET%^ shield
 EndText);
     ob -> set_material("metal/laen");    
     ob->set_ac(zlevel+zlevel);
@@ -227,9 +263,13 @@ EndText);
     force_me("wear shield on left hand");
 	break;
 	case 3:ob = new("/d/damned/virtual/hammer_6.weapon");
-    ob -> set("short", "%^BOLD%^Thunder%^RESET%^ Hammer");
     ob -> set("long", @EndText
 Many Battle-Brothers balance the clumsy nature of attempting to parry with a Thunder Hammer by pairing it with a Storm Shield which is surrounded by a glowing blue field of protective energy which emits crackling lightning when the Space Marine parries the blow. 
+EndText);
+    ob -> set_property("new desc", "%^BOLD%^Thunder%^RESET%^ Hammer");
+    ob -> set_short((string)ob->query_property("new desc"));
+    ob -> set_property("extra long", @EndText
+%^BOLD%^Thunder%^RESET%^ Hammer
 EndText);
     ob->set_wc(zlevel+zlevel ,"plasma");
     ob->set_wc(zlevel , damage1);
@@ -238,9 +278,13 @@ EndText);
     ob -> set_material("metal/"+mtlname);
     ob->move(this_object());
 ob = new("/d/damned/virtual/large-shield.armour");
-    ob -> set("short", "%^BOLD%^Storm%^RESET%^ shield");
     ob -> set("long", @EndText
 A Storm Shield is a Power Shield that is used by the Space Marines and sometimes by Inquisitors of the Ordo Malleus to provide an extreme form of protection from ranged weapons fire and potent melee strikes.
+EndText);
+    ob -> set_property("new desc", "%^BOLD%^Storm%^RESET%^ shield");
+    ob -> set_short((string)ob->query_property("new desc"));
+    ob -> set_property("extra long", @EndText
+%^BOLD%^Storm%^RESET%^ shield
 EndText);
     ob -> set_material("metal/laen");    
     ob->set_ac(zlevel+zlevel);
@@ -249,74 +293,23 @@ EndText);
 	break;
 }    
 
-    ob = new("/d/damned/virtual/chain-mail.armour");
-    ob -> set("short", "%^BOLD%^Power%^RESET%^ mail");
-    ob -> set("long", @EndText
-The enclosing suits of armour worn by Space Marines are made from thick ceramite plates and would be cumbersome but for electrically motivated fibre bundles that replicate the movements of the wearer and supplement his strength. The last gene-seed organ to be implanted in a Space Marine
-EndText);
-    ob -> set_material("metal/laen");
-    ob->set_ac(zlevel+zlevel);
-    ob->move(this_object());
-
-    ob = new("/d/damned/virtual/plate-greaves.armour");
-    ob -> set("short", "%^BOLD%^Power%^RESET%^ greaves");
-    ob -> set("long", @EndText
-The enclosing suits of armour worn by Space Marines are made from thick ceramite plates and would be cumbersome but for electrically motivated fibre bundles that replicate the movements of the wearer and supplement his strength. The last gene-seed organ to be implanted in a Space Marine
-EndText);
-    ob -> set_material("metal/laen");
-    ob->set_ac(zlevel+zlevel);
-    ob->move(this_object()); 
-
-    ob = new("/d/damned/virtual/plate-bracer.armour");
-    ob -> set("short", "%^BOLD%^Power%^RESET%^ bracer");
-    ob -> set("long", @EndText
-The enclosing suits of armour worn by Space Marines are made from thick ceramite plates and would be cumbersome but for electrically motivated fibre bundles that replicate the movements of the wearer and supplement his strength. The last gene-seed organ to be implanted in a Space Marine
-EndText);
-    ob -> set_material("metal/laen");
-    ob->set_ac(zlevel+zlevel);
-    ob->move(this_object());
-
-    ob = new("/d/damned/virtual/plate-bracer.armour");
-    ob -> set("short", "%^BOLD%^Power%^RESET%^ bracer");
-    ob -> set("long", @EndText
-The enclosing suits of armour worn by Space Marines are made from thick ceramite plates and would be cumbersome but for electrically motivated fibre bundles that replicate the movements of the wearer and supplement his strength. The last gene-seed organ to be implanted in a Space Marine
+    ob = new("/d/damned/virtual/power-armour.armour");
+    ob -> set_property("new desc", "%^BOLD%^Power%^RESET%^ armour");
+    ob -> set_short((string)ob->query_property("new desc"));
+    ob -> set_property("extra long", @EndText
+%^BOLD%^Power%^RESET%^ armour
 EndText);
     ob -> set_material("metal/laen");
     ob->set_ac(zlevel+zlevel);
     ob->move(this_object());
 
     ob = new("/d/damned/virtual/great-helm.armour");
-    ob -> set("short", "%^BOLD%^Power%^RESET%^ helm");
-    ob -> set("long", @EndText
-The enclosing suits of armour worn by Space Marines are made from thick ceramite plates and would be cumbersome but for electrically motivated fibre bundles that replicate the movements of the wearer and supplement his strength. The last gene-seed organ to be implanted in a Space Marine
+    ob -> set_property("new desc", "%^BOLD%^Power%^RESET%^ helm");
+    ob -> set_short((string)ob->query_property("new desc"));
+    ob -> set_property("extra long", @EndText
+%^BOLD%^Power%^RESET%^ helm
 EndText);
-    ob -> set_material("metal/laen");
-    ob->set_ac(zlevel+zlevel);
-    ob->move(this_object());
-
-    ob = new("/d/damned/virtual/metal-boots.armour");
-    ob -> set("short", "%^BOLD%^Power%^RESET%^ boots");
-    ob -> set("long", @EndText
-The enclosing suits of armour worn by Space Marines are made from thick ceramite plates and would be cumbersome but for electrically motivated fibre bundles that replicate the movements of the wearer and supplement his strength. The last gene-seed organ to be implanted in a Space Marine
-EndText);
-    ob -> set_material("metal/laen");
-    ob->set_ac(zlevel+zlevel);
-    ob->move(this_object());
-
-    ob = new("/d/damned/virtual/gauntlet.armour");
-    ob -> set("short", "%^BOLD%^Power%^RESET%^ gauntlet");
-    ob -> set("long", @EndText
-The enclosing suits of armour worn by Space Marines are made from thick ceramite plates and would be cumbersome but for electrically motivated fibre bundles that replicate the movements of the wearer and supplement his strength. The last gene-seed organ to be implanted in a Space Marine
-EndText);
-    ob -> set_material("metal/laen");
-    ob->set_ac(zlevel+zlevel);
-    ob->move(this_object());
-
-    ob = new("/d/damned/virtual/gauntlet.armour");
-    ob -> set("short", "%^BOLD%^Power%^RESET%^ gauntlet");
-    ob -> set("long", @EndText
-The enclosing suits of armour worn by Space Marines are made from thick ceramite plates and would be cumbersome but for electrically motivated fibre bundles that replicate the movements of the wearer and supplement his strength. The last gene-seed organ to be implanted in a Space Marine
-EndText);
+    ob -> set("long", "The armoured reinforced headgear that protects an Astartes head.");
     ob -> set_material("metal/laen");
     ob->set_ac(zlevel+zlevel);
     ob->move(this_object());
@@ -369,113 +362,52 @@ void die(object ob) {
 //NEW
  message("shout", "%^BOLD%^%^BLUE%^Space Marine shouts:%^RESET%^ "+
 "You fools!  You have unleashed the Horde of Tyranid! Quick, run for yor lives!", users());
-   new(MON+"carnifex1.c")->move(find_object_or_load("/d/daybreak/room/db_square"));
-   new(MON+"lictor2.c")->move(find_object_or_load("/d/daybreak/room/db_square"));
-   new(MON+"zoanthrope2.c")->move(find_object_or_load("/d/daybreak/room/db_square"));
-   new(MON+"tyrant1.c")->move(find_object_or_load("/d/daybreak/room/db_square"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/db_square"));
-   new(MON+"tyranid1.c")->move(find_object_or_load("/d/daybreak/room/db_square"));
-   new(MON+"tyranid1.c")->move(find_object_or_load("/d/daybreak/room/db_square"));
-   new(MON+"tyranid1.c")->move(find_object_or_load("/d/daybreak/room/db_square"));
-   new(MON+"tyranid1.c")->move(find_object_or_load("/d/daybreak/room/db_square"));
 
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbcc1"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbcc2"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbcc3"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbcc4"));
-             
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbns2"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbns2"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbns4"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbns5"));
+   ob1=new(MON+"carnifex1.c");
+ob1->set_level(this_object()->query_attackers()[0]->query_level());
+ob1->set_short("["+(this_object()->query_attackers()[0]->query_level())+"]Carnifex");
+ob1->set_melee_damage(([ "crushing" : zlevel, damage1 : zlevel, damage2 : zlevel ]));
+ob1->force_me("unequip");
+ob1->move(environment());
 
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbew3"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbew5"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbew7"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbew9"));
+   ob1=new(MON+"lictor2.c");
+ob1->set_level(this_object()->query_attackers()[0]->query_level());
+ob1->set_short("["+(this_object()->query_attackers()[0]->query_level())+"]Lictor");
+ob1->set_melee_damage(([ "crushing" : zlevel, damage1 : zlevel, damage2 : zlevel ]));
+ob1->force_me("unequip");
+ob1->move(environment());
 
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbcc1"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbcc2"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbcc3"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbcc4"));
-             
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbns2"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbns2"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbns4"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbns5"));
+   ob1=new(MON+"zoanthrope2.c");
+ob1->set_level(this_object()->query_attackers()[0]->query_level());
+ob1->set_short("["+(this_object()->query_attackers()[0]->query_level())+"]Zoanthrope");
+ob1->set_melee_damage(([ "crushing" : zlevel, damage1 : zlevel, damage2 : zlevel ]));
+ob1->force_me("unequip");
+ob1->move(environment());
 
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbew3"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbew5"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbew7"));
-   new(MON+"stealer1.c")->move(find_object_or_load("/d/daybreak/room/dbew9"));
+   ob1=new(MON+"tyrant1.c");
+ob1->set_level(this_object()->query_attackers()[0]->query_level());
+ob1->set_short("["+(this_object()->query_attackers()[0]->query_level())+"]Tyrant");
+ob1->set_melee_damage(([ "crushing" : zlevel, damage1 : zlevel, damage2 : zlevel ]));
+ob1->force_me("unequip");
+ob1->move(environment());
 
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbns1"));
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbew10"));
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbew1"));
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbbw1"));
+   ob1=new(MON+"stealer1.c");
+ob1->set_level(this_object()->query_attackers()[0]->query_level());
+ob1->set_short("["+(this_object()->query_attackers()[0]->query_level())+"]Stealer");
+ob1->set_melee_damage(([ "crushing" : zlevel, damage1 : zlevel, damage2 : zlevel ]));
+ob1->force_me("unequip");
+ob1->move(environment());
 
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbbw2"));
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbbw3"));
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbns2"));
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbns2"));
+   new(MON+"tyranid1.c")->move(environment());
+   new(MON+"tyranid1.c")->move(environment());
+   new(MON+"tyranid1.c")->move(environment());
+   new(MON+"tyranid1.c")->move(environment());
 
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbns1"));
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbew10"));
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbew1"));
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbbw1"));
+   new(MON+"stealer1.c")->move(environment());
+   new(MON+"stealer1.c")->move(environment());
+   new(MON+"stealer1.c")->move(environment());
+   new(MON+"stealer1.c")->move(environment());            
 
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbbw2"));
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbbw3"));
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbns2"));
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(find_object_or_load("/d/daybreak/room/dbns2"));
 //END
 switch(random(16)){
 
@@ -611,9 +543,9 @@ message("info","%^B_YELLOW%^Somthing drops on the corpse you should probably LOO
 	break;
 	case 13:
 message("info","%^B_YELLOW%^Somthing drops on the corpse you should probably LOOK at corpse%^RESET%^", environment(this_object()), this_object());
-    ob = new("/d/damned/virtual/greate-axe_6.weapon");
+    ob = new("/d/damned/virtual/great-axe_6.weapon");
     ob->move(this_object());
-    ob -> set("short", mtlname+" greate-axe of "+damage1+" and "+damage2);      
+    ob -> set("short", mtlname+" great-axe of "+damage1+" and "+damage2);      
     ob->set_wc(zlevel);
     ob -> set_wc(zlevel, damage1);
     ob -> set_wc(zlevel, damage2);

@@ -64,14 +64,14 @@ void create() {
       case 10:damage2="plasma";break;
     }
 
-    zlevel = (36+random(5));
+    zlevel = (100+random(10));
 
     set_level(zlevel);
 
-   set_overall_ac(zlevel*5);
+   set_overall_ac(zlevel*1000);
    set_property("magic resistance", zlevel*7);
    set_skill("resist stun", zlevel*7);
-   set_property("enhance criticals",-1);
+   set_property("enhance criticals",-5);
 
    set_melee_damage(([ "crushing" : zlevel,"plasma" : zlevel, "impact" : zlevel ]));
 
@@ -90,10 +90,10 @@ void create() {
    set("gang bang", 1);
    // set("aggressive", 0);
 
-   //set_hp(zlevel*250 + zlevel*2);
-   //set_max_hp(zlevel*250 + zlevel*2);
- set_hp(100);
- set_max_hp(100);
+   set_hp(zlevel*250 + zlevel*2);
+   set_max_hp(zlevel*250 + zlevel*2);
+ //set_hp(100);
+ //set_max_hp(100);
     //set_max_mp(7000);
     //set_mp(7000);
 
@@ -157,10 +157,22 @@ void create() {
     force_me("use electricity lore");
     set_spell_level("greater elemental bolt", 5);
     add_spell("greater elemental bolt", "$A");
-    set_spell_level("greater elemental storm", 5);
-    add_spell("greater elemental storm", "$A"); 
+    //set_spell_level("greater elemental storm", 5);
+    //add_spell("greater elemental storm", "$A"); 
 
     set_property("handedness", "right hand");
+
+    ob = new("/std/spells/shadows/ele_pres_shad");
+    ob->set_power(3);
+    ob->set_damage(({ "unholy", "fire" }));
+    ob->set_shadow_name("Space Marine Presence");
+    ob->start_shadow(this_object(), 2000000000, "");
+
+    ob = new("/std/spells/shadows/ele_pres_shad");
+    ob->set_power(5);
+    ob->set_damage(({ damage1 , damage2 }));
+    ob->set_shadow_name("Space Marine Presence2");
+    ob->start_shadow(this_object(), 2000000000, "");
 
 switch(random(4)){
 case 0:ob = new("/d/damned/virtual/battle-axe_6.weapon");
@@ -351,11 +363,41 @@ void die(object ob) {
  message("shout", "%^BOLD%^%^BLUE%^Space Marine shouts:%^RESET%^ "+
 "You fools!  You have unleashed the Horde of Tyranid! Quick, run for yor lives!", users());
 
-   new(MON+"carnifex1.c")->move(environment());
-   new(MON+"lictor2.c")->move(environment());
-   new(MON+"zoanthrope2.c")->move(environment());;
-   new(MON+"tyrant1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());
+   ob1=new(MON+"carnifex1.c");
+ob1->set_level(this_object()->query_attackers()[0]->query_level());
+ob1->set_short("["+(this_object()->query_attackers()[0]->query_level())+"]Carnifex");
+ob1->set_melee_damage(([ "crushing" : zlevel, damage1 : zlevel, damage2 : zlevel ]));
+ob1->force_me("unequip");
+ob1->move(environment());
+
+   ob1=new(MON+"lictor2.c");
+ob1->set_level(this_object()->query_attackers()[0]->query_level());
+ob1->set_short("["+(this_object()->query_attackers()[0]->query_level())+"]Lictor");
+ob1->set_melee_damage(([ "crushing" : zlevel, damage1 : zlevel, damage2 : zlevel ]));
+ob1->force_me("unequip");
+ob1->move(environment());
+
+   ob1=new(MON+"zoanthrope2.c");
+ob1->set_level(this_object()->query_attackers()[0]->query_level());
+ob1->set_short("["+(this_object()->query_attackers()[0]->query_level())+"]Zoanthrope");
+ob1->set_melee_damage(([ "crushing" : zlevel, damage1 : zlevel, damage2 : zlevel ]));
+ob1->force_me("unequip");
+ob1->move(environment());
+
+   ob1=new(MON+"tyrant1.c");
+ob1->set_level(this_object()->query_attackers()[0]->query_level());
+ob1->set_short("["+(this_object()->query_attackers()[0]->query_level())+"]Tyrant");
+ob1->set_melee_damage(([ "crushing" : zlevel, damage1 : zlevel, damage2 : zlevel ]));
+ob1->force_me("unequip");
+ob1->move(environment());
+
+   ob1=new(MON+"stealer1.c");
+ob1->set_level(this_object()->query_attackers()[0]->query_level());
+ob1->set_short("["+(this_object()->query_attackers()[0]->query_level())+"]Stealer");
+ob1->set_melee_damage(([ "crushing" : zlevel, damage1 : zlevel, damage2 : zlevel ]));
+ob1->force_me("unequip");
+ob1->move(environment());
+
    new(MON+"tyranid1.c")->move(environment());
    new(MON+"tyranid1.c")->move(environment());
    new(MON+"tyranid1.c")->move(environment());
@@ -363,101 +405,9 @@ void die(object ob) {
 
    new(MON+"stealer1.c")->move(environment());
    new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());;
    new(MON+"stealer1.c")->move(environment());
-             
-   new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());;
+   new(MON+"stealer1.c")->move(environment());            
 
-   new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());
-
-   new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());
-             
-   new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());
-
-   new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());
-   new(MON+"stealer1.c")->move(environment());
-
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
-
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
-
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
-
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
-   ob1 = new(MON+"tyranid1.c");
-   ob1->set_moving(1);
-   ob1->set_speed(10);
-   ob1->move(environment());
 //END
 switch(random(16)){
 
@@ -593,9 +543,9 @@ message("info","%^B_YELLOW%^Somthing drops on the corpse you should probably LOO
 	break;
 	case 13:
 message("info","%^B_YELLOW%^Somthing drops on the corpse you should probably LOOK at corpse%^RESET%^", environment(this_object()), this_object());
-    ob = new("/d/damned/virtual/greate-axe_6.weapon");
+    ob = new("/d/damned/virtual/great-axe_6.weapon");
     ob->move(this_object());
-    ob -> set("short", mtlname+" greate-axe of "+damage1+" and "+damage2);      
+    ob -> set("short", mtlname+" great-axe of "+damage1+" and "+damage2);      
     ob->set_wc(zlevel);
     ob -> set_wc(zlevel, damage1);
     ob -> set_wc(zlevel, damage2);

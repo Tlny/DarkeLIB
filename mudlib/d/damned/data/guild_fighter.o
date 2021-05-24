@@ -9,6 +9,6 @@ pre_exit_func ([])
 post_exit_func ([])
 tracks ({})
 __Items (["blue moon":0,"sky":0,"ankh":0,"moon":0,"red moon":0,"sun":0,"warzau":0,"green moon":0,"moons":0,"luna":0,])
-guild_list (["maxer":(["status":"member",]),"zorgan":(["status":"member",]),"rodria":(["status":"member",]),"markos":(["status":"member",]),"jai":(["status":"member",]),"yoshi":(["status":"member",]),"mirir":(["status":"member",]),"argon":(["status":"member",]),"flatulence":(["status":"member",]),"delander":(["status":"member",]),"redeye":(["status":"member",]),])
+guild_list (["maxer":(["status":"member",]),"rodria":(["status":"member",]),"markos":(["status":"member",]),"beta":(["status":"member",]),"sigzil":(["status":"member",]),"flatulence":(["status":"member",]),"delander":(["status":"member",]),"zorgan":(["status":"member",]),"jai":(["status":"member",]),"yoshi":(["status":"member",]),"dummy":(["status":"member",]),"mirir":(["status":"member",]),"argon":(["status":"member",]),"randomredmage":(["status":"member",]),"redeye":(["status":"member",]),"kisama":(["status":"member",]),])
 banish ([])
 master "yoshi"

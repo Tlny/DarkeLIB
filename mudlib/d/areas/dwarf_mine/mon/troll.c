@@ -70,7 +70,7 @@ switch(random(7)){
    set_level(zlevel);
 
    set_overall_ac(zlevel*2);
-   set_property("magic resistance", zlevel*3);
+   set_property("magic resistance", zlevel/2);
    set_skill("resist stun", zlevel+zlevel+zlevel);
    set_melee_damage(([ damage1 : zlevel, damage2 : zlevel, "crushing" : zlevel ]));
 

@@ -47,5 +47,19 @@ void create() {
     set_ac(500, "cold");
     set_ac(500, "chaos");
     set_verb("beat");
+
+   set_wield((: call_other, this_object(), "check_samoan" :));
     return;
+}
+
+int check_samoan() {
+
+  if((string)this_player()->query_race() != "samoan") {
+
+    write("Only the God Sasa may wield this weapon!");
+
+    return 0;
+
+  }
+return 1;
 }

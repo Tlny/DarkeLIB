@@ -42,6 +42,7 @@ void reset() {
 	::reset();
 	seteuid(getuid());
 	inv = all_inventory(this_object());
+if (sizeof(all_inventory(this_object())) > 80) return;
 	while(i--) if(!living(inv[i])) inv[i]->remove();
 	for(i=1; i<=30;i++) {
 		new(MISC+"roll")

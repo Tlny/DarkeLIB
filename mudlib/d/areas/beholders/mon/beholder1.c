@@ -1,12 +1,18 @@
 #include <std.h>
-#include "../a1.h"
 
 inherit MONSTER;
 string mtlname;
 string damage1;
 string damage2;
 int zlevel, lvl, llvl, zskill, zskillx, zskillac, zspell;
+    mixed desc;
  
+void init() {
+    :: init();
+    add_action("no","northwest");
+    add_action("no","southwest");
+}
+
 void create() {
    object ob;
    ::create();
@@ -27,7 +33,7 @@ void create() {
       case 12:mtlname="iysaughton";break;
       case 13:mtlname="laen";break;
     }
-    switch(random(11)){
+    switch(random(13)){
       case 0:damage1="crushing";break;
       case 1:damage1="cutting";break;
       case 2:damage1="impaling";break;
@@ -39,8 +45,10 @@ void create() {
       case 8:damage1="electricity";break;
       case 9:damage1="disruption";break;
       case 10:damage1="plasma";break;
+      case 11:damage1="holy";break;
+      case 12:damage1="infernal";break;
     }
-    switch(random(11)){
+    switch(random(13)){
       case 0:damage2="crushing";break;
       case 1:damage2="cutting";break;
       case 2:damage2="impaling";break;
@@ -52,11 +60,15 @@ void create() {
       case 8:damage2="electricity";break;
       case 9:damage2="disruption";break;
       case 10:damage2="plasma";break;
+      case 11:damage2="unholy";break;
+      case 12:damage2="aether";break;
     }
 
-    zlevel = (47+random(5));
-    lvl = 1;
-    llvl = 2;
+    zlevel = (200+random(51));
+//Controls Loot level and other fucntions do to raise to high multpies loot
+    lvl = 2;
+//Controls critical hit reduction and other such
+    llvl = 20;
     zskill = 8;
     zskillx = 6;
     zskillac = 5;
@@ -64,73 +76,67 @@ void create() {
 
     set_level(zlevel);
 
-   set_overall_ac(zlevel*zskillac+random(zlevel));
-   set_property("magic resistance", zlevel*zskillx+random(zlevel));
-   set_skill("resist stun", zlevel*zskillx+random(zlevel));
+   set_overall_ac(zlevel*zskillac);
+   set_property("magic resistance", zlevel*zlevel);
+   set_skill("resist stun", zlevel*zskillx);
    set_property("enhance criticals",-llvl);
+
 
    set_melee_damage(([ "crushing" : zlevel, damage1 : zlevel, damage2 : zlevel ]));
 
-   set_money("gold", random(zlevel*lvl)+zlevel); 
+   set_money("mithril", random(zlevel*lvl)+zlevel); 
 
-set_name("dragon");
-   set("id", ({ "dragon", "Dragon", "tan dragon", "mighty dragon", "mighty", "tan" }));
-   set("long",
-	"Scales ripple as powerful muscles move beneath the skin of this large "+
-	"dragon.  The heat that ripples from his body gives evidence to the fire "+
-	"contained within.  Massive large claws as long as swords and sharp teeth "+
-	"only serve to add to this creatures powerful arsenal.");
-   set_short("["+zlevel+"]Mighty %^RESET%^%^COLOR172%^%^B_CYAN%^Tan%^RESET%^ Dragon");
+set_name("Beholder");
+   set("id", ({"beholder", "monster", "beholder monster" }) );
+   set("long",@ext A Beholder
+ext);
+   set_short("["+zlevel+"]Beholder");    
   
-   set("race", "dragon");
-   set_body_type("dragon");
-    switch(random(2)){
-    case 0:
-    set_gender("male");
-    break;
-    case 1:
-    set_gender("female");
-    break;
-    }
+   set("race", "beholder");
+   set_body_type("humanoid");
+   set_gender("male");
    set_alignment(100);
 
    set("gang bang", 1);
    set("aggressive", 1);
+    set("see invis", 1);
 
-   set_hp(zlevel*250 + zlevel*2);
-   set_max_hp(zlevel*250 + zlevel*2);
- //set_hp(100);
- //set_max_hp(100);
+   set_hp(zlevel*350 + zlevel*2);
+   set_max_hp(zlevel*350 + zlevel*2);
+//set_hp(100);
+//set_max_hp(100);
     //set_max_mp(7000);
     //set_mp(7000);
 
-    set_stats("strength", zskillx*zlevel+random(zlevel));
-    set_stats("dexterity", zskillx*zlevel+random(zlevel));
-    set_stats("constitution", zskillx*zlevel+random(zlevel));
-    set_stats("wisdom", zskillx*zlevel+random(zlevel));
-    set_stats("intelligence", zskillx*zlevel+random(zlevel));
-    set_stats("charisma", zskillx*zlevel+random(zlevel));
+
+
+    set_stats("strength", zskillx*zlevel);
+    set_stats("dexterity", zskillx*zlevel);
+    set_stats("constitution", zskillx*zlevel);
+    set_stats("wisdom", zskillx*zlevel);
+    set_stats("intelligence", zskillx*zlevel);
+    set_stats("charisma", zskillx*zlevel);
     
-    set_skill("attack", zskill*zlevel+random(zlevel));
-    set_skill("two handed blade", zskill*zlevel+random(zlevel));
-    set_skill("two handed blunt",  zskill*zlevel+random(zlevel));
-    set_skill("two handed flail", zskill*zlevel+random(zlevel));
-    set_skill("two handed polearm", zskill*zlevel+random(zlevel));
-    set_skill("two handed staff", zskill*zlevel+random(zlevel));
-    set_skill("axe", zskill*zlevel+random(zlevel));
-    set_skill("blade", zskill*zlevel+random(zlevel));
-    set_skill("blunt", zskill*zlevel+random(zlevel));
-    set_skill("knife",  zskill*zlevel+random(zlevel));
-    set_skill("flail", zskill*zlevel+random(zlevel));
-    set_skill("melee", zskillx*zlevel+random(zlevel));
+    set_skill("attack", zskill*zlevel);
+    set_skill("two handed blade", zskill*zlevel);
+    set_skill("two handed blunt",  zskill*zlevel);
+    set_skill("two handed flail", zskill*zlevel);
+    set_skill("two handed polearm", zskill*zlevel);
+    set_skill("two handed staff", zskill*zlevel);
+    set_skill("axe", zskill*zlevel);
+    set_skill("blade", zskill*zlevel);
+    set_skill("blunt", zskill*zlevel);
+    set_skill("knife",  zskill*zlevel);
+    set_skill("flail", zskill*zlevel);
+    set_skill("melee", zskill*zlevel);
 
-    set_skill("parry", zskillx*zlevel+random(zlevel));
-    set_skill("dodge", zskillx*zlevel+random(zlevel));
-    set_skill("block", zskillx*zlevel+random(zlevel));
+    set_skill("parry", zskillx*zlevel);
+    set_skill("dodge", zskillx*zlevel);
+    set_skill("block", zskillx*zlevel);
 
-    set_skill("combo", zskillx*zlevel+random(zlevel));
-    set_skill("reverse stroke", zskillx*zlevel+random(zlevel));
-    set_skill("perception", zskillx*zlevel+random(zlevel));
+    set_skill("combo", zskillx*zlevel);
+    set_skill("reverse stroke", zskillx*zlevel);
+    set_skill("perception", zskillx*zlevel);
 
     set_combat_chance(100);
 
@@ -139,9 +145,10 @@ set_name("dragon");
     set_skill("shield bash", zskillx*zlevel);
     set_skill("reverse stroke", zskillx*zlevel); 
     set_skill("defense", zskillx*zlevel);
-    set("see invis", 1);
+    
 
-
+    set_skill("concentrate", zskillx*zlevel);
+    force_me("use concentrate");
 
     set_skill("necromancy", zspell*zlevel);
     add_spell("curse", "$A");
@@ -157,7 +164,8 @@ set_name("dragon");
     set_spell_level("chaos storm", 6);
 */
 /*
-    set_skill("prayer", zspell*zlevel);
+
+   set_skill("prayer", zspell*zlevel);
     add_spell("wrath of god", "$A");
     set_spell_level("wrath of god", 6);
     add_spell("holy condemnation", "$A");
@@ -165,14 +173,12 @@ set_name("dragon");
     add_spell("mass heal", "$A");
     set_spell_level("mass heal", 6);
     set_skill("lay on hands", zskill*zlevel);
-*/
-    set_skill("magery", zspell*zlevel);
+
+   set_skill("magery", zspell*zlevel);
     add_spell("slow", "$A");
-    set_spell_level("slow", 3);
-    set_skill("concentrate", zskillx*zlevel);
-    force_me("use concentrate");
-/*
-    set_skill("conjuration", zspell*zlevel);
+    set_spell_level("slow", 6);
+
+   set_skill("conjuration", zspell*zlevel);
     add_spell("magic missile", "$A");
     set_spell_level("magic missile", 6);
     add_spell("lightning bolt", "$A");
@@ -186,13 +192,23 @@ set_name("dragon");
     add_spell("meteor storm", "$A");
     set_spell_level("meteor storm", 6);
 
-    set_skill("illusionism", zspell*zlevel);
+   set_skill("illusionism", zspell*zlevel);
 */
 /*
+string elelore;
+
+    switch(random(7)){
+      case 0:elelore="electricity lore";break;
+      case 1:elelore="inertia lore";break;
+      case 2:elelore="plasma lore";break;
+      case 3:elelore="vacid lore";break;
+      case 4:elelore="chaos lore";break;
+      case 5:elelore="aether lore";break;
+      case 6:elelore="nexus lore";break;
+    }
     set_skill("elementalism", zspell*zlevel);
-    set_skill("electricity lore", zspell*zlevel);
-    force_me("use electricity lore"); 
-//nexus lore, aether lore, chaos lore, vacid lore, plasma lore, inertia lore 
+    set_skill(elelore, zspell*zlevel);
+    force_me("use "+ elelore); 
 
     set_spell_level("greater elemental bolt", 6);
     add_spell("greater elemental bolt", "$A");
@@ -201,56 +217,138 @@ set_name("dragon");
     set_spell_level("greater elemental storm", 6);
     add_spell("greater elemental storm", "$A"); 
 */
+
+    set_skill("black magic", zspell*zlevel);
+    add_spell("syphon soul", "$A");
+    set_spell_level("syphon soul", 6);
+    
+    set_skill("necromancy", zspell*zlevel);
+    add_spell("dark breath", "$A");
+    set_spell_level("dark breath", 6);
+
+    set_skill("conjuration", zspell*zlevel);
+    //add_spell("magic missile", "$A");
+    //set_spell_level("magic missile", 6);
+    add_spell("ice breath", "$A");
+    set_spell_level("ice breath", 6);
+    add_spell("fire breath", "$A");
+    set_spell_level("fire breath", 6);
+
+    set_skill("energy manipulation", zspell*zlevel);
+    add_spell("implosion", "$A");
+    set_spell_level("implosion", 6);
+
+    set_skill("chaos magic", zspell*zlevel);
+    add_spell("hell blast", "$A");
+    set_spell_level("hell blast", 6);
+
+
+
+    ob = new("/std/spells/shadows/ele_pres_shad");
+    ob->set_power(3);
+    ob->set_damage(({ "unholy", "fire" }));
+    ob->set_shadow_name("Beholder Presence");
+    ob->start_shadow(this_object(), 2000000000, "");
+
+    ob = new("/std/spells/shadows/ele_pres_shad");
+    ob->set_power(5);
+    ob->set_damage(({ "infernal", "aether" }));
+    ob->set_shadow_name("Beholder Presence2");
+    ob->start_shadow(this_object(), 2000000000, "");
+
+    ob = new("/d/areas/beholders/spells/ed_shield.c");
+    ob->set_damage_allowed(25000);
+    ob->set_shadow_name("Beholder shield");
+    ob->start_shadow(this_object(), 2000000000, "");
+
     set_property("handedness", "right hand");
  
-
-}
+    //ob = new("/d/damned/virtual/brass-knuckles_6.weapon");
+    //ob = new("/d/damned/virtual/bokken_6.weapon");
+    //ob = new("/d/damned/virtual/military-pick_6.weapon");
+    //ob = new("/d/damned/virtual/wooden-axe_6.weapon");
+    //ob->move(this_object());
 /*
-string query_element() { return "electricity"; }
+    ob->set_ac(200);
+    ob->set_name("sasa stick");
+    ob->set("id", ({ "stick", "sasa stick"}));
+    ob->set_short("%^BLUE%^Sasa Stick%^RESET%^");
+    ob->set_long("This is a large stick that Sasa uses to beat you with.");
+    ob->set_quality(6);
+    ob->set_type("blunt");
+    ob->set_weight(10);
+    ob->set_material("metal/eog");
+    ob->set_value(10000);
 
-void catch_tell(string str) {
-  string who;
-  object plyr, *inv;
+    ob->set_wc(555 ,"aether");
+    ob->set_wc(555 ,"infernal");
+    ob->set_wc(555 ,"unholy");
+    ob->set_wc(555 ,"holy");
+    ob->set_wc(555 ,"plasma");
+    ob->set_wc(555 ,"disruption");
+    ob->set_wc(555 ,"electricity");
+/*
+    ob->set_wc(555 ,"vacuum");
+    ob->set_wc(555 ,"cold");
+    ob->set_wc(555 ,"fire");
+    ob->set_wc(555 ,"stress");
+    ob->set_wc(555 ,"impact");
+    ob->set_wc(555 ,"strike");
+    ob->set_wc(555 ,"impaling");
+    ob->set_wc(555 ,"cutting");
+    ob->set_wc(555 ,"crushing");
 
-  str = eliminate_colour(str);
-  if(!this_object()->query_casting() && sscanf(str, "%s begins casting a
-spell.", who)) {
-    if(who == "Someone") {
-      inv = all_inventory(environment());
-      inv = filter_array(inv, (: call_other :), "is_player");
-      inv = filter_array(inv, (: call_other :), "query_invis");
-      inv = filter_array(inv, (: call_other :), "query_casting");
-      if(!sizeof(inv)) {
-        return;
-      }
-      plyr = inv[0];
-    }
-    else
-      plyr = present(lower_case(who), environment());
-    if(!plyr) {
-      return;
-    }
-    if(plyr->is_player() && (int)plyr->query_level() > 15) {
-      force_me("cast *5 greater elemental bolt at
-"+(string)plyr->query_name());
-    }
-    return;
-  }
-  if(str == "YOU CAN MOVE AGAIN!!!" && !query_casting() &&
-(inv=query_attackers())) {
-    if(sizeof(inv) >= 3)
-      force_me("cast *5 greater elemental storm");
-    else if(sizeof(inv))
-      force_me("cast *5 greater elemental bolt at "+
-        (string)inv[0]->query_name());
-  }
-  return;
-}
+    ob->set_enh_critical(1000);
+    ob->set_property("hit bonus", 300);
+    ob->set_property("auto critical", ([ "a1 E" : 1000,"a1 D" : 1000,"a1 C" : 1000, ]));
+
+	ob->set_auto_critical("a1 A");
+	ob->set_auto_critical("a1 B");
 */
+	  //ob->set_property("no decay",1);
+    //ob->set_decay_rate(100000);
+    //ob->set_property("brittle", 600);
+    //ob->set_verb("beat");
+
+/*
+    ob = new("/d/1tlny/loot/hooded_robe");
+    ob->move(this_object());    
+    ob->set_ac(59500);
+    ob = new("/d/damned/virtual/large-shield.armour");
+    ob -> set_property("extra long","level["+zlevel+"] "+mtlname+" shield of "+damage1+" and "+damage2+" protection");
+    ob->move(this_object());    
+    ob->set_ac(59500);
+    ob = new("/d/damned/virtual/chain-mail.armour");
+    ob->move(this_object());    
+    ob->set_ac(59500);
+    ob = new("/d/damned/virtual/plate-greaves.armour");
+    ob->move(this_object());    
+    ob->set_ac(59500);
+    ob = new("/d/damned/virtual/plate-bracer.armour");
+    ob->move(this_object());    
+    ob->set_ac(59500);
+    ob = new("/d/damned/virtual/plate-bracer.armour");
+    ob->move(this_object());    
+    ob->set_ac(59500);
+    ob = new("/d/damned/virtual/great-helm.armour");
+    ob->move(this_object());    
+    ob->set_ac(59500);
+    ob = new("/d/damned/virtual/metal-boots.armour");
+    ob->move(this_object());    
+    ob->set_ac(59500);
+    ob = new("/d/damned/virtual/gauntlet.armour");
+    ob->move(this_object());    
+    ob->set_ac(59500);
+    ob = new("/d/damned/virtual/gauntlet.armour");
+    ob->move(this_object());    
+    ob->set_ac(59500);
+*/    
+    force_me("equip");
+}
 
 void die(object ob) {
 
-switch(random(75)){
+switch(random(20)){
 
 	case 0:
 message("info","%^BLACK%^%^B_YELLOW%^Somthing drops on the corpse you should probably LOOK at corpse%^RESET%^", environment(this_object()), this_object());
@@ -410,7 +508,7 @@ message("info","%^BLACK%^%^B_YELLOW%^Somthing drops on the corpse you should pro
 	break;
 	case 13:
 message("info","%^BLACK%^%^B_YELLOW%^Somthing drops on the corpse you should probably LOOK at corpse%^RESET%^", environment(this_object()), this_object());
-    ob = new("/d/damned/virtual/greate-axe_6.weapon");
+    ob = new("/d/damned/virtual/great-axe_6.weapon");
     ob -> set_property("new desc", "level["+zlevel+"] "+mtlname+" great-axe of "+damage1+" and "+damage2);
     ob -> set_short((string)ob->query_property("new desc"));
     ob -> set_property("extra long","level["+zlevel+"] "+mtlname+" great-axe of "+damage1+" and "+damage2);
@@ -448,11 +546,12 @@ message("info","%^COLOR222%^A extra ingot drops on the corpse you should probabl
    ob->move(this_object());
 }
 switch(random(100)){
-    case 99:
+    case 95:
 message("info","%^COLOR200%^Very Rare loot drops on the corpse you should probably LOOK at corpse and get it%^RESET%^", environment(this_object()), this_object());
-    ob = new("/d/1tlny/loot/hooded_robe");
-    ob -> set_property("new desc", "level["+zlevel+"] Rare Robe of "+damage1+" and "+damage2+" protection");
-    ob -> set_property("extra long", "level["+zlevel+"] Rare Robe of "+damage1+" and "+damage2+" protection");
+    ob = new("/d/1tlny/loot/multi_stat_ring");
+    ob -> set_property("new desc", "level["+zlevel+"] Rare Ring of "+damage1+" and "+damage2+" protection");
+    ob -> set_property("extra long", "level["+zlevel+"] Rare Ring of "+damage1+" and "+damage2+" protection");
+    ob -> set_property("znum", 10);
     ob -> set_short((string)ob->query_property("new desc"));
     ob->set_ac(zlevel*lvl+random(zlevel*lvl));      
     ob -> set_ac(zlevel*(llvl+lvl)+random(zlevel*lvl), damage1);
@@ -462,27 +561,15 @@ message("info","%^COLOR200%^Very Rare loot drops on the corpse you should probab
    ::die();
 }
 
-void init()
-{
-    ::init();
-    //add_action("no","north");
-    //add_action("no","east");
-    //add_action("no","west");
-    //add_action("no","enter");
-    //add_action("no","northeast");
-    //add_action("no","northwest");
-}
-
 int no()
 {
-    if(wizardp(this_player())) return 0;
+   if(archp(this_player())) return 0;
    if(this_player()->query_ghost()) return 0;
-else
     message("blocking",
-      "The Dragon roars at you, blocking your path.\n",
+      "The Beholder moves in front of you, blocking your path.\n",
       this_player());
     message("blocking",
-      "The Dragon roars blocking "+capitalize(this_player()->query_name())+"'s path.\n",
+      "The Beholder blocks "+capitalize(this_player()->query_name())+"'s path.\n",
       all_inventory(this_object()),
       this_player());
     return 1;

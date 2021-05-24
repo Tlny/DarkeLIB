@@ -24,7 +24,7 @@
 4_23:/d/areas/catacombs/rooms/forst000:clearing:Catacombs (level 10-20+)
 4_5:/d/areas/mansion/rooms/trail1:trail:A dark trail (level 10-20+)
 #LEVEL 15-20+
-12_4:/d/areas/tyranid/rooms/entry:enter:Alien Hive (level 15-20+)
+12_4:/d/areas/tyranid/rooms/entry:hive:Alien Hive (level 15-20+)
 25_15:/d/zortek/canyon/room/entry:canyon:The entrance to Devil's Canyon (level 15-20+)
 #
 #LEVEL 25+
@@ -37,6 +37,7 @@
 73_13:/d/areas/dragon/rooms/entry:cave:A Huge Cave you hear Dragons?(Level 40-60++?)
 24_6:/d/areas/keep/rooms/outside1:keep:The Dark Black Keep of Owedquar (level 40-60+)
 #
+23_52:/d/areas/beholders/rooms/entry:doom:The Halls of Doom (level 150++)
 #NOT YET SORTED
 #########8_22:/d/caves/rooms/cave001:cave:A cave
 8_5:/d/areas/daybreak_castle/rooms/enter.c:enter:Daybreak Castle (All Levels)
@@ -49,3 +50,7 @@
 22_22:/d/damned/virtual/dalau_room_1.castle:castle:Dalau's Castle
 34_46:/d/damned/virtual/singe_room_1.castle:castle:Singe's Castle
 8_9:/d/damned/virtual/thromax_room_1.castle:castle:Thromax's Castle
+7_11:/d/damned/virtual/zarkt_mine1_7_11.mine:mine:The entrance to Zarkt's Mine
+7_11:/d/damned/virtual/zarkt_room_1.castle:castle:Zarkt's Castle
+4_12:/d/damned/virtual/paramoor_mine1_4_12.mine:mine:The entrance to Paramoor's Mine
+2_21:/d/damned/virtual/rihcter_mine1_2_21.mine:mine:The entrance to Rihcter's Mine

@@ -7,6 +7,12 @@
 #define ARMOR_PATH "/d/camps/catacombs/armor/"
 #define WEAP_PATH "/d/camps/catacombs/weapon/"
 inherit MONSTER;
+
+void init() {
+    :: init();
+    add_action("no","east");
+    return;
+}
  
 void create() {
    object ob;
@@ -15,7 +21,7 @@ void create() {
    set_name("Infernal skeleton");
    set("id", ({"skeleton", "infernal skeleton"}) );
    set_level(60);
-  // set_property("enhance criticals",-5);
+   set_property("enhance criticals",-5);
    set_max_hp(50000);
    set_hp(50000);
    set_overall_ac(1500);
@@ -87,6 +93,37 @@ void create() {
     ob->set_ac(200);
 */
    // force_me("equip");
+    ob = new("/std/spells/shadows/ele_pres_shad");
+    ob->set_power(3);
+    ob->set_damage(({ "unholy", "fire" }));
+    ob->set_shadow_name("Skeleton Presence");
+    ob->start_shadow(this_object(), 2000000000, "");
+
+    ob = new("/std/spells/shadows/ele_pres_shad");
+    ob->set_power(5);
+    ob->set_damage(({ "infernal" }));
+    ob->set_shadow_name("Skeleton Presence2");
+    ob->start_shadow(this_object(), 2000000000, "");
+
+    ob = new("/d/areas/beholders/spells/skeleton_shield.c");
+    ob->set_damage_allowed(25000);
+    ob->set_shadow_name("skeleton shield");
+    ob->start_shadow(this_object(), 2000000000, "");
+
+}
+
+int no()
+{
+   if(archp(this_player())) return 0;
+   if(this_player()->query_ghost()) return 0;
+    message("blocking",
+      "The Skeleton jumps in front of you, blocking your path.\n",
+      this_player());
+    message("blocking",
+      "The Skeleton blocks "+capitalize(this_player()->query_name())+"'s path.\n",
+      all_inventory(this_object()),
+      this_player());
+    return 1;
 }
 
 int loot;

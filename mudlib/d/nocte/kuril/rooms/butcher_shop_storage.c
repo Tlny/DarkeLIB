@@ -38,6 +38,7 @@ void reset() {
 	seteuid(getuid());
 	inv = all_inventory(this_object());
 	while(i--) if(!living(inv[i])) inv[i]->remove();
+if (sizeof(all_inventory(this_object())) > 80) return;
 	for(i=1; i<=20;i++) {
 		new(MISC+"rack_of_lamb")
 			->move(this_object());

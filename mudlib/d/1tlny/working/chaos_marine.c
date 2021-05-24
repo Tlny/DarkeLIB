@@ -64,7 +64,7 @@ void create() {
     set_level(zlevel);
 
    set_overall_ac(zlevel*zskillac);
-   set_property("magic resistance", zlevel*zskillx);
+   set_property("magic resistance", zlevel/2);
    set_skill("resist stun", zlevel*zskillx);
    set_property("enhance criticals",-llvl);
 
@@ -508,7 +508,7 @@ message("info","%^B_YELLOW%^Somthing drops on the corpse you should probably LOO
 	break;
 	case 13:
 message("info","%^B_YELLOW%^Somthing drops on the corpse you should probably LOOK at corpse%^RESET%^", environment(this_object()), this_object());
-    ob = new("/d/damned/virtual/greate-axe_6.weapon");
+    ob = new("/d/damned/virtual/great-axe_6.weapon");
     ob -> set_property("new desc", "level["+zlevel+"] "+mtlname+" great-axe of "+damage1+" and "+damage2);
     ob -> set_short((string)ob->query_property("new desc"));
     ob -> set_property("extra long","level["+zlevel+"] "+mtlname+" great-axe of "+damage1+" and "+damage2);

@@ -2,18 +2,16 @@
 
 inherit "std/room";
 #define ENTRY "d/areas/beholders/rooms/01"
+int i;
 
 void reset() {
-    int i;
     ::reset();
-if (!present("sentry")) 
+    if(!present("shadowflame"))
     {
-	i = random(1)+1;
+	i = random(3)+1;
 	while(i--)
 	{
-//new(MON+"sentry.c")->move(this_object());
-new(MON+"shieldbreaker.c")->move(this_object());
-	    new(MON+"youngslayer")->move(this_object());
+	    new(MON+"shadowflamet.c")->move(this_object());
 	}
   }
 }
@@ -34,11 +32,11 @@ A tall graveyard in a shady boulder field marks the entrance to this dungeon.
     
 ext);
     set_exits( ([
-	//"out": "/d/damned/virtual/room_8_22.world",
+	"out": "/d/damned/virtual/room_23_52.world",
 	"enter": ENTRY,
       ]) );
-	add_pre_exit_function("out","check_race");
-	call_out("load_rooms", 1);
+	//add_pre_exit_function("out","check_race");
+	//call_out("load_rooms", 1);
 }
 
 /*

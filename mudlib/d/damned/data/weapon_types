@@ -390,7 +390,7 @@ verb:::
 
 (great-axe):
 id:::
-({ "axe", "great axe" })
+({ "axe", "great-axe, great axe" })
 short:::
 "great axe"
 long:::

@@ -65,7 +65,7 @@ void create() {
     set_level(zlevel);
 
    set_overall_ac(zlevel*zskillac+random(zlevel));
-   set_property("magic resistance", zlevel*zskillx+random(zlevel));
+   set_property("magic resistance", zlevel/2);
    set_skill("resist stun", zlevel*zskillx+random(zlevel));
    set_property("enhance criticals",-llvl);
 

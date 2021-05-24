@@ -13,7 +13,7 @@ int zlevel;
 
    set_level(zlevel);
    set_overall_ac(zlevel+5);
-   set_property("magic resistance", zlevel);
+   set_property("magic resistance", zlevel/2);
    set_skill("resist stun", zlevel);
    set_melee_damage(([ "crushing" : zlevel,"cutting" : zlevel ]));
 

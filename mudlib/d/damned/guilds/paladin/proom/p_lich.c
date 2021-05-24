@@ -2,7 +2,7 @@
  
 #include "std.h"
 #define PATH "/d/areas/catacombs/rooms/"
-#define MON_PATH "/d/areas/catacombs/mon/"
+#define MON_PATH "/d/damned/guilds/paladin/proom/mon/"
 #define MISC_PATH "/d/areas/catacombs/misc/"
 #define ARMOR_PATH "/d/areas/catacombs/armor/"
 #define WEAP_PATH "/d/areas/catacombs/weapon/"
@@ -16,8 +16,8 @@ void create() {
    set_name("lich");
    set("id", ({"lich", "evil lich", "lich_to_start_invasion"}) );
    set_level(40);
-   set_max_hp(25000);
-   set_hp(25000);
+   set_max_hp(2500);
+   set_hp(2500);
    set("short", "evil lich");
    set("long",
    "The horrible creature before you is the most feared of all undead, the "
@@ -30,7 +30,7 @@ void create() {
    set_gender("male");
    set_money("mithril", 40+(random(25)));
    set_body_type("human");
-   set_overall_ac(300);
+   set_overall_ac(600);
 
     set("see invis", 1);
     add_sight_bonus(1000);
@@ -147,12 +147,13 @@ void catch_tell(string str) {
       tp = present(a, environment(this_object()));
       if(!tp) return;
       force_me("cast *6 curse at "+a);
+
  message("shout", "%^BOLD%^%^BLUE%^Evil Lich shouts:%^RESET%^ "+
 "Wretched mortals!  You have disturbed my peace "+
 "Unleash my undead hordes upon the realms!  Destroy the "+
 "vagabonds, my loyal minions!", users());
 
-    new(MON_PATH+"giant_skeleton")->move(environment());
+   new(MON_PATH+"giant_skeleton")->move(environment());
    new(MON_PATH+"giant_skeleton")->move(environment());
    new(MON_PATH+"giant_skeleton")->move(environment());
    new(MON_PATH+"giant_skeleton")->move(environment());
@@ -172,11 +173,7 @@ void catch_tell(string str) {
    new(MON_PATH+"giant_mummy")->move(environment());
    new(MON_PATH+"giant_mummy")->move(environment());
 
-    new(MON_PATH+"goldskel")->move(environment());
-    new(MON_PATH+"goldskel")->move(environment());
-    new(MON_PATH+"goldskel")->move(environment());
-    new(MON_PATH+"goldskel")->move(environment());
-    new(MON_PATH+"goldskel")->move(environment());
+
     new(MON_PATH+"goldskel")->move(environment());
     new(MON_PATH+"goldskel")->move(environment());
     new(MON_PATH+"goldskel")->move(environment());
@@ -193,36 +190,48 @@ void die(object ob) {
 "Wretched mortals!  You have won this battle, but my destruction shall not "+
 "have been in vain!  Unleash my undead hordes upon the realms!  Destroy the "+
 "vagabonds, my loyal minions!", users());
-   new(MON_PATH+"giant_skeleton")->move(environment());
-   new(MON_PATH+"giant_skeleton")->move(environment());
-   new(MON_PATH+"giant_skeleton")->move(environment());
-   new(MON_PATH+"giant_skeleton")->move(environment());
 
-   new(MON_PATH+"giant_mummy")->move(environment());
-   new(MON_PATH+"giant_mummy")->move(environment());
-   new(MON_PATH+"giant_mummy")->move(environment());
-   new(MON_PATH+"giant_mummy")->move(environment());
-             
-   new(MON_PATH+"giant_skeleton")->move(environment());
-   new(MON_PATH+"giant_skeleton")->move(environment());
-   new(MON_PATH+"giant_skeleton")->move(environment());
-   new(MON_PATH+"giant_skeleton")->move(environment());
+ob =new(MON_PATH+"goldskel");
+ob->set_level((int)this_player()->query_level());
+ob->set_short("["+((int)this_player()->query_level())+"]Gold Skeleton");
+ob->move(environment());
 
-   new(MON_PATH+"giant_mummy")->move(environment());
-   new(MON_PATH+"giant_mummy")->move(environment());
-   new(MON_PATH+"giant_mummy")->move(environment());
-   new(MON_PATH+"giant_mummy")->move(environment());
+ob =new(MON_PATH+"goldskel");
+ob->set_level(this_object()->query_attackers()[0]->query_level());
+ob->set_short("["+(this_object()->query_attackers()[0]->query_level())+"]Gold Skeleton");
+ob->move(environment());
 
-    new(MON_PATH+"goldskel")->move(environment());
-    new(MON_PATH+"goldskel")->move(environment());
-    new(MON_PATH+"goldskel")->move(environment());
-    new(MON_PATH+"goldskel")->move(environment());
-    new(MON_PATH+"goldskel")->move(environment());
-    new(MON_PATH+"goldskel")->move(environment());
-    new(MON_PATH+"goldskel")->move(environment());
-    new(MON_PATH+"goldskel")->move(environment());
-    new(MON_PATH+"goldskel")->move(environment());
-    new(MON_PATH+"goldskel")->move(environment());
+ob =new(MON_PATH+"goldskel");
+ob->set_level((int)this_player()->query_level());
+ob->set_short("["+((int)this_player()->query_level())+"]Gold Skeleton");
+ob->move(environment());
+
+ob =new(MON_PATH+"goldskel");
+ob->set_level(this_object()->query_attackers()[0]->query_level());
+ob->set_short("["+(this_object()->query_attackers()[0]->query_level())+"]Gold Skeleton");
+ob->move(environment());
+
+ob =new(MON_PATH+"goldskel");
+ob->set_level((int)this_player()->query_level());
+ob->set_short("["+((int)this_player()->query_level())+"]Gold Skeleton");
+ob->move(environment());
+
+ob =new(MON_PATH+"goldskel");
+ob->set_level(this_object()->query_attackers()[0]->query_level());
+ob->set_short("["+(this_object()->query_attackers()[0]->query_level())+"]Gold Skeleton");
+ob->move(environment());
+
+ob =new(MON_PATH+"goldskel");
+ob->set_level((int)this_player()->query_level());
+ob->set_short("["+((int)this_player()->query_level())+"]Gold Skeleton");
+ob->move(environment());
+
+ob =new(MON_PATH+"goldskel");
+ob->set_level(this_object()->query_attackers()[0]->query_level());
+ob->set_short("["+(this_object()->query_attackers()[0]->query_level())+"]Gold Skeleton");
+ob->move(environment());
+
+
    ::die();
 }
 

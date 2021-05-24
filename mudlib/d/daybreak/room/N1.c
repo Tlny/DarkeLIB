@@ -38,6 +38,8 @@ void create() {
     add_exit("/d/damned/virtual/room_73_13.world", "dragon");
 //level 25-100+
     add_exit("/d/damned/virtual/room_8_56.world", "zoo");
+//level 150+
+    add_exit("/d/damned/virtual/room_23_52.world", "doom");
 //Not yet sorted or in need of fixing
     add_exit("/d/damned/virtual/room_6_35.world", "forest");
     add_exit("/d/damned/virtual/room_27_25.world", "hive");
@@ -64,6 +66,8 @@ level 30-38+ areas    [chaos]
 level 40-60++         [keep, dragon]
 
 level 25-100++        [zoo]
+
+level 150+ aggressive [doom]
 
 * Other areas pending fixing/sorting [hive, bir, castle]
 EndText

@@ -19,7 +19,7 @@ create() {
     set_level(zlevel);
 
    set_property("enhance criticals",-2);
-set_property("magic resistance", zlevel*4);
+set_property("magic resistance", zlevel/2);
    set_overall_ac(zlevel*4);
    set_body_type("human");
    set("race", "undead");
