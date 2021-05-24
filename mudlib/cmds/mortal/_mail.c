@@ -13,7 +13,7 @@ int cmd_mail(string str) {
     object ob;
 
     if(!wizardp(this_player()) && !high_mortalp(this_player()) &&
-	!ambassadorp(this_player()))
+	!this_player())
 	return notify_fail("You can only do that from a post office!\n");
     ob = new(OB_POSTAL);
     ob->move(this_player());

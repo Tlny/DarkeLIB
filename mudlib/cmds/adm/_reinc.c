@@ -30,6 +30,8 @@ int cmd_reinc(string str) {
 
   
 
+  //if(!wizardp(this_player()))return 0;
+//TLNY2020 modified for xavier
   if(!archp(this_player()))return 0;
 
   if(!member_group((string)this_player()->query_name(),  "superuser"))
@@ -131,7 +133,7 @@ int cmd_reinc(string str) {
 
   who->reset_max_exp();
 
-  who->move_player("/d/standard/setter", 0);
+  who->move_player("/d/standard/setterreinc", 0);
 
   seteuid(UID_LOG);
 

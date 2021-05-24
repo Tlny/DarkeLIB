@@ -26,7 +26,13 @@ static void my_choice(string str) {
         case "yes":       
            if(!ob->query_ghost())
              ob->die();
+//add
+	   seteuid(UID_DAEMONSAVE);
+//end
            "/daemon/save_all_d"->add_crash_items(this_player());
+//add
+           seteuid(getuid());
+//end
            if(ob)
              ob->remove();
            if(ob) {
@@ -45,6 +51,7 @@ static void my_choice(string str) {
         file = "/adm/save/objects/saveall/"+explode(name,"")[0]+"/"+name+"/"+inv[i];
         rm(file);
         rmdir("/adm/save/objects/saveall/"+explode(name, "")[0]+"/"+name);
+
     }
 
              write(capitalize(name)+" is removed from"+mud_name()+".\n");

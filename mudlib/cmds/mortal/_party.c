@@ -202,7 +202,7 @@ int list() {
         items = allocate(sizeof(who));
     tot_exp = 0;
     for(i=0;i<sizeof(who);i++) {
-      items[i] = sprintf("%1s %-13s (level: %3d) %8d exp  %%^BOLD%%^hp:%%^RESET%%^ %s%d%%^RESET%%^ (%d)  %%^BOLD%%^mp:%%^RESET%%^ %d (%d)",
+      items[i] = sprintf("%1s %-13s (lvl:%3d) %8d exp  %%^BOLD%%^hp:%%^RESET%%^ %s%d%%^RESET%%^ (%d)  %%^BOLD%%^mp:%%^RESET%%^ %d (%d)",
            (!i)?"*":" ",
           capitalize((string)who[i]->query_name()), (int)who[i]->query_level(),
           (int)PARTY_OB->query_party_exp(who[i]), ((int)who[i]->query_hp() < (int)who[i]->query_max_hp()/5)?"%^RED%^%^BOLD%^":"",

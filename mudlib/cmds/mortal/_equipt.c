@@ -4,8 +4,7 @@
  *  Copyright (c) 1996, DarkeMUD
  *  Do not remove this header
  */
-// Modified heavily by Drizzt 10/15/96
-// It is actually worth a shit now!
+
 
 inherit DAEMON;
 
@@ -24,6 +23,46 @@ int cmd_equip(string arg) {
     tmp = all_inventory(TP);
     for(i = 0; i < sizeof(tmp); i++) {
 	if(tmp[i]->is_weapon()) {
+
+            if(strlen((string)tmp[i]->query_type()) > 10 &&
+              ((string)tmp[i]->query_type())[0..9] == "two handed")
+    TP->force_me("wield " + ((string *)tmp[i]->query_id())[0] + " in first hand "
+                  "and second hand");
+            else {
+	      if(hand == "fourth hand") {
+   TP->force_me("wield " + ((string *)tmp[i]->query_id())[0] + " in fourth hand");
+   TP->force_me("wield " + ((string *)tmp[i]->query_id())[0] + " 2 in third hand");
+   TP->force_me("wield " + ((string *)tmp[i]->query_id())[0] + " 3 in second hand");
+   TP->force_me("wield " + ((string *)tmp[i]->query_id())[0] + " 4 in first hand");
+	      }  else
+   TP->force_me("wield " + ((string *)tmp[i]->query_id())[0] + " in third hand");
+   TP->force_me("wield " + ((string *)tmp[i]->query_id())[0] + " 2 in fourth hand");
+   TP->force_me("wield " + ((string *)tmp[i]->query_id())[0] + " 3 in second hand");
+   TP->force_me("wield " + ((string *)tmp[i]->query_id())[0] + " 4 in first hand");
+            }
+        if(tmp[i]->is_armour())
+	  if((string)tmp[i]->query_type() == "shield") {
+      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on first hand");
+      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on second hand");
+	  }
+        if(tmp[i]->is_armour())
+          if((string)tmp[i]->query_type() == "bracer") {
+     TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on first arm");
+     TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " 2 on second arm");
+     TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " 3 on third arm");
+     TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " 4 on fourth arm");
+	  }
+       if(tmp[i]->is_armour())
+	 if((string)tmp[i]->query_type() == "glove") {
+    TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on first hand");
+    TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " 2 on second hand");
+    TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " 3 on third hand");
+    TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " 4 on fourth hand");
+	 } 
+             else
+                TP->force_me("wear " + ((string *)tmp[i]->query_id())[0]);
+
+
 	    if(strlen((string)tmp[i]->query_type()) > 10 &&
 	      ((string)tmp[i]->query_type())[0..9] == "two handed")
     TP->force_me("wield " + ((string *)tmp[i]->query_id())[0] + " in right hand "
@@ -39,14 +78,9 @@ int cmd_equip(string arg) {
 	}
 	if(tmp[i]->is_armour())
 	    if((string)tmp[i]->query_type() == "shield") {
-	      if(hand == "right hand") {
       TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on left hand");
       TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on right hand");
 	    }     
-            else
-      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on right hand");
-      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on left hand");
-	    }
         if(tmp[i]->is_armour())
 	  if((string)tmp[i]->query_type() == "bracer") {
       TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on right arm");
@@ -56,38 +90,7 @@ int cmd_equip(string arg) {
 	    if((string)tmp[i]->query_type() == "glove") {
       TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on right hand");
       TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " 2 on left hand");
-	    }  
-        if(tmp[i]->is_armour())
-	  if((string)tmp[i]->query_type() == "metal arm") {
-      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on right arm");
-      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " 2 on left arm");
-	    } 
-        if(tmp[i]->is_armour())
-	    if((string)tmp[i]->query_type() == "metal hand") {
-      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on right hand");
-      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " 2 on left hand");
-	    }
-        if(tmp[i]->is_armour())
-	  if((string)tmp[i]->query_type() == "leather arm") {
-      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on right arm");
-      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " 2 on left arm");
-	    } 
-        if(tmp[i]->is_armour())
-	    if((string)tmp[i]->query_type() == "leather hand") {
-      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on right hand");
-      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " 2 on left hand");
-	    }
-        if(tmp[i]->is_armour())
-	  if((string)tmp[i]->query_type() == "cloth arm") {
-      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on right arm");
-      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " 2 on left arm");
-	    } 
-        if(tmp[i]->is_armour())
-	    if((string)tmp[i]->query_type() == "cloth hand") {
-      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " on right hand");
-      TP->force_me("wear " + ((string *)tmp[i]->query_id())[0] + " 2 on left hand");
-	    }
-else
+	    }  else
                 TP->force_me("wear " + ((string *)tmp[i]->query_id())[0]);
     }        
     write("Done Equiping.");

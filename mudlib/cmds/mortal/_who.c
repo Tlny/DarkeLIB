@@ -94,7 +94,9 @@ string list_users(string *races, string order) {
     if(total == 1 && sizeof(users()) == 1)
         who_list += "There beats but one heart in Daybreak Ridge!\n";
     else
-	who_list += "Number of users: "+sizeof(users())+" ("
+	//who_list += "Number of users: "+sizeof(users())+" (" //TLNY2020 removed
+	who_list += "Number of users: "//+sizeof(users())+
+" ("
 	+total+" shown)\n";
     for(i=0;i<NUM_TYPES;i++) {
 	type_str = capitalize(implode(explode(POS_TYPES[i],"_")," "));
@@ -292,14 +294,18 @@ int filter_high_mortal(object ob) {
     return high_mortalp(ob) && !legendp(ob) && !herop(ob);
 }
 
+/*int filter_champion(object ob) {
+    return championp(ob) && !legendp(ob) && !herop(ob);
+}*/
+
 int filter_ambassador(object ob) {
-    return ambassadorp(ob) && !high_mortalp(ob) &&
+    return ambassadorp(ob) /*&& !championp(ob)*/ && !high_mortalp(ob) &&
     !wizardp(ob) && !legendp(ob) && !herop(ob);
 }
 
 int filter_mortal(object ob) {
     int res;
-    res = !wizardp(ob) && !high_mortalp(ob) && !ambassadorp(ob) && !legendp(ob) && !herop(ob);
+    res = !wizardp(ob) /*&& !championp(ob)*/ && !high_mortalp(ob) && !ambassadorp(ob) && !legendp(ob) && !herop(ob);
     return res;
 }
 

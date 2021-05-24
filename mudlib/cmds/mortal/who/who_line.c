@@ -70,7 +70,7 @@ cmd_users(string order) {
 }
 
 int who_on(object ob) {
-    if(wizardp(this_player())) return 1;
+    if(archp(this_player())) return 1;
     if(!stringp(ob->query_name())) return 0;
     if(!stringp(ob->query_short())) return 0;
     if(ob->query_invis() && wizardp(ob)) return 0;

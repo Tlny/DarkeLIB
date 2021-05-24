@@ -58,14 +58,18 @@ int cmd_tell(string str) {
         notify_fail(capitalize(who)+NOT_HERE+"\n");
         return 0;
     }
+//TLNY2020 remove the tell count to archplayers
+/*
     if(archp(ob)) {
       ttr=ob->query("tells");
       ttr=ttr+1;
           message("info", (string)ob->query_cap_name() + " has received: "+ttr+" tells this reboot.", this_player());
       ob->set("tells", ttr);
     }
+*/
     if(ob->query_invis() && wizardp(ob) && !archp(this_player())) {
         message("info", sprintf("%s%s", capitalize(who), NOT_HERE), this_player());
+        //message("info", sprintf("%s is unaware of telling you: %s", (string)this_player()->query_cap_name(), msg), ob);
         message("tell", sprintf("%s is unaware of telling you: %s", (string)this_player()->query_cap_name(), msg), ob);
         ob->set("reply", (string)this_player()->query_name());
         return 1;

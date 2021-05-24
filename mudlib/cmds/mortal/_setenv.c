@@ -43,6 +43,10 @@ int cmd_setenv(string str) {
 	    return notify_fail("You cannot set your title yet.\n");
 	this_player()->setenv("TITLE", val);
 	break;
+case "prompt":
+this_player()->setenv("prompt", val);
+this_player()->update_prompt();
+break;
       default:
 	if(!wizardp(this_player()) && !ambassadorp(this_player()) &&
 	    !high_mortalp(this_player()))

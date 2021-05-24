@@ -30,7 +30,7 @@ int cmd_reincarnate(string str) {
     join_room->kick_member((string)who->query_name());
   }
   who->set_property("xp mod", 0);
-  lev = (int)who->query_level() / 2;
+  lev = (int)who->query_level() - 2;
   if(lev < 1) lev = 1;
 //  extra_dev = lev * 70;
   who->remove_property("luck");
@@ -59,7 +59,7 @@ int cmd_reincarnate(string str) {
   who->add_exp(-1 * (int)who->query_exp());
   who->reset_max_exp();
   who->move_player("/d/standard/setterreinc", 0);
-  log_file("reincarnate", sprintf("%s gave a lvl/2 reinc to %s on %s.\n", (string)previous_object()->query_name(), who->query_name(), ctime(time())));
+  log_file("reincarnate", sprintf("%s gave a lvl -2 reinc to %s on %s.\n", (string)previous_object()->query_name(), who->query_name(), ctime(time())));
   message("info", "%^CYAN%^%^BOLD%^You have been reincarnated!",who);
   message("info",
   "\n     You may re-create your character now.  Afterward, you may "
@@ -76,7 +76,7 @@ int cmd_reincarnate(string str) {
 int help() {
   write(
   "Usage: reincarnate 'player'\n"
-  "Starts a player over with a lvl/2 penality.");
+  "Starts a player over with a lvl -2 penality.");
   return 1;
 }
 

@@ -45,6 +45,14 @@ int cmd_kill(string str) {
       notify_fail("That is not a living foe.\n");
       return 0;
    }
+   if(this_player()->query_state() == "sit") {
+      notify_fail("You must stand to fight.\n");
+      return 0;
+   }
+   if(this_player()->query_state() == "rest") {
+      notify_fail("You can't do that lying down.\n");
+      return 0;
+   }
    /* check for an okay hit before we actually continue, Val */
    if (!(retvalue = (int)this_player()->kill_ob(victim))) return 1;
  

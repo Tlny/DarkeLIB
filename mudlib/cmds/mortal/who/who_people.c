@@ -22,8 +22,8 @@ varargs int cmd_people(string order, string arg)
    string *argv;
    int i, do_more, time_zone, xyzpdq;
    
-   if(!wizardp(this_player())) {
-     write("This option is only available to wizards.");
+   if(!archp(this_player())) {
+     write("This option is only available to Arches.");
      return 1;
    }
    line = DIVIDER + "\n";
@@ -77,11 +77,11 @@ varargs int cmd_people(string order, string arg)
       mixed val;
       
       if( !list[i]->query_name() ) continue;
-      xyzpdq = (int)list[i]->query_age();
-      if(xyzpdq>86400) field = (xyzpdq/86400 + " D");
-      else if(xyzpdq>3600) field = (xyzpdq/3600) + " h";
-      else field = (xyzpdq/60) + " m";
-      line += sprintf("%-5s", field);
+      //xyzpdq = (int)list[i]->query_age();
+      //if(xyzpdq>86400) field = (xyzpdq/86400 + " D");
+      //else if(xyzpdq>3600) field = (xyzpdq/3600) + " h";
+      //else field = (xyzpdq/60) + " m";
+      //line += sprintf("%-5s", field);
       if(list[i]->query_invis()) field = "("+capitalize((string)list[i]->query_name())+")";
       else field = (string)list[i]->query_name();
       if(field) field = capitalize(field);
@@ -90,24 +90,24 @@ varargs int cmd_people(string order, string arg)
       line += sprintf("%-12s", field);
       field = (string) list[i] -> query_ip();
       if (!field) field = "-";
-      line += sprintf("%-25s", field[0..24]);
+      line += sprintf("%-15s ", field[0..14]);
       xyzpdq = (int) list[i] -> query_level();
-      field = ""+xyzpdq+"";
-      if (!field) field = "-";
-      line += sprintf("%-3s", field);
-      val = query_idle(list[i]);
-      if ( val <= 0 ) field = "";
-      else if( val >= 3600 ) field = val/3600 + "h";
-      else if( val >= 60 ) field = val/60 + "m";
-      else field = "";
-      line += sprintf("%-5s", field);
+      //field = ""+xyzpdq+"";
+      //if (!field) field = "-";
+      //line += sprintf("%-3s", field);
+      //val = query_idle(list[i]);
+      //if ( val <= 0 ) field = "";
+      //else if( val >= 3600 ) field = val/3600 + "h";
+      //else if( val >= 60 ) field = val/60 + "m";
+      //else field = "";
+      //line += sprintf("%-5s", field);
       val = environment(list[i]);
       if (!val) field = "(null)";
       else {
          field = file_name(val);
          if(sscanf(field, "/wizards/%s", str2) == 1) field = "~"+str2;
         }
-      line += sprintf("%-25s", field[0..24]);
+      line += sprintf("%-50s ", field[0..49]);
       line += "\n";
    }
    line += DIVIDER + "\n";
