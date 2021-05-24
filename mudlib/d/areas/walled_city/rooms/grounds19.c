@@ -23,11 +23,3 @@ void create() {
 	set_listen("default", "It is extremely quiet.");
 
 }
-void reset() {
-	::reset();
-if(!present("woman"))
-{
-new(MON+"dwarf_woman.c")->move(this_object());
-new(MON+"dwarf_woman.c")->move(this_object());
-}
-}

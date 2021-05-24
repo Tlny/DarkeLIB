@@ -24,3 +24,4 @@ inherit ROOM;
 	set_listen("default", "You hear the scurrying of some small creature through the thick underbrush.");
 
 }
+

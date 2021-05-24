@@ -1,4 +1,7 @@
 /* Standard monster modified by Traer for dwarf camp. */
+
+//Modified By Eos on 7/25/2020
+
 #include "../walled_city.h"
 #include <std.h>
 inherit MONSTER;
@@ -6,12 +9,12 @@ inherit MONSTER;
 void create() {
    ::create();
    set_name("guard");
-   set("id", ({"dwarf guard", "guard", "dwarf"}) );
+   set("id", ({"guard"}) );
    set_level(18+random(3));
-   set("short", "dwarf city guard");
-   set("long", "A dwarven townsman that has been trained by the city to protect against invaders. This one like most, smells as if he hasn't had a bath EVER!"
+   set("short", "forest guard");
+   set("long", "A once lost boy that has been trained by the forest to protect against invaders. This one like most, smells as if he hasn't had a bath EVER!"
    );
-   set("race", "dwarf");
+   set("race", "human");
    set_gender("male");
    set_alignment(-150);
    set_money("silver", random(50)+150);

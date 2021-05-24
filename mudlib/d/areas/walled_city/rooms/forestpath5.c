@@ -27,3 +27,12 @@ inherit ROOM;
 	set_listen("default", "You hear only your soft footsteps on the forest floor.");
 
 }
+void reset() {
+	::reset();
+if(!present("frog"))
+{
+new(MON+"frog.c")->move(this_object());
+
+
+}
+}

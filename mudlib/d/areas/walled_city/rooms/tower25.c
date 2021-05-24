@@ -15,3 +15,15 @@ void create() {
 
 	set_listen("default", "The wind whistles by your ears at this height.");
 }
+
+
+
+void reset() {
+	::reset();
+if(!present("moving_guard"))
+{
+new(MON+"moving_guard.c")->move(this_object());
+new(MON+"guard.c")->move(this_object());
+
+}
+}

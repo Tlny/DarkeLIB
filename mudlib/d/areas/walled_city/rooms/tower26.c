@@ -15,8 +15,14 @@ void create() {
 
 	set_listen("default", "Someone farts wetly.");
 }
+
+
+
 void reset() {
 	::reset();
-if(!present("guard"))
-new(MON+"guard.c")->move(this_object());
+if(!present("moving_guard"))
+{
+new(MON+"moving_guard.c")->move(this_object());
+
+}
 }

@@ -24,3 +24,13 @@ void create() {
          
      
 }
+
+void reset() {
+	::reset();
+if(!present("guard"))
+{
+new(MON+"guard.c")->move(this_object());
+
+
+}
+}

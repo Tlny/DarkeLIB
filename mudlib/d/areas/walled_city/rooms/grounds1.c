@@ -25,3 +25,14 @@ void create() {
 	set_listen("default", "You hear footsteps walking in unison as if a troop of soldiers were drilling nearby.");
 
 }
+
+
+void reset() {
+	::reset();
+if(!present("dwarf_woman"))
+{
+new(MON+"dwarf_woman.c")->move(this_object());
+new(MON+"dwarf_woman.c")->move(this_object());
+
+}
+}

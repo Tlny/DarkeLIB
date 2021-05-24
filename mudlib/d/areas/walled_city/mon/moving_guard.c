@@ -1,15 +1,18 @@
 /* Standard monster modified by Traer for dwarf camp. */
+
+//Modified by Eos on 07/25/2020
+
 #include "../walled_city.h"
 #include <std.h>
 inherit MONSTER;
  
 void create() {
    ::create();
-   set_name("guard");
-   set("id", ({"dwarf guard", "guard", "dwarf"}) );
-   set_level(14+random(3));
-   set("short", "dwarf city guard");
-   set("long", "This is a big, burly dwarven guard. He smells of rotten flesh and bad hygene."
+   set_name("forest guard");
+   set("id", ({"walled city guard", "guard", "walled_city", "forest guard"}) );
+   set_level(17+random(3));
+   set("short", "forest guard");
+   set("long", "This is a big, burly forest guard. He smells of rotten flesh and bad hygene."
    );
    set("race", "dwarf");
    set_gender("male");

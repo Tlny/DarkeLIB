@@ -25,3 +25,14 @@ void create() {
     
 
 }
+
+
+
+void reset() {
+	::reset();
+if(!present("dwarf_woman"))
+{
+new(MON+"dwarf_woman.c")->move(this_object());
+
+}
+}

@@ -1,15 +1,19 @@
 /* Armor coded by Duridian for DarkeMud. */
  
+//Updated By Eos on 07/25/2020
+ 
 #include <std.h>
-inherit ARMOR;
+
+inherit "/std/armour";
+//inherit ARMOR;
  
 void create() {
    ::create();
-   set_name("chainmail");
+   set_name("walled city chainmail");
    set("id", ({"chainmail", "chain", "chainmail","armor"}) );
    set("short", "chainmail");
    set("long",
-   "This chainmail is in pretty good shape, surprisingly.  It looks "
+   "This chainmail is in pretty good shape, surprisingly. It looks "
    "like it would provide ample protection for the wearer."
    );
    set_type("armour");

@@ -25,3 +25,12 @@ void create() {
 	set_listen("default", "You hear birds chirping off to the east.");
 
 }
+void reset() {
+	::reset();
+if(!present("frog"))
+{
+new(MON+"frog.c")->move(this_object());
+
+
+}
+}

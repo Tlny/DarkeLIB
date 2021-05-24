@@ -23,3 +23,12 @@ set_smell("default", "The fresh scents of the forest refresh you.");
 set_listen("default", "You hear birds chirping and the hum of insects.");
 
 }
+void reset() {
+	::reset();
+if(!present("frog"))
+{
+new(MON+"frog.c")->move(this_object());
+
+
+}
+}

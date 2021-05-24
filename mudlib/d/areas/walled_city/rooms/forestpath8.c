@@ -25,3 +25,12 @@ inherit ROOM;
 	set_listen("default", "You hear the breeze blowing softly through the treetops.");
 
 }
+void reset() {
+	::reset();
+if(!present("frog"))
+{
+new(MON+"frog.c")->move(this_object());
+
+
+}
+}

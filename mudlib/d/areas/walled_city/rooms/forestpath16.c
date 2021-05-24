@@ -25,3 +25,12 @@ void create() {
 	set_listen("default", "You hear only your own soft footsteps on the grassy floor.");
 
 }
+void reset() {
+	::reset();
+if(!present("frog"))
+{
+new(MON+"frog.c")->move(this_object());
+
+
+}
+}

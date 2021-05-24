@@ -25,10 +25,14 @@ void create() {
 	set_listen("default", "It is deathly quiet.");
 
 }
+
+
 void reset() {
 	::reset();
 if(!present("guard"))
 {
-new(MON+"moving_guard.c")->move(this_object());
+new(MON+"guard.c")->move(this_object());
+
+
 }
 }

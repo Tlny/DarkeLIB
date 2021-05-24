@@ -23,3 +23,12 @@ set_property("indoors", 0);
 set_smell("default", "The smell of burnt leaves is strong here.");
 
 }
+void reset() {
+	::reset();
+if(!present("frog"))
+{
+new(MON+"frog.c")->move(this_object());
+
+
+}
+}

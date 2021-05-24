@@ -1,11 +1,14 @@
 /* Armor coded by Duridian for DarkeMud. */
  
+//Updated By Eos on 07/25/2020
+ 
 #include <std.h>
-inherit ARMOR;
+inherit "/std/armour";
+//inherit ARMOR;
  
 void create() {
    ::create();
-   set_name("shield");
+   set_name("walled city shield");
    set("id", ({"shield", "guardsman's shield"}) );
    set("short", "guardsmans' shield");
    set("long",

@@ -15,3 +15,14 @@ void create() {
 
 	
 }
+
+
+
+void reset() {
+	::reset();
+if(!present("moving_guard"))
+{
+new(MON+"moving_guard.c")->move(this_object());
+
+}
+}

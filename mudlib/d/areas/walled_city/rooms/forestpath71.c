@@ -9,7 +9,7 @@ void create() {
 
     set("short", "Forest clearing.");
     set("long", "You must not have been paying close attention. Suddenly things do not appear as they did just moments ago. Somehow you have stumbled upon a campsite. A small fire smolders in the center of this tiny clearing deep within the forest. All around you trees, nothing but trees, stretching endlessly before you in every direction but here someone has cleared the forest floor of debris and made camp.");
-   add_exit(ROOMS+"forestpath5","east");
+   add_exit(ROOMS+"forestpath5","south");
 set_items(([
 ({ "leaf", "leaves" }) :
 "The leaves here grow large and thick, and block out all natural light from the sky.",
@@ -23,4 +23,13 @@ set_items(([
 set_smell("default", "Woodsmoke fills the air.");
 set_listen("default", "You hear the snapping and crackling of burning wood.");
 
+}
+void reset() {
+	::reset();
+if(!present("frog"))
+{
+new(MON+"frog.c")->move(this_object());
+
+
+}
 }

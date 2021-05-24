@@ -16,3 +16,13 @@ void create() {
 
 	set_listen("default", "The wind whispers softly.");
 }
+
+void reset() {
+	::reset();
+if(!present("moving_guard"))
+{
+new(MON+"moving_guard.c")->move(this_object());
+new(MON+"guard.c")->move(this_object());
+
+}
+}

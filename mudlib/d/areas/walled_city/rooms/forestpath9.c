@@ -25,6 +25,14 @@ inherit ROOM;
 
 	set_listen("default", "You hear croaking frogs nearby.");
 
-	new(MON+"frog.c")->move(this_object());
 	
+}
+
+void reset() {
+	::reset();
+if(!present("dwarf_woman"))
+{
+new(MON+"dwarf_woman.c")->move(this_object());
+
+}
 }

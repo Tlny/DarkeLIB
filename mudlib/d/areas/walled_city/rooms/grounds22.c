@@ -27,3 +27,12 @@ void create() {
 	set_listen("default", "You hear foot steps from above.");
 
 }
+
+void reset() {
+	::reset();
+if(!present("guard"))
+{
+new(MON+"guard.c")->move(this_object());
+
+}
+}

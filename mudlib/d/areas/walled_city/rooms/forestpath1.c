@@ -10,7 +10,7 @@ void create() {
         set("long", "You stand in the entrance to a heavily forested area. The tall oak trees grow high above you, their gnarled branches covered in thick green leaves form a canopy blocking out all but the strongest natural light.");
 
         add_exit(ROOMS+"forestpath2","west");
-        add_exit("/d/damned/virtual/room_6_35.world","east");
+        add_exit("/d/damned/virtual/room_6_35.world","out");
 	set_items(([
         	({ "leaf", "leaves" }) :
 	"The leaves here grow large and thick.",
@@ -22,4 +22,15 @@ void create() {
 	set_smell("default", "The smell of the forest prevades your nostrils.");
 	set_listen("default", "You hear only your soft footsteps on the grassy floor.");
 
+}
+
+void reset() {
+	::reset();
+if(!present("frog"))
+{
+new(MON+"frog.c")->move(this_object());
+new(MON+"guard.c")->move(this_object());
+
+
+}
 }

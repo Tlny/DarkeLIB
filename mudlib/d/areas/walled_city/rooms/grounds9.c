@@ -23,3 +23,14 @@ void create() {
 	set_listen("default", "You hear load voices from the north.");
 
 }
+
+
+
+void reset() {
+	::reset();
+if(!present("dwarf_woman"))
+{
+new(MON+"dwarf_woman.c")->move(this_object());
+
+}
+}
