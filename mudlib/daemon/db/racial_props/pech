@@ -4,7 +4,7 @@ extra mp regen:::0
 melee damage:::([ "impact" : 10 ])
 xp mod::: -30
 enhance criticals:::(["impact":-1])
-natural ac:::15
+natural ac:::25
 physical resistance:::(["iron":10, "wood":10, "steel":10, "default":10])
 
 

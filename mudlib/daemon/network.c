@@ -75,8 +75,13 @@ static void setup() {
             write("Oh hell "+__Network["udp"]["socket"]);
             return; 
 	  } 
+/* old
         if(socket_bind(__Network["udp"]["socket"], __Network["udp"]["port"]) <= 0) 
+*/
+if(socket_bind(__Network["udp"]["socket"], 7786) <= 0)
+{
           socket_close(__Network["udp"]["socket"]); 
+}
       } 
     this_object()->send_udp(__ServerAddr = SERVER_ADDR, __ServerPort = SERVER_PORT,  
       sprintf("@@@%s%s@@@\n", SERVICE_UDP_STARTUP, START_MSG)); 
@@ -125,6 +130,7 @@ static void ping_muds() {
  
 void send_udp(string host, int port, string msg) { 
     int sock; 
+int success_code;
  
     if(geteuid(previous_object()) != UID_SOCKET) return; 
     seteuid(UID_SOCKET); 
@@ -132,7 +138,7 @@ void send_udp(string host, int port, string msg) {
         seteuid(getuid()); 
         return 0; 
       } 
-    socket_write(sock, msg, host+" "+port); 
+    success_code = socket_write(sock, msg, host+" "+port); 
     socket_close(sock); 
     seteuid(getuid()); 
 } 
@@ -144,6 +150,8 @@ void read_callback(int sock, string msg, string host) {
     int i, maxi; 
  
     if(!msg) return; 
+if (find_player("exash")) tell_object(find_player("exash"), "Interdebug: "+msg+"\n");
+if (find_player("exash")) tell_object(find_player("exash"), "Interdebug: "+msg+"\n");
     tmp + ""; 
     if(!sscanf(msg, "@@@%s||%s@@@%*s", fun, tmp)) { 
         if(!sscanf(msg, "@@@%s@@@%*s", fun)) return; 
