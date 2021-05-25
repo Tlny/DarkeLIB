@@ -1,0 +1,33 @@
+Prompt can be set up with the following commands
+
+setenv prompt (fill in the following)
+
+$h      your current HP
+$H      your max HP
+$q      Percent of HP
+
+$m      your current MP
+$M      Your max MP
+$Q      Percent of MP
+
+$tnl    Exp needed to next level
+$dp     Devlopment points
+
+$c      Carry
+$mc     Max Carry
+\\n     Move to next line
+
+TLNY2021 working on not useable yet
+$tc     Shows attacker with no color
+$Tc     Show attacker with custom colour per status
+
+
+Example of a simple prompt
+
+setenv prompt %^RED%^HP:$h/$H%^BOLD%^ %^BLUE%^MP:$m/$M %^ORANGE%^EXP:$tnl%^RESET%^\\n>
+
+to reset your prompt to the default
+
+setenv prompt >
+
+++TLNY2021 more changes coming
