@@ -17,8 +17,8 @@ void create() {
     set_property("must be present", 1);
     set_property("can resist", 2);
     set_property("save mod", "dexterity");
-    set_property("damage types", ([ "cold" : 25, "impaling" : 20, "cold #2" : 25 ]));
-    set_property("damage multiplier", 3.5);
+    set_property("damage types", ([ "cold" : 25+this_player()->query_level(), "impaling" : 20+this_player()->query_level(), "cold #2" : 25+this_player()->query_level() ]));
+    set_property("damage multiplier", 3.5+this_player()->query_level() );
     set_property("combat spell", 1);
     set_property("no target", 1);
     return;

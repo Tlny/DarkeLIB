@@ -15,10 +15,10 @@ void create() {
     set_property("skill","enchantment");
     set_property("duration", "permanent");
     set_property("casting time",4);
-    set_property("base mp cost",36);
-    set_property("dev cost", 36);
-    set_property("fast dev cost", 190);
-    set_property("spell level", 7);
+    set_property("base mp cost",75);
+    set_property("dev cost", 105);
+    set_property("fast dev cost", 315);
+    set_property("spell level", 20);
     set_property("moon","luna");
     set_property("caster message","You begin to imbue the item with magical power.");
     set_property("target message","");
@@ -53,6 +53,7 @@ this_player());
 
 void spell_func(object caster, object at, int power, string args, int flag) {
   int idx, time, mod;
+  int ctime;
   string verb, spell, file;
   
   if(!present(at, caster)) {
@@ -162,8 +163,12 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   spell_lev = idx;
   time = idx*(300+50*power);
   mod = 30+2*props["spell level"];
-  start_work(at, caster, (time*mod)/caster->query_skill("enchantment"), power);
-  return;
+ctime = (time*mod)/caster->query_skill("enchantment");
+if(archp(caster)) {
+ctime = 1;
+}
+start_work(at, caster, ctime, power);
+return;
 }
 
 void finish_work(object caster, object at, int power) {

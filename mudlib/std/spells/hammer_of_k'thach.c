@@ -18,8 +18,8 @@ void create() {
     set_property("can resist", 2);
     set_property("spell type",({ "damage" }));
     set_property("must be present", 1);
-    set_property("damage types", ([ "impact" : 45, "holy" : 30 ]));
-    set_property("damage multiplier", 8);
+    set_property("damage types", ([ "impact" : 45 + this_player()->query_level(), "holy" : 30+ this_player()->query_level() ]));
+    set_property("damage multiplier", 8+this_player()->query_level() );
     set_property("combat spell", 1);
     set_property("prereq", "hand of the divine");
     set_property("target type", "living");

@@ -14,8 +14,8 @@ void create() {
     set_property("target message","$C calls down the Wrath of GOD down!");
     set_property("observer message","$C calls down the Wrath of GOD.");
     set_property("spell type",({ "area damage" }));
-    set_property("damage types", ([ "holy" : 40, "holy #2" : 40, "holy #3" : 40 ]));
-    set_property("damage multiplier", 8);
+    set_property("damage types", ([ "holy" : 40+this_player()->query_level(), "holy #2" : 40+this_player()->query_level(), "holy #3" : 40+this_player()->query_level() ]));
+    set_property("damage multiplier", 8+this_player()->query_level()*2);
     set_property("combat spell", 1);
     set_property("must be present", 1);
     set_property("can resist", 2);
@@ -30,4 +30,5 @@ message("help",
 "energy to strike all enemies.  EXTREMELY nasty.",
 this_player());
 }
+
 

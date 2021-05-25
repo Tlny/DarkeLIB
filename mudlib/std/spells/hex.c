@@ -3,11 +3,11 @@ inherit "/std/spells/spell";
 void create() {
     ::create();
     set_property("name","hex");
-    set_property("skill","necromancy");
+    set_property("skill","black magic");
     set_property("casting time",3);
     set_property("base mp cost",15);
     set_property("dev cost", 10);
-    set_property("fast dev cost", 32);
+    set_property("fast dev cost", 30);
     set_property("spell level", 1);
     set_property("moon","ankh");
     set_property("caster message","You cast a hex on $T.");

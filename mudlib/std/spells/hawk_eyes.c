@@ -19,6 +19,8 @@ void create() {
     set_property("target type", "living");
     set_property("must be present",1);
     set_property("duration", 240);
+    set_property("stack key", "hawkeye");
+    set_property("stack num", 1);
     return;
 }
 
@@ -45,11 +47,23 @@ void spell_func(object caster, object at, int power, string args, int flag)
     remove();
     return;
   }
+  
+   at->set("hawkeye #", (int)at->query("hawkeye #") + 1);
+  call_out("remove_stack", props["duration"], at);
+  ::spell_func(caster, at, power, args, flag);
+  
   if(!flag) {
     ob = new("/std/spells/shadows/aware_shad");
     ob->set_power(power);
     ob->start_shadow(at, props["duration"], "%^YELLOW%^Hawk eyes wears off.");
   }
   ::spell_func(caster, at, power, args, flag);
+  return;
+}
+
+void remove_stack(object at) {
+  if(!objectp(at)) return;
+  at->set("hawkeye #", (int)at->query("hawkeye #") - 1);
+  remove();
   return;
 }

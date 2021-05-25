@@ -17,8 +17,8 @@ void create() {
     set_property("must be present", 1);
     set_property("can resist", 1);
     set_property("save mod", "constitution");
-    set_property("damage types", ([ "fire":150]));
-    set_property("damage multiplier", 20);
+    set_property("damage types", ([ "fire": 150+this_player()->query_level()]));
+    set_property("damage multiplier", this_player()->query_level()*2);
     set_property("combat spell", 1);
     set_property("target type", "living");
     set_property("prereq", "explosive fireball");

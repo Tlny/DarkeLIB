@@ -33,6 +33,7 @@ this_player());
 }
 
 void spell_func(object caster, object at, int power, string args, int flag) {
+	int time;
   if(!at->id("embalmed corpse")) {
     message("info", "You must cast this spell at an embalmed corpse.",
 	    caster);
@@ -57,7 +58,11 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     return;
   }
   set_work_message("%^GREEN%^You mold the corpse.");
-  start_work(at, caster, 2300 + 200*power, power);
+    time = ((2300 - (int)caster->query_skill("necromancy")) +(200*power));
+    if(archp(caster)) {
+	time = 1;
+	}
+   start_work(at, caster, time, power);
   return;
 }
 
@@ -79,7 +84,7 @@ void finish_work(object caster, object at, int power) {
 	message("shout", "Death Knight shouts: I AM ALIIIIIIVE!", users());
   at->remove();
   seteuid(getuid());
-  ob = new("/wizards/diewarzau/obj/pet/death_knight");
+  ob = new("/std/seplls/summon/death_knight");
   ob->set_up(power);
   ob->set_owner((string)caster->query_name());
   ob->move(environment(caster));

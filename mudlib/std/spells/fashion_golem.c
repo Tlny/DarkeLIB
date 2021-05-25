@@ -1,3 +1,5 @@
+// Golem - Xavier July2020
+
 inherit "/std/spells/long_term_spell";
 
 void create() {
@@ -7,8 +9,8 @@ void create() {
     set_property("duration", "permanent");
     set_property("casting time",4);
     set_property("base mp cost",71);
-    set_property("dev cost", 51);
-    set_property("fast dev cost", 155);
+    set_property("dev cost", 55);
+    set_property("fast dev cost", 165);
     set_property("spell level", 10);
     set_property("moon","luna");
     set_property("caster message","You begin to mold the metal into a golem.");
@@ -23,7 +25,7 @@ void create() {
 
 void info() {
 message("help",
-"This spell fashions a golem out of a certain metal.  You must have 10 ingots "
+"This spell fashions a golem out of a certain metal.  You must have 6 ingots "
 "of identical metal (you must be holding all of them), and you must cast the spell "
 "at one of them.  The ingots will then meld into one incomplete golem which "
 "may be saved until the casting is complete.  "
@@ -60,15 +62,15 @@ void spell_func(object caster, object at, int power, string args, int flag) {
       }
       ob = next_inventory(ob);
     }
-    if(ingots < 10) {
-      message("info", "You must have at least 10 ingots of identical "+
+    if(ingots < 6) {
+      message("info", "You must have at least 6 ingots of identical "+
         "material to the one at which the spell is cast.", caster);
       caster->add_mp(props["mp cost"]);
       remove();
       return;
     }
-    at = new("/std/diewarzau/obj/misc/inc_creation");
-    ingots = 10;
+    at = new("/std/obj/misc/inc_creation");
+    ingots = 6;
     at->set_material(replace_string((string)ob_p[0]->query_material(),
           "metal/", "", 1));
     at->set_type("golem");
@@ -108,7 +110,7 @@ void finish_work(object caster, object at, int power) {
 	  "magical incantations, and a golem is formed.",
 	  environment(caster), ({ caster }) );
   seteuid(getuid());
-  ob = new("/std/diewarzau/obj/pet/golem");
+  ob = new("/std/obj/pet/golem");
   ob->set_material(replace_string((string)at->query_material(), "/", "", 1));
   ob->set_up(power);
   ob->set_owner((string)caster->query_name());

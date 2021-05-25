@@ -8,10 +8,10 @@ void create() {
     set_property("skill","enchantment");
     set_property("duration", "permanent");
     set_property("casting time",4);
-    set_property("base mp cost",77);
-    set_property("dev cost", 91);
-    set_property("fast dev cost", 278);
-    set_property("spell level", 17);
+    set_property("base mp cost",110);
+    set_property("dev cost", 135);
+    set_property("fast dev cost", 405);
+    set_property("spell level", 26);
     set_property("moon","luna");
     set_property("caster message","You begin to imbue the armour with magical power.");
     set_property("target message","");
@@ -37,6 +37,7 @@ this_player());
 
 void spell_func(object caster, object at, int power, string args, int flag) {
   int mult, time, mod;
+  int ctime;
   
   if(!at->is_armour()) {
     message("info", "You must cast this spell at a piece of armour.",
@@ -67,10 +68,14 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   else mult = 1;
   set_work_message("%^CYAN%^You enchant the armour.");
   time = 3600 + 800*((power>4)?(power-2):power)/mult;
-  if (wizardp(caster)) time=0;
+  //if (wizardp(caster)) time=0;
   mod = 40+2*props["spell level"];
-  start_work(at, caster, (time*mod)/caster->query_skill("enchantment"), power);
-  return;
+ctime = (time*mod)/caster->query_skill("enchantment");
+if(archp(caster)) {
+ctime = 1;
+}
+start_work(at, caster, ctime, power);
+return;
 }
 
 void finish_work(object caster, object at, int power) {

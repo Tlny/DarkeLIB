@@ -16,8 +16,8 @@ void create() {
     set_property("target message","$C casts a ball of chaos at you!");
     set_property("observer message","$C casts a ball of chaos at $T.");
     set_property("spell type",({ "damage" }));
-    set_property("damage types", ([ "disruption" : 25 ]));
-    set_property("damage multiplier", 5);
+    set_property("damage types", ([ "disruption" : 25+this_player()->query_level() ]));
+    set_property("damage multiplier", 5+this_player()->query_level() );
     set_property("must be present", 1);
     set_property("combat spell", 1);
     set_property("target type", "living");

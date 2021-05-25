@@ -97,6 +97,7 @@ void do_steal(int res, object *obs) {
       at->add_money(currs[i], -1*amt);
       from->add_money(currs[i], amt);
   }
+from->add_exp2(5 * props["skill level"]+(this_player()->query_level()*100));
   message("info", "You swipe"+desc+" from "+(string)at->
           query_cap_name() + ", and "+nominative(at) +
           " is none the wiser.", from);

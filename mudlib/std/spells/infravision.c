@@ -16,6 +16,8 @@ void create() {
     set_property("must be present", 1);
     set_property("target type", "living");
     set_property("duration", 300);
+    set_property("stack key", "infravision");
+    set_property("stack num", 1);
     return;
 }
 
@@ -40,6 +42,10 @@ void spell_func(object caster, object at, int power, string args, int flag)
     call_out("expire_blind", 80, at ,ob);
     return;
   }
+  at->set("infravision #", (int)at->query("infravision #") + 1);
+  call_out("remove_stack", props["duration"], at);
+  ::spell_func(caster, at, power, args, flag);
+  
   ob = new("/std/spells/shadows/dvision_shadow");
   ob->set_max(8);
   ob->start_shadow(at, props["duration"], "%^BOLD%^%^GREEN%^An infravision spell expires.");
@@ -52,5 +58,11 @@ void expire_blind(object at, object shad) {
     message("info", "The blinding effects of the spell wear off.", at);
   if(shad)
     shad->external_destruct(shad);
+  return;
+}
+void remove_stack(object at) {
+  if(!objectp(at)) return;
+  at->set("infravision #", (int)at->query("infravision #") - 1);
+  remove();
   return;
 }

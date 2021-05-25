@@ -3,11 +3,11 @@ inherit "/std/spells/spell";
 void create() {
     ::create();
     set_property("name","freeze skin");
-    set_property("skill","necromancy");
+    set_property("skill","black magic");
     set_property("casting time",4);
     set_property("base mp cost", 32);
-    set_property("dev cost", 37);
-    set_property("fast dev cost", 82);
+    set_property("dev cost", 35);
+    set_property("fast dev cost", 105);
     set_property("spell level", 6);
     set_property("moon", "ankh");
     set_property("caster message",
@@ -38,7 +38,7 @@ TEXT
 
 void spell_func(object caster, object at, int power, string args, int flag) {
 
-  if((int)at->query("holy armour #") >= 2) {
+  if((int)at->query("freeze skin #") >= 2) {
     message("info", (string)at->query_cap_name() +
 	    " cannot receive any more freeze skin spells.", caster);
     caster->add_mp(props["mp cost"]);

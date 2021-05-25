@@ -19,7 +19,7 @@ void create() {
     set_long("A lantern to light up the dark parts of your life.\n");
     set_weight(200);
     set_float_value(200);
-    fuel = 3600;
+    fuel = 3600000000000;
     lit = 0;
     shadow = 0;
     set_property("no save", 1);
@@ -41,7 +41,7 @@ int refuel(string str) {
     if (!(fuelob = present("oil", this_player()))) {
         notify_fail("You do not have any oil to fill the lantern.\n");
     }
-    fuel = 3600;
+    fuel = 3600000000000;
     write ("You refuel the lantern and discard the oil pouch.\n");
     say(this_player()->query_cap_name()+" refills a lantern.\n", this_player());
     fuelob->remove();

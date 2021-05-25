@@ -6,10 +6,10 @@ void create() {
     ::create();
     set_property("name","transmutation");
     set_property("skill","energy manipulation");
-    set_property("casting time",12);
-    set_property("base mp cost",30);
-    set_property("dev cost", 66);
-    set_property("fast dev cost", 195);
+    set_property("casting time", 12);
+    set_property("base mp cost", 30);
+    set_property("dev cost", 70);
+    set_property("fast dev cost", 210);
     set_property("spell level", 13);
     set_property("moon","luna");
     set_property("caster message","You cast TRANSMUTATION.");

@@ -6,8 +6,8 @@ void create() {
     set_property("skill","energy manipulation");
     set_property("casting time",7);
     set_property("base mp cost", 40);
-    set_property("dev cost", 58);
-    set_property("fast dev cost", 122);
+    set_property("dev cost", 55);
+    set_property("fast dev cost", 165);
     set_property("spell level", 10);
     set_property("moon", "ankh");
     set_property("caster message",
@@ -17,8 +17,8 @@ void create() {
 		 "The air around $T coalesces into a hard shell.");
     set_property("spell type",({ "protection" }));
     set_property("target type", "living");
-    set_property("protection types", ([ "impaling" : 5, "crushing" : 10,
-	"strike" : 7, "impact" : 10, "cutting" : 6]) );
+    set_property("protection types", ([ "impaling" : 10, "crushing" : 10,
+	"strike" : 10, "impact" : 10, "stress" : 5, "cutting" : 10]) );
     set_property("duration", 280);
     set_property("stack key", "fshield");
     set_property("stack num", 3);
@@ -34,6 +34,14 @@ message("help",
 }
 
 void spell_func(object caster, object at, int power, string args, int flag) {
+
+if((int)caster->query_stack("ram") + (int)caster->query_stack("rap") + (int)caster->query_stack("eshield") + (int)caster->query_stack("fshield") == 3) {
+    message("info", (string)caster->query_cap_name() +
+	    " cannot receive any more enchanter armour spells.", caster);
+    caster->add_mp(props["mp cost"]);
+    remove();
+    return;
+  }
 
   ::spell_func(caster, at, power, args, flag);
   return;

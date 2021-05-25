@@ -16,8 +16,8 @@ void create() {
     set_property("target message","You see some storm clouds gather above you...");
     set_property("observer message","$C concentrates intently.");
     set_property("spell type", ({ "damage" }));
-    set_property("damage multiplier", 6);
-    set_property("damage types", ([ "electricity" : 30, "electricity #2" : 30 ]));
+    set_property("damage multiplier", 6+this_player()->query_level() );
+    set_property("damage types", ([ "electricity" : 30+this_player()->query_level(), "electricity #2" : 30+this_player()->query_level() ]));
     set_property("can resist", 2);
     set_property("save mod", "dexterity");
     set_property("no target", 1);

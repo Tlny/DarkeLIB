@@ -3,8 +3,8 @@ inherit "/std/skills/skill.c";
 void create() {
     ::create();
     set_stat("intelligence");
-    set_dev_cost(12);
-    set_fast_dev_cost(35);
+    set_dev_cost(14);
+    set_fast_dev_cost(42);
 }
 
 void info() {

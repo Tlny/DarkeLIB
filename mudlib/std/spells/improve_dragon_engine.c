@@ -11,17 +11,17 @@ void create() {
     set_property("skill","enchantment");
     set_property("duration", "permanent");
     set_property("casting time",4);
-    set_property("base mp cost",32);
-    set_property("dev cost", 56);
-    set_property("fast dev cost", 170);
-    set_property("spell level", 20);
+    set_property("base mp cost",85);
+    set_property("dev cost", 165);
+    set_property("fast dev cost", 495);
+    set_property("spell level", 32);
     set_property("moon","luna");
     set_property("caster message","You begin to improve the dragon engine.");
     set_property("target message","");
     set_property("observer message","$C begins to magically mold a dragon engine.");
     set_property("spell type",({ }));
     set_property("target type", "living");
-    set_property("prereq", "improve golem");
+    set_property("prereq", "improve gargoyle");
     set_property("must be present", 1);
     return;
 }
@@ -106,7 +106,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     at->set_property("current improve", package);
   }
   set_work_message("%^CYAN%^You improve the dragon engine.");
-  time = 2000 + 600*power;
+  time = 3000 + 800*power;
   mod = 40+2*props["spell level"];
   start_work(at, caster, (time*mod)/caster->query_skill("enchantment"), power);
   return;

@@ -19,6 +19,8 @@ void create() {
     set_property("target type", "living");
     set_property("must be present", 1);
     set_property("duration", 120);
+    set_property("stack key", "holyfury");
+    set_property("stack num", 1);
     return;
 }
 
@@ -41,6 +43,11 @@ void spell_func(object caster, object at, int power, string args, int flag)
     remove();
     return;
   }
+  
+  at->set("holyfury #", (int)at->query("holyfury #") + 1);
+  call_out("remove_stack", props["duration"], at);
+  ::spell_func(caster, at, power, args, flag);
+  
   ob = new("/std/spells/shadows/haste_shadow");
   if(flag) {
     message("info", "You accidentally slow the target!",
@@ -48,5 +55,13 @@ void spell_func(object caster, object at, int power, string args, int flag)
     ob->set_fumble();
   }
   ob->start_shadow(at, props["duration"], "%^CYAN%^Holy fury wears off.");
+remove();
+  return;
+}
+
+void remove_stack(object at) {
+  if(!objectp(at)) return;
+  at->set("holyfury #", (int)at->query("holyfury #") - 1);
+  remove();
   return;
 }

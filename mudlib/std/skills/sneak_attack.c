@@ -210,6 +210,7 @@ void do_stab(object from, object at, mapping wc, int skill) {
       if(tmpmap["impaling"])
         wc[wc_keys[i]] += tmpmap["impaling"] * 20;
     } 
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
     switch(wc[wc_keys[i]] + skill - random(160)) {
     case -50..0:
       crits += ({ wc_keys[i] + " A" });

@@ -6,11 +6,11 @@ object cas;
 void create() {
     ::create();
     set_property("name","rot");
-    set_property("skill","necromancy");
+    set_property("skill","black magic");
     set_property("casting time",12);
     set_property("base mp cost",64);
     set_property("dev cost", 75);
-    set_property("fast dev cost", 223);
+    set_property("fast dev cost", 225);
     set_property("spell level", 14);
     set_property("moon","luna");
     set_property("caster message","You cast rot upon this room!");
@@ -18,7 +18,10 @@ void create() {
     set_property("observer message","$C casts rot upon this room!");
     set_property("spell type",({ }));
     set_property("no target", 1);
+    set_property("can resist", 2);
     set_property("duration", 30);
+
+
     set_property("prereq", "decay");
     return;
 }

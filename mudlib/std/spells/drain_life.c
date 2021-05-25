@@ -3,11 +3,11 @@ inherit "/std/spells/spell";
 void create() {
     ::create();
     set_property("name","drain life");
-    set_property("skill","necromancy");
+    set_property("skill","black magic");
     set_property("casting time",1);
     set_property("base mp cost",20);
-    set_property("dev cost", 9);
-    set_property("fast dev cost", 22);
+    set_property("dev cost", 10);
+    set_property("fast dev cost", 30);
     set_property("spell level", 1);
     set_property("moon","warzau");
     set_property("caster message","You cast a drain life $T.");

@@ -20,6 +20,8 @@ void create() {
     set_property("duration", 75);
     set_property("no target", 1);
     set_property("prereq", "holy mission");
+    set_property("stack key", "deusex");
+    set_property("stack num", 1);
     return;
 }
 
@@ -55,6 +57,8 @@ void spell_func(object caster, object at, int power, string args, int flag) {
         caster);
   if (random(100) <= power * 15)
     {
+    caster->set("deusex #", (int)caster->query("deusex #") + 1);
+  call_out("remove_stack", props["duration"], caster);
   caster->set("death save", (: call_other, this_object(), "save_from_death" :));
       call_out("expire_me", props["duration"], caster);
     }
@@ -87,6 +91,13 @@ void save_from_death(object caster, object null) {
     environment(caster), ({ caster }));
   caster->set("death save", 0);
   remove_call_out("expire_me");
+  remove();
+  return;
+}
+
+void remove_stack(object caster) {
+  if(!objectp(caster)) return;
+  caster->set("deusex #", (int)caster->query("deusex #") - 1);
   remove();
   return;
 }

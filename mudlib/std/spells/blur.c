@@ -16,7 +16,7 @@ void create() {
     set_property("spell type",({ }));
     set_property("duration", 40);
     set_property("stack key", "blur");
-    set_property("stack num", 3);
+    set_property("stack num", 1);
     set_property("target type", "living");
     set_property("must be present", 1);
     return;

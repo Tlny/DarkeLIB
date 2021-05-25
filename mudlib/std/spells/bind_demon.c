@@ -71,6 +71,13 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
+ if((int)caster->query_stack("ldemon armour") + (int)caster->query_stack("demon armour") + (int)caster->query_stack("gdemon armour") + (int)caster->query_stack("demonl armour")== 3) {
+    message("info", (string)caster->query_cap_name() +
+	    " cannot receive any more demon binds.", caster);
+    caster->add_mp(props["mp cost"]);
+    remove();
+    return;
+  }
   message("info", "%^MAGENTA%^%^BOLD%^You bind the demon to your skin.", caster);
     ob =new("/std/spells/shadows/bind_shadow");
     ob->set_power(power);

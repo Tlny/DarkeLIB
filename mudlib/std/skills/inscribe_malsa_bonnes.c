@@ -42,8 +42,8 @@ void skill_func(object from, object at, string arg) {
   while(shadow(at, 0)) shadow(at, 0)->external_destruct(shadow(at, 0));
   tmp = (string *)at->query_property("runes");
   if(!tmp) tmp = ({});
-  if(sizeof(tmp) >= 3) {
-    message("info", "No armour may receive more than 3 runes.",
+  if(sizeof(tmp) >= 10) {
+    message("info", "No armour may receive more than 10 runes.",
       from);
     remove();
     return;
@@ -59,6 +59,9 @@ void skill_func(object from, object at, string arg) {
   if(time < 500) time = 500;
   message("info", "%^CYAN%^%^BOLD%^You begin inscribing.", from);
   set_work_message("%^CYAN%^You inscribe upon the armour.");
+if(archp(this_player())){
+time = 1;
+}
   start_work(at, from, time);
   return;
 }
@@ -74,17 +77,21 @@ void finish_work(object from, object at) {
   wc = (mapping)at->all_base_ac();
   if(!wc) wc = ([]);
   if(!wc["cutting"]) wc["cutting"] = 0;
-  wc["cutting"] += skill / 4 + 2;
+  wc["cutting"] += skill / 4 + (random(skill)/5);
   if(!wc["crushing"]) wc["crushing"] = 0;
-  wc["crushing"] += skill / 4 + 2;
+  wc["crushing"] += skill / 4 + (random(skill)/5);
   if(!wc["impaling"]) wc["impaling"] = 0;
-  wc["impaling"] += skill / 4 + 2;
+  wc["impaling"] += skill / 4 + (random(skill)/5);
+//TLNY 2020 This is kind of Magic and melee AC added at a lower value
   if(!wc["impact"]) wc["impact"] = 0;
-  wc["impact"] += skill / 4 + 2;
+  wc["impact"] += skill / 2 + (random(skill)/6);
+ if(!wc["strike"]) wc["strike"] = 0;
+  wc["strike"] += skill / 2 + (random(skill)/6);
   wc_keys = keys(wc);
   i = sizeof(wc_keys);
   while(i--)
     at->set_ac(wc[wc_keys[i]], wc_keys[i]);
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
   message("info", "A %^BLUE%^%^BOLD%^Malsa Bonnes%^RESET%^ rune appears on the armour.", from);
   if(!(runes=(string *)at->query_property("runes")))
     runes = ({});

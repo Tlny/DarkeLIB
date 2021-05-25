@@ -165,19 +165,22 @@ void pick_lock(object who, int time, int total) {
       message("info", "You make very good progress with the lock.",
         who);
       time -= 3;
-      who->add_exp2(200);
+who->add_exp2(10 * props["skill level"]+(this_player()->query_level()*100));
+      //who->add_exp2(200);
       show_progress(who, total, time);
     } else if(i < props["skill level"] / 2) {
       message("info", "You make a good deal of progress with the lock.",
         who);
       time -= 2;
-      who->add_exp2(100);
+who->add_exp2(5 * props["skill level"]+(this_player()->query_level()*100));
+      //who->add_exp2(100);
       show_progress(who, total, time);
     } else if(i < props["skill level"]) {
       message("info", "You make some progress with the lock.",
         who);
       time --;
-      who->add_exp2(50);
+who->add_exp2(3 * props["skill level"]+(this_player()->query_level()*100));
+      //who->add_exp2(50);
       show_progress(who, total, time);
     } else
       message("info", "You make no progress with the lock.",

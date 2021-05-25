@@ -65,6 +65,8 @@ from->query_cap_name() + " suddenly looks a lot more fluid, and a heckuva lot mo
         environment(from), ({ from }));
  
    dex_mod = skill/2;
+
+from->add_exp2(5 * props["skill level"]+(this_player()->query_level()*100));
  
    ob = new("/std/spells/shadows/true_shadow");
    ob->start_shadow(from, (5 + skill/4),"You stop striking with such great accuracy.");

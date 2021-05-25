@@ -8,9 +8,9 @@ void create() {
     set_property("duration", "permanent");
     set_property("casting time",4);
     set_property("base mp cost",25);
-    set_property("dev cost", 7);
-    set_property("fast dev cost", 24);
-    set_property("spell level", 1);
+    set_property("dev cost", 25);
+    set_property("fast dev cost", 75);
+    set_property("spell level", 4);
     set_property("moon","luna");
     set_property("caster message","You begin to imbue the weapon with cold damage.");
     set_property("target message","");
@@ -23,9 +23,9 @@ void create() {
 
 void info() {
 message("help",
-"This spell adds cold damage to ANY weapon (not just blades).  "
+"This spell adds cold damage to ANY weapon.  "
 "Only 4 of these spells may be stacked on any weapon.  "
-"You may not cast flame blade and icy weapon on the same weapon.  "
+"Different weapon spells with the same element are not allowed on a weapon. "
 "This is a long-term spell (see help long-term), and may take much real "
 "time to cast.  If you are interrupted while casting, "
 "you may pick up again at a later time.",
@@ -34,6 +34,7 @@ this_player());
 
 void spell_func(object caster, object at, int power, string args, int flag) {
   int mod, time;
+  int ctime;
   if(!at->is_weapon()) {
     message("info", "You must cast this spell at a weapon.",
 	    caster);
@@ -51,18 +52,27 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
-  if((int)at->query_property("icy weapon") >= 4 ||
-    (int)at->query_property("flame blade")) {
+  if((int)at->query_property("vacid weapon") >= 1 ) {
+    message("info", "Different weapon spells with the same element are not allowed on a weapon.", caster);
+    caster->add_mp(props["mp cost"]);
+    remove();
+    return;
+  }
+  if((int)at->query_property("icy weapon") >= 4 ) {
     message("info", "This weapon can receive no more icy weapon spells.", caster);
     caster->add_mp(props["mp cost"]);
     remove();
     return;
   }
   set_work_message("%^CYAN%^You enchant the weapon.");
-  time = 380 + 90*power;
+  time = 430 + 90*power;
   mod = 30+2*props["spell level"];
-  start_work(at, caster, (time*mod)/caster->query_skill("enchantment"), power);
-  return;
+ctime = (time*mod)/caster->query_skill("enchantment");
+if(archp(caster)) {
+ctime = 1;
+}
+start_work(at, caster, ctime, power);
+return;
 }
 
 void finish_work(object caster, object at, int power) {
@@ -95,7 +105,7 @@ void finish_work(object caster, object at, int power) {
     if(!ench) ench = power+2;
     else ench += power+2;
     at->set_wc(ench, "cold");
-    caster->add_exp2(250*power);
+    caster->add_exp2(300*power);
   }
   tmp = (mixed)at->query_property("extra long");
   if(!tmp) tmp = ({});
@@ -107,7 +117,7 @@ void finish_work(object caster, object at, int power) {
        eliminate_colour(tmp[i][0]) == "This weapon has Icy Weapon.") idx = 1;
   }
   if(idx < 0)
-    tmp += ({ ({ "This weapon has %^CYAN%^%^BOLD%^Icy Weapon%^RESET%^." ,
+    tmp += ({ ({ "This weapon has %^CYAN%^%^BOLD%^Icy%^RESET%^ Weapon." ,
 		   "detect magic" }) });
   at->set_property("extra long", tmp);
   remove();

@@ -3,11 +3,11 @@ inherit "/std/spells/spell";
 void create() {
     ::create();
     set_property("name","undead dimension");
-    set_property("skill","necromancy");
+    set_property("skill","black magic");
     set_property("casting time",45);
     set_property("base mp cost",57);
-    set_property("dev cost", 16);
-    set_property("fast dev cost", 49);
+    set_property("dev cost", 20);
+    set_property("fast dev cost", 60);
     set_property("spell level", 3);
     set_property("moon","luna");
     set_property("caster message","You transport to your undead dimension.");

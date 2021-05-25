@@ -28,7 +28,7 @@ void create() {
 
     set("value", 1);
 
-    set_type("glove");
+    set_type("metal hand");
 
    set_limbs( ({ "right hand","left hand" }) );
 

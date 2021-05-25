@@ -18,7 +18,7 @@ void create() {
     set_property("target message","");
     set_property("observer message","$C casts demon sword at $T.");
     set_property("spell type",({}));
-    set_property("duration", 720);
+    set_property("duration", 1020);
     set_property("must be present", 1);
     set_property("target type", "living");
     set_property("prereq", "greater demon sword");
@@ -31,7 +31,7 @@ message("help",
 "This spell must be cast at a lesser demon which has been summoned and controlled "
 "by you.\n"
 "Syntax: cast *<pow> demon lord sword at <demon> with <weapon>\n"
-"Ex: cast *2 demon lord sword at lesser demon with longsword\n",
+"Ex: cast *2 demon lord sword at demon lord with longsword\n",
 this_player());
 }
 

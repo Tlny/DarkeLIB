@@ -1,14 +1,14 @@
-inherit "/std/spells/spell";
+inherit "/std/spells/spell_2";
 
 void create() {
     ::create();
     set_property("name","exploding rune");
-    set_property("skill","enchantment");
+    set_property("skill","energy manipulation");
     set_property("casting time",15);
     set_property("base mp cost",35);
-    set_property("dev cost", 27);
-    set_property("fast dev cost", 47);
-    set_property("spell level", 5);
+    set_property("dev cost", 40);
+    set_property("fast dev cost", 120);
+    set_property("spell level", 7);
     set_property("moon","warzau");
     set_property("caster message","You inscribe an %^RED%^exploding rune%^RESET%^ on the floor.");
     set_property("target message","");
@@ -22,7 +22,7 @@ void create() {
 
 void info() {
 message("help",
-"This spell inscribes a magical rune on the floor.  "
+"This spell inscribes an exploding rune on the floor.  "
 "Whenever someone (besides you) enters the room, the rune will affect "
 "them.  This rune will explode where anyone steps on it, damaging them.",
 this_player());
@@ -33,7 +33,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   int i, tot;
 
   seteuid(getuid());
-  ob = new("/std/diewarzau/obj/misc/e_rune");
+  ob = new("/std/obj/misc/e_rune");
   ob->set("safe flag", 1);
   ob->move(environment(caster));
   ob->set("safe flag", 0);

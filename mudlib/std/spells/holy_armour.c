@@ -42,7 +42,7 @@ TEXT
 
 void spell_func(object caster, object at, int power, string args, int flag) {
 
-  if((int)at->query("holy armour #") >= 6) {
+  if((int)at->query("faith armour #") + (int)at->query("holy armour #") == 6) {
     message("info", (string)at->query_cap_name() +
 	    " cannot receive any more holy armour spells.", caster);
     caster->add_mp(props["mp cost"]);

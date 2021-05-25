@@ -32,7 +32,7 @@ void create() {
 
     set("value", 125);
 
-    set_type("armour");
+    set_type("metal torso");
 
     set_limbs( ({ "torso" }) );
 

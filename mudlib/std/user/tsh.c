@@ -7,6 +7,10 @@
 #include <adt_defs.h>
 #include <commands.h>
 #include <tsh.h>
+//ADD TLNY
+//#include <std.h>
+//END
+
 
 #define DEFAULT_PROMPT "> "
 #define MAX_HIST_SIZE  50
@@ -25,12 +29,37 @@ string do_alias(string arg);
 string handle_history(string arg);
 int tsh(string file);
 
+//ADD TLNY
+ int zexp,znexp,zlexp,znlevel,zlevel,xyz;
+   string lp, byz;
+//END
+
+void update_prompt() {
+tsh_prompt = (string)this_object()->getenv("prompt");
+tsh_prompt = !tsh_prompt ? DEFAULT_PROMPT : tsh_prompt + " ";
+custom_prompt = (tsh_prompt != DEFAULT_PROMPT);
+}
+
 int do_new() {
     string d1, d2;
 
+update_prompt();
+/*FIXME
 	tsh_prompt = (string)this_object()->getenv("prompt");
 	tsh_prompt = !tsh_prompt ? DEFAULT_PROMPT : tsh_prompt + " ";
 	custom_prompt = (tsh_prompt != DEFAULT_PROMPT);
+*/
+
+//ADD TLNY
+    zlevel=this_player()->query_level();
+    znlevel=zlevel+1;
+    zexp=this_player()->query_exp();
+    znexp="/adm/daemon/advance_d"->get_exp(znlevel);
+    zlexp=znexp-zexp;
+
+    //attackers = ({});
+
+//END
 
 	d1 = (string)this_object()->getenv("pushd");
 	pushd_size = 0;
@@ -80,6 +109,16 @@ void initialize() {
     if(file_size(rcfile) > -1) this_player()->tsh(rcfile);
 }
 
+//ADD TLNY
+/*
+object *query_attackers() {
+    if(!attackers) return ({});
+    if(!sizeof(attackers)) return ({});
+    return attackers;
+}
+*/
+//END
+
 string write_prompt()
 {
     string path, prompt, tmp;
@@ -90,13 +129,94 @@ string write_prompt()
         path = (string)this_player()->get_path();
         tmp = user_path((string)this_player()->query_name());
         tmp = tmp[0 .. strlen(tmp)-2];
+/*FIXME
         if(sscanf(path, "/wizards/%s", tmp) == 1)
 	    path = "~" + tmp;
+*/
+/*FIXME
         prompt = replace_string( prompt, "$D", path );
+*/
+
+//add TLNY
+
+        prompt = replace_string( prompt, "$tnl",
+            "" + (((int)"/adm/daemon/advance_d"->get_exp(znlevel))-(int)this_player()->query_exp()) );
+
+        prompt = replace_string( prompt, "$dp",
+            "" + (string)this_player()->query_property("dev points") );
+
+        prompt = replace_string( prompt, "$c",
+            "" + (string)this_player()->query_internal_encumbrance() );
+
+        prompt = replace_string( prompt, "$mc",
+            "" + (string)this_player()->query_max_internal_encumbrance() );
+/*
+if (sizeof((this_object()->query_attackers()-({0})))) {//this_object is more secure here because it specifies us more explicitly
+byz = capitalize(this_object()->query_attackers()[0]->query_name());
+
+
+
+switch((this_object()->query_attackers()[0]-> query_hp()*100)/this_object()->query_attackers()[0]-> query_max_hp()) {
+ case 0..15: lp = byz+"%^COLOR196%^ is near death%^RESET%^"; break;
+ case 16..30: lp = byz+"%^COLOR160%^ is terribly injured%^RESET%^"; break;
+ case 31..45: lp = byz+"%^COLOR129%^ is badly injured%^RESET%^"; break;
+ case 46..60: lp = byz+"%^COLOR100%^ is hurting%^RESET%^"; break;
+ case 61..75: lp = byz+"%^COLOR65%^ is slightly injured%^RESET%^"; break;
+ case 76..90: lp = byz+"%^COLOR50%^ is in decent shape%^RESET%^"; break;
+ default: lp = byz+"%^COLOR40%^ is in top shape%^RESET%^"; break;
+            }
+
+        prompt = replace_string( prompt, "$Tc",
+            "" + lp );
+}else {
+prompt = replace_string(prompt, "$Tc", "");
+}
+
+if (sizeof((this_object()->query_attackers()-({0})))) {//this_object is more secure here because it specifies us more explicitly
+
+byz = capitalize(this_object()->query_attackers()[0]->query_name());
+
+switch((this_object()->query_attackers()[0]-> query_hp()*100)/this_object()->query_attackers()[0]-> query_max_hp()) {
+ case 0..15: lp = byz+" is near death"; break;
+ case 16..30: lp = byz+" is terribly injured"; break;
+ case 31..45: lp = byz+" is badly injured"; break;
+ case 46..60: lp = byz+" is hurting"; break;
+ case 61..75: lp = byz+" is slightly injured"; break;
+ case 76..90: lp = byz+" is in decent shape"; break;
+ default: lp = byz+" is in top shape"; break;
+            }
+
+
+        prompt = replace_string( prompt, "$tc",
+            "" + lp );
+}else {
+prompt = replace_string(prompt, "$tc", "");
+}
+*/
+
+        //prompt = replace_string( prompt, "$tst",
+        //    "" + (((int)this_player()-> query_hp()*100)/(int)this_player()-> query_max_hp()) );
+
+        prompt = replace_string( prompt, "$lt",
+            "" + (int)this_player()-> query_time_spent() );
+
+        prompt = replace_string( prompt, "$q",
+            "" + (((int)this_player()-> query_hp()*100)/(int)this_player()-> query_max_hp()) );
+
+        prompt = replace_string( prompt, "$Q",
+            "" + (((int)this_player()-> query_mp()*100)/(int)this_player()-> query_max_mp()) );
+
+
+//end
+
         prompt = replace_string( prompt, "$h",
             "" + (int)this_player()-> query_hp() );
         prompt = replace_string( prompt, "$H",
             "" + (int)this_player()-> query_max_hp() );
+        prompt = replace_string( prompt, "$m",
+            "" + (int)this_player()-> query_mp() );
+        prompt = replace_string( prompt, "$M",
+            "" + (int)this_player()-> query_max_mp() );
         prompt = replace_string( prompt, "\\n", "\n" );
         prompt = replace_string( prompt, "$N", lower_case(mud_name()) );
         prompt = replace_string( prompt, "$C", ""+query_cmd_num() );

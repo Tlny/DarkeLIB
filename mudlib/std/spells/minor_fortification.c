@@ -7,8 +7,8 @@ void create() {
     set_property("duration", "permanent");
     set_property("casting time",4);
     set_property("base mp cost",43);
-    set_property("dev cost", 17);
-    set_property("fast dev cost", 56);
+    set_property("dev cost", 20);
+    set_property("fast dev cost", 60);
     set_property("spell level", 3);
     set_property("moon","luna");
     set_property("caster message","You begin to imbue the armour with magical power.");
@@ -32,6 +32,7 @@ this_player());
 
 void spell_func(object caster, object at, int power, string args, int flag) {
   int time, mod;
+  int ctime;
   if(!at->is_armour()) {
     message("info", "You must cast this spell at a piece of armour.",
 	    caster);
@@ -49,7 +50,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
-  if((int)at->query_property("enchantment") >= 10) {
+  if((int)at->query_property("enchantment") >= 20) {
     message("info", "This armour may receive no further minor "+
       "enchantments.", caster);
     caster->add_mp(props["mp cost"]);
@@ -59,8 +60,12 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   set_work_message("%^CYAN%^You enchant the armour.");
   time = 660+210*power;
   mod = 30+2*props["spell level"];
-  start_work(at, caster, (time*mod)/caster->query_skill("enchantment"), power);
-  return;
+ctime = (time*mod)/caster->query_skill("enchantment");
+if(archp(caster)) {
+ctime = 1;
+}
+start_work(at, caster, ctime, power);
+return;
 }
 
 void finish_work(object caster, object at, int power) {
@@ -73,17 +78,22 @@ void finish_work(object caster, object at, int power) {
     remove();
     return;
   }
+//ADD
+if(power >= 6) {
+    at->set_property("enchantment", 20);
+	} 
+//END
   message("info", "You are finished enchanting!", caster);
   message("info", (string)caster->query_cap_name() + " utters some "+
 	  "magical incantations.",
 	  environment(caster), ({ caster }) );
 	ench = (int)at->query_property("enchantment");
 	if(!ench) ench = 0;
-	if(ench + power >= 10) {
+	if(ench + power >= 20) {
 	  message("info", "This armour is now enchanted as much as is possible with "+
 	      "this spell.", caster);
-	  at->set_property("enchantment", 10);
-	  ench = 10-power;
+	  at->set_property("enchantment", 20);
+	  ench = 20-power;
 	} 
 	else
 	  {

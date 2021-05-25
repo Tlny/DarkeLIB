@@ -26,7 +26,7 @@ void create() {
 
     set("value", 1);
 
-    set_type("pants");
+    set_type("metal legs");
 
     set_limbs( ({ "left leg","right leg" }) );
 

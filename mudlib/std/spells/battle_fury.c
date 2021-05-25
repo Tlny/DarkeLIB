@@ -20,6 +20,8 @@ void create() {
     set_property("stat dice", "3D6");
     set_property("skill dice", "3D8");
     set_property("duration", 120);
+    set_property("stack key", "bfury");
+    set_property("stack num", 1);
     set_property("prereq", "battle aura");
     return;
 }
@@ -43,13 +45,25 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
+  
+  caster->set("bfury #", (int)caster->query("bfury #") + 1);
+  call_out("remove_stack", props["duration"], caster);
+  ::spell_func(caster, caster, power, args, flag);
+  
   ob = new("/std/spells/shadows/haste_shadow");
   if(flag) {
     message("info", "You accidentally slow the target!",
       caster);
     ob->set_fumble();
   }
-  ob->start_shadow(caster, props["duration"], "%^CYAN%^A haste spell expires.");
-  ::spell_func(caster, caster, power, 0, 0);
+  ob->start_shadow(caster, props["duration"], "%^CYAN%^A battle fury spell expires.");
+  //::spell_func(caster, caster, power, 0, 0);
+  return;
+}
+
+void remove_stack(object caster) {
+  if(!objectp(caster)) return;
+  caster->set("bfury #", (int)caster->query("bfury #") - 1);
+  remove();
   return;
 }

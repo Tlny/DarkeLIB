@@ -17,8 +17,8 @@ void create() {
     set_property("must be present", 1);
     set_property("can resist", 2);
     set_property("save mod", "dexterity");
-    set_property("damage types", ([ "fire" : 35, "fire #2" : 35, "fire #3" : 35 ]));
-    set_property("damage multiplier", 6);
+    set_property("damage types", ([ "fire" : 35+this_player()->query_level(), "fire #2" : 35+this_player()->query_level(), "fire #3" : 35+this_player()->query_level() ]));
+    set_property("damage multiplier", 6+this_player()->query_level()*2 );
     set_property("combat spell", 1);
     set_property("no target", 1);
     set_property("prereq", "blizzard");

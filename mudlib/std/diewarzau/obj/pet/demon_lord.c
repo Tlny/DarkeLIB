@@ -11,7 +11,7 @@ void create() {
   set_carry(0);
   set_can_change_aggr(0);
   set_name("demon");
-  set_id(({ "demon lord", "lord" }));
+  set_id(({ "demon lord", "lord", "demon" }));
   set_short("Demon Lord");
   set_body_type("winged-humanoid");
   set("race", "demon");

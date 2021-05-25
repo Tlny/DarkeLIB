@@ -7,9 +7,9 @@ void create() {
     set_property("duration", "permanent");
     set_property("casting time",4);
     set_property("base mp cost",95);
-    set_property("dev cost", 85);
-    set_property("fast dev cost", 261);
-   set_property("spell level", 10);
+    set_property("dev cost", 80);
+    set_property("fast dev cost", 240);
+   set_property("spell level", 15);
     set_property("moon","luna");
     set_property("caster message","You begin to charge the stone.");
     set_property("target message","");

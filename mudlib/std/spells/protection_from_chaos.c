@@ -32,14 +32,14 @@ this_player());
 
 void spell_func(object caster, object at, int power, string args, int flag) {
 
-  if((int)at->query("chaos prot #") >= 3) {
+  if((int)at->query("chaos prote #") >= 3) {
     message("info", (string)at->query_cap_name() +
 	    " cannot receive any more protection spells.", caster);
     caster->add_mp(props["mp cost"]);
     remove();
     return;
   }
-  at->set("chaos prot #", (int)at->query("chaos prot #") + 1);
+  at->set("chaos prote #", (int)at->query("chaos prote #") + 1);
   call_out("remove_stack", props["duration"], at);
   ::spell_func(caster, at, power, args, flag);
   return;
@@ -47,7 +47,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
 
 void remove_stack(object at) {
   if(!objectp(at)) return;
-  at->set("chaos prot #", (int)at->query("chaos prot #") - 1);
+  at->set("chaos prote #", (int)at->query("chaos prote #") - 1);
   remove();
   return;
 }

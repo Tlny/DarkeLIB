@@ -17,7 +17,7 @@ void create() {
     set_property("protection types", ([ "fire" : 15 ]));
     set_property("duration", 120);
     set_property("target type", "living");
-set_property("must be present",1);
+	set_property("must be present",1);
     return;
 }
 
@@ -53,7 +53,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     return;
   }
   ob = new("/std/spells/shadows/fire_shadow");
-  ob->set_level(power);
+  ob->set_plevel(power);
   ob->start_shadow(at, props["duration"], 0);
   ::spell_func(caster, at, power, args, flag);
   remove();

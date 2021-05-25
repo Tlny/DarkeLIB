@@ -16,6 +16,8 @@ void create() {
     set_property("spell type",({ }));
     set_property("no target", 1);
     set_property("duration", 40);
+    set_property("stack key", "lev");
+    set_property("stack num", 1);
     return;
 }
 
@@ -36,8 +38,17 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
+  caster->set("lev #", (int)caster->query("lev #") + 1);
+  call_out("remove_stack", props["duration"], caster);
+  ::spell_func(caster, caster, power, args, flag);
   ob = new("/std/spells/shadows/lev_shadow");
   ob->start_shadow(caster, props["duration"],
 	           "You cease to levitate.");
+  return;
+}
+void remove_stack(object caster) {
+  if(!objectp(caster)) return;
+  caster->set("lev #", (int)caster->query("lev #") - 1);
+  remove();
   return;
 }

@@ -78,6 +78,7 @@ at);
     remove();
     return;
   }
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
   message("my_combat", "You hit "+
           (string)at->query_cap_name()+ " with a powerful slice and "+
           (string)at->query_cap_name()+ " screams in pain.",

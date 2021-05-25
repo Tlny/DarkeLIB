@@ -109,7 +109,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
 
    ob = new("/std/spells/shadows/w_shield_shad.c");
 
-  ob->set_level(power);
+  ob->set_plevel(power);
 
   ob->start_shadow(at, props["duration"], "%^CYAN%^Shields of War expires.");
 

@@ -11,10 +11,10 @@ void create() {
     set_property("skill","enchantment");
     set_property("duration", "permanent");
     set_property("casting time",4);
-    set_property("base mp cost",32);
-    set_property("dev cost", 7);
-    set_property("fast dev cost", 18);
-    set_property("spell level", 1);
+    set_property("base mp cost",40);
+    set_property("dev cost", 20);
+    set_property("fast dev cost", 60);
+    set_property("spell level", 3);
     set_property("moon","luna");
     set_property("caster message","You begin to improve the statue.");
     set_property("target message","");

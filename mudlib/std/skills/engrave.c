@@ -43,7 +43,7 @@ void skill_func(object from, object at, string arg) {
 void finish_work(object from, object at) {
   int ench, i, idx;
   mixed tmp;
-
+from->add_exp2(5 * props["skill level"]+(this_player()->query_level()*100));
   message("info", "You are finished engraving!", from);
   at->set_short((string)at->query_property("new desc"));
   remove();

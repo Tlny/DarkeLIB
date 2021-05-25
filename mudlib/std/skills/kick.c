@@ -86,6 +86,7 @@ void skill_func(object from, object at, string arg) {
           (string)at->query_cap_name()+ " doubles over in pain.",
 	  all_inventory(environment(from)),
           ({ from, at }) );
+from->add_exp2(10 * props["skill level"]+(this_player()->query_level()*100));
   switch(props["skill level"]) {
   case -10..25:
     at->do_damage((string)at->return_target_limb(), random(8)+1);

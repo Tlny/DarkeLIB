@@ -15,7 +15,7 @@ void create() {
     set_property("caster message","You cast a killing cloud at $T.");
     set_property("target message","$C casts a killing cloud at you!");
     set_property("observer message","$C casts an killing cloud at $T.");
-    set_property("damage multiplier", 4);
+    set_property("damage multiplier", 4+this_player()->query_level()/2);
     set_property("combat spell", 1);
     set_property("must be present", 1);
     set_property("can resist", 1);

@@ -22,7 +22,7 @@ void create() {
 
 void info() {
 message("help",
-"This spell uses the soul of a demon to return a dead comrad to life.  This spell requres a demon. The spell syntax is: cast *<pow> demonic rebirth at <demon> with <target>",
+"This spell uses the soul of a demon to return a dead comrad to life.  This spell requres a demon, greater demon or demon lord. The spell syntax is: cast *<pow> demonic rebirth at <demon> with <target>",
 this_player());
 }
 
@@ -30,9 +30,9 @@ void spell_func(object caster, object at, int power, string args, int flag)
 {
   object person;
 //  string name;
-  if(!at->id("demon") || at->id("greater demon") || at->id("lesser demon"))
+  if(at->id("lesser demon"))
 {
-    message("info", "You must cast this spell at a demon.", caster);
+    message("info", "You must cast this spell at a demon, greater demon or demon lord.", caster);
     caster->add_mp(props["mp cost"]);
     remove();
     return;

@@ -3,11 +3,11 @@ inherit "/std/spells/spell";
 void create() {
     ::create();
     set_property("name","lifesteal");
-    set_property("skill","necromancy");
+    set_property("skill","black magic");
     set_property("casting time",3);
     set_property("base mp cost",30);
-    set_property("dev cost", 53);
-    set_property("fast dev cost", 115);
+    set_property("dev cost", 55);
+    set_property("fast dev cost", 165);
     set_property("spell level", 10);
     set_property("moon","warzau");
     set_property("caster message","You cast lifesteal at $T.");
@@ -16,6 +16,7 @@ void create() {
     set_property("spell type",({ }));
     set_property("must be present", 1);
     set_property("combat spell", 1);
+    set_property("can resist", 2);
     set_property("prereq", "drain life");
     set_property("target type", "living");
     return;

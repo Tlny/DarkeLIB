@@ -16,6 +16,8 @@ void create() {
     set_property("no target", 1);
     set_property("spell type",({ }));
     set_property("duration", 180);
+    set_property("stack key", "wflight");
+    set_property("stack num", 1);
     return;
 }
 
@@ -33,6 +35,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
+
   at=caster;
   if(caster->query_flying()) {
     message("info", "You are already flying!", caster);
@@ -41,8 +44,19 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
+  caster->set("wflight #", (int)caster->query("wflight #") + 1);
+  call_out("remove_stack", props["duration"], caster);
+  
   ob = new("/std/spells/shadows/lev_shadow");
   ob->start_shadow(caster, props["duration"],
 	           "Your wings recede into your body.");
   return;
 }
+
+void remove_stack(object caster) {
+  if(!objectp(caster)) return;
+  caster->set("wflight #", (int)caster->query("wflight #") - 1);
+  remove();
+  return;
+}
+

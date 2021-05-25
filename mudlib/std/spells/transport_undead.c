@@ -5,11 +5,11 @@ inherit "/std/spells/spell";
 void create() {
     ::create();
     set_property("name","transport undead");
-    set_property("skill","necromancy");
+    set_property("skill","black magic");
     set_property("casting time",67);
     set_property("base mp cost",67);
-    set_property("dev cost", 17);
-    set_property("fast dev cost", 52);
+    set_property("dev cost", 20);
+    set_property("fast dev cost", 60);
     set_property("spell level", 3);
     set_property("moon","luna");
     set_property("caster message","You cast transport undead at $T.");
@@ -52,7 +52,8 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
-  if(power*4 < (int)at->query_level()) {
+  //if(power*4 < (int)at->query_level()) {
+  if(power < (int)at->query_set_up()) {
     message("info", "The power of this spell is insufficient to transport a "
         "creature of that level.", caster);
     caster->add_mp(props["mp cost"]);

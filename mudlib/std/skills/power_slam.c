@@ -91,6 +91,7 @@ at);
           (string)at->query_cap_name()+ " falls to the ground in pain.",
           all_inventory(environment(from)),
           ({ from, at }) );
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
   switch(props["skill level"]) {
   case -10..25:
     at->do_damage((string)at->return_target_limb(), random(8)+1);

@@ -6,49 +6,53 @@
 "long-sword", \
 "bastard-sword", \
 "two-handed-sword", \
-"battle-axe", \
 "scimitar", \
 "stiletto", \
-"morning-star", \
-"footman's-flail",\
+"footman's-mace",\
 "broad-sword", \
 "rapier",\
-"military-pick" })
+"brass-knuckles" })
 
-#define BOTH ({\
-"footman's-mace", \
-"hand-axe", \
-"great-axe","spear",\
-"military-fork", \
+#define BOTH ({ \
+"battle-axe", \
+"footman's-flail", \
 "glaive", \
 "halberd", \
-"war-hammer", \
 "hammer", \
-"trident"})
+"hand-axe", \
+"military-pick", \
+"morning-star", \
+"shod-staff", \
+"spear", \
+"trident", \
+"war-hammer" })
 
 #define ARMOUR ({\
 "breast-plate", \
-"corslet", \
-"chain-coif", \
-"scale-greaves", \
-"scale-mail", \
 "chain-greaves", \
 "chain-mail", \
+"iron-bracer",\
 "great-helm", \
-"wall-shield", \
+"metal-boots", \
+"iron-greaves", \
+"scale-greaves", \
+"scale-mail", \
+"gauntlet", \
+"chain-coif", \
+"corslet", \
+"chain-glove", \
 "tower-shield", \
+"wall-shield", \
 "large-shield", \
 "small-shield", \
 "buckler-shield", \
-"gauntlet", \
-"chain-glove", \
-"iron-bracer", \
-"metal-boots", \
-"metal-visor", \
 "plate-bracer", \
 "plate-greaves", \
 "banded-mail", \
-"taces"})
+"chain-vest", \
+"metal-visor", \
+"taces", \
+ })
 
 #define MATERIALS ({ "steel", "iron", "default" })
 
@@ -154,6 +158,9 @@ void skill_func(object from, object at, string arg) {
     time = (700 + 3*(int)tmp->query_value()) / (props["skill level"]/16 + 1);
     tmp->remove();
     set_work_message("%^CYAN%^You pound on the armour blank.");
+if(archp(this_player())){
+time = 1;
+}
     start_work(at, from, time);
     return;
   }
@@ -269,7 +276,8 @@ void finish_work(object from, object at) {
   		from);
   	ob->move(environment(from));
   }
-  from->add_exp2(500 + (int)ob->query_value()/5);
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
+  //from->add_exp2(500 + (int)ob->query_value()/5);
   if(ob->query_value()) {
     val = (int)ob->query_value();
     val = val * (int)ob3->prop("value") / (int)ob2->prop("value");

@@ -109,6 +109,7 @@ void finish_work(object from, object at) {
     
   message("info", "%^CYAN%^%^BOLD%^You finish installing the lock.",
     from);
+from->add_exp2(10 * props["skill level"]+(this_player()->query_level()*100));
   if(at->query_is_locker()) {
     at->set_lock("unlocked");
     at->set_lock_level(ll);

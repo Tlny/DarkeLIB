@@ -28,6 +28,7 @@ static string party;
 static string *search_path;
 static int login_flag;
 private string gender;
+string state;
 mapping stats;
 static mapping stat_bonus;
 mapping languages;
@@ -323,9 +324,30 @@ void do_healing(int x) {
     int tmp, i;
     mapping limb_info;
     string *severed;
+    string mind;
+    int level, nlevel, exp, nexp, state;
+    mixed lexp;
+
+    level=this_player()->query_level();
+    nlevel=level+1;
+    exp=this_player()->query_exp();
+    nexp="/adm/daemon/advance_d"->get_exp(nlevel);
+    lexp=nexp-exp;
+            switch((int)this_player()->percent_buffer()) {
+            case 0..5: mind = "clear"; break;
+            case 6..25: mind = "almost clear"; break;
+            case 26..50: mind = "slightly fuzzy"; break;
+            case 51..75: mind = "clouded"; break;
+            case 76..89: mind = "very fuzzy"; break;
+            case 90..99: mind = "%^MAGENTA%^full of facts%^RESET%^"; break;
+            case 100..110: mind = "%^GREEN%^OVER FOF%^RESET%^"; break;
+            default: mind = "clear"; break;
+            }
 
     if(this_object() && this_object()->is_player()) {
+/*FIXME what's this? - Exash
 	this_object()->add_exp2(0);
+*/
 	//     ^ Checks for level advancement. (Diewarzau 4/9/96)
 	tmp = query_physical();
 	if(tmp < 0) tmp = 0;
@@ -344,6 +366,12 @@ void do_healing(int x) {
     if(intp(props["extra hp regen"]))
 	tmp += props["extra hp regen"] * tmp / 100;
     if(x < 20 && this_object()->is_player()) tmp /= 3;
+    /*
+    HONSPRON 2021 - Your state impacts your healing
+    */
+    if(this_player()->query_state() == "sit") tmp *= 1.5;
+    if(this_player()->query_state() == "rest") tmp *= 2;
+    if(this_player()->query_state() == "prone") tmp /= 2;
     set_heal_rate(tmp);
     if(intp(props["base mp regen"])) tmp = props["base mp regen"];
     else tmp = 3;
@@ -363,10 +391,25 @@ void do_healing(int x) {
           this_object()->add_hp((1 + (int)this_object()->query_potion_healing() / 5));
       }
     if(this_object()->is_player() && (string)this_object()->
-      getenv("SCORE") != "off" && !(query_hp() >= query_max_hp() &&
+      getenv("SCORE") == "on" && !(query_hp() >= query_max_hp() &&
 	query_mp() >= query_max_mp()))
-	message("info","hp: "+query_hp()+" ("+query_max_hp()+")  mp: "+
-	  query_mp() + " ("+query_max_mp()+")", this_object());
+message("info","%^BOLD%^RED%^hp:%^BOLD%^RED%^"+this_player()->query_hp()+"/"+this_player()->query_max_hp()+
+        "%^CYAN%^  mp:%^BOLD%^CYAN%^"+this_player()->query_mp()+"/"+this_player()->query_max_mp()+
+        " %^GREEN%^experience:%^BOLD%^WHITE%^"+lexp+""
+        " %^YELLOW%^Mind:%^BOLD%^WHITE%^"+mind+"%^RESET%^", this_object());
+	//message("info","hp: "+query_hp()+" ("+query_max_hp()+")  mp: "+
+	  //query_mp() + " ("+query_max_mp()+")", this_object());
+//TLNY2020 Made this change for Status on prompt
+
+//TLNY2020 added in so as long as mind status is not clear show prompt
+
+    if(this_object()->is_player() && (string)this_object()->
+      getenv("SCORE") == "on" && mind != "clear")
+message("info","%^BOLD%^RED%^hp:%^BOLD%^RED%^"+this_player()->query_hp()+"/"+this_player()->query_max_hp()+
+        "%^CYAN%^  mp:%^BOLD%^CYAN%^"+this_player()->query_mp()+"/"+this_player()->query_max_mp()+
+        " %^GREEN%^experience:%^BOLD%^WHITE%^"+lexp+""
+        " %^YELLOW%^Mind:%^BOLD%^WHITE%^"+mind+"%^RESET%^", this_object());
+
     if(this_object()->query_property("limb regen") &&
       !this_object()->query_ghost()) {
 	severed = (string *)this_object()->query_severed_limbs();
@@ -412,6 +455,8 @@ void set_severed(string limb) {
 int calculate_healing() {
     int borg;
     string msg;
+int total;
+
 
     if(query_intox()) {
 	healing["intox"] --;
@@ -446,17 +491,21 @@ int calculate_healing() {
 	    say(query_cap_name() + " "+msg);
 	}
     }
-    if(query_stuffed()) {
-	healing["stuffed"]--;
-	if(healing["stuffed"] < 0) healing["stuffed"] = 0;
+//TLNY Removed thrist and hunger tickers till fix internvals 2020
+
+    //if(query_stuffed()) {
+	//healing["stuffed"]--;
+	if(healing["stuffed"] < 0){ healing["stuffed"] = 0;
     }
-    if(query_quenched()) {
-	healing["quenched"]--;
-	if(healing["quenched"] < 0) healing["quenched"] = 0;
+    //if(query_quenched()) {
+	//healing["quenched"]--;
+	if(healing["quenched"] < 0){ healing["quenched"] = 0;
     }
-    if(query_poisoning() > 0) add_poisoning(-1);
-      if(query_potion_healing() > 0) add_potion_healing(-1);
-    return query_intox()+query_stuffed()+query_quenched();
+
+    if(query_poisoning() > 0) { add_poisoning(-1); }
+      if(query_potion_healing() > 0) { add_potion_healing(-1); }
+total = query_intox()+query_stuffed()+query_quenched();
+return total;
 }
 
 void set_ritual(string str) {
@@ -553,6 +602,7 @@ void add_exp2(int x) {
     flag = 0;
     if( x > 0 && intp(this_object()->query_property("xp mod")))
 	x += x * (int)this_object()->query_property("xp mod") / 100;
+/*FIXME
     if(x >= 0 && this_object()->is_player()) {
 	player_data["general"]["exp buffer"] += x;
 	if(player_data["general"]["exp buffer"] >=
@@ -563,10 +613,13 @@ void add_exp2(int x) {
 	}
     }
     else {
+*/
 	player_data["general"]["experience"] += x;
 	if(player_data["general"]["experience"] < 0)
 	    player_data["general"]["experience"] = 0;
+/*FIXME
     }
+*/
     if(wizardp(this_object()) || !this_object()->is_player()) return;
     new_lev = (int)ADVANCE_D->advance(this_object());
     if(new_lev > (int)this_object()->query_level())
@@ -963,3 +1016,9 @@ if(GDlev == 1) return 250;
 	
 
 }
+
+void set_state(string s) {
+state = s;
+}
+
+string query_state() {return state; }

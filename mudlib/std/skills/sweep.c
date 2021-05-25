@@ -60,7 +60,7 @@ void skill_func(object from, object at, string arg) {
     remove();
     return;
   }
-  props["skill level"] -= (random(100) + 
+  /*props["skill level"] -= (random(100) + 
 		     at->query_current_protection("torso","crushing")/4 );
   if((int)props["skill level"] < -10) {
     message("my_combat", "%^MAGENTA%^You attempt to sweep "+
@@ -74,7 +74,9 @@ void skill_func(object from, object at, string arg) {
 	    ({ from, at }) );
     remove();
     return;
-  }
+  }*/
+  at->set_state("prone");
+from->add_exp2(3 * props["skill level"]+(this_player()->query_level()*100));
   message("my_combat", "%^MAGENTA%^You sweep "+
 	  (string)at->query_cap_name()+"'s leg and he falls over.%^RESET%^",
 	  from);

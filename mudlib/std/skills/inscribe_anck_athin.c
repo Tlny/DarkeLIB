@@ -43,8 +43,8 @@ void skill_func(object from, object at, string arg) {
   while(shadow(at, 0)) shadow(at, 0)->external_destruct(shadow(at, 0));
   tmp = (string *)at->query_property("runes");
   if(!tmp) tmp = ({});
-  if(sizeof(tmp) >= 3) {
-    message("info", "No weapon may receive more than 3 runes.", from);
+  if(sizeof(tmp) >= 10) {
+    message("info", "No weapon may receive more than 10 runes.", from);
     remove();
     return;
   }
@@ -56,8 +56,11 @@ void skill_func(object from, object at, string arg) {
   skill = props["skill level"];
   time = 2000 - (skill * 9);
   if(time < 600) time = 600;
-  message("info", "You begin inscribing.", from);
-  set_work_message("You inscribe upon the weapon.");
+  message("info", "%^CYAN%^%^BOLD%^You begin inscribing.", from);
+  set_work_message("%^CYAN%^You inscribe upon the weapon.");
+if(archp(this_player())){
+time = 1;
+}
   start_work(at, from, time);
   return;
 }
@@ -68,7 +71,7 @@ void finish_work(object from, object at) {
   string *runes, *wc_keys;
   mixed tmp;
   
-  message("info", "You finish inscribing the rune.",
+  message("info", "%^CYAN%^%^BOLD%^You finish inscribing the rune.",
     from);
   if(!check_brittle(at, from, 8)) {
     remove();
@@ -76,14 +79,16 @@ void finish_work(object from, object at) {
   }
   wc = (mapping)at->all_base_wc();
   if(!wc) wc = ([]);
-  if(!wc["impact"]) wc["cutting"] = 0;
-  wc["impact"] += skill / 6 + 2;
-  if(!wc["crushing"]) wc["impaling"] = 0;
-  wc["crushing"] += skill / 6 + 2;
+  if(!wc["cutting"]) wc["cutting"] = 0;
+  wc["cutting"] += skill / 6 + (random(skill)/5);
+//TLNY2020 wierdo had these values mixed up fixed em
+  //if(!wc["crushing"]) wc["impaling"] = 0;
+ // wc["crushing"] += skill / 6 + 2;
   wc_keys = keys(wc);
   i = sizeof(wc_keys);
   while(i--)
     at->set_wc(wc[wc_keys[i]], wc_keys[i]);
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
     message("info", "A %^YELLOW%^Anck Athin%^RESET%^ rune appears on the weapon.", from);
   if(!(runes=(string *)at->query_property("runes")))
     runes = ({});

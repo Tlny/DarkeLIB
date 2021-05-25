@@ -8,10 +8,10 @@ void create() {
     set_property("skill","enchantment");
     set_property("duration", "permanent");
     set_property("casting time",4);
-    set_property("base mp cost", 82);
-    set_property("dev cost", 82);
-    set_property("fast dev cost", 205);
-    set_property("spell level", 13);
+    set_property("base mp cost", 110);
+    set_property("dev cost", 130);
+    set_property("fast dev cost", 390);
+    set_property("spell level", 25);
     set_property("moon","luna");
     set_property("caster message","You begin to dispel the rune.");
     set_property("target message","");
@@ -56,7 +56,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   set_work_message("%^CYAN%^You are dispelling the rune.");
   at->start_preserve();
   rune = at;
-  start_work(at, caster, 50 + power * 20, power);
+  start_work(at, caster, 100 + power * 20, power);
   return;
 }
 

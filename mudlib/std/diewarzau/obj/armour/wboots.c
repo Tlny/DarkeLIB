@@ -26,7 +26,7 @@ void create() {
 
      set("value", 1);
 
-     set_type("boot");
+     set_type("metal foots");
 
      set_limbs( ({ "left foot","right foot" }) );
 

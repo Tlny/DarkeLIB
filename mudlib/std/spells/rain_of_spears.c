@@ -14,9 +14,8 @@ void create() {
     set_property("target message","$C casts a rain of spears!");
     set_property("observer message","$C casts a rain of spears!");
     set_property("spell type",({ "area damage" }));
-    set_property("damage multiplier", 3);
-    set_property("damage types", ([ "impaling" : 30, "impaling #2" : 30,
-	"impaling #3" : 30 ]));
+    set_property("damage multiplier", 3+this_player()->query_level());
+    set_property("damage types", ([ "impaling" : 30+this_player()->query_level()/2, "impaling #2" : 30+this_player()->query_level()/2,"impaling #3" : 30+this_player()->query_level()/2 ]));
     set_property("no target",1);
     set_property("combat spell",1);
     return;

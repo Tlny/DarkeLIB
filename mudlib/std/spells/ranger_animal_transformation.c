@@ -23,7 +23,7 @@ void create() {
 void info() {
 message("help",
 "This spell will transform you into an animal resembling those "
-"indiginous to DarkeMUD, allowing both the advantages of disguise and "
+"indiginous to Daybreak, allowing both the advantages of disguise and "
 "any advantaged which may accompany the particular animal.  The animal into
 "
 "which you transform is random, and power level affects only duration.\n"

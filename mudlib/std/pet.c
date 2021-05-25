@@ -74,6 +74,7 @@ void add_exp(int amt) {
       amt = to_int(to_float(amt) / pow(2.0,
                    to_float(lev -
                    (1+(int)who->query_level()))));    
+tell_object(this_object()->query_owner(), "Debug: adding "+amt+" experience to owner\n");
     who->add_exp(amt);
   }
   return;
@@ -88,6 +89,7 @@ void create() {
   set("aggressive", (: call_other, this_object(), "query_aggr_status" :) );
   set_storage_key("pet");
   set_skill("swimming", 100);
+  set_skill("body block", 100);
   return;
 }
 
@@ -161,6 +163,7 @@ void set_carry(int stat) {
   Pet_data["carry"] = stat;
   return;
 }
+
 
 void restore_locker(string file) {
   if(!file || !file_exists(DIR_OBJECTS+"/"+file+".o")) return;
@@ -268,6 +271,13 @@ void directed_message(object from, string mesg) {
     this_object()->force_me(lower_case(tmp1));
     return;
   }
+//TLNY2020 ADD
+  if(parse_command(mesg, environment(), " 'equip' / 'take' %s", tmp1)) {
+    if(!Pet_data["carry"]) return;
+    this_object()->force_me("equip "+tmp1);
+    return;
+  }
+//END
   if(parse_command(mesg, environment(), " 'get' / 'take' %s", tmp1)) {
     if(!Pet_data["carry"]) return;
     this_object()->force_me("get "+tmp1);
@@ -420,7 +430,8 @@ void directed_message(object from, string mesg) {
     if(Pet_data["carry"]) tmp1 +=
 "give <what> to <who> These commands allow the monster to carry items\n"+
 "get <item>           for the owner.  This can be useful for \n"+
-"drop <item>          especially heavy items.\n";
+"drop <item>          especially heavy items.\n"
+"equip                This creature can also equip their inventory \n";
     if(Pet_data["save"]) tmp1 +=
 "save                 Saves the monster.  It will stay past reboots, but\n"+
 "                     this only works in rooms which also save items, \n"+

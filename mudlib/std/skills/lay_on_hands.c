@@ -58,6 +58,7 @@ void skill_func(object from, object at, string arg) {
     remove();
     return;
   }
+from->add_exp2(30 * props["skill level"]+(this_player()->query_level()*100));
   at->heal(wound * props["skill level"] / 100);
   wound = (wound * props["skill level"] / 100) - wound;
   if(wound > 0) at->add_hp(wound);

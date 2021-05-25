@@ -9,7 +9,7 @@ void create() {
 
 void info() {
 message("help",
-"This spell allows you to resist being stunned in combat by hits or spells.  "
+"This skill allows you to resist being stunned in combat by hits or spells.  "
 "The chance goes down for more powerful stunning attacks.  This skill is always 'on'.",
 this_player());
 }

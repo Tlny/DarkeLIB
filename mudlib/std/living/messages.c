@@ -27,6 +27,7 @@ string query_min() {
     if(tmp == 1) str = "$N enters with a limp.";
     else if(tmp) str = "$N crawls in.";
     str = substr( str, "$N", (string)this_object()->query_cap_name() );
+    if (archp(this_object()) && this_object()->query_invis()) return 0;
     return str;
 }
 
@@ -43,6 +44,7 @@ string query_mout(string dir) {
     str = substr( str, "$N", (string)this_object()->query_cap_name() );
     if (dir == "" || dir == 0) return str;
     str = substr( str, "$D", dir );
+    if (archp(this_object()) && this_object()->query_invis()) return 0;
     return str;
 }
 
@@ -53,6 +55,7 @@ string query_mmin() {
     str = validate( str, ({ "$N" }) );
     if( str == "" ) str = "$N appears from the shadows.";
     str = substr( str, "$N", (string)this_object()->query_cap_name() );
+    if (archp(this_object()) && this_object()->query_invis()) return 0;
     return str;
 }
 
@@ -63,6 +66,7 @@ string query_mmout() {
     str = validate( str, ({ "$N" }) );
     if( str == "" ) str = "$N fades into the shadows.";
     str = substr( str, "$N", (string)this_object()->query_cap_name() );
+    if (archp(this_object()) && this_object()->query_invis()) return 0;
     return str;
 }
 
@@ -73,6 +77,7 @@ string query_mhome() {
     str = validate( str, ({ "$N" }) );
     if( str == "" ) str = "$N heads home.";
     str = substr( str, "$N", (string)this_object()->query_cap_name() );
+    if (archp(this_object()) && this_object()->query_invis()) return 0;
     return str;
 }
 
@@ -102,6 +107,7 @@ string query_mclone(object obj) {
 	if( obj->query_short() )
 		str = substr( str, "$O", (string)obj->query_short() );
 	else str = substr( str, "$O", "something" );
+	if (archp(this_object()) && this_object()->query_invis()) return 0;
 	return str;
 }
 

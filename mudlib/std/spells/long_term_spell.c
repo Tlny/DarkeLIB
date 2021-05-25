@@ -67,15 +67,26 @@ int start_work(object what, object who, int time_needed, int power) {
     remove();
     return -1;
   }
+  if(who->query_state() == "rest") {
+	message("info", "You can't cast spells while resting.",
+	  who);
+	return -1;
+    }
+    if(who->query_state() == "prone") {
+	message("info", "You can't cast spells cause you got knocked on your butt.",
+	  who);
+	return -1;
+    }
   who_working = who;
   worker_name = (string)who->query_name();
   working_on = what;
   what->set_property("pow "+skill_name+"_"+worker_name, power);
   spell_pow = power;
+  /* HONSPRON2020 - You can move and work on LT - but if dropped, you stop working
   my_shadow = new("/std/spells/shadows/move_shadow");
   my_shadow->set_move_func( (: call_other, this_object(), "move_me" :) );
   my_shadow->set_move_arg(who);
-  my_shadow->start_shadow(who);
+  my_shadow->start_shadow(who);*/
   your_shadow = new("/std/spells/shadows/move_shadow");
   your_shadow->set_move_func( (: call_other, this_object(), "move_me" :) );
   your_shadow->set_move_arg(who);
@@ -108,12 +119,12 @@ int start_work(object what, object who, int time_needed, int power) {
   }
   return 0;
 }
-
 void move_me(object who) {
   message("my_action", "%^CYAN%^%^BOLD%^You interrupt your work.",
 	  who);
   remove_call_out("inc_work_time");
-  if(objectp(my_shadow)) my_shadow->external_destruct(my_shadow);
+  /*HONSPRON2020 - you can walk around and work on LT
+  if(objectp(my_shadow)) my_shadow->external_destruct(my_shadow);*/
   if(objectp(your_shadow)) your_shadow->external_destruct(your_shadow);
   who->set("long term", 0);
   remove();
@@ -134,6 +145,8 @@ void inc_work_time() {
     remove();
     return;
   }
+//TLNY 2020 remove interrupt during combat for long term
+/*
   if(who_working->query_current_attacker() != 0) {
      message("my_action", "%^BOLD%^%^CYAN%^You interrupt your work.",
 	  who_working);
@@ -144,6 +157,31 @@ void inc_work_time() {
      remove();
      return;
   }
+*/
+	/*
+		HONSPRON 2021 - your state impacts LT spells
+	*/
+	 if(who_working->query_state() == "rest") {
+     message("my_action", "%^BOLD%^%^CYAN%^You interrupt your work.",
+	  who_working);
+     remove_call_out("inc_work_time");
+     if(objectp(my_shadow)) my_shadow->external_destruct(my_shadow);
+     if(objectp(your_shadow)) your_shadow->external_destruct(your_shadow);
+     who_working->set("long term", 0);
+     remove();
+     return;
+     }
+      if(who_working->query_state() == "prone") {
+     message("my_action", "%^BOLD%^%^CYAN%^You got knocked down and interrupted your work.",
+	  who_working);
+     remove_call_out("inc_work_time");
+     if(objectp(my_shadow)) my_shadow->external_destruct(my_shadow);
+     if(objectp(your_shadow)) your_shadow->external_destruct(your_shadow);
+     who_working->set("long term", 0);
+     remove();
+     return;
+     }
+	
   time_to_go -= 67;
   working_on->set_property("progress "+skill_name+"_"+worker_name,
 			   query_time_spent(working_on) + 67);
@@ -161,7 +199,8 @@ void inc_work_time() {
   message("info", work_message, who_working);
   message("info", "Time left "+sprintf("%d:%02d:%02d",time_to_go/3600,
           (time_to_go%3600)/60, time_to_go%60), who_working);
-// who_working->add_exp(((who_working->query_level())*(3*who_working->query_skill(query_property("skill")))+random(who_working->query_skill(query_property("skill")))));
+// LT EXP addd back in TLNY 2020
+who_working->add_exp(((who_working->query_level())*(3*who_working->query_skill(query_property("skill")))+random(who_working->query_skill(query_property("skill")))));
 // LT EXP GONE FOR BETA, BYE BYE, Thrace June 20, 1999
     call_out("inc_work_time", (time_to_go > 67)?67:time_to_go);
   return;

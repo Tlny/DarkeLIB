@@ -3,27 +3,28 @@ inherit "/std/spells/spell";
 void create() {
     ::create();
     set_property("name","lich form");
-    set_property("skill","necromancy");
+    set_property("skill","black magic");
     set_property("casting time", 21);
     set_property("base mp cost", 102);
-    set_property("dev cost", 84);
-    set_property("fast dev cost", 312);
+    set_property("dev cost", 85);
+    set_property("fast dev cost", 255);
     set_property("spell level", 16);
     set_property("moon","ankh");
     set_property("caster message","You cast lich form on $T.");
     set_property("target message","$C casts lich form on you.");
     set_property("observer message","$C casts a lich form on $T.");
     set_property("spell type",({ "stat mod", "protection" }));
-    set_property("stat dice", "1D6");
+    set_property("stat dice", "1D12");
     set_property("stats", ({ "strength", "intelligence", "dexterity" }) );
     set_property("protection types", ([
-       "crushing" : 8, "impaling" : 8, "cutting" : 8, "impact" : 8,
-	       "strike": 8, "stress": 8, "cold": 7, "fire": 7,
-               "electricty": 7, "vacuum": 7, "disruption": 7 ]) );
+       "crushing" : 75, "impaling" : 75, "cutting" : 75, "impact" : 75,
+	       "strike": 75, "stress": 75, "cold": 75, "fire": 75,
+               "electricity": 75, "vacuum": 75, "disruption": 75 ]) );
     set_property("target type", "living");
-    set_property("prereq", "shadow form");
+//Removed due to Shadow Form is broken     TLNY2020
+//set_property("prereq", "shadow form");
     set_property("must be present",1);
-    set_property("duration", 340);
+    set_property("duration", 300);
     return;
 }
 

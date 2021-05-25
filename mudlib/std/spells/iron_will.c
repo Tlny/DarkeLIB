@@ -19,6 +19,8 @@ void create() {
     set_property("duration",40);
     set_property("must be present", 1);
     set_property("target type", "living");
+    set_property("stack key", "iron will");
+    set_property("stack num", 1);
     return;
 }
 
@@ -45,6 +47,9 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
+  at->set("iron will #", (int)at->query("iron will #") + 1);
+  call_out("remove_stack", props["duration"], at);
+  ::spell_func(caster, at, power, args, flag);
   at->set("no stun", 1);
   message("info", "You are now resistant to stunning.", at);
   call_out("remove_will", props["duration"], at);
@@ -61,3 +66,10 @@ void remove_will(object who) {
   remove();
   return;
 }
+void remove_stack(object at) {
+  if(!objectp(at)) return;
+  at->set("iron will #", (int)at->query("iron will #") - 1);
+  remove();
+  return;
+}
+

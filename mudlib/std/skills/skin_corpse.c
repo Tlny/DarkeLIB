@@ -2,6 +2,9 @@
 
 inherit "/std/skills/skill.c";
 
+string type;
+int lvl;
+
 void create() {
     ::create();
     set_stat("strength");
@@ -31,17 +34,21 @@ void skill_func(object from, object at, string arg) {
   }
   i = sizeof(weap = (object *)from->query_wielded());
   flag = 0;
-  while(i--) if((string)weap[i]->query_type() == "knife") flag = 1;
+/*  
+while(i--) if((string)weap[i]->query_type() == "knife") flag = 1;
   if(!flag) {
     message("info", "You must wield a knife to use this skill.", from);
     remove();
     return;
   }
+*/
   message("info", "%^CYAN%^%^BOLD%^You start skinning the corpse.", from);
   message("info", "%^CYAN%^"+(string)from->query_cap_name() +
       " starts skinning a corpse.", environment(from),
       ({ from }));
   call_out("chop_down", 10, from, at);
+    type=at->query_name();
+    lvl=(int)at->query_level();
   return;
 }
 
@@ -62,10 +69,16 @@ void chop_down(object from, object corpse) {
     remove();
     return;
   }
+from->add_exp2(25 * props["skill level"]+(this_player()->query_level()*100));
   message("info", "You select a leather swatch which will fashion fine armour.", from);
   seteuid(getuid());
   ob = new("/wizards/diewarzau/obj/misc/leather");
   ob->move(from);
+//ADD TLNY2021
+ob->set_material("leather/"+type);
+ob->set_value(lvl);
+ob->set_weight(lvl*2);
+//END  
   return;
 }
 

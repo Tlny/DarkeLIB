@@ -4,11 +4,11 @@ void create() {
     ::create();
     set_property("name","garguth's pounding fist");
    set_property("skill", "energy manipulation");
-    set_property("casting time",2);
-    set_property("base mp cost",70);
-    set_property("dev cost",61);
-    set_property("fast dev cost",170);
-    set_property("spell level", 12);
+    set_property("casting time", 6);
+    set_property("base mp cost", 40);
+    set_property("dev cost", 75);
+    set_property("fast dev cost", 225);
+    set_property("spell level", 14);
     set_property("moon","warzau");
     set_property("caster message","You cast Garguth's pounding fist at $T.");
     set_property("target message","A big FIST appears out of thin air ready to POUND you!");
@@ -20,8 +20,8 @@ void create() {
     set_property("combat spell", 1);
     set_property("must be present", 1);
     set_property("spell type",({ "damage" }));
-    set_property("damage multiplier", 8);
-    set_property("damage types", ([ "impact" : 25 ]));
+    set_property("damage multiplier", 8+this_player()->query_level() );
+    set_property("damage types", ([ "impact" : 30 +this_player()->query_level() ]));
     set_property("prereq", "garguth's grasping hand");
     return;
 }

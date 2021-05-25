@@ -17,6 +17,8 @@ void create() {
     set_property("duration", 30);
     set_property("no target", 1);
     set_property("prereq", "invisibility");
+    set_property("stack key", "imp invis");
+    set_property("stack num", 1);
     return;
 }
 
@@ -51,6 +53,10 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
+  caster->set("imp invis #", (int)caster->query("imp invis #") + 1);
+  call_out("remove_stack", props["duration"], caster);
+  ::spell_func(caster, at, power, args, flag);
+  
   message("info", "You fade into invisibility...",
         at);
   message("info", (string)at->query_cap_name() +
@@ -58,6 +64,12 @@ void spell_func(object caster, object at, int power, string args, int flag) {
         environment(caster), ({ caster }) );
   ob = new("/std/spells/shadows/imp_invis_shadow");
   ob->start_shadow(at, props["duration"], "%^CYAN%^An improved invisibility spell wears off.");
+  remove();
+  return;
+}
+void remove_stack(object caster) {
+  if(!objectp(caster)) return;
+  caster->set("imp invis #", (int)caster->query("imp invis #") - 1);
   remove();
   return;
 }

@@ -15,11 +15,11 @@ void create() {
     set_property("target message","");
     set_property("observer message","$C casts bind demon at $T.");
     set_property("spell type",({ "protection" }));
-    set_property("protection types", ([ "impaling" : 10, "crushing" : 10,
-          "cutting" : 10, "disruption" : 10, "strike" : 10,
-          "fire" : 8, "cold" : 8, "electricity" : 7,
-          "impact" : 8, "stress" : 6 ]));
-    set_property("stack key", "demon armour");
+    set_property("protection types", ([ "impaling" : 12, "crushing" : 12,
+          "cutting" : 12, "disruption" : 12, "strike" : 12,
+          "fire" : 10, "cold" : 10, "electricity" : 9,
+          "impact" : 9, "stress" : 9 ]));
+    set_property("stack key", "gdemon armour");
     set_property("stack num", 3);
     set_property("prereq", "bind demon");
     set_property("duration", 1100);
@@ -70,6 +70,13 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
+ if((int)caster->query_stack("ldemon armour") + (int)caster->query_stack("demon armour") + (int)caster->query_stack("gdemon armour") + (int)caster->query_stack("demonl armour")== 3) {
+    message("info", (string)caster->query_cap_name() +
+	    " cannot receive any more demon binds.", caster);
+    caster->add_mp(props["mp cost"]);
+    remove();
+    return;
+  } 
   message("info", "%^MAGENTA%^%^BOLD%^You bind the demon to your skin.", caster);
     ob =new("/std/spells/shadows/gbind_shadow");
     ob->set_power(power);

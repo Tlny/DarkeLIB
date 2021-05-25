@@ -1,26 +1,25 @@
 #define METAL ({\
-"bastard-sword", \
-"broad-sword", \
 "dagger", \
-"footman's-mace", \
 "knife", \
-"long-sword", \
-"rapier", \
-"scimitar", \
-"short-sword", \
 "spiked-gauntlet", \
+"short-sword", \
+"long-sword", \
+"bastard-sword", \
+"two-handed-sword", \
+"scimitar", \
 "stiletto", \
-"two-handed-sword" })
+"footman's-mace",\
+"broad-sword", \
+"rapier",\
+"brass-knuckles" })
 
 #define BOTH ({ \
 "battle-axe", \
 "footman's-flail", \
 "glaive", \
-"great-axe", \
 "halberd", \
 "hammer", \
 "hand-axe", \
-"military-fork", \
 "military-pick", \
 "morning-star", \
 "shod-staff", \
@@ -29,9 +28,10 @@
 "war-hammer" })
 
 inherit "/std/skills/long_term";
-
+string name2;
 string name, type,what;
 object board;
+int qz;
 
 void create() {
     ::create();
@@ -132,7 +132,7 @@ void skill_func(object from, object at, string arg) {
     	mod = props["skill level"]/16 + 1;
     }
     tmp = new("/d/damned/virtual/"+arg+"_2.weapon");
-    time = (725 + 3*(int)tmp->query_value()) / mod;
+    time = (7250 + 3*(int)tmp->query_value()) / mod;
     if(member_array(arg, BOTH) >= 0) {
     	wood_req = (int)tmp->query_property("wood needed");
     }
@@ -154,9 +154,15 @@ void skill_func(object from, object at, string arg) {
     if(qual < 0) qual = 0;
     if(qual > 6) qual = 6;
     name = sprintf("%s_%d", arg, qual);
+    name2 = sprintf("%s", arg);
+    qz = ("%d", qual);
     type = "weapon";
     set_work_message("%^CYAN%^You pound on the weapon blank.");
     time /= 2;
+    if(time < 500) time = 500;
+if(archp(this_player())){
+time = 1;
+}
     start_work(at, from, time);
     return;
   }
@@ -168,8 +174,9 @@ void skill_func(object from, object at, string arg) {
 
 void finish_work(object from, object at) {
   object ob, ob2, ob3;
+ // class v_table tmp;
   float valf;
-  int val;
+  int val, base_wc, bonus_wc, skill, lvl;
   seteuid(getuid());
   if(member_array(what, BOTH) >= 0) {
   	if(!present(board,from)) {
@@ -210,21 +217,153 @@ void finish_work(object from, object at) {
     val = val * (int)ob3->prop("value") / (int)ob2->prop("value");
     val = val/350;
     ob->set_value(val);
-    from->add_exp2(1000 + val);
+from->add_exp2(25 * props["skill level"]+(this_player()->query_level()*100));
+    //from->add_exp2(1000 + val);
   } else if(ob->query_float_value() && (float)ob->query_float_value() > 0.0) {
     valf = (float)ob->query_float_value();
     valf *= to_float((int)ob3->prop("value")) / to_float((int)ob2->prop("value"));
     ob->set_float_value(valf);
-    from->add_exp2(975);
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
+    //from->add_exp2(975);
   }
   ob2->remove();
   ob3->remove();
   ob->set_property("extra long","This weapon was forged by: "+from->query_cap_name());
   ob->set_material(replace_string((string)at->query_material(), "/", "", 1));
+  //add
+// TLNY2020 add
+  //db = load_object("/d/damned/data/weapon_db");
+  //tmp = (class v_table)db->get_table(name);
+  skill = (int)from->query_skill("forge weapon");
+  lvl = (int)from->query_level();
+  //for(x=0; x < sizeof(tmp->funcs); x++)
+   // if(tmp->funcs[x] == "set_wc" && sizeof(tmp->args[x]) == 1)
+      // base_wc = (int)tmp->args[x][0];
+  if(skill > lvl*3) {
+    bonus_wc = skill/12 + (random(skill - lvl*2) + lvl*2)/10 + to_int(lvl/5);
+  }
+  else {
+    bonus_wc = skill/12 + random(skill)/12 + to_int(lvl/6);
+  }
+//TLNY2021 add
+if(ob->query_material() == "/metal/eog" ) {
+  ob->set_wc(base_wc + bonus_wc + 6+(qz*2), "aether");
+}
+if(ob->query_material() == "/metal/eonmite" ) {
+  ob->set_wc(base_wc + bonus_wc + 5+(qz*2), "infernal");
+}
+if(ob->query_material() == "/metal/iysaughton" ) {
+  ob->set_wc(base_wc + bonus_wc + 5+(qz*2), "disruption");
+}
+if(ob->query_material() == "/metal/platnite" ) {
+  ob->set_wc(base_wc + bonus_wc + 5+(qz*2), "electricity");
+}
+if(ob->query_material() == "/metal/mithril" ) {
+  ob->set_wc(base_wc + bonus_wc + 5+(qz*2), "fire");
+}
+if(ob->query_material() == "/metal/elrodnite" ) {
+  ob->set_wc(base_wc + bonus_wc + 5+(qz*2), "cold");
+}
+if(ob->query_material() == "/metal/inniculmoid" ) {
+  ob->set_wc(base_wc + bonus_wc + 5+(qz*2), "impact");
+}
+if(ob->query_material() == "/metal/raysorite" ) {
+  ob->set_wc(base_wc + bonus_wc + 5+(qz*2), "stress");
+}
+
+//END
+
+    if(name2 == "bastard-sword") {
+  ob->set_wc(base_wc + bonus_wc + 6+(qz*2), "impaling");
+  ob->set_wc(base_wc + bonus_wc + 14+(qz*2), "cutting");
+    }  
+    if(name2 == "broad-sword") {
+  ob->set_wc(base_wc + bonus_wc + 12+(qz*2), "impaling");
+  ob->set_wc(base_wc + bonus_wc + 4+(qz*2), "cutting");
+    }
+    if(name2 == "dagger") {
+  ob->set_wc(base_wc + bonus_wc + 4+(qz*2), "impaling");
+    }
+    if(name2 == "knife") {
+  ob->set_wc(base_wc + bonus_wc + 4+(qz*2), "impaling");;
+    }
+    if(name2 == "long-sword") {
+  ob->set_wc(base_wc + bonus_wc + 10+(qz*2), "cutting");
+  ob->set_wc(base_wc + bonus_wc + 6+(qz*2), "impaling");
+    }
+    if(name2 == "spiked-gauntlet") {
+  ob->set_wc(base_wc + bonus_wc + 15+(qz*2), "cutting");
+  ob->set_wc(base_wc + bonus_wc + 4+(qz*2), "impaling");
+    }
+    if(name2 == "brass-knuckles") {
+  ob->set_wc(base_wc + bonus_wc + 10+(qz*2), "crushing");
+    }
+    if(name2 == "rapier") {
+  ob->set_wc(base_wc + bonus_wc + 18+(qz*2), "impaling");
+    }
+    if(name2 == "scimitar") {
+  ob->set_wc(base_wc + bonus_wc + 14+(qz*2), "cutting");
+  ob->set_wc(base_wc + bonus_wc + 3+(qz*2), "impaling");
+    }
+    if(name2 == "short-sword") {
+  ob->set_wc(base_wc + bonus_wc + 7+(qz*2), "cutting");
+  ob->set_wc(base_wc + bonus_wc + 4+(qz*2), "impaling");
+    }
+    if(name2 == "stiletto") {
+  ob->set_wc(base_wc + bonus_wc + 4+(qz*2), "impaling");
+    }
+    if(name2 == "two-handed-sword") {
+  ob->set_wc(base_wc + bonus_wc + 18+(qz*2), "cutting");
+  ob->set_wc(base_wc + bonus_wc + 9+(qz*2), "impaling");
+    }
+    if(name2 == "footman's-mace") {
+  ob->set_wc(base_wc + bonus_wc + 10+(qz*2), "crushing");
+    }
+//Metal & WOOD
+    if(name2 == "battle-axe") {
+  ob->set_wc(base_wc + bonus_wc + 10+(qz*2), "cutting");
+    }
+    if(name2 == "footman's-flail") {
+  ob->set_wc(base_wc + bonus_wc + 11+(qz*2), "crushing");
+    }
+    if(name2 == "glaive") {
+  ob->set_wc(base_wc + bonus_wc + 15+(qz*2), "cutting");
+    }
+    if(name2 == "trident") {
+  ob->set_wc(base_wc + bonus_wc + 16+(qz*2), "impaling");
+    }
+    if(name2 == "war-hammer") {
+  ob->set_wc(base_wc + bonus_wc + 20+(qz*2), "crushing");
+    }
+    if(name2 == "halberd") {
+  ob->set_wc(base_wc + bonus_wc + 15+(qz*2), "cutting");
+  ob->set_wc(base_wc + bonus_wc + 8+(qz*2), "impaling");
+    }
+    if(name2 == "hammer") {
+  ob->set_wc(base_wc + bonus_wc + 12+(qz*2), "crushing");
+    }
+    if(name2 == "hand-axe") {
+  ob->set_wc(base_wc + bonus_wc + 6+(qz*2), "cuitting");
+    }
+    if(name2 == "military-pick") {
+  ob->set_wc(base_wc + bonus_wc + 16+(qz*2), "impaling");
+    }
+    if(name2 == "morning-star") {
+  ob->set_wc(base_wc + bonus_wc + 13+(qz*2), "crushing");
+    }
+    if(name2 == "shod-staff") {
+  ob->set_wc(base_wc + bonus_wc + 15+(qz*2), "crushing");
+    }
+    if(name2 == "spear") {
+  ob->set_wc(base_wc + bonus_wc + 15+(qz*2), "impaling");
+    }
+  //END
   if(intp(ob->prop("hardness")))
     ob->set_decay_rate((int)ob->prop("hardness"));
   at->remove();
   remove();
   return;
 }
+
+
 

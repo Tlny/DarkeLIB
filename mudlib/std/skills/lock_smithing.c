@@ -70,7 +70,7 @@ void skill_func(object from, object at, string arg) {
     key_id = environment(from)->query_key(arg);
     name = arg;
   }
-  time = lock_lev*3 - (props["skill level"] / 10);
+  time = lock_lev*3 - (props["skill level"] / 10 * 60);
   if(time < 1) time = 1;
   blanks = filter_array(all_inventory(from), "is_key_blank", this_object());
   i = 0;
@@ -100,7 +100,10 @@ void skill_func(object from, object at, string arg) {
   ob2->set_short("A partial key blank for "+name);
   blank = ob2;
   set_work_message("%^CYAN%^You carefully shape the key blank.");
-  start_work(ob2, from, time * 60);
+if(archp(this_player())){
+time = 1;
+}
+  start_work(ob2, from, time);
   return;
 }
 
@@ -129,9 +132,20 @@ void finish_work(object from, object key) {
   key->remove();
   seteuid(getuid());
   ob = new("/wizards/diewarzau/obj/misc/temp_key");
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
+//NEW
+  ob->set_property("new desc", "A key to "+name);
+  //ob->set_short("A key made for "+name);
+  ob->set_short((string)ob->query_property("new desc"));
+//END
   from->set("lock picking", 0);
   ob->move(from);
-  ob->set_key_id(key_id);
+//NEW
+  ob->set_property("new ids", key_id);
+ob->set_key_id((string)ob->query_property("new ids"));
+//ob->set_id((string)ob->query_property("new ids"));
+//END
+  //ob->set_key_id(key_id);
   remove();
   return;
 }

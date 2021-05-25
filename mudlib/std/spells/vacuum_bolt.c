@@ -18,8 +18,8 @@ void create() {
     set_property("can resist", 2);
     set_property("spell type",({ "damage" }));
     set_property("must be present", 1);
-    set_property("damage types", ([ "vacuum" : 45 ]));
-    set_property("damage multiplier", 11);
+    set_property("damage types", ([ "vacuum" : 45+this_player()->query_level() ]));
+    set_property("damage multiplier", 11+this_player()->query_level()*2);
     set_property("combat spell", 1);
     set_property("prereq", "lightning bolt");
     set_property("target type", "living");

@@ -26,7 +26,7 @@ void create() {
 
     set("value", 1);
 
-    set_type("helmet");
+    set_type("metal head");
 
     set_limbs( ({ "head" }) );
 

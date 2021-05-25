@@ -13,7 +13,7 @@ void create() {
     set_stat("strength");
     set_dev_cost(27);
     set_fast_dev_cost(79);
-    set_property("prereq", "shield bash");
+    //set_property("prereq", "shield bash");
     set_property("no target", 1);
 }
 

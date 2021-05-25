@@ -8,12 +8,12 @@ int spell_pow;
 void create() {
     ::create();
     set_property("name","prepare spell");
-    set_property("skill","enchantment");
+    set_property("skill","energy manipulation");
     set_property("casting time",9);
-    set_property("base mp cost",41);
-    set_property("dev cost", 37);
-    set_property("fast dev cost", 99);
-    set_property("spell level", 7);
+    set_property("base mp cost",81);
+    set_property("dev cost", 105);
+    set_property("fast dev cost", 315);
+    set_property("spell level", 20);
     set_property("moon","luna");
     set_property("caster message","You cast prepare spell at $T.");
     set_property("target message","$C casts prepare spell at you.");
@@ -37,8 +37,8 @@ message("help",
 "the spell will fail.\n"
 "Syntax: cast *3 prepare spell at <player> with <spell>\n"
 "NOTE: You can only borrow one spell at a time.  The last one borrowed "
-"will take precedence.  This spell may only be cast on a player your level "
-"or lower.",
+"will take precedence.\n"
+"Your enchantment skill needs to be 4 times higher then the level of the person borrowing from.",
 this_player());
 }
 
@@ -59,7 +59,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     return;
   }
   if(!at->query_spell_level(skill)) {
-    message("info", "That palyer does not have the skill: '"+skill+
+    message("info", "That player does not have the skill: '"+skill+
           ".", caster);
     caster->add_mp(props["mp cost"]);
     remove();
@@ -73,8 +73,8 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
-  if((int)at->query_level() > (int)caster->query_level()) {
-    message("info", "That player is higher level than you.", caster);
+  if((int)at->query_level() >= ((int)caster->query_skill("enchantment") / 4)) {
+    message("info", "You need a higher level of enchantment to borrow a spell from that player.", caster);
     caster->add_mp(props["mp cost"]);
     remove();
     return;

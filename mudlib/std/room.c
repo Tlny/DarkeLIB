@@ -70,8 +70,10 @@ int clean_up() {
 
   if(query_property("storage room")) return 0;
   foreach(ob in inv) {
-    if(ob->is_player() && interactive(ob) &&
-       query_idle(ob) < 3600) return 1;
+ if(ob->is_player() && interactive(ob)) return 1;
+//TLNY2020 change
+    //if(ob->is_player() && interactive(ob) &&
+    //   query_idle(ob) < 99600) return 1;
     if(ob->is_pet() && stringp(ob->query_owner()) &&
        find_player((string)ob->query_owner())) return 1;
         if(ob->query_property("no clean"))
@@ -81,11 +83,11 @@ int clean_up() {
   inv = deep_inventory(this_object());
   foreach(ob in inv) {
    reset_eval_cost();
-//    if(ob) catch(ob->remove());
+    //if(ob) catch(ob->remove());
     if(ob) ob->remove();
 // Changed by Thrace in the hopes of eliminating a bug that leaves eq on the floor in rooms
   }
-//   catch(this_object()->remove());
+   //catch(this_object()->remove());
   this_object()->remove();
   return 0;
 }

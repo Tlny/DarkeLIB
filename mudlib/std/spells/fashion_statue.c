@@ -1,3 +1,5 @@
+// Statue - Xavier July2020
+
 inherit "/std/spells/long_term_spell";
 
 void create() {
@@ -7,9 +9,9 @@ void create() {
     set_property("duration", "permanent");
     set_property("casting time",4);
     set_property("base mp cost",32);
-    set_property("dev cost", 7);
-    set_property("fast dev cost", 18);
-    set_property("spell level", 1);
+    set_property("dev cost", 15);
+    set_property("fast dev cost", 45);
+    set_property("spell level", 2);
     set_property("moon","luna");
     set_property("caster message","You begin to mold the metal into a statue.");
     set_property("target message","");
@@ -66,7 +68,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
       remove();
       return;
     }
-    at = new("/std/diewarzau/obj/misc/inc_creation");
+    at = new("/std/obj/misc/inc_creation");
     ingots = 3;
     at->set_material(replace_string((string)ob_p[0]->query_material(),
           "metal/", "", 1));
@@ -107,7 +109,7 @@ void finish_work(object caster, object at, int power) {
 	  "magical incantations, and a statue is formed.",
 	  environment(caster), ({ caster }) );
   seteuid(getuid());
-  ob = new("/std/diewarzau/obj/pet/statue");
+  ob = new("/std/obj/pet/statue");
   ob->set_material(replace_string((string)at->query_material(), "/", "", 1));
   ob->set_up(power);
   ob->set_owner((string)caster->query_name());

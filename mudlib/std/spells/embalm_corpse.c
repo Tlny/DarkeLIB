@@ -5,11 +5,11 @@ inherit "/std/spells/spell";
 void create() {
     ::create();
     set_property("name","embalm corpse");
-    set_property("skill","necromancy");
+    set_property("skill","black magic");
     set_property("casting time",5);
     set_property("base mp cost",18);
-    set_property("dev cost", 8);
-    set_property("fast dev cost", 19);
+    set_property("dev cost", 15);
+    set_property("fast dev cost", 45);
     set_property("spell level", 2);
     set_property("moon","luna");
     set_property("caster message","You cast embalm corpse at $T.");

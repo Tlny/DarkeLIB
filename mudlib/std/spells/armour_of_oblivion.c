@@ -4,23 +4,22 @@ void create() {
     ::create();
     set_property("name","armour of oblivion");
     set_property("skill","energy manipulation");
-    set_property("casting time",16);
+    set_property("casting time", 16);
     set_property("base mp cost", 75);
-    set_property("dev cost", 88);
-    set_property("fast dev cost", 174);
-    set_property("spell level", 17);
+    set_property("dev cost", 100);
+    set_property("fast dev cost", 300);
+    set_property("spell level", 19);
     set_property("moon", "ankh");
-    set_property("caster message",
-		 "The image of $T shimmers behind an energy void.");
-    set_property("target message","An energy void shimmers around you.");
-    set_property("observer message",
-		 "The image of $T shimmers behind an energy void.");
+    set_property("caster message", "The image of $T shimmers behind an energy void.");
+    set_property("target message", "An energy void shimmers around you.");
+    set_property("observer message", "The image of $T shimmers behind an energy void.");
     set_property("spell type",({ "protection" }));
+    set_property("no borrow", 1);
     set_property("target type", "living");
-    set_property("protection types", ([ "fire" : 120, "cold" : 120,
-	"electricity" : 120, "vacuum" : 120, "holy" : 120, "disruption" : 120,
-                                      	   			]) );
-    set_property("duration", 30);
+    set_property("protection types", ([ "fire" : 100, "cold" : 100,
+	"electricity" : 100, "vacuum" : 100, "holy" : 100, "disruption" : 100, "aether" : 50, 
+    "infernal" : 50, "unholy" : 50, "plasma" : 100 ]) );
+    set_property("duration", 45);
     set_property("prereq", "energy shield");
     set_property("stack key", "ram");
     set_property("stack num", 2);
@@ -30,12 +29,20 @@ void create() {
 
 void info() {
 message("help",
-"This spell is the be all, end all of magical protection spells. "
-"The protection is very SICK and can be stacked twice.",
+"This spell is the be all, end all of magical protection spells. As such it may not be borrowed.\n"
+"The protection is very SICK and can be stacked twice.\n",
   this_player());
 }
 
 void spell_func(object caster, object at, int power, string args, int flag) {
+
+  if((int)caster->query_stack("ram") + (int)caster->query_stack("eshield") + (int)caster->query_stack("fshield") == 3) {
+    message("info", (string)caster->query_cap_name() +
+	    " cannot receive any more enchanter armour spells.", caster);
+    caster->add_mp(props["mp cost"]);
+    remove();
+    return;
+  }
 
   ::spell_func(caster, at, power, args, flag);
   return;

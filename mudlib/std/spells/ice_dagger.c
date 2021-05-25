@@ -14,8 +14,8 @@ void create() {
     set_property("target message","$C casts ice daggers upon you!");
     set_property("observer message","$C casts ice daggers at $T!");
     set_property("spell type",({ "damage" }));
-    set_property("damage types", ([ "impaling" : 17, "cold" : 26 ]));
-    set_property("damage multiplier", 2.8);
+    set_property("damage types", ([ "impaling" : 17+this_player()->query_level()/2, "cold" : 26+this_player()->query_level()/2 ]));
+    set_property("damage multiplier", 2.8+this_player()->query_level() );
     set_property("can save", 1);
     set_property("save mod", "dexterity");
     set_property("must be present",1);

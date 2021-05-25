@@ -14,8 +14,8 @@ void create() {
     set_property("target message","$C casts magic missile at you!");
     set_property("observer message","$C casts magic missile at $T.");
     set_property("spell type",({ "damage" }));
-    set_property("damage types", ([ "impact" : 15 ]));
-    set_property("damage multiplier", 1.3);
+    set_property("damage types", ([ "impact" : 15+this_player()->query_level() ]));
+    set_property("damage multiplier", 1.3+this_player()->query_level()*2);
     set_property("can resist", 2);
     set_property("save mod", "dexterity");
     set_property("must be present", 1);
@@ -35,14 +35,22 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   int i, max;
   mapping dmg;
 
+
+
   max = 1+(int)caster->query_level()/5;
   if(max > 10) max = 10;
   dmg = ([]);
-  for(i = 1; i <= max; i++)
+//TLNY2020 added fix to work proeprly.
+  for(i = 1; i <= max; i++) {
+  message("info", "You cast a Magic Missile", caster);
+  message("info", (string)caster->query_cap_name() + " casts a Magic Missile ",
+	  environment(caster), ({ caster }) );
     dmg += ([ sprintf("impact #%d", i) : 15 ]);
   set_property("damage types", dmg);
   ::spell_func(caster, at, power, args, flag);
+}
   return;
 }
 
   
+

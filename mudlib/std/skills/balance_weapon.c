@@ -11,7 +11,7 @@ void create() {
     set_fast_dev_cost(32);
     set_property("target type", "any");
     set_property("must be present", 1);
-    set_property("prereq", "repair weapon");
+    //set_property("prereq", "repair weapon");
 }
 
 void info() {
@@ -28,7 +28,7 @@ message("help",
 "supply the weapon name...this is to avoid accidentally starting over.\n"
 "WARNING: balancing a weapon does carry with it the risk of ruining the "
 "weapon. If you try to balance a weapon already balanced by you or anyone "
-"else, the failure rate is higher then normal.",
+"else, the failure rate is higher then normal... unless you are very skilled",
 	this_player());
 }
 
@@ -80,9 +80,10 @@ void skill_func(object from, object at) {
 void finish_work(object from, object at) {
   int val,hit_bonus,wc_bonus,i;
   seteuid(getuid());
-  if(at->query_property("balanced")) { i = 100000; }
-  else { i = 2; }
-  if(random(100) > props["skill level"]*random(20) && random(i)) {
+  //if(at->query_property("balanced") && props["skill level"] > 150) { i = 2; }
+  if(at->query_property("balanced") && props["skill level"] < 150) { i = 50; }
+  else { i = 20; }
+  if(random(i)*random(3) > props["skill level"]) {
   	message("info","%^RED%^DOH! You miss calculated your work! The "+
   		"weapon has become all but useless!",from);
   	at->set_decay_rate(0);

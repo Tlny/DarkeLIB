@@ -12,7 +12,7 @@ void create() {
     set_property("moon","luna");
     set_property("caster message","You summon a Lesser Demon.");
     set_property("target message","");
-    set_property("observer message","$C sumons a lesser demon.");
+    set_property("observer message","$C summons a lesser demon.");
     set_property("spell type",({  }));
     set_property("duration", 240);
     set_property("no target", 1);

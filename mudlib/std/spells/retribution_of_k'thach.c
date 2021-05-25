@@ -21,6 +21,8 @@ void create() {
     set_property("spell type",({ }));
     set_property("duration", 120);
     set_property("no target", 1);
+    set_property("stack key", "ret_kthach");
+    set_property("stack num", 1);
     return;
 }
 
@@ -56,6 +58,8 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
+  caster->set("ret_kthach #", (int)caster->query("ret_kthach #") + 1);
+  call_out("remove_stack", props["duration"], caster);
   message("info", "K'thach now watches over you.",
         caster);
   caster->set("death save", (: call_other, this_object(), "save_from_death" :));
@@ -108,6 +112,12 @@ void save_from_death(object caster, object at) {
     amt, objective(caster)), at);
   caster->set("death save", 0);
   remove_delayed_call("expire_me");
+  remove();
+  return;
+}
+void remove_stack(object caster) {
+  if(!objectp(caster)) return;
+  caster->set("ret_kthach #", (int)caster->query("ret_kthach #") - 1);
   remove();
   return;
 }

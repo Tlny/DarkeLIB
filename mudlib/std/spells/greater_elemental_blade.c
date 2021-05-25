@@ -17,7 +17,7 @@ void create() {
     set_property("target message","");
     set_property("observer message","$C casts greater elemental blade at $T.");
     set_property("duration", 360);
-    set_property("must be present", 1);
+    set_property("spell type",({}));
     set_property("elemental spell", 1);
     set_property("must be present", 1);
     set_property("target type", "any");
@@ -34,7 +34,7 @@ this_player());
 
 void spell_func(object caster, object at, int power, string args, int flag) {
   object ob;
-  string *ele;
+string *ele;
   int i;
   mapping tmp;
   
@@ -57,24 +57,26 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
-  message("info", "You imbue the weapon with the power of "+props["element"]+".",
-        caster);
+
   tmp = ([]);
   i = sizeof(ele);
   while(i--) tmp += ([ ele[i] : 10*power ]);
   seteuid(getuid());
+  
   ob = new("/std/spells/shadows/weapon_shadow");
-  if(flag) {
-    message("info", "The spell fizzles, costing double mp.", caster);
-    caster->add_mp(-1* props["mp cost"]);
+if(check_stack(at, ob)) {
+	message("info", "You imbue the weapon with the power of "+props["element"]+".", caster);
+	ob->set_extra_wc(tmp);
+	ob->start_shadow(at, props["duration"], "%^CYAN%^An elemental blade spell wears off.");
+	}
+	else{
+    message("info", "You may not stack any more greater elemental blade spells on that weapon.",
+      caster);
+    caster->add_mp(props["mp cost"]);
+	ob->external_destruct(ob);
+	}
     remove();
     return;
-  }
-  ob->set_extra_wc(tmp);
-  ob->start_shadow(at, props["duration"], "%^CYAN%^An elemental blade spell wears off.");
-  remove();
-  return;
 }
 
-  
   

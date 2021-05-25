@@ -19,6 +19,8 @@ void create() {
     set_property("target type", "living");
     set_property("must be present",1);
     set_property("duration", 75);
+    set_property("stack key", "sofw");
+    set_property("stack num", 1);
     return;
 }
 
@@ -44,10 +46,20 @@ void spell_func(object caster, object at, int power, string args, int flag)
     remove();
     return;
   }
+  at->set("sofw #", (int)at->query("sofw #") + 1);
+  call_out("remove_stack", props["duration"], at);
+  ::spell_func(caster, at, power, args, flag);
+  
   ob = new("/std/spells/shadows/mag_resist_shad");
   ob->set_resist(random(power*5) + power*5);
   ob->start_shadow(at, props["duration"],
                    "%^YELLOW%^Your feel your extra willpower slowly fade away.");
   ::spell_func(caster, at, power, args, flag);
+  return;
+}
+void remove_stack(object at) {
+  if(!objectp(at)) return;
+  at->set("sofw #", (int)at->query("sofw #") - 1);
+  remove();
   return;
 }

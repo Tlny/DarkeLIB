@@ -7,10 +7,10 @@ void create() {
     set_property("skill","enchantment");
     set_property("duration", "permanent");
     set_property("casting time",4);
-    set_property("base mp cost",77);
-    set_property("dev cost", 51);
-    set_property("fast dev cost", 150);
-    set_property("spell level", 10);
+    set_property("base mp cost",87);
+    set_property("dev cost", 100);
+    set_property("fast dev cost", 300);
+    set_property("spell level", 19);
     set_property("moon","luna");
     set_property("caster message","You begin to imbue the weapon with magical power.");
     set_property("target message","");
@@ -34,6 +34,7 @@ this_player());
 
 void spell_func(object caster, object at, int power, string args, int flag) {
   int time, mod;
+  int ctime;
   if(!at->is_weapon()) {
     message("info", "You must cast this spell at a weapon.",
 	    caster);
@@ -58,11 +59,16 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
+
   set_work_message("%^CYAN%^You enchant the weapon.");
   time = 1200 + 600*power;
   mod = 40+2*props["spell level"];
-  start_work(at, caster, (time*mod)/caster->query_skill("enchantment"), power);
-  return;
+ctime = (time*mod)/caster->query_skill("enchantment");
+if(archp(caster)) {
+ctime = 1;
+}
+start_work(at, caster, ctime, power);
+return;
 }
 
 void finish_work(object caster, object at, int power) {
@@ -75,6 +81,11 @@ void finish_work(object caster, object at, int power) {
     remove();
     return;
   }
+//ADD
+if(power >= 6) {
+    at->set_property("hit bonus", 40);
+	}  
+//END
   message("info", "You are finished enchanting!", caster);
   message("info", (string)caster->query_cap_name() + " utters some "+
 	  "magical incantations.",

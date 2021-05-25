@@ -16,6 +16,8 @@ void create() {
     set_property("must be present", 1);
     set_property("target type", "living");
     set_property("duration", 300);
+    set_property("stack key", "drkvision");
+    set_property("stack num", 1);
     return;
 }
 
@@ -41,6 +43,9 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     call_out("expire_blind", 80, at ,ob);
     return;
   }
+  at->set("drkvision #", (int)at->query("drkvision #") + 1);
+  call_out("remove_stack", props["duration"], at);
+  ::spell_func(caster, at, power, args, flag);
   ob = new("/std/spells/shadows/dvision_shadow");
   ob->set_max(8);
   ob->start_shadow(at, props["duration"], "%^CYAN%^A dark vision spell expires.");
@@ -54,6 +59,12 @@ void expire_blind(object at, object shad) {
         at);
   if(shad)
     shad->external_destruct(shad);
+  return;
+}
+void remove_stack(object at) {
+  if(!objectp(at)) return;
+  at->set("drkvision #", (int)at->query("drkvision #") - 1);
+  remove();
   return;
 }
 

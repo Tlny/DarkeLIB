@@ -43,6 +43,7 @@ this_player());
 
 void spell_func(object caster, object at, int power, string args, int flag) {
   int time, mod;
+  int ctime;
   if(!at->is_weapon()) {
     message("info", "You must cast this spell on a weapon.",
 	    caster);
@@ -77,9 +78,12 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   set_work_message("%^CYAN%^You enchant the weapon.");
   time = 600+80*power;
   mod = 30+2*props["spell level"];
-  start_work(at, caster, (time*mod)/caster->query_skill("enchantment"), power);
-  
-  return;
+ctime = (time*mod)/caster->query_skill("enchantment");
+if(archp(caster)) {
+ctime = 1;
+}
+start_work(at, caster, ctime, power);
+return;
 }
 
 void finish_work(object caster, object at, int power) {

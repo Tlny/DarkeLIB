@@ -75,3 +75,5 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   remove();
   return;
 }
+
+int can_exceed_max_mp() { return 1; }

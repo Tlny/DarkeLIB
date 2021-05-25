@@ -36,9 +36,9 @@ void create() {
 
     set_property("must be present", 1);
 
-    set_property("damage types", ([ "fire": 10, "impact" : 10, "holy" : 20 ]));
+    set_property("damage types", ([ "fire": 10+this_player()->query_level()/2, "impact" : 10+this_player()->query_level()/2, "holy" : 20+this_player()->query_level()/2 ]));
 
-    set_property("damage multiplier", 3);
+    set_property("damage multiplier", 3+this_player()->query_level());
 
     set_property("combat spell", 1);
 

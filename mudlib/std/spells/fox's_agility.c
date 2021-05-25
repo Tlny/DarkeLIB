@@ -43,7 +43,7 @@ void spell_func(object caster, object at, int power, string args, int flag)
   mapping sk_aff = SKILLS_AFFECTED;
 
   seteuid(getuid());
-  if ((int)at->query("a bless num") >= 2) {
+  if ((int)at->query("a bless num") + (int)at->query("f bless num") + (int)at->query("c bless num") >= 2 ) {
     message("info", (string)at->query_cap_name() +
             " can receive no fox's agility spells.", caster);
     caster->add_mp(props["mp cost"]);
@@ -53,7 +53,7 @@ void spell_func(object caster, object at, int power, string args, int flag)
   if(flag) message("info", "The spell's effects are reversed!", caster);
   map_mapping(sk_aff, (: call_other($3, $4, $1, $2 * $5) :),
     at, "add_skill_bonus", ((flag)?-1:1) * power);
-  at->set("a bless num", (int)at->query("a bless num") + 1);
+  at->set("f bless num", (int)at->query("f bless num") + 1);
   delayed_call("remove_spell", props["duration"], power, at, flag);
   ::spell_func(caster, at, power, args, flag);
   return;
@@ -69,7 +69,7 @@ void remove_spell(int power, object at, int flag) {
   message("info", "You don't feel quite as agile.", at);
   map_mapping(sk_aff, (: call_other($3, $4, $1, $2 * $5) :),
     at, "add_skill_bonus", ((flag)?1:-1) * power);
-  at->set("a bless num", (int)at->query("a bless num") - 1);
+  at->set("f bless num", (int)at->query("f bless num") - 1);
   remove();
   return;
 }

@@ -18,8 +18,10 @@ void create() {
     set_property("stats", ({ "strength", "intelligence", "dexterity" }) );
     set_property("target type", "living");
     set_property("must be present",1);
-    set_property("duration", 240);
+    set_property("duration", 30000);
     set_property("prereq", "blessing of agility");
+    set_property("stack key", "divine_trans");
+    set_property("stack num", 1);
     return;
 }
 
@@ -45,6 +47,8 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     return;
   }
   if(!flag) {
+  at->set("divine_trans #", (int)at->query("divine_trans #") + 1);
+  call_out("remove_stack", props["duration"], at);
     ob = new("/std/spells/shadows/d_trans_shadow");
     ob->set_power(power);
     ob->start_shadow(at, props["duration"],
@@ -53,4 +57,11 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   ::spell_func(caster, at, power, args, flag);
   return;
 }
+void remove_stack(object at) {
+  if(!objectp(at)) return;
+  at->set("divine_trans #", (int)at->query("divine_trans #") - 1);
+  remove();
+  return;
+}
+
 

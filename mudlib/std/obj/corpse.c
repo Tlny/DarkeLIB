@@ -5,7 +5,7 @@
 
 inherit BAG;
 
-#define DECAY_TIME 400
+#define DECAY_TIME 2000
 
 string name;
 int decay;
@@ -183,7 +183,7 @@ void set_name(string str) {
 void decay() {
   decay -= 1;
   if(decay > 0) {
-    call_out("decay", 20);
+    call_out("decay", 200);
     return;
   }
   remove();

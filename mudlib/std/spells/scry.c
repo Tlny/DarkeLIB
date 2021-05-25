@@ -16,6 +16,7 @@ void create() {
     set_property("no target", 1);
     set_property("save mod", "intelligence");
     set_property("duration", 240);
+    set_property("can resist", 1);
     set_property("prereq", "clairvoyance");
     return;
 }

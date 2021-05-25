@@ -62,6 +62,7 @@ from);
     remove();
     return;
   }
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
   message("my_combat", "You strike "+ 
           (string)at->query_cap_name()+ " with your palm shocking "+
           "them.",

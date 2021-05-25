@@ -39,6 +39,7 @@ int platinum, gold, electrum, silver, copper;
 int level, ghost, crash_money, rolls, verbose_moves;
 int birth;
 static int count, challenged, count2, disable, time_of_login, autosave;
+int remort_num;
 mapping blocked, colours, bank, exp_log;
 string *keep;
 string snatch;
@@ -457,6 +458,7 @@ void setup() {
     }
     init_living();
     basic_commands();
+set_state("stand");
     ip = query_ip_name(this_object());
     last_on = ctime(time());
     time_of_login = time();
@@ -561,6 +563,7 @@ void setup() {
     if(this_object()->query_property("guild watch"))
 	GUILD_D->set_last_on(query_class(), time());
     SAVEALL_D->restore_crash_items(this_object());
+    command("equip");
 }
 
 // Added these lines so wizzes couldn't just call heart_beat() and
@@ -617,10 +620,14 @@ varargs static void heart_beat(int recurs_flag) {
 	save_player(query_name());
 	autosave = player_age + 500;
     }
+    if(sizeof(query_attackers()) && getenv("SCORE") == "on")
+	message("my_combat",""+"%^BOLD%^%^RED%^"+sprintf("hp:%d/%d ", query_hp(), query_max_hp()) +" %^BOLD%^%^CYAN%^"+ sprintf("mp:%d/%d", query_mp(), query_max_mp()), this_object());
+/* //old code replaced by TLNY2020 with new code above ^
     if(sizeof(query_attackers()) && getenv("SCORE") != "off")
 	message("my_combat", sprintf("hp: %d (%d)  mp: %d (%d)",
 	    query_hp(), query_max_hp(), query_mp(), 
 	    query_max_mp()), this_object());
+*/
     if(stringp(props["lycanthrope moon"]) && !this_object()->
       query("in creation")) {
 	tod = (string)EVENTS_D->query_time_of_day();
@@ -665,7 +672,8 @@ varargs static void heart_beat(int recurs_flag) {
     if(magic_round > 0) magic_round--; else magic_round = 0;
     if(player_age > ok_to_heal) do_healing(calculate_healing());
     else calculate_healing();
-    if(interactive(this_object()) && query_idle(this_object()) >= 3600 &&
+//TLNY2020 change 12 hour idle time then force quit user
+      if(interactive(this_object()) && query_idle(this_object()) >= 43200 &&
       !wizardp(this_object()) ) {
 	this_object()->force_me("quit");
     }
@@ -807,8 +815,10 @@ nomask void die() {
     if(wizardp(this_object())) {
 	message("death", "You are immortal and cannot die.", this_object());
 	return;
-    } else
-      add_hp(1000);
+    } 
+ 
+else
+      add_hp(5000);
     ob = this_object();
     died_here = environment(ob);
     force_me("unequip");
@@ -854,6 +864,11 @@ catch ("/daemon/pk_d"->add_player_kill((query_attackers())[0]));
     setenv("start", "/d/standard/square");
     save_player( query_name() );
     PLAYER_D->add_player_info();
+
+    if(this_player(query_ghost())) {
+    message("death", "You are a ghost and cannot die further.", this_object());
+	return;
+    }
 }
 
 void set_challenged(int arg) {
@@ -1496,3 +1511,9 @@ nomask mapping query_exp_log() {
     if(!exp_log) exp_log = ([]);
     return exp_log;
 }
+
+void set_remort(int n) {
+remort_num = n;
+}
+
+int query_remort() {return remort_num; }

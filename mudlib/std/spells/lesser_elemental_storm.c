@@ -16,8 +16,8 @@ void create() {
     set_property("spell type",({ "area damage" }));
     set_property("elemental spell", 1);
     set_property("must be present", 1);
-    set_property("ele damage", 15);
-    set_property("damage multiplier", 5);
+    set_property("ele damage", 15+this_player()->query_level()/3);
+    set_property("damage multiplier", 5+this_player()->query_level()/2);
     set_property("combat spell", 1);
     set_property("no target", 1);
     return;

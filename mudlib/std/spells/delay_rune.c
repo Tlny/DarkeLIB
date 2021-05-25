@@ -1,13 +1,13 @@
-inherit "/std/spells/spell";
+inherit "/std/spells/spell_2";
 
 void create() {
     ::create();
     set_property("name","delay rune");
-    set_property("skill","enchantment");
-    set_property("casting time",9);
-    set_property("base mp cost",41);
-    set_property("dev cost", 62);
-    set_property("fast dev cost", 183);
+    set_property("skill","energy manipulation");
+    set_property("casting time", 9);
+    set_property("base mp cost", 41);
+    set_property("dev cost", 65);
+    set_property("fast dev cost", 195);
     set_property("spell level", 12);
     set_property("moon","luna");
     set_property("caster message","You cast delay rune at $T.");

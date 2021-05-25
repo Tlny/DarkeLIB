@@ -1,14 +1,14 @@
-inherit "/std/spells/spell";
+inherit "/std/spells/spell_2";
 
 void create() {
     ::create();
     set_property("name","transport beacon");
-    set_property("skill","enchantment");
+    set_property("skill","energy manipulation");
     set_property("casting time",24);
-    set_property("base mp cost",41);
-    set_property("dev cost", 71);
-    set_property("fast dev cost", 210);
-    set_property("spell level", 14);
+    set_property("base mp cost",60);
+    set_property("dev cost", 115);
+    set_property("fast dev cost", 345);
+    set_property("spell level", 22);
     set_property("moon","luna");
     set_property("caster message","You summon a transport beacon.");
     set_property("target message","");
@@ -16,6 +16,7 @@ void create() {
     set_property("spell type",({ }));
     set_property("no target", 1);
     set_property("duration", "until quit");
+    set_property("prereq", "healing rune");
     return;
 }
 

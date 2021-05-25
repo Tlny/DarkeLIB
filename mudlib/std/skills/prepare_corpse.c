@@ -52,6 +52,7 @@ void finish_work(object from, object at) {
        return;
     }
     if(from)
+from->add_exp2(5 * props["skill level"]+(this_player()->query_level()*100));
         message("info", "You have finished embalming the corpse.\n"+
           "It is sufficient to cast a level "+(int)at->query_level()+
           " summon undead spell.", from);
@@ -60,6 +61,7 @@ void finish_work(object from, object at) {
       ({ from }));
     ob = new("/wizards/diewarzau/obj/misc/emb_corpse");
     ob->set_level((int)at->query_level());
+    ob->set_short(sprintf("a level %d embalmed corpse", at->query_level()));
     inv=all_inventory(at);
     for (i=0;i<sizeof(inv);i++){
         a=inv[i];

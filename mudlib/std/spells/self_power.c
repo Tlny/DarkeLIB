@@ -1,44 +1,25 @@
 inherit "/std/spells/long_term_spell";
 
 
-
 void create() {
-
     ::create();
-
     set_property("name","self power");
-
-    set_property("skill","enchantment");
-
+    set_property("skill","energy manipulation");
     set_property("duration", "permanent");
-
-    set_property("casting time",4);
-
-    set_property("base mp cost",66);
-
-    set_property("dev cost", 87);
-
-    set_property("fast dev cost", 290);
-
-    set_property("spell level", 17);
-
+    set_property("casting time", 4);
+    set_property("base mp cost", 66);
+    set_property("dev cost", 110);
+    set_property("fast dev cost", 330);
+    set_property("spell level", 21);
     set_property("moon","luna");
-
     set_property("caster message","You begin to power the scroll.");
-
     set_property("target message","");
-
     set_property("observer message","$C begins writing on a scroll.");
-
     set_property("spell type",({ }));
-
     set_property("target type", "any");
-
     set_property("prereq", "scribe scroll");
     set_property("must be present", 1);
-
     return;
-
 }
 
 
@@ -155,7 +136,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
 
   mod = 40+2*props["spell level"];
 
-  if(!start_work(at, caster, (time*mod)/caster->query_skill("enchantment"), power) &&
+  if(!start_work(at, caster, (time*mod)/caster->query_skill("energy manipulation"), power) &&
 
     (int)at->query_property("self power") > 1)
 

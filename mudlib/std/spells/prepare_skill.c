@@ -8,12 +8,12 @@ int spell_pow;
 void create() {
     ::create();
     set_property("name","prepare skill");
-    set_property("skill","enchantment");
+    set_property("skill","energy manipulation");
     set_property("casting time",9);
-    set_property("base mp cost",41);
-    set_property("dev cost", 82);
-    set_property("fast dev cost", 250);
-    set_property("spell level", 16);
+    set_property("base mp cost", 120);
+    set_property("dev cost", 230);
+    set_property("fast dev cost", 690);
+    set_property("spell level", 45);
     set_property("moon","luna");
     set_property("caster message","You cast prepare skill at $T.");
     set_property("target message","$C casts prepare skill at you.");
@@ -22,6 +22,7 @@ void create() {
     set_property("target type", "player");
     set_property("must be present", 1);
     set_property("duration", "until quit");
+    set_property("prereq", "prepare spell");
     return;
 }
 
@@ -37,14 +38,16 @@ message("help",
 "Syntax: cast *3 prepare skill at <player> with <skill>\n"
 "NOTE: You can only borrow one skill at a time.  The last one borrowed "
 "will take precedence.  This spell may ONLY be cast on players your level or "
-"lower.",
+"lower.\n"
+"***This is a very powerful spell and only the most dedicated enchanters may use it. A skill of 200% is needed to cast this spell.***\n"
+"==>This spell can only be used by members of the ENCHANTER guild<==",
 this_player());
 }
 
 void spell_func(object caster, object at, int power, string args, int flag) {
   object ob;
   
-  if(!args) {
+    if(!args) {
     message("info", "See 'help spell prepare skill' for syntax.",
         caster);
     caster->add_mp(props["mp cost"]);
@@ -83,6 +86,19 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   }
   if((int)at->query_level() > (int)caster->query_level()) {
     message("info", "That player is higher level than you.", caster);
+    caster->add_mp(props["mp cost"]);
+    remove();
+    return;
+  }
+  if((int)caster->query_skill("energy manipulation") < 200 ) {
+    message("info", "You need more energy manipulation to borrow a skill from a player.", caster);
+    caster->add_mp(props["mp cost"]);
+    remove();
+    return;
+  }
+  if(caster->query_class() != "enchanter" && !archp(caster)) {
+    message("info", "%^BOLD%^Only %^CYAN%^Enchanters%^RESET%^ %^BOLD%^may use this spell.", caster);
+    message("info", "Your spell fails.", me);
     caster->add_mp(props["mp cost"]);
     remove();
     return;

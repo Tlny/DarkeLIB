@@ -85,6 +85,7 @@ void skill_func(object from, object at, string arg) {
 }
   
 void prepare1(object from, object at) {
+from->add_exp2(5 * props["skill level"]+(this_player()->query_level()*100));
   message("my_action", "%^CYAN%^You sprinkle the "+
           (string)item1->query_short()+" full circle around you.",
           from);
@@ -103,6 +104,7 @@ void prepare1(object from, object at) {
 }
 
 void prepare2(object from, object at) {
+from->add_exp2(6 * props["skill level"]+(this_player()->query_level()*100));
   message("my_action", "%^CYAN%^You begin to burn the "+
           (string)item2->query_short()+" and it starts to smoke aromatically.",
           from);
@@ -121,6 +123,7 @@ void prepare2(object from, object at) {
 }
 
 void prepare3(object from, object at) {
+from->add_exp2(7 * props["skill level"]+(this_player()->query_level()*100));
   message("my_action", "%^CYAN%^You bathe the "+
           (string)at->query_name()+" in the "+
           (string)item3->query_short()+
@@ -142,6 +145,7 @@ void prepare3(object from, object at) {
 }
 void prepare_done(object from, object at) {
   int wibble;
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
   message("my_action", "%^CYAN%^You have finished preparing your "+
           (string)at->query_name()+".",
           from);

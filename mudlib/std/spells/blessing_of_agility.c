@@ -47,7 +47,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   mapping sk_aff = SKILLS_AFFECTED;
 
   seteuid(getuid());
-  if ((int)at->query("a bless num") >= 2) {
+  if ((int)at->query("a bless num") + (int)at->query("f bless num") + (int)at->query("c bless num") >= 2 ) {
     message("info", (string)at->query_cap_name() +
 	    " can receive no additional blessings of agility.", caster);
     caster->add_mp(props["mp cost"]);

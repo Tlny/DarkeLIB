@@ -6,8 +6,8 @@ void create() {
     set_property("skill","energy manipulation");
     set_property("casting time",2);
     set_property("base mp cost",15);
-    set_property("dev cost",6);
-    set_property("fast dev cost",15);
+    set_property("dev cost", 10);
+    set_property("fast dev cost", 30);
     set_property("spell level", 1);
     set_property("moon","warzau");
     set_property("caster message","You cast Garguth's open palm at $T.");
@@ -20,8 +20,8 @@ void create() {
     set_property("combat spell", 1);
     set_property("must be present", 1);
     set_property("spell type",({ "damage" }));
-    set_property("damage multiplier", 1.6);
-    set_property("damage types", ([ "impact" : 10 ]));
+    set_property("damage multiplier", 1.6+this_player()->query_level());
+    set_property("damage types", ([ "impact" : 15+this_player()->query_level()/2 ]));
     return;
 }
 

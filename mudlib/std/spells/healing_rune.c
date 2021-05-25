@@ -1,14 +1,14 @@
-inherit "/std/spells/spell";
+inherit "/std/spells/spell_2";
 
 void create() {
     ::create();
     set_property("name","healing rune");
-    set_property("skill","enchantment");
-    set_property("casting time",29);
-    set_property("base mp cost",45);
-    set_property("dev cost", 51);
-    set_property("fast dev cost", 150);
-    set_property("spell level", 10);
+    set_property("skill","energy manipulation");
+    set_property("casting time", 25);
+    set_property("base mp cost", 50);
+    set_property("dev cost", 80);
+    set_property("fast dev cost", 240);
+    set_property("spell level", 15);
     set_property("moon","warzau");
     set_property("caster message","You inscribe a %^CYAN%^%^BOLD%^healing rune%^RESET%^ on the floor.");
     set_property("target message","");
@@ -22,7 +22,7 @@ void create() {
 
 void info() {
 message("help",
-"This spell inscribes a magical rune on the floor.  "
+"This spell inscribes a healing rune on the floor.  "
 "Whenever someone enters the room, the rune will affect "
 "them.  This rune allows all in the room to heal at double rate (mp and hp).",
 this_player());
@@ -33,7 +33,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   int i, tot;
 
   seteuid(getuid());
-  ob = new("/std/diewarzau/obj/misc/h_rune");
+  ob = new("/std/obj/misc/h_rune");
   ob->set("safe flag", 1);
   ob->move(environment(caster));
   ob->set("safe flag", 0);

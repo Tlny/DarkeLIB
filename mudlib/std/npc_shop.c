@@ -7,10 +7,10 @@
 //    DarkeLIB 0.1
 //    -Diewarzau 8/2/95
 
-#include "/adm/include/std.h"
-#include "/adm/include/move.h"
-#include "/adm/include/daemons.h"
-#define CURRS ({ "gold", "silver", "copper" })
+#include <std.h>
+#include <move.h>
+#include <daemons.h>
+#define CURRS ({  "gold", "silver", "copper" })
 
 inherit MONSTER;
 

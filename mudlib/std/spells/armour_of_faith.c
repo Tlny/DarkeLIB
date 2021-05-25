@@ -22,7 +22,7 @@ void create() {
         "strike":6, "stress":4, "constriction":5 ]) );
     set_property("duration", 360);
     set_property("prereq", "holy armour");
-    set_property("stack key", "holy armour");
+    set_property("stack key", "faith armour");
     set_property("stack num", 6);
     set_property("must be present", 1);
     return;
@@ -42,14 +42,14 @@ TEXT
 
 void spell_func(object caster, object at, int power, string args, int flag) {
 
-  if((int)at->query("holy armour #") >= 6) {
+  if((int)at->query("faith armour #") + (int)at->query("holy armour #") == 6) {
     message("info", (string)at->query_cap_name() +
 	    " cannot receive any more armour of faith spells.", caster);
     caster->add_mp(props["mp cost"]);
     remove();
     return;
   }
-  at->set("holy armour #", (int)at->query("holy armour #") + 1);
+  at->set("faith armour #", (int)at->query("faith armour #") + 1);
   delayed_call("remove_stack", props["duration"], at);
   ::spell_func(caster, at, power, args, flag);
   return;
@@ -57,7 +57,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
 
 void remove_stack(object at) {
   if(!objectp(at)) return;
-  at->set("holy armour #", (int)at->query("holy armour #") - 1);
+  at->set("faith armour #", (int)at->query("faith armour #") - 1);
   remove();
   return;
 }

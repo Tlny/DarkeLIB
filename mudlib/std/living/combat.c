@@ -250,7 +250,7 @@ void continue_attack() {
     if(player_data["general"]["hp"] < 1 && !me->query_ghost() ) {
 	if(wizardp(me)) {
 	    player_data["general"]["hp"] = 1;
-	    message("my_combat", "You are immortal and cannot die.",me);
+	    message("my_combat", "You are immortal and cannot die... lucky you",me);
 	}
 	else {
 	    if(attackers) {
@@ -384,6 +384,11 @@ void execute_attack() {
     if(!(num_attacks = sizeof(weapons=distinct_array(query_wielded())))) {
 	if(query_skill("martial arts") >= 60) num_attacks = 2;
 	else num_attacks = 1;
+	//HONSPRON 2021
+	if (me->query_state() == "rest") num_attacks = 0;
+	if (me->query_state() == "prone") num_attacks = 0;
+	if (me->query_state() == "sit") num_attacks = 1;
+
     }
     if((i = check_limbs_for_attack()) < num_attacks)
 	 num_attacks = i;
@@ -394,6 +399,8 @@ void execute_attack() {
 	num_rounds++;
 
 //++++++ WORKS?
+//if (me->query_class() == "fighter") num_rounds = 3;
+
 if(me->query_haste())
     for(i=0; i < me->query_haste() || i < 2; i++)
 	num_attacks++;
@@ -434,12 +441,12 @@ if(me->query_haste())
 				x = 1;
 			if(!x)
 				skill -= 30 - (query_skill("offhand training")/4);
-	    }
-
+	    }		
 	    skill -= (int)attackers[0]->sight_adjustment(me);
-
       if(current && num_attacks > 1 && sizeof(weapons) > 1)
          skill -= 30-(query_skill("dual attack")/4);
+	 //TLNY2020 broken code removed
+	 /*
 	    if(a_weapons)
 	    {
 		k = sizeof(a_weapons);
@@ -448,6 +455,7 @@ if(me->query_haste())
 		    if(a_weapons[k]->query_parry_bonus() > parry_bonus)
 			parry_bonus = a_weapons[k]->query_parry_bonus();
 	    }
+	*/	
 	    has_shield = 0;
 	    tmp = (string *)attackers[0]->query_limbs();
 	    k = sizeof(tmp);
@@ -488,42 +496,45 @@ if((int)attackers[0]->query_max_internal_encumbrance() <= 0)
 		damage = get_damage(current);
 	    if(!damage || !keys(damage)) continue;
 
+/* Tlny2021 remove troubleshooting monster combat rounds 8++ rounds?
 //Special combat readded by Tass.
             if(random(100) < ((skill-99)/2) && i < 3) {
 		switch(random(10)) {
 		case 0..1:
                     if (spec_com > 10) break;
-		    message("my_combat", "%^RED%^%^BOLD%^- Living Special combat:%^RESET%^ Extra attack!",
-		      me);
+		    //message("my_combat", "%^RED%^%^BOLD%^- Special combat:%^RESET%^ Extra attack!",
+		     // me);
                     spec_com++;
                     num_attacks++;
 		    if(current) weapons += ({ current });
 		    break;
 		case 2..6:
 		default:
-		    message("my_combat", "%^RED%^%^BOLD%^- Living Special combat:%^RESET%^ Extra damage!",
-		      me);
+		   // message("my_combat", "%^RED%^%^BOLD%^- Special combat:%^RESET%^ Extra damage!",
+		      //me);
 		    if(mapp(damage))
 			damage = map_mapping(damage, (: ($3 + $2) :), 20 +
 			  skill-99 + random(skill-99));
 		    break;
 		case 7..8:
-		    message("my_combat", "%^RED%^%^BOLD%^-Living Special combat:%^RESET%^ Extra critical!",
-		      me);
+		   // message("my_combat", "%^RED%^%^BOLD%^-Special combat:%^RESET%^ Extra critical!",
+		      //me);
 		    if(mapp(damage))
 			criticals += map_array(keys(damage), (: $1 + $2 :), " B");
 		    break;
 		case 9..9:
                     if (spec_com > 5) break;
-		    message("my_combat", "%^RED%^%^BOLD%^- Living Special combat:%^RESET%^ 2 extra attacks!",
-		      me);
+		    //message("my_combat", "%^RED%^%^BOLD%^- Living Special combat:%^RESET%^ 2 extra attacks!",
+		      //me);
                     spec_com++;
 		    num_attacks += 2;
 		    if(current)
 			weapons += ({ current, current });
                     break;
 		}
-            } 
+            }
+
+*/ 
 
 	    if(current) {
 		w_hit = current->query_hit();
@@ -711,7 +722,8 @@ private void do_criticals(string *criticals) {
     if(dur < 0) continue;
     criticals[i] = sprintf("%s %s",what2, CRIT_TYPES[dur]);
     roll = random(100)+1;
-/* no more devs no more trace
+
+ /*no more devs no more trace
     if(random(100) < (roll / 5)*(dur+1) && !me->buffer_full()&&
        me->at_max_exp() && ((int)attackers[0]->query_hp() > 5)) me->add_dev(1);
     if((string)me->getenv("TRACE") == "on" && wizardp(me))

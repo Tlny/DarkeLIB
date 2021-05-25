@@ -133,12 +133,21 @@ void add_hp(int x) {
 /*  Added by Geldron 030996 to prevent people to have -hps while still
     alive.  I would have checked to see if it were lower than 1, but if it were
     0, which might happen (dunno maybe the guy had a new char). */
+
+//TLNY2020 changed code to -100 as 0 broke exp
 /*
-if(player_data["general"]["hp"] < 0) {
+if(player_data["general"]["hp"] < -100) {
     this_object()->die();
     return;
 }
 */
+if(player_data["general"]["hp"] < -100) {
+    //player_data["general"]["hp"] == 1;
+    this_object()->restart_heart_beat();
+    player_data["general"]["hp"] == 1;
+    //this_object()->die();
+    return;
+}
 }
 
 void set_max_sp(int x) { 

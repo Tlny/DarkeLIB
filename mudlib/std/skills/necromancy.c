@@ -9,9 +9,7 @@ void create() {
 
 void info() {
 message("help",
-"This spell casting skill deals with death magic in all its forms.  "+
-"This ranges from animating undead, to causing areas to decay, to "+
-"simple spells of cold.",
+"This spell casting skill deals with animating undeads.  ",
 this_player());
 }
 

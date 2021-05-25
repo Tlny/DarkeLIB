@@ -1,7 +1,6 @@
 inherit "/std/spells/long_term_spell";
 
 
-
 string spell_name;
 
 int spell_pow;
@@ -11,79 +10,44 @@ int spell_lev;
 string element;
 
 
-
 void create() {
-
     ::create();
-
     set_property("name","scribe scroll");
-
     set_property("skill","enchantment");
-
     set_property("duration", "permanent");
-
-    set_property("casting time",4);
-
-    set_property("base mp cost",36);
-
-    set_property("dev cost", 61);
-
-    set_property("fast dev cost", 188);
-
-    set_property("spell level", 12);
-
+    set_property("casting time", 4);
+    set_property("base mp cost", 70);
+    set_property("dev cost", 110);
+    set_property("fast dev cost", 330);
+    set_property("spell level", 21);
     set_property("moon","luna");
-
     set_property("caster message","You begin to inscribe magical characters on the scroll.");
-
     set_property("target message","");
-
     set_property("observer message","$C begins writing on a scroll.");
-
     set_property("spell type",({ }));
-
     set_property("target type", "any");
-
     set_property("must be present", 1);
-
     return;
-
 }
-
 
 
 void info() {
 
 message("help",
-
 "This spell allows you to inscribe a spell on a scroll.  The scroll may then be read once "
-
 "in order to cast it at a later time.  "
-
 "The scribed spell will cost full mp but will only take 2 rounds to cast, "
-
 "and may be cast while casting other spells.  "
-
 "This spell must be cast on a parchment scroll.  "
-
 "This is a long-term spell (see help long-term), and it takes very much real "
-
 "time to cast.  If you are interrupted while casting, "
-
 "you may pick up again at a later time.  If you are continuing the spell, no arguements need to "
-
 "be supplied.  If the scroll already has that spell written on it, it will be replaced by the new "
-
 "casting, even if it is lower.\n\n"
-
 "Syntax: cast *3 scribe scroll at <item> with <spell>\n"
-
 "Ex: cast *3 scribe scroll at scroll 1 with fireball\n"
-
 "NOTE: The spell will be scribed at a power equal to either the power of the scribe scroll or the power of the "
-
 "spell itself, whichever is lower.\n",
-
 this_player());
 
 }

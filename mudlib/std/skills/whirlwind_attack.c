@@ -13,15 +13,14 @@ void create() {
 void info() {
 message("help",
 "This skill may be used to gain multiple attacks in a round.  When you 'use' it, you will "
-"attack at an increased pace for a short time.  This skill may only be used once per half "
-"hour (mud time, see 'help calendar').",
+"attack at an increased pace for a short time. Your skill impacts how long it lasts and how often you can use it.",
 	this_player());
 }
 
 void skill_func(object from, object at, string arg) {
   object ob;
   
-  if((time() - (int)from->query_last_use("whirlwind attack")) < HOUR/4)
+  if((time() - (int)from->query_last_use("whirlwind attack")) < (350 - props["skill level"]))
     {
     message("info", "You are too tired to use this skill again yet.", from);
     remove();
@@ -34,6 +33,7 @@ void skill_func(object from, object at, string arg) {
   message("info", "%^RED%^%^BOLD%^You begin to attack with great speed!", from);
   message("info", from->query_cap_name() + " begins to attack with great speed!",
         environment(from), ({ from }));
+from->add_exp2(25 * props["skill level"]+(this_player()->query_level()*100));
   remove();
   return;
 }

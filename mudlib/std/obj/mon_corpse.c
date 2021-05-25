@@ -5,7 +5,7 @@
 
 inherit BAG;
 
-#define DECAY_TIME 150
+#define DECAY_TIME 1500
 
 string name;
 int decay;
@@ -179,7 +179,7 @@ void set_name(string str) {
 void decay() {
   decay -= 1;
   if(decay > 0) {
-    delayed_call("decay", 20);
+    delayed_call("decay", 200);
     return;
   }
   catch(map_array(all_inventory(this_object()), (: call_other :),

@@ -5,13 +5,13 @@ object rune;
 void create() {
     ::create();
     set_property("name","preserve rune");
-    set_property("skill","enchantment");
+    set_property("skill","energy manipulation");
     set_property("duration", "permanent");
-    set_property("casting time",4);
-    set_property("base mp cost",69);
-    set_property("dev cost", 64);
-    set_property("fast dev cost", 195);
-    set_property("spell level", 12);
+    set_property("casting time", 5);
+    set_property("base mp cost", 75);
+    set_property("dev cost", 95);
+    set_property("fast dev cost", 285);
+    set_property("spell level", 18);
     set_property("moon","luna");
     set_property("caster message","You begin to stabilize the rune.");
     set_property("target message","");
@@ -64,7 +64,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
-  if((int)at->query_level() > ((props["extra power"])?(power-props["extra power"]):power)) {
+  if((int)at->query_level() > power) {
     message("info", "You must cast this spell at a power equal to or greater than the rune's power.",
 	    caster);
 	  caster->add_mp(props["mp cost"]);
@@ -76,6 +76,10 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   rune = at;
   time = 60 + 20*power;
   mod = 40+2*props["spell level"];
+  if(archp(caster)) {
+time = 1;
+mod = 1;
+}
   start_work(at, caster, (time*mod)/caster->query_skill("enchantment"), power);
   return;
 }

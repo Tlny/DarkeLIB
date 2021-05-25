@@ -42,8 +42,8 @@ void skill_func(object from, object at, string arg) {
   while(shadow(at, 0)) shadow(at, 0)->external_destruct(shadow(at, 0));
   tmp = (string *)at->query_property("runes");
   if(!tmp) tmp = ({});
-  if(sizeof(tmp) >= 3) {
-    message("info", "No armour may receive more than 3 runes.",
+  if(sizeof(tmp) >= 10) {
+    message("info", "No armour may receive more than 10 runes.",
       from);
     remove();
     return;
@@ -59,6 +59,9 @@ void skill_func(object from, object at, string arg) {
   if(time < 500) time = 500;
   message("info", "%^CYAN%^%^BOLD%^You begin inscribing.", from);
   set_work_message("%^CYAN%^You inscribe upon the armour.");
+if(archp(this_player())){
+time = 1;
+}
   start_work(at, from, time);
   return;
 }
@@ -74,17 +77,35 @@ void finish_work(object from, object at) {
   wc = (mapping)at->all_base_ac();
   if(!wc) wc = ([]);
   if(!wc["electricity"]) wc["electricity"] = 0;
-  wc["electricity"] += skill / 3 + 8;
+  wc["electricity"] += skill / 3 + (random(skill)/5);
   if(!wc["fire"]) wc["fire"] = 0;
-  wc["fire"] += skill / 3 + 8;
+  wc["fire"] += skill / 3 + (random(skill)/5);
   if(!wc["cold"]) wc["cold"] = 0;
-  wc["cold"] += skill / 3 + 8;
+  wc["cold"] += skill / 3 + (random(skill)/5);
   if(!wc["plasma"]) wc["plasma"] = 0;
-  wc["plasma"] += skill / 3 + 8;
+  wc["plasma"] += skill / 3 + (random(skill)/5);
+// TLNY 2020 added other magic protection tables at a lower rate for now
+  if(!wc["disruption"]) wc["disruption"] = 0;
+  wc["disruption"] += skill / 3 + (random(skill)/7);
+  if(!wc["vacuum"]) wc["vacuum"] = 0;
+  wc["vacuum"] += skill / 3 + (random(skill)/7);
+//TLNY 2020 consider taking out holy protection and giving to bless armour for cleric 
+ if(!wc["holy"]) wc["holy"] = 0;
+  wc["holy"] += skill / 3 + (random(skill)/7);
+//TLNY 2020 consider taking out unholy protection and giving to bless armour for cleric 
+ if(!wc["unholy"]) wc["holy"] = 0;
+  wc["unholy"] += skill / 3 + (random(skill)/7);
+  if(!wc["aether"]) wc["aether"] = 0;
+  wc["aether"] += skill / 3 + (random(skill)/7);
+ if(!wc["stress"]) wc["stress"] = 0;
+  wc["stress"] += skill / 3 + (random(skill)/7);
+if(!wc["infernal"]) wc["infernal"] = 0;
+  wc["infernal"] += skill / 3 + (random(skill)/7);
   wc_keys = keys(wc);
   i = sizeof(wc_keys);
   while(i--)
     at->set_ac(wc[wc_keys[i]], wc_keys[i]);
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
   message("info", "A %^GREEN%^%^BOLD%^Malsa sen Zora%^RESET%^ rune appears on the armour.", from);
   if(!(runes=(string *)at->query_property("runes")))
     runes = ({});

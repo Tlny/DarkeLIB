@@ -55,7 +55,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     message("info", "%^RED%^%^BOLD%^A hideous creature is gated from the warp!",
           environment(caster), ({ caster }) );
     seteuid(getuid());
-    new("/wizards/diewarzau/obj/mon/warp_creature")->move(environment(caster));
+    new("/std/obj/mon/warp_creature")->move(environment(caster));
     remove();
     return;
   }

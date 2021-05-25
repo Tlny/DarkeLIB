@@ -42,8 +42,8 @@ void skill_func(object from, object at, string arg) {
   while(shadow(at, 0)) shadow(at, 0)->external_destruct(shadow(at, 0));
   tmp = (string *)at->query_property("runes");
   if(!tmp) tmp = ({});
-  if(sizeof(tmp) >= 3) {
-    message("info", "No weapon may receive more than 3 runes.",
+  if(sizeof(tmp) >= 10) {
+    message("info", "No weapon may receive more than 10 runes.",
       from);
     remove();
     return;
@@ -59,6 +59,9 @@ void skill_func(object from, object at, string arg) {
   if(time < 600) time = 600;
   message("info", "%^CYAN%^%^BOLD%^You begin inscribing.", from);
   set_work_message("%^CYAN%^You inscribe upon the weapon.");
+if(archp(this_player())){
+time = 1;
+}
   start_work(at, from, time);
   return;
 }
@@ -70,6 +73,7 @@ void finish_work(object from, object at) {
   
   message("info", "%^CYAN%^%^BOLD%^You finish inscribing the rune.",
     from);
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
   message("info", "A %^GREEN%^%^BOLD%^Harah Lit%^RESET%^ rune appears on the weapon.", from);
   auto_crit = from->prop("auto critical");
   if(mapp(auto_crit)) {

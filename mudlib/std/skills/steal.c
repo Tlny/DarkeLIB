@@ -73,6 +73,7 @@ void skill_func(object from, object at, string arg) {
 		      1);
   at->set("per bonus:"+(string)from->query_name(),
 	  ({ bonus + 7+random(7), time() }));
+from->add_exp2(5 * props["skill level"]+(this_player()->query_level()*100));
   message("my_action", "%^CYAN%^You carefully reach into "+
 	  (string)at->query_cap_name()+"'s pockets...", from);
   call_out("do_steal", 5, res, ({ from, at, what }) );

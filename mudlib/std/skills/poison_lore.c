@@ -86,7 +86,7 @@ void skill_func(object from, object at, string arg) {
       case 96..1000000: ob = new(PATH+"demon_horns"); break;
       default: write("Poison Lore BUG!  Mail Duridian immediately!"); return; break;
    }
- 
+from->add_exp2(10 * props["skill level"]+(this_player()->query_level()*100)); 
    message("info", "You search the ground for a moment and find " +
                    ob->query_short() + ", which you pick up.", from);
    message("info", capitalize((string)from->query_name()) +

@@ -1,4 +1,4 @@
-inherit "/std/spells/spell";
+inherit "/std/spells/spell_2";
 
 void create() {
     ::create();
@@ -28,7 +28,7 @@ message("help",
 "This is a very powerful spell which may be used to interrupt a "
 "spell before it is cast.  If someone begins casting a spell, "
 "you may interrupt it by casting counter spell at them before "
-"their spell goes off.  Higher level spells are harder to counter, "
+"their spell goes off.  Higher skilled player’s spells are harder to counter, "
 "but casting counter spell at a higher power helps offset this "
 "penalty.  The caster's level will also increase the chance of a "
 "successful counter",
@@ -38,6 +38,8 @@ this_player());
 void spell_func(object caster, object at, int power, string args, int flag) {
   object ob;
   int lev;
+  int skl;
+  int lev2;
   string *tmp;
 
   ob = (object)at->query_casting();
@@ -70,18 +72,12 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
-  lev = (int)ob->query_property("spell level") - caster->query_level() + 6;
-  if(lev < 0 && !resist_flag) {
-    message("info", "%^CYAN%^You successfully counter "+
-            (string)at->query_cap_name() + "'s spell!", caster);
-    message("info", "%^RED%^%^BOLD%^"+
-            (string)caster->query_cap_name() +
-            " counters your spell!", at);
-    ob->remove();
-    remove();
-    return;
-  }
-  if(random(20) > (lev+2-power) && !resist_flag) {
+  skl = (int)ob->query_property("skill");
+  lev = ((at->query_skill(skl) + at->query_level()) / 2);
+  lev += 6;
+  lev2 = ((caster->query_skill("sorcery") + caster->query_level()) / 2);
+  lev2 += power;
+  if(lev < lev2 && !resist_flag) {
     message("info", "%^CYAN%^You successfully counter "+
             (string)at->query_cap_name() + "'s spell!", caster);
     message("info", "%^RED%^%^BOLD%^"+

@@ -1,3 +1,5 @@
+// Dragon Engine - Xavier Jul2020
+
 inherit "/std/spells/long_term_spell";
 
 void create() {
@@ -6,17 +8,17 @@ void create() {
     set_property("skill","enchantment");
     set_property("duration", "permanent");
     set_property("casting time",4);
-    set_property("base mp cost",95);
-    set_property("dev cost", 101);
-    set_property("fast dev cost", 300);
-    set_property("spell level", 19);
+    set_property("base mp cost",135);
+    set_property("dev cost", 160);
+    set_property("fast dev cost", 480);
+    set_property("spell level", 31);
     set_property("moon","luna");
     set_property("caster message","You begin to mold the metal into a dragon engine.");
     set_property("target message","");
     set_property("observer message","$C begins to magically mold some metal.");
     set_property("spell type",({ }));
     set_property("target type", "any");
-    set_property("prereq", "fashion golem");
+    set_property("prereq", "fashion gargoyle");
     set_property("must be present", 1);
     return;
 }
@@ -67,7 +69,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
       remove();
       return;
     }
-    at = new("/std/diewarzau/obj/misc/inc_creation");
+    at = new("/std/obj/misc/inc_creation");
     ingots = 15;
     at->set_material(replace_string((string)ob_p[0]->query_material(),
           "metal/", "", 1));
@@ -108,7 +110,7 @@ void finish_work(object caster, object at, int power) {
 	  "magical incantations, and a dragon engine is formed.",
 	  environment(caster), ({ caster }) );
   seteuid(getuid());
-  ob = new("/std/diewarzau/obj/pet/dragon_engine");
+  ob = new("/std/obj/pet/dragon_engine");
   ob->set_material(replace_string((string)at->query_material(), "/", "", 1));
   ob->set_up(power);
   ob->set_owner((string)caster->query_name());

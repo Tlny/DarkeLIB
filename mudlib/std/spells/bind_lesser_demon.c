@@ -18,7 +18,7 @@ void create() {
     set_property("protection types", ([ "impaling" : 4, "crushing" : 4,
          "cutting" : 4, "disruption" : 4, "strike" : 4,
          "impact" : 2 ]));
-    set_property("stack key", "demon armour");
+    set_property("stack key", "ldemon armour");
     set_property("stack num", 3);
     set_property("duration", 800);
     set_property("must be present", 1);
@@ -53,6 +53,13 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   if((int)at->query_power() < power) {
     message("info", "The demon must be equal or greater power than the spell.",
         caster);
+    caster->add_mp(props["mp cost"]);
+    remove();
+    return;
+  }
+ if((int)caster->query_stack("ldemon armour") + (int)caster->query_stack("demon armour") + (int)caster->query_stack("gdemon armour") + (int)caster->query_stack("demonl armour")== 3) {
+    message("info", (string)caster->query_cap_name() +
+	    " cannot receive any more demon binds.", caster);
     caster->add_mp(props["mp cost"]);
     remove();
     return;

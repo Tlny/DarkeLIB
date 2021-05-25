@@ -14,8 +14,8 @@ void create() {
     set_property("target message","The Angel of Judgement responds to $C's call for Holy Condemnation!");
     set_property("observer message","The Angel of Judgement responds to $C'scall for Holy Condemnation!");
     set_property("spell type",({ "area damage" }));
-    set_property("damage types", ([ "holy" : 25, "holy #2" : 25, "holy #3" : 25, "holy #4" : 25]));
-    set_property("damage multiplier", 15);
+    set_property("damage types", ([ "holy" : 25+this_player()->query_level()/3, "holy #2" : this_player()->query_level()/3, "holy #3" : this_player()->query_level()/3, "holy #4" : this_player()->query_level()/3]));
+    set_property("damage multiplier", this_player()->query_level()*2);
     set_property("combat spell", 1);
     set_property("must be present", 1);
     set_property("can resist", 1);

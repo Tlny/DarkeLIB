@@ -1,26 +1,30 @@
 #include "/d/damned/virtual/virtual_table.h"
 #define ARMOUR ({\
 "breast-plate", \
-"corslet", \
-"chain-coif", \
-"scale-greaves", \
-"scale-mail", \
 "chain-greaves", \
 "chain-mail", \
+"iron-bracer",\
 "great-helm", \
+"metal-boots", \
+"iron-greaves", \
+"scale-greaves", \
+"scale-mail", \
+"gauntlet", \
+"chain-coif", \
+"corslet", \
+"chain-glove", \
 "tower-shield", \
 "wall-shield", \
 "large-shield", \
 "small-shield", \
 "buckler-shield", \
-"gauntlet", \
-"chain-glove", \
-"metal-boots", \
 "plate-bracer", \
 "plate-greaves", \
 "banded-mail", \
+"chain-vest", \
+"metal-visor", \
 "taces", \
-"metal-visor" })
+ })
 
 inherit "/std/skills/long_term.c";
 
@@ -99,6 +103,10 @@ void skill_func(object from, object at, string arg) {
       set_work_message("%^CYAN%^Wails of the damned sing as you beat on the armour blank.");
     else
       set_work_message("%^CYAN%^You pound on the armour blank.");
+    if(time < 500) time = 500;
+if(archp(this_player())){
+time = 1;
+}
     start_work(at, from, time);
     return;
   }
@@ -135,14 +143,17 @@ void finish_work(object from, object at) {
     val = val * pow(to_float((int)ob3->prop("value") / (int)ob2->prop("value")), 0.5);
     ob->set_value(val);
     if(present("infernal forge", environment(from)))
-      from->add_exp(-100000 - val);
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
+      //from->add_exp(-100000 - val);
     else
-      from->add_exp2(2000 + val/20);
+from->add_exp2(25 * props["skill level"]+(this_player()->query_level()*100));
+      //from->add_exp2(2000 + val/20);
   } else if(ob->query_float_value() && (float)ob->query_float_value() > 0.0) {
     valf = (float)ob->query_float_value();
     valf *= to_float((int)ob3->prop("value")) / to_float((int)ob2->prop("value"));
     ob->set_float_value(valf);
-    from->add_exp2(974);
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
+    //from->add_exp2(974);
   }
   ob2->remove();
   ob3->remove();
@@ -162,8 +173,215 @@ void finish_work(object from, object at) {
     bonus_ac = skill/12 + random(skill)/12 + to_int(lvl/6);
   if(present("infernal forge", environment(from)))
     ob->set_ac(base_ac + bonus_ac + 1);
-  else
-    ob->set_ac(base_ac + bonus_ac);
+  else {
+    //ob->set_ac(base_ac + bonus_ac);
+    ob->set_ac(base_ac + bonus_ac + (random(skill)/5) );
+}
+//TLNY2021 ADD
+//+2 ac bonus
+if(ob->query_material() == "/metal/eog" ) {
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/2) );
+  ob->set_ac(base_ac + bonus_ac + (60+random(skill)/2), "aether");  
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "infernal");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "unholy");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "holy");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "plasma");  
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "disruption");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "electricity");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "vacuum");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "cold");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "fire");  
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "stress");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "impact");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "strike");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "impaling");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "cutting");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "crushing");       
+}
+if(ob->query_material() == "/metal/eonmite" ) {
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3) );
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/2), "infernal");
+
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "aether");  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "unholy");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "holy");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "plasma");  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "disruption");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "electricity");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "vacuum");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "cold");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "fire");  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "stress");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "impact");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "strike");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "impaling");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "cutting");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "crushing"); 
+}
+if(ob->query_material() == "/metal/iysaughton" ) {
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3) );  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/2), "disruption");
+
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "aether");  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "infernal");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "unholy");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "holy");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "plasma");  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "electricity");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "vacuum");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "cold");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "fire");  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "stress");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "impact");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "strike");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "impaling");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "cutting");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "crushing"); 
+}
+//+3 ac bonus
+if(ob->query_material() == "/metal/laen" ) {
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/2) );
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "aether");  
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "infernal");
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "unholy");
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "holy");
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "plasma");  
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "disruption");
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "electricity");
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "vacuum");
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "cold");
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "fire");  
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "stress");
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "impact");
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "strike");
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "impaling");
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "cutting");
+  ob->set_ac(base_ac + bonus_ac + (120+random(skill)/2), "crushing"); 
+}
+if(ob->query_material() == "/metal/platnite" ) {
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3) );
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/2), "electricity");
+
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "aether");  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "infernal");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "unholy");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "holy");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "plasma");  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "disruption");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "vacuum");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "cold");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "fire");  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "stress");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "impact");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "strike");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "impaling");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "cutting");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "crushing"); 
+}
+//+2 AC monus
+if(ob->query_material() == "/metal/mithril" ) {
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2) );
+  ob->set_ac(base_ac + bonus_ac + (60+random(skill)/2), "fire");
+
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "aether");  
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "infernal");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "unholy");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "holy");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "plasma");  
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "disruption");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "electricity");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "vacuum");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "cold");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "stress");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "impact");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "strike");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "impaling");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "cutting");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "crushing"); 
+}
+if(ob->query_material() == "/metal/elrodnite" ) {
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3) );
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/2), "cold");
+
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "aether");  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "infernal");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "unholy");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "holy");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "plasma");  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "disruption");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "electricity");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "vacuum");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "fire");  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "stress");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "impact");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "strike");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "impaling");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "cutting");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "crushing"); 
+}
+//+2 ac bonus
+if(ob->query_material() == "/metal/inniculmoid" ) {
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2) );
+  ob->set_ac(base_ac + bonus_ac + (60+random(skill)/2), "impact");
+
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "aether");  
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "infernal");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "unholy");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "holy");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "plasma");  
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "disruption");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "electricity");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "vacuum");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "cold");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "fire");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "stress");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "strike");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "impaling");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "cutting");
+  ob->set_ac(base_ac + bonus_ac + (40+random(skill)/2), "crushing"); 
+}
+if(ob->query_material() == "/metal/raysorite" ) {
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3) );
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/2), "stress");
+ 
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "aether");  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "infernal");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "unholy");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "holy");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "plasma");  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "disruption");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "electricity");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "vacuum");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "cold");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "fire");  
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "impact");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "strike");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "impaling");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "cutting");
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/3), "crushing"); 
+}
+//+2 ac bonus
+if(ob->query_material() == "/metal/catoetine" ) {
+  ob->set_ac(base_ac + bonus_ac + (random(skill)/2) );
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "aether");  
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "infernal");
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "unholy");
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "holy");
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "plasma");  
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "disruption");
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "electricity");
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "vacuum");
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "cold");
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "fire");  
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "stress");
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "impact");
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "strike");
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "impaling");
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "cutting");
+  ob->set_ac(base_ac + bonus_ac + (50+random(skill)/2), "crushing"); 
+}
+//END
+
   if((int)ob->query_ac() < 1) ob->set_ac(1);
   if(intp(ob->prop("hardness")))
     ob->set_decay_rate((int)ob->prop("hardness"));

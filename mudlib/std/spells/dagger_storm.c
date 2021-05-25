@@ -14,8 +14,8 @@ void create() {
     set_property("target message","$C casts ice daggers upon you!");
     set_property("observer message","$C casts ice daggers at $T!");
     set_property("spell type",({ "damage" }));
-    set_property("damage types", ([ "impaling" : 40, "impaling #2" : 40,
-	"impaling #3" : 40, "cutting" : 50, "cutting #2" : 50]));
+    set_property("damage types", ([ "impaling" : 40+this_player()->query_level(), "impaling #2" : 40+this_player()->query_level(),
+	"impaling #3" : 40+this_player()->query_level(), "cutting" : 50+this_player()->query_level(), "cutting #2" : 50+this_player()->query_level()]));
     set_property("must be present",1);
     set_property("combat spell",1);
     return;

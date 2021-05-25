@@ -75,7 +75,7 @@ void spell_func(object caster, object at, int power, string args, int flag)
 
 
 
-  if(at->query_scales()) {
+  if(at->query("justice #") >= 1) {
 
     message("info", (string)at->query_cap_name() + 
 
@@ -90,6 +90,10 @@ void spell_func(object caster, object at, int power, string args, int flag)
     return;
 
   }
+
+  at->set("justice #", (int)at->query("justice #") + 1);
+  call_out("remove_stack", props["duration"], at);
+  ::spell_func(caster, at, power, args, flag);
 
   seteuid(getuid());
 
@@ -117,5 +121,12 @@ void spell_func(object caster, object at, int power, string args, int flag)
 
   return;
 
+}
+
+void remove_stack(object at) {
+  if(!objectp(at)) return;
+  at->set("justice #", (int)at->query("justice #") - 1);
+  remove();
+  return;
 }
 

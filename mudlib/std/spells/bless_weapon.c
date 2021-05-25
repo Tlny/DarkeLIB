@@ -35,6 +35,8 @@ TEXT
 }
 
 void spell_func(object caster, object at, int power, string args, int flag) {
+  int time,mod;
+  int ctime;
   if(!at->is_weapon()) {
     message("info", "You must cast this spell at a weapon.",
 	    caster);
@@ -52,19 +54,23 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
-  if((int)at->query_property("flame blade") ||
-    (int)at->query_property("icy weapon") ||
-    (int)at->query_property("holy weapon") ||
-    (int)at->query_property("blessed weapon") >=4 ) {
+  if((int)at->query_property("blessed weapon") >=4 ) {
     message("info", "This weapon can not receive any additional blessing.", caster);
     caster->add_mp(props["mp cost"]);
     remove();
     return;
   }
   set_work_message("%^CYAN%^You pray over the weapon.");
-  start_work(at, caster, 480 + 90*power, power);
-  return;
+time = 480 + 90*power;
+  mod = 30+2*props["spell level"];
+ctime = (time*mod)/caster->query_skill("prayer");
+if(archp(caster)) {
+ctime = 1;
 }
+start_work(at, caster, ctime, power);
+return;
+}
+
 
 void finish_work(object caster, object at, int power) {
   int ench, i, idx;

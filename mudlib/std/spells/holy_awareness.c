@@ -21,6 +21,8 @@ void create() {
     set_property("target type", "living");
     set_property("must be present",1);
     set_property("duration", 300);
+    set_property("stack key", "haware");
+    set_property("stack num", 1);
     return;
 }
 
@@ -39,7 +41,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
 //  object ob;
 
   seteuid(getuid());
-  if(at->query_hawareness()) {
+  if((at->query("haware #") >= 1) || (at->query("daware #") >= 1)) {
     message("info", (string)at->query_cap_name() +
             " is already aware.",
             caster);
@@ -47,6 +49,11 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
+  
+  at->set("haware #", (int)at->query("haware #") + 1);
+  call_out("remove_stack", props["duration"], at);
+  ::spell_func(caster, at, power, args, flag);
+  
   if(!flag) {
     at->set("see invis", 1);
     call_out("expire_me", props["duration"], at);
@@ -62,4 +69,11 @@ void expire_me(object at) {
   remove();
   return;
 }
+void remove_stack(object at) {
+  if(!objectp(at)) return;
+  at->set("haware #", (int)at->query("haware #") - 1);
+  remove();
+  return;
+}
+
 

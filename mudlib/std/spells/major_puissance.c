@@ -8,9 +8,9 @@ void create() {
     set_property("duration", "permanent");
     set_property("casting time",4);
     set_property("base mp cost",77);
-    set_property("dev cost", 61);
-    set_property("fast dev cost", 180);
-    set_property("spell level", 12);
+    set_property("dev cost", 70);
+    set_property("fast dev cost", 210);
+    set_property("spell level", 13);
     set_property("moon","luna");
     set_property("caster message","You begin to imbue the weapon with magical power.");
     set_property("target message","");
@@ -34,6 +34,7 @@ this_player());
 
 void spell_func(object caster, object at, int power, string args, int flag) {
   int time, mod;
+  int ctime;
   if(!at->is_weapon()) {
     message("info", "You must cast this spell at a weapon.",
 	    caster);
@@ -51,7 +52,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
-  if((int)at->query_property("enchantment") >= 20) {
+  if((int)at->query_property("enchantment") >= 40) {
     message("info", "This weapon may receive no further major "+
       "enchantments.", caster);
     caster->add_mp(props["mp cost"]);
@@ -61,8 +62,12 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   set_work_message("%^CYAN%^You enchant the weapon.");
   time = 1200 + 440*power;
   mod = 40+2*props["spell level"];
-  start_work(at, caster, (time*mod)/caster->query_skill("enchantment"), power);
-  return;
+ctime = (time*mod)/caster->query_skill("enchantment");
+if(archp(caster)) {
+ctime = 1;
+}
+start_work(at, caster, ctime, power);
+return;
 }
 
 void finish_work(object caster, object at, int power) {
@@ -75,6 +80,11 @@ void finish_work(object caster, object at, int power) {
     remove();
     return;
   }
+//ADD
+if(power >= 6) {
+    at->set_property("enchantment", 40);
+	} 
+//END
   message("info", "You are finished enchanting!", caster);
   message("info", (string)caster->query_cap_name() + " utters some "+
 	  "magical incantations.",
@@ -85,11 +95,11 @@ void finish_work(object caster, object at, int power) {
   }
   ench = (int)at->query_property("enchantment");
   if(!ench) ench = 0;
-  if(ench + power*2 >= 20) {
+  if(ench + power*2 >= 40) {
     message("info", "This weapon is now enchanted as much as is possible with "+
 	    "this spell.", caster);
-    at->set_property("enchantment", 20);
-    ench = 20-(power*2);
+    at->set_property("enchantment", 40);
+    ench = 40-(power*2);
   } 
   else
     {

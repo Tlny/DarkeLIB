@@ -28,9 +28,9 @@ void create() {
 
     set_property("caster message","You cast slow at $T.");
 
-    set_property("target message","$C casts slow at $T");
+    set_property("target message","$C casts slow on you.");
 
-    set_property("observer message","$C casts slow at you!");
+    set_property("observer message","$C casts slow at $T.");
 
     set_property("spell type",({ }));
 

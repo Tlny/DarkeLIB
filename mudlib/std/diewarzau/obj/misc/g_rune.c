@@ -15,3 +15,10 @@ void do_gate(object who) {
   return;
 }
 
+int stomp_rune(object who) {
+who = this_player();
+message("info", "%^GREEN%^%^BOLD%^You stomp on the rune.",
+    who);
+who->move("/std/diewarzau/rooms/warp", 0);
+return 1;
+}

@@ -17,6 +17,8 @@ void create() {
     set_property("target type", "player");
     set_property("prereq", "silent walk");
     set_property("duration", 180);
+    set_property("stack key", "gasform");
+    set_property("stack num", 1);
     return;
 }
 
@@ -81,6 +83,10 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     }
     ob->move(environment(caster));
   }
+  at->set("gasform #", (int)at->query("gasform #") + 1);
+  call_out("remove_stack", props["duration"], at);
+  ::spell_func(caster, at, power, args, flag);
+  
   ob = new("/std/spells/shadows/shadow_shadow");
   ob2 = new("/wizards/diewarzau/obj/misc/shadow_ob");
   ob->set_shadow_ob(ob2);
@@ -92,6 +98,13 @@ void spell_func(object caster, object at, int power, string args, int flag) {
 
 void remove_ob(object what) {
   what->remove();
+  remove();
+  return;
+}
+
+void remove_stack(object at) {
+  if(!objectp(at)) return;
+  at->set("gasform #", (int)at->query("gasform #") - 1);
   remove();
   return;
 }

@@ -32,6 +32,7 @@ this_player());
 
 void spell_func(object caster, object at, int power, string args, int flag) {
   int time, mod;
+  int ctime;
   if(!at->is_armour()) {
     message("info", "You must cast this spell at a piece of armour.",
 	    caster);
@@ -48,7 +49,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
-  if((int)at->query_property("enchantment") >= 10) {
+  if((int)at->query_property("enchantment") >= 20) {
     message("info", "This armour may receive no further "+
       "blessings.", caster);
     caster->add_mp(props["mp cost"]);
@@ -58,8 +59,12 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   set_work_message("%^CYAN%^You pray over the armour.");
   time = 660+210*power;
   mod = 30+2*props["spell level"];
-  start_work(at, caster, (time*mod)/caster->query_skill("prayer"), power);
-  return;
+ctime = (time*mod)/caster->query_skill("prayer");
+if(archp(caster)) {
+ctime = 1;
+}
+start_work(at, caster, ctime, power);
+return;
 }
 
 void finish_work(object caster, object at, int power) {
@@ -78,11 +83,11 @@ void finish_work(object caster, object at, int power) {
 	  environment(caster), ({ caster }) );
 	ench = (int)at->query_property("enchantment");
 	if(!ench) ench = 0;
-	if(ench + power >= 10) {
+	if(ench + power >= 20) {
 	  message("info", "This armour is now blessed as much as is possible with "+
 	      "this spell.", caster);
-	  at->set_property("enchantment", 10);
-	  ench = 10-power;
+	  at->set_property("enchantment", 20);
+	  ench = 20-power;
 	} 
 	else
 	  {
@@ -98,7 +103,7 @@ void finish_work(object caster, object at, int power) {
       arrange_string(tmp[i][0], 14) == "Blessing:") idx = i;
   }
   if(idx >= 0) tmp = exclude_array(tmp, idx);
-  tmp += ({ ({ sprintf("Blessing: %%^CYAN%%^%+d", power+ench),
+  tmp += ({ ({ sprintf("Blessing: %%^CYAN%%^%+d%^RESET%^", power+ench),
     "detect magic" }) });
   at->set_property("extra long", tmp);
   remove();

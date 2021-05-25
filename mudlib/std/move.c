@@ -82,7 +82,7 @@ int move(mixed dest) {
   if(objectp(ob) && ob->query_is_locker_room() &&
      this_object()->query_is_locker() && !this_object()->is_pet())
     SAVE_ITEMS_D->update_lockers(ob);
-  return MOVE_OK;
+  return MOVE_OK;  
 }
 
 int remove() {
@@ -96,7 +96,8 @@ int remove() {
 	i= sizeof(inv = all_inventory(this_object()));
 	while(i--) inv[i]->move(env);
     }
-      this_object()->unequip();
+//TLNY2020 change
+      //this_object()->unequip();
     if(this_object()->query_is_locker())
       this_object()->move(load_object(ROOM_VOID));
     destruct(this_object());

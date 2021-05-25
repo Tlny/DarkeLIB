@@ -26,13 +26,14 @@ message("help",
 "This spell animates a corpse into a Dracolich, a powerful, undead dragon, who will serve you as an undead thrall.  "
 "She will serve you by fighting beside you in combat.  "
 "This is a long-term spell (see help long-term), and it takes very much real "
-"time to cast.  The spell must be cast on an embalmed corpse of level 1 or higher, which must "
+"time to cast.  The spell must be cast on an embalmed corpse of level 24 or higher, which must "
 "be prepared with the 'prepare corpse' skill.  If you are interrupted while casting, "
 "you may pick up again at a later time.",
 this_player());
 }
 
 void spell_func(object caster, object at, int power, string args, int flag) {
+	int time;
   if(!at->id("embalmed corpse")) {
     message("info", "You must cast this spell at an embalmed corpse.",
 	    caster);
@@ -57,7 +58,11 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     return;
   }
   set_work_message("%^GREEN%^You mold the corpse.");
-  start_work(at, caster, 7400+560*power, power);
+  time = (8400+((560-(int)caster->query_skill("necromancy"))*power));
+    if(archp(caster)) {
+	time = 1;
+	}
+   start_work(at, caster, time, power);
   return;
 }
 
@@ -76,11 +81,13 @@ void finish_work(object caster, object at, int power) {
 	  "necromantic incantations, and an embalmed corpse "+
 	  "transforms into a Dracolich.",
 	  environment(caster), ({ caster }) );
-	message("info", "%^GREEN%^%^BOLD%^The roar of the mighty Dracolich is heard across the land.",
-	    users());
+	  	if(archp(caster)) {
+	    }else{  
+	   message("info", "%^GREEN%^%^BOLD%^The roar of the mighty Dracolich is heard across the land.",
+	   users()); }
   at->remove();
   seteuid(getuid());
-  ob = new("/wizards/diewarzau/obj/pet/dracolich");
+  ob = new("/std/spells/summon/dracolich");
   ob->set_up(power);
   ob->set_owner((string)caster->query_name());
   ob->move(environment(caster));

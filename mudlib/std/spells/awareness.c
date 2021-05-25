@@ -19,6 +19,8 @@ void create() {
     set_property("target type", "living");
     set_property("must be present",1);
     set_property("duration", 240);
+    set_property("stack key", "awares");
+    set_property("stack num", 1);
     return;
 }
 
@@ -44,6 +46,11 @@ if(at->query_awareness()) {
     remove();
     return;
   }
+  
+  at->set("awares #", (int)at->query("awares #") + 1);
+  call_out("remove_stack", props["duration"], at);
+  ::spell_func(caster, at, power, args, flag);
+  
   if(!flag) {
     ob = new("/std/spells/shadows/aware_shad");
     ob->set_power(power);
@@ -53,3 +60,11 @@ if(at->query_awareness()) {
   ::spell_func(caster, at, power, args, flag);
   return;
 }
+
+void remove_stack(object at) {
+  if(!objectp(at)) return;
+  at->set("awares #", (int)at->query("awares #") - 1);
+  remove();
+  return;
+}
+

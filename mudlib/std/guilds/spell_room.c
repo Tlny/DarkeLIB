@@ -30,7 +30,8 @@ void set(string what, mixed arg) {
   if((what == "long" || what == "day long" || what == "night long") &&
      stringp(arg))
     arg += "\nType '"+query_property("train verb")+" <spell>' to train your level in that skill.\n"+
-      "Type 'list "+query_property("train noun")+"' to list all spells available to you.\n";
+      "Type 'list "+query_property("train noun")+"' to list all spells available to you at your level.\n"+
+      "Type 'all "+query_property("train noun")+"' to list all spells available to you.\n";
   ::set(what, arg);
   return;
 }
@@ -40,6 +41,7 @@ void init() {
     if(!query_property("train verb")) set_property("train verb", "train");
     add_action("train_skill", query_property("train verb"));
     add_action("list_skills", "list");
+    add_action("all_skills", "all");
     return;
 }
 
@@ -80,7 +82,8 @@ int train_skill(string str) {
   if(!str) return 0;
   str = lower_case(str);
   if(!str) return 0;
-      if(((string)join_room->query_member_status((string)who->query_name())!= "member")&&!wizardp(who)){
+      if(((string)join_room->query_member_status((string)who->query_name())!= "member")&&!this_player()){
+//&&!wizardp(who)){ // TLNY2020 removed to make cross traing
     write("You are not a member of this guild, you can't train here.");
     return 1;
   }
@@ -96,6 +99,18 @@ int train_skill(string str) {
     write("You may only develop a spell to level *6.");
     return 1;
   }
+  /*if(my_lev < 200 && my_spell >= 6) {
+    write("You may only develop a spell to level *6.");
+    return 1;
+  }
+  if(my_lev < 400 && my_spell >= 8) {
+    write("You may only develop a spell to level *8.");
+    return 1;
+  }
+  if(my_lev >= 400 && my_spell >= 10) {
+    write("You may only develop a spell to level *10.");
+    return 1;
+  }*/
   if(!prereq_check(this_player(), str))
   {
     write("You prerequisite spell is not high enough.");
@@ -115,6 +130,7 @@ int train_skill(string str) {
   write("You now have "+str+" at *"+(int)this_player()->
 	query_spell_level(str)+".");
   if((my_spell + 1) < 6)
+  //if((my_spell + 1) < 10)
     write("It will cost you "+dev_cost(this_player(), str)+
           " to advance this spell further.");
   write("You have "+sprintf("%d", (my_dev - cost)) +
@@ -129,12 +145,14 @@ int list_skills(string str) {
   string *list;
   string *foo, col;
 
-     if(((string)join_room->query_member_status((string)this_player()->query_name()) != "member")&&!wizardp(this_player())){
+     if(((string)join_room->query_member_status((string)this_player()->query_name()) != "member")&&!this_player()){
+//!wizardp(this_player())){ // TLNY2020 removed to make cross traing
     write("You are not a member of this guild, you can't train here.");
     return 1;
   }
   if(!str || str != (string)query_property("train noun")) return 0;
-  lev = this_player()->query_level();
+  //lev = 10000; //TLNY can show all skills but it took away the fun of the surprise
+  lev = this_player()->query_level();  
   foo = ({"%^BOLD%^-=-=-=-=-=-=-=-=-= %^BLUE%^SPELL LISTING%^RESET%^BOLD%^ =-=-=-=-=-=-=-=-=-%^RESET%^"});
   if(member_array("bad standing", (string *)join_room->query_member_privs((string)this_player()->query_name())) >= 0)
     foo += ({ "%^RED%^%^BOLD%^-=-=-=-=-=-=-=-=-=-=  %^RESET%^%^BLUE%^Bad Standing%^RESET%^RED%^%^BOLD%^  =-=-=-=-=-=-=-=-=-=-%^RESET%^"});
@@ -142,7 +160,7 @@ int list_skills(string str) {
     list = filter_array(keys(skill_list), "skill_filter", this_object(), i);
     if(!list || !sizeof(list)) continue;
     j = sizeof(list);
-    foo += ({"%^BLUE%^Level "+sprintf("%2d",i)+" ---------------------------- COST --- RANK%^RESET%^"});
+    foo += ({"%^BOLD%^Level "+sprintf("%2d",i)+" ---------------------------- COST --- RANK%^RESET%^"});
     while(j--) {
       skil = dev_cost(this_player(), list[j]);
       col = "%^BOLD%^GREEN%^";
@@ -159,6 +177,45 @@ int list_skills(string str) {
   return 1;
 }
 
+//TLNY2020 add in all spells list
+int all_skills(string str) {
+  int i, j, lev, skil;
+  string *list;
+  string *foo, col;
+
+     if(((string)join_room->query_member_status((string)this_player()->query_name()) != "member")&&!this_player()){
+//!wizardp(this_player())){ // TLNY2020 removed to make cross traing
+    write("You are not a member of this guild, you can't train here.");
+    return 1;
+  }
+  if(!str || str != (string)query_property("train noun")) return 0;
+  lev = 10000; //TLNY can show all skills but it took away the fun of the surprise
+  //lev = this_player()->query_level();  
+  foo = ({"%^BOLD%^-=-=-=-=-=-=-=-=-= %^BLUE%^SPELL LISTING%^RESET%^BOLD%^ =-=-=-=-=-=-=-=-=-%^RESET%^"});
+  if(member_array("bad standing", (string *)join_room->query_member_privs((string)this_player()->query_name())) >= 0)
+    foo += ({ "%^RED%^%^BOLD%^-=-=-=-=-=-=-=-=-=-=  %^RESET%^%^BLUE%^Bad Standing%^RESET%^RED%^%^BOLD%^  =-=-=-=-=-=-=-=-=-=-%^RESET%^"});
+  for(i=1;i <= lev; i++) {
+    list = filter_array(keys(skill_list), "skill_filter", this_object(), i);
+    if(!list || !sizeof(list)) continue;
+    j = sizeof(list);
+    foo += ({"%^BOLD%^Level "+sprintf("%2d",i)+" ---------------------------- COST --- RANK%^RESET%^"});
+    while(j--) {
+      skil = dev_cost(this_player(), list[j]);
+      col = "%^BOLD%^GREEN%^";
+      if(skil > this_player()->query_property("dev points") ) col = "%^RED%^";
+      foo += ({ sprintf("    %-33s %s%-6d%%^RESET%%^    *%-3d",
+                   list[j],
+                   col,
+			       skil,
+			       (int)this_player()->query_spell_level(list[j])) });
+    }
+  }
+  foo += ({"%^BOLD%^-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-%^RESET%^"});
+  this_player()->more(foo);
+  return 1;
+}
+
+// end
 void delete_file(string file) {
   seteuid(getuid());
   rm(file);
@@ -178,16 +235,33 @@ int dev_cost(object who, string skill) {
   if(!who || !who->is_player()) return 0;
   spell_lev = (int)who->query_base_spell(skill) + 1;
   if(!skill) return 0;
-  if(spell_lev > 6) return 0;
+  if(spell_lev > 10) return 0;
   if(!skill_list[skill] || !skill_list[skill]["secondary"])
     mult = 1;
   else mult = 2;
+//add TLNY2020 add new code
+  if((string)who->query_class() != (string)join_room->query_class_name()) {
+    if(member_array((string)who->query_class(), (string *)join_room->
+		    query_hated_guilds()) >= 0)
+      mult *= 10;
+ if(member_array((string)who->query_class(), (string *)join_room->
+		    query_odd_guilds()) >= 0)
+      mult *= 6;
+ if(member_array((string)who->query_class(), (string *)join_room->
+		    query_related_guilds()) >= 0)
+      mult *= 2;
+     else mult *= 4;
+  }
+//end
+/*
+//OLD CODE
   if((string)who->query_class() != (string)join_room->query_class_name()) {
     if(member_array((string)who->query_class(), (string *)join_room->
 		    query_related_guilds()) >= 0)
       mult *= 3;
     else mult *= 5;
   }
+*/
   if(member_array("bad standing", (string *)join_room->query_member_privs((string)this_player()->query_name())) >= 0)
     mult *= 3;
   file = "/std/spells/"+replace_string(skill, " ", "_")+".c";

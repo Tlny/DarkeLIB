@@ -53,6 +53,7 @@ void skill_func(object from, object at, string arg) {
           (string)at->query_cap_name()+ ".",
           all_inventory(environment(from)),
           ({ from, at }) );
+from->add_exp2(10 * props["skill level"]+(this_player()->query_level()*100));
   switch(props["skill level"]
 ) {
   case -10..5:

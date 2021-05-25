@@ -1,14 +1,14 @@
-inherit "/std/spells/spell";
+inherit "/std/spells/spell_2";
 
 void create() {
     ::create();
     set_property("name","gate rune");
-    set_property("skill","enchantment");
+    set_property("skill","energy manipulation");
     set_property("casting time",25);
-    set_property("base mp cost",62);
-    set_property("dev cost", 81);
-    set_property("fast dev cost", 240);
-    set_property("spell level", 16);
+    set_property("base mp cost",110);
+    set_property("dev cost", 180);
+    set_property("fast dev cost", 540);
+    set_property("spell level", 35);
     set_property("moon","warzau");
     set_property("caster message","You inscribe a %^BLUE%^%^BOLD%^gate rune%^RESET%^ on the floor.");
     set_property("target message","");
@@ -16,15 +16,17 @@ void create() {
     set_property("spell type",({ }));
     set_property("no target", 1);
     set_property("duration", 122);
-    set_property("prereq", "transport rune");
+    set_property("prereq", "summon rune");
     return;
 }
 
 void info() {
 message("help",
-"This spell inscribes a magical rune on the floor.  "
+"This spell inscribes a gate rune on the floor.  "
 "Whenever someone (besides you) enters the room, the rune will affect "
-"them.  This rune will gate any victim to the warp, where they are sure to meet extreme peril!",
+"them.  This rune will gate any victim to the warp, where they are sure to meet extreme peril!\n"
+"***This is a very powerful rune and only the most dedicated enchanters may use it. A skill of 175% is needed to inscribe this rune.***\n"
+"==>This spell can only be used by members of the ENCHANTER guild<==",
 this_player());
 }
 
@@ -32,8 +34,21 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   object ob, *inv;
   int i, tot;
 
+  if((int)caster->query_skill("energy manipulation") < 175 ) {
+    message("info", "You need more energy manipulation to inscribe a Gate rune.", caster);
+    caster->add_mp(props["mp cost"]);
+    remove();
+    return;
+  }
+  if(caster->query_class() != "enchanter" && !archp(caster)) {
+    message("info", "%^BOLD%^Only %^CYAN%^Enchanters%^RESET%^ %^BOLD%^may use this spell.", caster);
+    message("info", "Your spell fails.", caster);
+    caster->add_mp(props["mp cost"]);
+    remove();
+    return;
+  }
   seteuid(getuid());
-  ob = new("/std/diewarzau/obj/misc/g_rune");
+  ob = new("/std/obj/misc/g_rune");
   ob->set("safe flag", 1);
   ob->move(environment(caster));
   ob->set("safe flag", 0);

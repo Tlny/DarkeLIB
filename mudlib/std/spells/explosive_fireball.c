@@ -17,8 +17,8 @@ void create() {
     set_property("spell type",({ "area damage" }));
     set_property("can resist", 2);
     set_property("save mod", "dexterity");
-    set_property("damage types", ([ "fire" : 30 ]));
-    set_property("damage multiplier", 4);
+    set_property("damage types", ([ "fire" : 30+this_player()->query_level() ]));
+    set_property("damage multiplier", 4+this_player()->query_level() );
     set_property("combat spell", 1);
     set_property("no target", 1);
     set_property("prereq", "fireball");

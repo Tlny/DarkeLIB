@@ -244,6 +244,7 @@ void do_stab(object from, object at, mapping wc, int skill) {
   if(objectp(weap) && pointerp(weap->query_auto_critical()))
     crits += (string *)weap->query_auto_critical();
   do_critical(from, at, crits, "torso");
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
 //  if((int)at->query_hp() <= 0 && !at->is_player())
 //    at->set_exp((int)at->query_exp() / 2);^M
   return;

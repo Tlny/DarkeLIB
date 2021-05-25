@@ -13,18 +13,28 @@ void info() {
 message("help",
 "This skill may be used against enemies in combat.  If you have an empty "+
 "hand, you can punch your target."+
-"  You may only use this skill once every 5 combat rounds.",
+"  You may only use this skill once every 5 combat rounds. However, that time goes away if your skill is high enough.",
 this_player());
 }
 void skill_func(object from, object at, string arg) {
   int flag, i; 
   string *limbs,race;
+  
+  if ((int)props["skill level"] >= 200) {
+   if((time() - (int)from->query_last_use("reverse punch")) < 2)
+    {
+    message("info", "You are too tired to use this skill yet."
+        , from);
+    return;
+   } 
+  } else {
   if((time() - (int)from->query_last_use("reverse punch")) < 10)
     {
     message("info", "You are too tired to use this skill yet."
         , from);
     return;
   }
+}
   race = from->query_race();
   flag = 0;
   limbs = from->query_limbs();
@@ -68,26 +78,40 @@ void skill_func(object from, object at, string arg) {
           " a reverse punch.",
           all_inventory(environment(from)),
           ({ from, at }) );
+from->add_exp2(15 * props["skill level"]+(this_player()->query_level()*100));
   switch(props["skill level"]
 ) {
   case -10..10:
-    at->do_damage((string)at->return_target_limb(), random(8)+1);
+    at->do_damage((string)at->return_target_limb(), random(10)+5);
     break; 
   case 11..30:
-    at->do_damage((string)at->return_target_limb(), 2 * (random(6)+1));
+    at->do_damage((string)at->return_target_limb(), 2 * (random(10)+5));
     do_critical(from, at, "strike A");  
     break;
   case 31..55:
-    at->do_damage((string)at->return_target_limb(), 2 * (random(6)+1));
+    at->do_damage((string)at->return_target_limb(), 2 * (random(10)+5));
     do_critical(from, at, "strike B");
+   // at->set_paralyzed(10, "%^BOLD%^%^YELLOW%^You are paralyzed and cannot move.%^RESET%^");
     break;
   case 56..75:
-    at->do_damage((string)at->return_target_limb(), 2 * (random(6)+1));
-    do_critical(from, at, "strike C");   
+    at->do_damage((string)at->return_target_limb(), 2 * (random(10)+5));
+    do_critical(from, at, "strike C");  
+   // at->set_paralyzed(20, "%^BOLD%^%^YELLOW%^You are paralyzed and cannot move.%^RESET%^"); 
     break;
-  case 76..10000:
-    at->do_damage((string)at->return_target_limb(), 2 * (random(6)+1));
+  case 76..174:
+    at->do_damage((string)at->return_target_limb(), 2 * (random(10)+5));
     do_critical(from, at, "strike D");
+   // at->set_paralyzed(30, "%^BOLD%^%^YELLOW%^You are paralyzed and cannot move.%^RESET%^");
+    break;
+ case 175..224:
+    at->do_damage((string)at->return_target_limb(), 2 * (random(10)*2));
+    do_critical(from, at, "strike D");
+    at->set_paralyzed(10, "%^BOLD%^%^YELLOW%^You are paralyzed and cannot move.%^RESET%^");
+    break;
+ case 225..10000:
+    at->do_damage((string)at->return_target_limb(), 3 * (random(15)*2));
+    do_critical(from, at, "strike D");
+    at->set_paralyzed(10, "%^BOLD%^%^YELLOW%^You are paralyzed and cannot move.%^RESET%^");
     break;
   }
   remove();   

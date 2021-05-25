@@ -24,7 +24,7 @@ void create() {
 
      set("value", 1);
 
-     set_type("bracer");
+     set_type("metal arm");
 
      set_limbs( ({ "left arm","right arm" }) );
 

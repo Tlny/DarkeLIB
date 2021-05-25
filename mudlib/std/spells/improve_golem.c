@@ -11,9 +11,9 @@ void create() {
     set_property("skill","enchantment");
     set_property("duration", "permanent");
     set_property("casting time",4);
-    set_property("base mp cost",32);
-    set_property("dev cost", 56);
-    set_property("fast dev cost", 170);
+    set_property("base mp cost",35);
+    set_property("dev cost", 60);
+    set_property("fast dev cost", 180);
     set_property("spell level", 11);
     set_property("moon","luna");
     set_property("caster message","You begin to improve the golem.");

@@ -24,6 +24,8 @@ void create() {
     set_property("no target", 1);
     set_property("must be present",1);
     set_property("duration", 240);
+    set_property("stack key", "bofe");
+    set_property("stack num", 1);
     return;
 }
 
@@ -62,6 +64,8 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
+  caster->set("bofe #", (int)caster->query("bofe #") + 1);
+  call_out("remove_stack", props["duration"], at);
   ob = new("/std/spells/shadows/e_trans_shadow");
   ob->set_melee(8 + power *2);
   ob->set_melee_skill(15+power*2);
@@ -75,6 +79,12 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   set_property("skills", ({ "elementalism", sprintf("%s lore", 
 						    props["element"]) }));
   ::spell_func(caster, caster, power, args, 0);
+  return;
+}
+ void remove_stack(object caster) {
+  if(!objectp(caster)) return;
+  caster->set("bofe #", (int)caster->query("bofe #") - 1);
+  remove();
   return;
 }
 

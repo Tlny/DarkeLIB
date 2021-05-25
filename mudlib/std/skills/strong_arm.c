@@ -35,6 +35,7 @@ from);
   seteuid(geteuid(this_object()));
   ob = new("/std/spells/shadows/strong_arm_shad");
   ob->start_shadow(from, props["skill level"]);
+from->add_exp2(25 * props["skill level"]+(this_player()->query_level()*100));
   message("info", "You begin to strong arm your opponents!", from);
   message("info", from->query_cap_name() + " begins to strong arm his opponents!",
         environment(from), ({ from }));

@@ -11,7 +11,7 @@ an enchanting cherub in action.  This item has potential for use
 in priestly prayers.
 TEXT
 );
-  set_value(6400+random(1200));
+  set_value(1400+random(1200));
   set_weight(25+random(50));
   return;
 }

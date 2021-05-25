@@ -1,13 +1,13 @@
-inherit "/std/spells/spell";
+inherit "/std/spells/spell_2";
 
 void create() {
     ::create();
     set_property("name","poison rune");
-    set_property("skill","enchantment");
+    set_property("skill","energy manipulation");
     set_property("casting time",14);
     set_property("base mp cost",28);
-    set_property("dev cost", 16);
-    set_property("fast dev cost", 47);
+    set_property("dev cost", 20);
+    set_property("fast dev cost", 60);
     set_property("spell level", 3);
     set_property("moon","warzau");
     set_property("caster message","You inscribe a %^GREEN%^poison rune%^RESET%^ on the floor.");
@@ -21,7 +21,7 @@ void create() {
 
 void info() {
 message("help",
-"This spell inscribes a magical rune on the floor.  "
+"This spell inscribes a poison rune on the floor.  "
 "Whenever someone (besides you) enters the room, the rune will affect "
 "them.  This rune will poison any victims.",
 this_player());
@@ -32,7 +32,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
   int i, tot;
 
   seteuid(getuid());
-  ob = new("/std/diewarzau/obj/misc/p_rune");
+  ob = new("/std/obj/misc/p_rune");
   ob->set("safe flag", 1);
   ob->move(environment(caster));
   ob->set_property("can resist", 1);

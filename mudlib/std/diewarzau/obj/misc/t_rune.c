@@ -1,10 +1,10 @@
-//    Poison Rune
+//    Transport Rune
 inherit "/std/diewarzau/obj/misc/rune";
 
 void create() {
   ::create();
   set_id(({ "rune", "transport rune" }));
-  set_property("non-combat", 1);
+  //set_property("non-combat", 1);
   set_short("%^RESET%^%^YELLOW%^%^BOLD%^A transport rune%^RESET%^%^MAGENTA%^%^BOLD%^");
   set_long("This rune is inscribed on the floor in an ancient magical language.");
   set("function", (: call_other, this_object(), "do_gate" :));
@@ -23,6 +23,13 @@ void do_gate(object who) {
   message("info", "%^GREEN%^%^BOLD%^You are magically transported somewhere.",
     who);
   who->move_player(room, 0);
-  return;
+  return;  
 }
 
+int step_rune(object who) {
+who = this_player();
+message("info", "%^GREEN%^%^BOLD%^You step on the rune.",
+    who);
+who->move_player(query_property("room"));
+return 1;
+}

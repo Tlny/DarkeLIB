@@ -6,11 +6,11 @@ object cas;
 void create() {
     ::create();
     set_property("name","decay");
-    set_property("skill","necromancy");
+    set_property("skill","black magic");
     set_property("casting time",8);
     set_property("base mp cost",69);
-    set_property("dev cost", 36);
-    set_property("fast dev cost", 105);
+    set_property("dev cost", 40);
+    set_property("fast dev cost", 120);
     set_property("spell level", 7);
     set_property("moon","luna");
     set_property("caster message","You cast decay at $T.");
@@ -21,6 +21,9 @@ void create() {
     set_property("must be present", 1);
     set_property("combat spell", 1);
     set_property("duration", 30);
+    set_property("can resist", 2);
+    set_property("stack key", "decay");
+    set_property("stack num", 3);
     return;
 }
 
@@ -41,6 +44,7 @@ void spell_func(object caster, object at, int power, string args, int flag) {
     remove();
     return;
   }
+    at->set("decay #", (int)at->query("decay #") + 1);
   call_out("damage_dude", 5, at, props["duration"]/5);
   cas = caster;
 }
@@ -55,8 +59,10 @@ void damage_dude(object at, int times) {
   times--;
   message("info", "%^GREEN%^You take damage from decay.", at);
   at->add_hp(-1 * sp_pow * (int)at->query_hp() / 50);
-  at->kill_ob(cas, 1);
+//TLNY2021 broken line of code
+  //at->kill_ob(cas, 1);
   if(times <= 0) {
+    at->set("decay #", (int)at->query("decay #") - 1);
     message("info", "%^CYAN%^%^BOLD%^A decay spell wears off.",
         at);
     remove();

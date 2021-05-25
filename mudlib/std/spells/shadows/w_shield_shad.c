@@ -6,7 +6,7 @@ object who_shadowed;
 string exp_mesg;
 int lev;
 
-void set_level(int x) { lev = x; }
+void set_plevel(int x) { lev = x; }
 
 void start_shadow(object who, int dur, string mesg) 
 {
