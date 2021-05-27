@@ -1,6 +1,4 @@
-<img width="537" alt="NEW DBR PNG" src="https://user-images.githubusercontent.com/60052985/119758665-1ef03d80-be64-11eb-84df-c856008de4c3.png">
-
-
+<img width="791" alt="DBR PNG Best" src="https://user-images.githubusercontent.com/60052985/119758769-50690900-be64-11eb-86e0-d4887fcf4132.png">
 # DarkeLIB
 The original DarkeLIB as used by Daybreak Ridge from 1999. This is a fork of parnells git repo.  Changes are being made to remove errors and make it easier to install.  This is also a place for wizards of the server we are working on to collaborate fixes and changes to the code.
 
